@@ -18,16 +18,16 @@
         <h1>Pesquisa de Integrante</h1>
         <table border="1">
             <tr>
-                <th>Código Integrante</th>
-                <th>Nome Integrante</th>
+                <th>Matricula</th>
+                <th>Carga Horaria Disponivel</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${integrantes}" var="integrante">
                 <tr>
-                    <td><c:out value="${integrante.idIntegrante}" /></td>
-                    <td><c:out value="${integrante.nome}" /></td>
-                    <td><a href="ManterIntegranteController?acao=prepararEditar&idIntegrante=<c:out value="${integrante.idIntegrante}" />">Editar</a></td>
-                    <td><a href="ManterIntegranteController?acao=prepararExcluir&idIntegrante=<c:out value="${integrante.idIntegrante}" />">Excluir</a></td>
+                    <td><c:out value="${integrante.matricula}" /></td>
+                    <td><c:out value="${integrante.cargaHorariaDisponivel}" /></td>
+                    <td><a href="ManterIntegranteController?acao=prepararEditar&idIntegrante=<c:out value="${integrante.matricula}" />">Editar</a></td>
+                    <td><a href="ManterIntegranteController?acao=prepararExcluir&idIntegrante=<c:out value="${integrante.matricula}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

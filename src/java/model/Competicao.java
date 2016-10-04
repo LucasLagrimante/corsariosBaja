@@ -21,7 +21,7 @@ public class Competicao {
         return idCompeticao;
     }
 
-    public void setId(int id) {
+    public void setIdCompeticao(int id) {
         this.idCompeticao = id;
     }
 

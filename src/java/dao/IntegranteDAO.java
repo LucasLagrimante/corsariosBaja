@@ -26,7 +26,7 @@ public class IntegranteDAO {
             while (rs.next()) {
                 Integrante integrante = new Integrante(
                         rs.getInt("matricula"),
-                        rs.getFloat("cargaHorariaDisponivel")
+                        rs.getString("cargaHorariaDisponivel")
                 );
                 integrantes.add(integrante);
             }

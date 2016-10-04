@@ -7,9 +7,13 @@ import java.util.List;
 public class Integrante {
 
     private int matricula;
-    private float cargaHorariaDisponivel;
+    private String cargaHorariaDisponivel;
 
-    public Integrante(int matricula, float cargaHorariaDisponivel) {
+    public void setCargaHorariaDisponivel(String cargaHorariaDisponivel) {
+        this.cargaHorariaDisponivel = cargaHorariaDisponivel;
+    }
+
+    public Integrante(int matricula, String cargaHorariaDisponivel) {
         this.matricula = matricula;
         this.cargaHorariaDisponivel = cargaHorariaDisponivel;
     }
@@ -22,13 +26,10 @@ public class Integrante {
         this.matricula = matricula;
     }
 
-    public float getCargaHorariaDisponivel() {
+    public String getCargaHorariaDisponivel() {
         return cargaHorariaDisponivel;
     }
 
-    public void setNota(float cargaHorariaDisponivel) {
-        this.cargaHorariaDisponivel = cargaHorariaDisponivel;
-    }
 
     public static List<Integrante>obterIntegrantes() throws ClassNotFoundException, SQLException{
         return IntegranteDAO.obterIntegrantes();
