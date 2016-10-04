@@ -21,6 +21,7 @@
                         <li><a href="#">Veículo</a></li>
                         <li><a href="#">Dados do Veículo</a></li>
                         <li><a href="#">Peça</a></li>
+                        <li><a href="#">Pessoa</a></li>
                         <li><a href="#">Integrante</a></li>
                         <li><a href="#">Rendimento</a></li>
                         <li><a href="#">Frequencia</a></li>
@@ -33,6 +34,7 @@
                     <ul>
                         <li><a href="PesquisaAutomovelController">Veículo</a></li>
                         <li><a href="PesquisaPecaController">Peça</a></li>
+                        <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
                         <li><a href="PesquisaRendimentoController">Rendimento</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>

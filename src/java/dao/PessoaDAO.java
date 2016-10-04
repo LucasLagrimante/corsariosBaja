@@ -26,13 +26,13 @@ public class PessoaDAO {
             while (rs.next()) {
                 Pessoa pessoa = new Pessoa(
                         rs.getInt("idPessoa"),
-                        rs.getString("numero"),
                         rs.getString("nome"),
-                        rs.getString("cep"),
                         rs.getString("cpf"),
                         rs.getString("logradouro"),
+                        rs.getString("cep"),
                         rs.getString("bairro"),
                         rs.getString("uf"),
+                        rs.getString("numero"),
                         rs.getString("telefone")
                 );
                 pessoas.add(pessoa);

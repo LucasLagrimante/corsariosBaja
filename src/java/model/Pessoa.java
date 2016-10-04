@@ -7,21 +7,22 @@ import java.util.List;
 public class Pessoa {
 
     private int idPessoa;
-    private String cep, cpf, logradouro, nome, bairro, uf, telefone, numero;
+    private String nome,cpf,logradouro,cep, bairro, uf, numero, telefone;
 
-    public Pessoa(int id, String cep, String numero, String cpf, String logradouro, String nome, String bairro, String uf, String telefone) {
-        this.idPessoa = id;
-        this.cep = cep;
-        this.numero = numero;
+    public Pessoa(int idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, String numero, String telefone) {
+        this.idPessoa = idPessoa;
+        this.nome = nome;
         this.cpf = cpf;
         this.logradouro = logradouro;
-        this.nome = nome;
+        this.cep = cep;
         this.bairro = bairro;
         this.uf = uf;
+        this.numero = numero;
         this.telefone = telefone;
     }
 
-    public int getId() {
+
+    public int getIdPessoa() {
         return idPessoa;
     }
 
