@@ -9,15 +9,15 @@ public class Competicao {
     private int idCompeticao;
     private String nome, data, local, hora;
 
-    public Competicao(int id, String nome, String data, String local, String hora) {
-        this.idCompeticao = id;
+    public Competicao(int idCompeticao, String nome, String data, String local, String hora) {
+        this.idCompeticao = idCompeticao;
         this.nome = nome;
         this.data = data;
         this.local = local;
         this.hora = hora;
     }
 
-    public int getId() {
+    public int getIdCompeticao() {
         return idCompeticao;
     }
 
