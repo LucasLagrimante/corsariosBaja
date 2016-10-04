@@ -26,13 +26,13 @@ public class DesempenhoTesteDAO {
             while (rs.next()) {
                 DesempenhoTeste desempenhoTeste = new DesempenhoTeste(
                         rs.getInt("idDesempenhoTeste"),
-                        rs.getString("data"),
                         rs.getString("nome"),
+                        rs.getString("data"),
                         rs.getString("hora"),
-                        rs.getString("tempoPista"),
-                        rs.getFloat("frenagem"),
                         rs.getFloat("velocidadeMedia"),
-                        rs.getFloat("aceleracaoMedia")
+                        rs.getFloat("aceleracaoMedia"),
+                        rs.getString("tempoPista"),
+                        rs.getFloat("frenagem")
                 );
                 desempenhosTestes.add(desempenhoTeste);
             }

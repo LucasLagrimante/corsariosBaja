@@ -7,26 +7,29 @@ import java.util.List;
 public class Desempenho {
 
     private int idDesempenho;
-    private float velocidadeMedia, aceleracaoMedia, tempoCorrida, frenagem;
-    private String data, nome, hora;
+    private String nome,data, hora;
 
-    public Desempenho(int idDesempenho, float velocidadeMedia, float aceleracaoMedia, String hora, float tempoCorrida, float frenagem, String data, String nome) {
+    public Desempenho(int idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, float tempoCorrida, float frenagem) {
         this.idDesempenho = idDesempenho;
-        this.velocidadeMedia = velocidadeMedia;
-        this.aceleracaoMedia = aceleracaoMedia;
+        this.nome = nome;
+        this.data = data;
         this.hora = hora;
+        this.aceleracaoMedia = aceleracaoMedia;
+        this.velocidadeMedia = velocidadeMedia;
         this.tempoCorrida = tempoCorrida;
         this.frenagem = frenagem;
-        this.data = data;
-        this.nome = nome;
     }
+    private float aceleracaoMedia,velocidadeMedia, tempoCorrida, frenagem;
+ 
 
-    public int getId() {
+    
+
+    public int getIdDesempenho() {
         return idDesempenho;
     }
 
-    public void setId(int id) {
-        this.idDesempenho = id;
+    public void setIdDesempenho(int id) {
+        this.idDesempenho = idDesempenho;
     }
 
     public float getVelocidadeMedia() {
