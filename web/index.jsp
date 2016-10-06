@@ -36,7 +36,7 @@
                         <li><a href="PesquisaPecaController">Peça</a></li>
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
-                        <li><a href="PesquisaRendimentoController">Rendimento</a></li>
+                        <li><a href="PesquisaFrequenciaController">Rendimento</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
                         <li><a href="PesquisaCompeticaoController">Competição</a></li>
                         <li><a href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
