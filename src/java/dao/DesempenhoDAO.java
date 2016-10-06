@@ -33,7 +33,6 @@ public class DesempenhoDAO {
                         rs.getFloat("velocidadeMedia"),
                         rs.getFloat("tempoCorrida"),
                         rs.getFloat("frenagem")
-                 
                 );
                 desempenhos.add(desempenho);
             }

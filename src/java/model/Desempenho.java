@@ -28,7 +28,7 @@ public class Desempenho {
         return idDesempenho;
     }
 
-    public void setIdDesempenho(int id) {
+    public void setIdDesempenho(int idDesempenho) {
         this.idDesempenho = idDesempenho;
     }
 

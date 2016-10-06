@@ -10,23 +10,23 @@ public class DesempenhoTeste {
     private String data, nome, hora, tempoPista;
     private float  frenagem, velocidadeMedia, aceleracaoMedia;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String data, String nome, String hora, String tempoPista, float frenagem, float velocidadeMedia, float aceleracaoMedia) {
+    public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista ,float frenagem) {
         this.idDesempenhoTeste = idDesempenhoTeste;
         this.data = data;
-        this.nome = nome;
         this.hora = hora;
-        this.tempoPista = tempoPista;
-        this.frenagem = frenagem;
+        this.nome = nome;
         this.velocidadeMedia = velocidadeMedia;
         this.aceleracaoMedia = aceleracaoMedia;
+        this.tempoPista = tempoPista;
+        this.frenagem = frenagem;
     }
 
-    public int getId() {
+    public int getIdDesempenhoTeste() {
         return idDesempenhoTeste;
     }
 
-    public void setId(int id) {
-        this.idDesempenhoTeste = id;
+    public void setIdDesempenhoTeste(int idDesempenhoTeste) {
+        this.idDesempenhoTeste = idDesempenhoTeste;
     }
 
     public float getVelocidadeMedia() {

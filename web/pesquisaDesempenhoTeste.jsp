@@ -22,7 +22,7 @@
                 <th>Nome DesempenhoTeste</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <c:forEach items="${desempenhoTeste}" var="desempenhoTeste">
+            <c:forEach items="${desempenhosTestes}" var="desempenhoTeste">
                 <tr>
                     <td><c:out value="${desempenhoTeste.idDesempenhoTeste}" /></td>
                     <td><c:out value="${desempenhoTeste.nome}" /></td>
