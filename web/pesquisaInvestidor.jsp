@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pesquisa de Investidor</title>
+        <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
         <h1>Pesquisa de Investidor</h1>
