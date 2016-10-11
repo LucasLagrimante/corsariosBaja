@@ -9,19 +9,35 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar Veículo</h2>
+            <h2 align="center">Manter Automovel - ${operacao}</h2>
             <form action="">
                 <table>
                     <tr>
                         <td align="left">Nome:</td>
-                        <td align="right"><input type="text"></td>
+                        <td align="right"><input type="text" value="${automovel.nome}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Data Cadastro:</td>
-                        <td align="right">10/09/2016</td>
+                        <td align="left">Cor:</td>
+                        <td align="right"><input type="text" value="${automovel.cor}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td align="left">Data Término Projeto:</td>
+                        <td align="right"><input type="data" value="${automovel.dataTerminoProjeto}"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Peso Carro:</td>
+                        <td align="right"><input type="text"value="${automovel.pesoCarro}"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Peso Chassi:</td>
+                        <td align="right"><input type="text" value="${automovel.pesoChassi}"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Custo Total:</td>
+                        <td align="right"><input type="text" value="${automovel.custoTotal}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"> <input type="reset" value="Apagar"> <input type="submit" value="Incluir"></td>
                     </tr>
                 </table>
             </form>
