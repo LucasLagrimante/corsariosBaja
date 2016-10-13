@@ -32,7 +32,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterAvaliacaoController?acao=preparaIncluir" method="post">
+        <form action="ManterAvaliacaoController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

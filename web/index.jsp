@@ -18,13 +18,13 @@
             <ul class="menu">
                 <li><a href="#">Cadastrar</a>
                     <ul>
-                        <li><a href="#">Veículo</a></li>
+                        <li><a href="ManterAutomovelController?acao=prepararIncluir">Automovel</a></li>
                         <li><a href="#">Dados do Veículo</a></li>
-                        <li><a href="#">Peça</a></li>
+                        <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
                         <li><a href="#">Pessoa</a></li>
-                        <li><a href="#">Integrante</a></li>
+                        <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
                         <li><a href="#">Rendimento</a></li>
-                        <li><a href="#">Frequencia</a></li>
+                        <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequencia</a></li>
                         <li><a href="#">Competição</a></li>
                         <li><a href="#">Desempenho de Teste</a></li>
                         <li><a href="#">Desempenho de Competicão</a></li>

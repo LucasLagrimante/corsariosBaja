@@ -9,7 +9,7 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Livro de Frequencia Diaria</h2>
+            <h2 align="center">Livro de Frequencia Diaria ${operacao}</h2>
             <h2 align="center">10/09/2016   17:47</h2>
             <form action="">
                 <table>

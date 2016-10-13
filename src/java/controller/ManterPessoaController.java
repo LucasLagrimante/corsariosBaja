@@ -15,17 +15,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Automovel;
+import model.Pessoa;
 
 /**
  *
  * @author Aluno
  */
-public class ManterAutomovelController extends HttpServlet {
-    
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+public class ManterPessoaController extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        String acao = request.getParameter("acao");
+    String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         }
@@ -49,8 +58,8 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("automoveis", Automovel.obterAutomoveis());
-            RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            RequestDispatcher view = request.getRequestDispatcher("/manterPessoa.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -70,11 +79,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPessoaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -88,11 +97,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPessoaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

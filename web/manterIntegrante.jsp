@@ -9,16 +9,16 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar Tntegrante</h2>
+            <h2 align="center">Cadastrar Tntegrante ${operacao}</h2>
             <form action="">
                 <table>
                     <tr>
                         <td align="left">Nome: </td>
-                        <td align="right"> <input type="text"></td>
+                        <td align="right"> <input type="text" value="${integrante.nome}"></td>
                     </tr>
                     <tr>
                         <td align="left">Sobrenome: </td>
-                        <td align="right"> <input type="text"></td>
+                        <td align="right"> <input type="text" value="${integrante.sobrenome}"></td>
                     </tr>
                     <tr>
                         <td align="left">Caracteristica no projeto: </td>
@@ -33,19 +33,19 @@
                     </tr>
                     <tr>
                         <td align="left">CPF: </td>
-                        <td align="right"> <input type="text"></td>
+                        <td align="right"> <input type="text" value="${integrante.cpf}"></td>
                     </tr>
                     <tr>
                         <td align="left">Telefone: </td>
-                        <td align="right"> <input type="text"></td>
+                        <td align="right"> <input type="text" value="${integrante.telefone}"></td>
                     </tr>
                     <tr>
                         <td align="left">Endereço: </td>
-                        <td align="right"> <input type="text"></td>
+                        <td align="right"> <input type="text" value="${integrante.endereco}"></td>
                     </tr>
                     <tr>
                         <td align="left">Email: </td>
-                        <td align="right"> <input type="email"></td>
+                        <td align="right"> <input type="email" value="${integrante.email}"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center"><input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>

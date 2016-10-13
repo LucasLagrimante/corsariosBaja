@@ -7,6 +7,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,15 +16,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Automovel;
+import model.Peca;
 
 /**
  *
  * @author Aluno
  */
-public class ManterAutomovelController extends HttpServlet {
-    
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+public class ManterPecaController extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
@@ -49,8 +50,8 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("automoveis", Automovel.obterAutomoveis());
-            RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
+            request.setAttribute("pecas", Peca.obterPecas());
+            RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -70,11 +71,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -88,11 +89,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

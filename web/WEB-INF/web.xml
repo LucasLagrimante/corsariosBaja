@@ -80,6 +80,30 @@
         <servlet-name>PesquisaCofreController</servlet-name>
         <servlet-class>controller.PesquisaCofreController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterAutomovelController</servlet-name>
+        <servlet-class>controller.ManterAutomovelController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterPecaController</servlet-name>
+        <servlet-class>controller.ManterPecaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterPessoaController</servlet-name>
+        <servlet-class>controller.ManterPessoaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterIntegranteController</servlet-name>
+        <servlet-class>controller.ManterIntegranteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterFrequenciaController</servlet-name>
+        <servlet-class>controller.ManterFrequenciaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterCompeticaoController</servlet-name>
+        <servlet-class>controller.ManterCompeticaoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -159,6 +183,30 @@
     <servlet-mapping>
         <servlet-name>PesquisaCofreController</servlet-name>
         <url-pattern>/PesquisaCofreController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterAutomovelController</servlet-name>
+        <url-pattern>/ManterAutomovelController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterPecaController</servlet-name>
+        <url-pattern>/ManterPecaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterPessoaController</servlet-name>
+        <url-pattern>/ManterPessoaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterIntegranteController</servlet-name>
+        <url-pattern>/ManterIntegranteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterFrequenciaController</servlet-name>
+        <url-pattern>/ManterFrequenciaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterCompeticaoController</servlet-name>
+        <url-pattern>/ManterCompeticaoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

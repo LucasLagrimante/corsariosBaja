@@ -34,7 +34,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <form action="ManterFrequenciaController?acao=preparaIncluir" method="post">
+        <form action="ManterFrequenciaController?acao=prepararIncluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>
