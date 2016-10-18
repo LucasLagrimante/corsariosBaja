@@ -10,31 +10,31 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Automovel - ${operacao}</h2>
-            <form action="">
+            <form action="ManterAutomovelController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
                         <td align="left">Nome:</td>
-                        <td align="right"><input type="text" value="${automovel.nome}"></td>
+                        <td align="right"><input name="txtNome" type="text" value="${automovel.nome}"></td>
                     </tr>
                     <tr>
                         <td align="left">Cor:</td>
-                        <td align="right"><input type="text" value="${automovel.cor}"></td>
+                        <td align="right"><input name="txtCor" type="text" value="${automovel.cor}"></td>
                     </tr>
                     <tr>
                         <td align="left">Data Término Projeto:</td>
-                        <td align="right"><input type="data" value="${automovel.dataTerminoProjeto}"></td>
+                        <td align="right"><input name="txtDataTerminoProjeto" type="data" value="${automovel.dataTerminoProjeto}"></td>
                     </tr>
                     <tr>
                         <td align="left">Peso Carro:</td>
-                        <td align="right"><input type="text"value="${automovel.pesoCarro}"></td>
+                        <td align="right"><input name="txtPesoCarro" type="text" value="${automovel.pesoCarro}"></td>
                     </tr>
                     <tr>
                         <td align="left">Peso Chassi:</td>
-                        <td align="right"><input type="text" value="${automovel.pesoChassi}"></td>
+                        <td align="right"><input type="text" name="txtPesoChassi"  value="${automovel.pesoChassi}"></td>
                     </tr>
                     <tr>
                         <td align="left">Custo Total:</td>
-                        <td align="right"><input type="text" value="${automovel.custoTotal}"></td>
+                        <td align="right"><input type="text" name="txtCustoTotal"  value="${automovel.custoTotal}"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center"> <input type="reset" value="Apagar"> <input type="submit" value="Incluir"></td>

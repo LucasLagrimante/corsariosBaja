@@ -76,7 +76,15 @@ public class Automovel {
         this.custoTotal = custoTotal;
     }
 
-    public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException{
+    public void gravar() throws SQLException, ClassNotFoundException {
+        AutomovelDAO.gravar(this);
+    }
+    
+    public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterAutomoveis();
+    }
+
+    public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
+        return AutomovelDAO.obterAutomovel(idAutomovel);
     }
 }
