@@ -31,14 +31,6 @@ public class AutomovelDAO {
 
     public static void gravar(Automovel automovel) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
-        /*
-         try {
-         Pessoa pessoa = new Pessoa(automovel.getId(), automovel.getNome(), automovel.getDataNascimento(),
-         automovel.getEstadoCivil(), automovel.getCPF(), automovel.getIdentidade());
-         Pessoa.gravar(pessoa);
-         } catch (SQLException e) {
-         throw e;
-         }*/
         try {
             conexao = BD.getConexao();
             String sql = "INSERT INTO automovel (idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal) VALUES (?, ?, ?, ?, ?, ?, ?) ";
@@ -66,7 +58,7 @@ public class AutomovelDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM automovel where idAutomovel = ");
+            ResultSet rs = comando.executeQuery("SELECT * FROM automovel where idAutomovel");
             while (rs.next()) {
                 Automovel automovel = new Automovel(
                         rs.getInt("idAutomovel"),

@@ -13,6 +13,10 @@
             <form action="ManterAutomovelController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
+                        <td align="left">Id:</td>
+                        <td align="right"><input name="txtIdAutomovel" type="text" value="${automovel.idAutomovel}"></td>
+                    </tr>
+                    <tr>
                         <td align="left">Nome:</td>
                         <td align="right"><input name="txtNome" type="text" value="${automovel.nome}"></td>
                     </tr>

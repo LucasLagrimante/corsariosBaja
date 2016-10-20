@@ -65,7 +65,7 @@ public class ManterAutomovelController extends HttpServlet {
         int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
         String nome = request.getParameter(request.getParameter("txtNome"));
         String cor = request.getParameter(request.getParameter("txtCor"));
-        String dataTerminoProjeto = request.getParameter(request.getParameter("txtDataTerminoprojeto"));
+        String dataTerminoProjeto = request.getParameter(request.getParameter("txtDataTerminoProjeto"));
         float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
         float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
         float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
