@@ -33,10 +33,9 @@ public class ManterAutomovelController extends HttpServlet {
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         }
-        /*
          else if (acao.equals("confirmarIncluir")) {
-         confirmarIncluir(request, response);
-         } else if (acao.equals("prepararEditar")) {
+         confirmarIncluir(request, response);        
+         } /*else if (acao.equals("prepararEditar")) {
          prepararEditar(request, response);
          }  else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
