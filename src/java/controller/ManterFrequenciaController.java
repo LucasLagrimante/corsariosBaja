@@ -7,7 +7,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,8 +59,8 @@ public class ManterFrequenciaController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
-        String data = request.getParameter(request.getParameter("txtData"));
-        String estado = request.getParameter(request.getParameter("estado"));
+        String data = request.getParameter("txtData");
+        String estado = request.getParameter("estado");
         try {
             /*Frequencia frequencia = null;
             if (coordenador != 0) {

@@ -6,13 +6,39 @@ import java.util.List;
 
 public class Avaliacao {
 
-    private int idAvaliacao, frequencia; 
-    private String comparecimento;
+    private int idAvaliacao, frequencia, FK_integrante;
+    private String comparecimento, data;
 
-    public Avaliacao(int id, int frequencia, String comparecimento) {
-        this.idAvaliacao = id;
+    public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data, int FK_integrante) {
+        this.idAvaliacao = idAvaliacao;
         this.frequencia = frequencia;
         this.comparecimento = comparecimento;
+        this.FK_integrante = FK_integrante;
+        this.data = data;
+    }
+
+    public int getIdAvaliacao() {
+        return idAvaliacao;
+    }
+
+    public void setIdAvaliacao(int idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
+    }
+
+    public int getFK_integrante() {
+        return FK_integrante;
+    }
+
+    public void setFK_integrante(int FK_integrante) {
+        this.FK_integrante = FK_integrante;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public int getId() {
@@ -38,8 +64,16 @@ public class Avaliacao {
     public void setComparecimento(String comparecimento) {
         this.comparecimento = comparecimento;
     }
-    
-    public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException{
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        AvaliacaoDAO.gravar(this);
+    }
+
+    public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
         return AvaliacaoDAO.obterAvaliacoes();
+    }
+
+    public static Avaliacao obterAutomovel(int idAvaliacao) throws ClassNotFoundException {
+        return AvaliacaoDAO.obterAvaliacao(idAvaliacao);
     }
 }

@@ -26,7 +26,7 @@
             <c:forEach items="${avaliacoes}" var="avaliacao">
                 <tr>
                     <td><c:out value="${avaliacao.idAvaliacao}" /></td>
-                    <td><c:out value="${avaliacao.nome}" /></td>
+                    <td><c:out value="${avaliacao.comparecimento}" /></td>
                     <td><a href="ManterAvaliacaoController?acao=prepararEditar&idAvaliacao=<c:out value="${avaliacao.idAvaliacao}" />">Editar</a></td>
                     <td><a href="ManterAvaliacaoController?acao=prepararExcluir&idAvaliacao=<c:out value="${avaliacao.idAvaliacao}" />">Excluir</a></td>
                 </tr>

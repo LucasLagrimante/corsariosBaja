@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Automovel;
+import model.Avaliacao;
 
 /**
  *
- * @author Aluno
+ * @author lukin
  */
-public class ManterAutomovelController extends HttpServlet {
+public class ManterAvaliacaoController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -46,8 +47,8 @@ public class ManterAutomovelController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("automoveis", Automovel.obterAutomoveis());
-            RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
+            request.setAttribute("avaliacoes", Automovel.obterAutomoveis());
+            RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -56,20 +57,19 @@ public class ManterAutomovelController extends HttpServlet {
     }
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
-        String cor = request.getParameter("txtCor");
-        String nome = request.getParameter("txtNome");
-        String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        int idAvaliacao = Integer.parseInt(request.getParameter("txtIdAvaliacao"));
+        int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
+        String comparecimento = request.getParameter("txtComparecimento");
+        String data = request.getParameter("txtData");
+        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
+
         try {
             /*Automovel automovel = null;
             if (coordenador != 0) {
                 automovel = Professor.obterProfessor(coordenador);
             }*/
-            Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
-            automovel.gravar();
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, FK_integrante);
+            avaliacao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -94,7 +94,7 @@ public class ManterAutomovelController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -112,7 +112,7 @@ public class ManterAutomovelController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

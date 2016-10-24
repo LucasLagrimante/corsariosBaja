@@ -9,14 +9,6 @@
         <servlet-class>controller.PesquisaAutomovelController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NovoServlet</servlet-name>
-        <servlet-class>controller.NovoServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PesquisaBdController</servlet-name>
         <servlet-class>controller.PesquisaBdController</servlet-class>
     </servlet>
@@ -73,10 +65,6 @@
         <servlet-class>controller.PesquisaTipoPistaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesuisaAvaliacaoController</servlet-name>
-        <servlet-class>controller.PesuisaAvaliacaoController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PesquisaCofreController</servlet-name>
         <servlet-class>controller.PesquisaCofreController</servlet-class>
     </servlet>
@@ -104,6 +92,14 @@
         <servlet-name>ManterCompeticaoController</servlet-name>
         <servlet-class>controller.ManterCompeticaoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterAvaliacaoController</servlet-name>
+        <servlet-class>controller.ManterAvaliacaoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaAvaliacaoController</servlet-name>
+        <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -111,14 +107,6 @@
     <servlet-mapping>
         <servlet-name>PesquisaAutomovelController</servlet-name>
         <url-pattern>/PesquisaAutomovelController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NovoServlet</servlet-name>
-        <url-pattern>/NovoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <url-pattern>/PesquisaAvaliacaoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PesquisaBdController</servlet-name>
@@ -177,10 +165,6 @@
         <url-pattern>/PesquisaTipoPistaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesuisaAvaliacaoController</servlet-name>
-        <url-pattern>/PesuisaAvaliacaoController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PesquisaCofreController</servlet-name>
         <url-pattern>/PesquisaCofreController</url-pattern>
     </servlet-mapping>
@@ -207,6 +191,14 @@
     <servlet-mapping>
         <servlet-name>ManterCompeticaoController</servlet-name>
         <url-pattern>/ManterCompeticaoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterAvaliacaoController</servlet-name>
+        <url-pattern>/ManterAvaliacaoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaAvaliacaoController</servlet-name>
+        <url-pattern>/PesquisaAvaliacaoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

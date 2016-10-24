@@ -21,7 +21,8 @@
                         <td align="left">Integrante</td>
                         <td>
                             <select name="integrante" > disabled
-                                <option value="${frequencia.FK_integrante}" selected>Pública</option>
+                                <option value="${frequencia.FK_integrante}" selected>Lucas</option>
+                                <option value="${frequencia.FK_integrante}" selected>Pablo</option>
                             </select>
                         </td>				
                     </tr>

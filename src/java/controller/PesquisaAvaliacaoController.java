@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +20,7 @@ import model.Avaliacao;
  *
  * @author Gustavo
  */
-public class PesuisaAvaliacaoController extends HttpServlet {
+public class PesquisaAvaliacaoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,7 +58,7 @@ public class PesuisaAvaliacaoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesuisaAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -77,7 +76,7 @@ public class PesuisaAvaliacaoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesuisaAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
