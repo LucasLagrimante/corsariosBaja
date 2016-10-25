@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,22 +27,23 @@ public class ManterPecaController extends HttpServlet {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+
         }
         /*
-        else if (acao.equals("confirmarIncluir")) {
-            confirmarIncluir(request, response);
-        } else if (acao.equals("prepararEditar")) {
-            prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request, response);
-        } else if (acao.equals("prepararExcluir")) {
-            prepararExcluir(request, response);
-        } else if (acao.equals("confirmarExcluir")) {
-            confirmarExcluir(request, response);
-        }
-        */
+         else if (acao.equals("prepararEditar")) {
+         prepararEditar(request, response);
+         }  else if (acao.equals("confirmarEditar")) {
+         confirmarEditar(request, response);
+         } else if (acao.equals("prepararExcluir")) {
+         prepararExcluir(request, response);
+         } else if (acao.equals("confirmarExcluir")) {
+         confirmarExcluir(request, response);
+         }
+         */
     }
-        
 
     public void prepararIncluir(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
@@ -59,7 +58,27 @@ public class ManterPecaController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
+        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
+        String nome = request.getParameter("txtNome");
+        String modelo = request.getParameter("txtModelo");
+        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
+        int FK_tipopeca = Integer.parseInt(request.getParameter("txtFK_tipopeca"));
+
+        try {
+
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, FK_tipopeca);
+            peca.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

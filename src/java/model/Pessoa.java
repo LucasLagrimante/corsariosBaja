@@ -21,6 +21,10 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
 
     public int getIdPessoa() {
         return idPessoa;
@@ -95,6 +99,13 @@ public class Pessoa {
     }
     public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException{
         return PessoaDAO.obterPessoas();
+    }
+     public void gravar() throws SQLException, ClassNotFoundException {
+        PessoaDAO.gravar(this);
+    }
+
+    public static Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
+        return PessoaDAO.obterPessoa(idPessoa);
     }
 
 }

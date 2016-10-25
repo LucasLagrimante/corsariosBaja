@@ -6,8 +6,9 @@ import java.util.List;
 
 public class Peca {
 
-    private int idPeca, quantidade;
+    private int idPeca, quantidade, FK_tipopeca;
     private String nome, modelo;
+    private float precoCompra;
 
     public int getIdPeca() {
         return idPeca;
@@ -48,18 +49,35 @@ public class Peca {
     public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
     }
-    private float precoCompra;
+    
 
-    public Peca(int id, int quantidade, String nome, String modelo, float precoCompra) {
-        this.idPeca = id;
+    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, int FK_tipopeca) {
+        this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
         this.modelo = modelo;
         this.precoCompra = precoCompra;
+        this.FK_tipopeca = FK_tipopeca;
+       
     }
 
 
 public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException{
         return PecaDAO.obterPecas();
     }
+ public void gravar() throws SQLException, ClassNotFoundException {
+        PecaDAO.gravar(this);
+    }
+ public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
+        return PecaDAO.obterPeca(idPeca);
+    }
+
+    public int getFK_tipopeca() {
+        return FK_tipopeca;
+    }
+
+    public void setFK_tipopeca(int FK_tipopeca) {
+        this.FK_tipopeca = FK_tipopeca;
+    }
+
 }

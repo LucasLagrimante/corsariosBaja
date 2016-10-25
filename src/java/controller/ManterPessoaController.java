@@ -38,10 +38,12 @@ public class ManterPessoaController extends HttpServlet {
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         }
-        /*
+        
         else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
-        } else if (acao.equals("prepararEditar")) {
+        }
+        /*
+        else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         }  else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
@@ -66,6 +68,36 @@ public class ManterPessoaController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
         }
     }
+    
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
+        int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
+        String nome = request.getParameter("txtNome");
+        String cor = request.getParameter("txtCor");
+        String cpf = request.getParameter("txtCpf");
+        String logradouro = request.getParameter("txtLogradouro");
+        String cep = request.getParameter("txtCep");
+        String bairro = request.getParameter("txtBairro");
+        String uf = request.getParameter("txtUf");
+        String numero = request.getParameter("txtNumero");
+        String telefone = request.getParameter("txtTelefone");
+        
+        
+        try {
+            /*Automovel automovel = null;
+            if (coordenador != 0) {
+                automovel = Professor.obterProfessor(coordenador);
+            }*/
+            Pessoa pessoa = new Pessoa(idPessoa,nome,cpf, logradouro,cep,bairro,uf,numero,telefone);
+            pessoa.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPessoaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
