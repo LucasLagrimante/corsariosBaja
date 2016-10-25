@@ -16,32 +16,6 @@ import model.Peca;
 
 public class PecaDAO {
 
-    /*public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Peca> pecas = new ArrayList<Peca>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from peca where idPeca");
-            while (rs.next()) {
-                Peca peca = new Peca(
-                        rs.getInt("idPeca"),
-                        rs.getInt("quantidade"),
-                        rs.getString("nome"),
-                        rs.getString("modelo"),
-                        rs.getFloat("precoCompra"),
-                        rs.getInt("FK_tipopeca")
-                );
-                pecas.add(peca);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return pecas;
-    }*/
     
        public static void gravar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
@@ -69,7 +43,7 @@ public class PecaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM peca where idPeca");
+            ResultSet rs = comando.executeQuery("SELECT * FROM peca");
             while (rs.next()) {
                 Peca peca = new Peca(
                         rs.getInt("idPeca"),

@@ -10,7 +10,7 @@
     <body>
         <div align="center">
             <h2 align="center">Cadastrar peça ${operacao}</h2>
-           <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
                         <td align="left">Id:</td>
@@ -33,13 +33,20 @@
                         <td align="right"><input name="txtPrecoCompra" type="text" value="${peca.precoCompra}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Id Peca:</td>
-                        <td align="right"><input name="txtFK_tipopeca" type="text" value="${peca.FK_tipopeca}"></td>
+                        <td align="left">Tipo Peça: </td>
+                        <td>
+                            <select name="txtFK_tipopeca" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
+                                <c:forEach items="${tipoPecas}" var="tipopeca">
+                                    <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
+                                </c:forEach>
+                            </select>
+                        </td>				
                     </tr>
                     <tr>
                         <td colspan = "2" align="center"><input type="submit" value="Cadastrar Tipo de Peca"> <input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
                     </tr>
-                    
+
                 </table>
             </form>
         </div>
