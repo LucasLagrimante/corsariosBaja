@@ -53,7 +53,7 @@ public class ArquiteturaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura where idArquitetura");
+            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura");
             while (rs.next()) {
                 Arquitetura arquitetura = new Arquitetura(
                         rs.getInt("idArquitetura"),

@@ -54,7 +54,7 @@ public class DesignDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM design where idDesign");
+            ResultSet rs = comando.executeQuery("SELECT * FROM design");
             while (rs.next()) {
                 Design design = new Design(
                         rs.getInt("idDesign"),

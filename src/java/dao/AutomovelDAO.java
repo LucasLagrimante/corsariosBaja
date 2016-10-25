@@ -58,7 +58,7 @@ public class AutomovelDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM automovel where idAutomovel");
+            ResultSet rs = comando.executeQuery("SELECT * FROM automovel");
             while (rs.next()) {
                 Automovel automovel = new Automovel(
                         rs.getInt("idAutomovel"),

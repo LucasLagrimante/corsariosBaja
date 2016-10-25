@@ -55,7 +55,7 @@ public class FrequenciaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM frequencia where idFrequencia");
+            ResultSet rs = comando.executeQuery("SELECT * FROM frequencia");
             while (rs.next()) {
                 Frequencia frequencia = new Frequencia(
                         rs.getInt("idFrequencia"),

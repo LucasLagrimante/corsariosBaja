@@ -56,7 +56,7 @@ public class AvaliacaoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao");
+            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao");
             while (rs.next()) {
                 Avaliacao avaliacao = new Avaliacao(
                         rs.getInt("idAvaliacao"),
