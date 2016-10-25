@@ -6,9 +6,37 @@ import java.util.List;
 
 public class Peca {
 
-    private int idPeca, quantidade, FK_tipopeca;
+    private int idPeca, quantidade;
     private String nome, modelo;
     private float precoCompra;
+    private TipoPeca tipopeca;
+    private int idTipoPeca;
+
+    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, TipoPeca tipopeca) {
+        this.idPeca = idPeca;
+        this.quantidade = quantidade;
+        this.nome = nome;
+        this.modelo = modelo;
+        this.precoCompra = precoCompra;
+        this.tipopeca = tipopeca;
+
+    }
+
+    public TipoPeca getTipopeca() {
+        return tipopeca;
+    }
+
+    public void setTipopeca(TipoPeca tipopeca) {
+        this.tipopeca = tipopeca;
+    }
+
+    public int getIdTipoPeca() {
+        return idTipoPeca;
+    }
+
+    public void setIdTipoPeca(int idTipoPeca) {
+        this.idTipoPeca = idTipoPeca;
+    }
 
     public int getIdPeca() {
         return idPeca;
@@ -20,6 +48,14 @@ public class Peca {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public TipoPeca gettipopeca() {
+        return tipopeca;
+    }
+
+    public void settipopeca(TipoPeca tipopeca) {
+        this.tipopeca = tipopeca;
     }
 
     public void setQuantidade(int quantidade) {
@@ -49,35 +85,27 @@ public class Peca {
     public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
     }
-    
 
-    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, int FK_tipopeca) {
-        this.idPeca = idPeca;
-        this.quantidade = quantidade;
-        this.nome = nome;
-        this.modelo = modelo;
-        this.precoCompra = precoCompra;
-        this.FK_tipopeca = FK_tipopeca;
-       
+    public TipoPeca getTipoPeca() {
+        if (this.idTipoPeca != 0 && this.tipopeca == null) {
+            try {
+                this.tipopeca = TipoPeca.obterTipoPeca(this.idTipoPeca);
+            } catch (ClassNotFoundException ex) {
+
+            }
+        }
+        return this.tipopeca;
     }
 
-
-public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException{
+    public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
         return PecaDAO.obterPecas();
     }
- public void gravar() throws SQLException, ClassNotFoundException {
+
+    public void gravar() throws SQLException, ClassNotFoundException {
         PecaDAO.gravar(this);
     }
- public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
+
+    public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
         return PecaDAO.obterPeca(idPeca);
     }
-
-    public int getFK_tipopeca() {
-        return FK_tipopeca;
-    }
-
-    public void setFK_tipopeca(int FK_tipopeca) {
-        this.FK_tipopeca = FK_tipopeca;
-    }
-
 }

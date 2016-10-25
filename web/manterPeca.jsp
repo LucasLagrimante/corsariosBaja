@@ -13,7 +13,7 @@
             <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Id:</td>
+                        <td align="left">ID:</td>
                         <td align="right"><input name="txtIdPeca" type="text" value="${peca.idPeca}"></td>
                     </tr>
                     <tr>
@@ -34,8 +34,8 @@
                     </tr>
                     <tr>
                         <td align="left">Tipo Peça: </td>
-                        <td>
-                            <select name="txtFK_tipopeca" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <td align="right">
+                            <select name="selectTipoPeca"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                                 <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
                                 <c:forEach items="${tipoPecas}" var="tipopeca">
                                     <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>

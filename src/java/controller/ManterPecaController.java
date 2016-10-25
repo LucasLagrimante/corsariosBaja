@@ -64,11 +64,12 @@ public class ManterPecaController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        int FK_tipopeca = Integer.parseInt(request.getParameter("txtFK_tipopeca"));
+        int tipopeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
 
         try {
 
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, FK_tipopeca);
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, null);
+            peca.setIdTipoPeca(tipopeca);
             peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);

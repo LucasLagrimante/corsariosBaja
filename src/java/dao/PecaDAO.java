@@ -16,19 +16,18 @@ import model.Peca;
 
 public class PecaDAO {
 
-    
-       public static void gravar(Peca peca) throws SQLException, ClassNotFoundException {
+    public static void gravar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO peca (idPeca,quantidade,nome, modelo,precoCompra, FK_tipopeca) VALUES (?, ?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO peca (idPeca, quantidade, nome, modelo, precoCompra, FK_tipopeca) VALUES (?, ?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, peca.getIdPeca());
             comando.setInt(2, peca.getQuantidade());
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
-            comando.setInt(6, peca.getFK_tipopeca());
+            comando.setInt(6, peca.getIdTipoPeca());
             comando.execute();
             comando.close();
             conexao.close();
@@ -36,7 +35,8 @@ public class PecaDAO {
             throw e;
         }
     }
-        public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
+
+    public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         List<Peca> pecas = new ArrayList<Peca>();
@@ -51,8 +51,9 @@ public class PecaDAO {
                         rs.getString("nome"),
                         rs.getString("modelo"),
                         rs.getFloat("precoCompra"),
-                        rs.getInt("FK_tipopeca")
+                        null
                 );
+                peca.setIdTipoPeca(rs.getInt("FK_tipopeca"));
                 pecas.add(peca);
             }
         } catch (SQLException e) {
@@ -62,8 +63,8 @@ public class PecaDAO {
         }
         return pecas;
     }
-        
-        public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
+
+    public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         Peca peca = null;
@@ -73,15 +74,14 @@ public class PecaDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM peca where idPeca = " + idPeca);
             rs.first();
             peca = new Peca(
-                        rs.getInt("idPeca"),
-                        rs.getInt("quantidade"),
-                        rs.getString("nome"),
-                        rs.getString("modelo"),
-                        rs.getFloat("precoCompra"),
-                        rs.getInt("FK_tipopeca")
-            //null
+                    rs.getInt("idPeca"),
+                    rs.getInt("quantidade"),
+                    rs.getString("nome"),
+                    rs.getString("modelo"),
+                    rs.getFloat("precoCompra"),
+                    null
             );
-            //automovel.setCodigoPessoa(rs.getString("pessoa"));
+            peca.setIdTipoPeca(rs.getInt("FK_tipopeca"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

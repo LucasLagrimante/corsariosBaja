@@ -6,7 +6,6 @@ import java.util.List;
 
 public class TipoPeca {
 
-
     private int idTipoPeca;
     private String nome;
 
@@ -15,7 +14,7 @@ public class TipoPeca {
         this.nome = nome;
     }
 
-    public int getId() {
+    public int getIdTipoPeca() {
         return idTipoPeca;
     }
 
@@ -30,7 +29,12 @@ public class TipoPeca {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public static List<TipoPeca> obterTiposPecas() throws ClassNotFoundException, SQLException{
-        return TipoPecaDAO.obterTiposPecas();
+
+    public static List<TipoPeca> obterTiposPecas() throws ClassNotFoundException, SQLException {
+        return TipoPecaDAO.obterTipoPecas();
+    }
+
+    public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
+        return TipoPecaDAO.obterTipoPeca(idTipoPeca);
     }
 }
