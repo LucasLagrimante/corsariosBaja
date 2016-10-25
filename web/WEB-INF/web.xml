@@ -100,6 +100,14 @@
         <servlet-name>PesquisaAvaliacaoController</servlet-name>
         <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterDesignController</servlet-name>
+        <servlet-class>controller.ManterDesignController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterArquiteturaController</servlet-name>
+        <servlet-class>controller.ManterArquiteturaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>PesquisaAvaliacaoController</servlet-name>
         <url-pattern>/PesquisaAvaliacaoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterDesignController</servlet-name>
+        <url-pattern>/ManterDesignController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterArquiteturaController</servlet-name>
+        <url-pattern>/ManterArquiteturaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

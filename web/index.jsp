@@ -42,7 +42,7 @@
                         <li><a href="PesquisaCompeticaoController">Competição</a></li>
                         <li><a href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
                         <li><a href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-                        <li><a href="PesquisaArquiteturaTesteController">Arquitetura</a></li>
+                        <li><a href="PesquisaArquiteturaController">Arquitetura</a></li>
                         <li><a href="PesquisaDesignController">Design</a></li>
                     </ul>
                 </li>

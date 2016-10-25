@@ -20,9 +20,15 @@ public class Arquitetura {
         this.idArquitetura = id;
     }
     
-    public static List<Arquitetura>obterArquiteturas() throws ClassNotFoundException, SQLException{
+   public void gravar() throws SQLException, ClassNotFoundException {
+        ArquiteturaDAO.gravar(this);
+    }
+    
+    public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
         return ArquiteturaDAO.obterArquiteturas();
     }
 
-    //getArquitetura();
+    public static Arquitetura obterArquitetura(int idArquitetura) throws ClassNotFoundException {
+        return ArquiteturaDAO.obterArquitetura(idArquitetura);
+    }
 }

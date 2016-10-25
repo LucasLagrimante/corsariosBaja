@@ -20,13 +20,13 @@
         <table border="1">
             <tr>
                 <th>Código Design</th>
-                <th>Nome Design</th>
+                <th>Caminho</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${designs}" var="design">
                 <tr>
                     <td><c:out value="${design.idDesign}" /></td>
-                    <td><c:out value="${design.nome}" /></td>
+                    <td><c:out value="${design.caminho_imagem}" /></td>
                     <td><a href="ManterDesignController?acao=prepararEditar&idDesign=<c:out value="${design.idDesign}" />">Editar</a></td>
                     <td><a href="ManterDesignController?acao=prepararExcluir&idDesign=<c:out value="${design.idDesign}" />">Excluir</a></td>
                 </tr>

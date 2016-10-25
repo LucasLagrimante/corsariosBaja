@@ -14,30 +14,7 @@ import java.util.List;
 import model.Arquitetura;
 
 public class ArquiteturaDAO {
-
-    public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Arquitetura> arquiteturas = new ArrayList<Arquitetura>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from arquitetura");
-            while (rs.next()) {
-                Arquitetura arquitetura = new Arquitetura(
-                        rs.getInt("idArquitetura")
-                );
-                arquiteturas.add(arquitetura);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return arquiteturas;
-    }
-
-    public static void fecharConexao(Connection conexao, Statement comando) {
+public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -48,6 +25,79 @@ public class ArquiteturaDAO {
 
         } catch (SQLException e) {
         }
+    }
+
+    public static void gravar(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data, FK_integrante) VALUES (?, ?, ?, ?, ?) ";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, avaliacao.getIdAvaliacao());
+            comando.setInt(2, avaliacao.getFrequencia());
+            comando.setString(3, avaliacao.getComparecimento());
+            comando.setInt(4, avaliacao.getFK_integrante());
+            comando.setString(5, avaliacao.getData());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    // problema
+    public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao");
+            while (rs.next()) {
+                Avaliacao avaliacao = new Avaliacao(
+                        rs.getInt("idAvaliacao"),
+                        rs.getInt("frequencia"),
+                        rs.getString("comparecimento"),
+                        rs.getString("data"),
+                        rs.getInt("FK_integrante")
+
+                );
+                avaliacoes.add(avaliacao);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return avaliacoes;
+    }
+
+    public static Avaliacao obterAvaliacao(int idAvaliacao) throws ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Avaliacao avaliacao = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao = " + idAvaliacao);
+            rs.first();
+            avaliacao = new Avaliacao(
+                    rs.getInt("idAvaliacao"),
+                        rs.getInt("frequencia"),
+                        rs.getString("comparecimento"),
+                        rs.getString("data"),
+                        rs.getInt("FK_integrante")
+            //null
+            );
+            //avaliacao.setCodigoPessoa(rs.getString("pessoa"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return avaliacao;
     }
 
 }
