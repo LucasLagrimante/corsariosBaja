@@ -6,6 +6,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,8 @@ import java.util.List;
 import model.Arquitetura;
 
 public class ArquiteturaDAO {
-public static void fecharConexao(Connection conexao, Statement comando) {
+
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -27,17 +29,15 @@ public static void fecharConexao(Connection conexao, Statement comando) {
         }
     }
 
-    public static void gravar(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
+    public static void gravar(Arquitetura arquitetura) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data, FK_integrante) VALUES (?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO arquitetura (idArquitetura, caminho_imagem, FK_automovel) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, avaliacao.getIdAvaliacao());
-            comando.setInt(2, avaliacao.getFrequencia());
-            comando.setString(3, avaliacao.getComparecimento());
-            comando.setInt(4, avaliacao.getFK_integrante());
-            comando.setString(5, avaliacao.getData());
+            comando.setInt(1, arquitetura.getIdArquitetura());
+            comando.setString(2, arquitetura.getCaminho_imagem());
+            comando.setInt(3, arquitetura.getFK_automovel());
             comando.execute();
             comando.close();
             conexao.close();
@@ -46,58 +46,52 @@ public static void fecharConexao(Connection conexao, Statement comando) {
         }
     }
 
-    // problema
-    public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
+    public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
+        List<Arquitetura> arquiteturas = new ArrayList<Arquitetura>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao");
+            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura where idArquitetura");
             while (rs.next()) {
-                Avaliacao avaliacao = new Avaliacao(
-                        rs.getInt("idAvaliacao"),
-                        rs.getInt("frequencia"),
-                        rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
-
+                Arquitetura arquitetura = new Arquitetura(
+                        rs.getInt("idArquitetura"),
+                        rs.getString("caminho_imagem"),
+                        rs.getInt("FK_automovel")
                 );
-                avaliacoes.add(avaliacao);
+                arquiteturas.add(arquitetura);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return avaliacoes;
+        return arquiteturas;
     }
 
-    public static Avaliacao obterAvaliacao(int idAvaliacao) throws ClassNotFoundException {
+    public static Arquitetura obterArquitetura(int idArquitetura) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        Avaliacao avaliacao = null;
+        Arquitetura arquitetura = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao = " + idAvaliacao);
+            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura where idArquitetura = " + idArquitetura);
             rs.first();
-            avaliacao = new Avaliacao(
-                    rs.getInt("idAvaliacao"),
-                        rs.getInt("frequencia"),
-                        rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
+            arquitetura = new Arquitetura(
+                    rs.getInt("idArquitetura"),
+                    rs.getString("caminho_imagem"),
+                    rs.getInt("FK_automovel")
             //null
             );
-            //avaliacao.setCodigoPessoa(rs.getString("pessoa"));
+            //arquitetura.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return avaliacao;
+        return arquitetura;
     }
 
 }

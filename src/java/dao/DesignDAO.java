@@ -33,7 +33,7 @@ public class DesignDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO design (idDesign, caminho_imagem, FK_autmovel) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO design (idDesign, caminho_imagem, FK_automovel) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, design.getIdDesign());
             comando.setString(2, design.getCaminho_imagem());

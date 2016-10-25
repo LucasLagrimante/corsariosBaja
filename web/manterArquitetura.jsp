@@ -17,9 +17,9 @@
                         <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Integrante:</td>
+                        <td align="left">Automovel:</td>
                         <td align="right">
-                            <select name="integrante" name="txtFK_integrante">
+                            <select name="FK_automovel" name="txtFK_integrante">
                                 <option value="${arquitetura.FK_integrante}" selected>Lucas</option>
                                 <option value="${arquitetura.FK_integrante}" selected>Vitor</option>
                             </select>
