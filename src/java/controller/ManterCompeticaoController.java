@@ -7,7 +7,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,28 +22,20 @@ import model.Competicao;
  * @author Aluno
  */
 public class ManterCompeticaoController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
          String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         }
-        /*
+       
         else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
+        }
+        /*
+        else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
         } else if (acao.equals("prepararExcluir")) {
             prepararExcluir(request, response);
@@ -65,6 +56,47 @@ public class ManterCompeticaoController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+        int idCompeticao = Integer.parseInt(request.getParameter("txtIdCompeticao"));
+        String nome = request.getParameter("txtNome");
+        String data = request.getParameter("txtData");
+        String local = request.getParameter("txtLocal");
+        String hora = request.getParameter("txtHora");
+
+        try {
+            /*Competicao competicao = null;
+             if (coordenador != 0) {
+             competicao = Professor.obterProfessor(coordenador);
+             }*/
+            Competicao competicao = new Competicao(idCompeticao, nome,data,local,hora);
+            competicao.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+   public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            int idCompeticao = Integer.parseInt(request.getParameter("idCompeticao"));
+            Competicao competicao = Competicao.obterCompeticao(idCompeticao);
+            request.setAttribute("competicao", competicao);
+            RequestDispatcher view = request.getRequestDispatcher("/manterCompeticao.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
         }
     }
 
