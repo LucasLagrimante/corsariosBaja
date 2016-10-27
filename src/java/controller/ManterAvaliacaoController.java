@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Automovel;
 import model.Avaliacao;
+import model.Integrante;
 
 /**
  *
@@ -30,10 +31,9 @@ public class ManterAvaliacaoController extends HttpServlet {
             prepararIncluir(request, response);
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
-        }
-        else if (acao.equals("prepararEditar")) {
-         prepararEditar(request, response);
-         } /* else if (acao.equals("confirmarEditar")) {
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } /* else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
@@ -41,6 +41,7 @@ public class ManterAvaliacaoController extends HttpServlet {
          confirmarExcluir(request, response);
          }
          */
+
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -65,9 +66,9 @@ public class ManterAvaliacaoController extends HttpServlet {
 
         try {
             /*Automovel automovel = null;
-            if (coordenador != 0) {
-                automovel = Professor.obterProfessor(coordenador);
-            }*/
+             if (coordenador != 0) {
+             automovel = Professor.obterProfessor(coordenador);
+             }*/
             Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, FK_integrante);
             avaliacao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
@@ -78,7 +79,7 @@ public class ManterAvaliacaoController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
+
     public void prepararEditar(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
         try {

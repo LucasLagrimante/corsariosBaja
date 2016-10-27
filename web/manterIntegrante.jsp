@@ -9,7 +9,7 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar Tntegrante ${operacao}</h2>
+            <h2 align="center">Cadastrar Integrante ${operacao}</h2>
             <form action="">
                 <table>
                     <tr>

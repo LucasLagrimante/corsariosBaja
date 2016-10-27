@@ -73,7 +73,7 @@ public class Avaliacao {
         return AvaliacaoDAO.obterAvaliacoes();
     }
 
-    public static Avaliacao obterAutomovel(int idAvaliacao) throws ClassNotFoundException {
+    public static Avaliacao obterAvaliacao(int idAvaliacao) throws ClassNotFoundException {
         return AvaliacaoDAO.obterAvaliacao(idAvaliacao);
     }
 }
