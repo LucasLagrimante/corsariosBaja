@@ -9,8 +9,8 @@ public class TipoPeca {
     private int idTipoPeca;
     private String nome;
 
-    public TipoPeca(int id, String nome) {
-        this.idTipoPeca = id;
+    public TipoPeca(int idTipoPeca, String nome) {
+        this.idTipoPeca = idTipoPeca;
         this.nome = nome;
     }
 
@@ -18,8 +18,8 @@ public class TipoPeca {
         return idTipoPeca;
     }
 
-    public void setId(int id) {
-        this.idTipoPeca = id;
+    public void setIdTipoPeca(int idTipoPeca) {
+        this.idTipoPeca = idTipoPeca;
     }
 
     public String getNome() {
@@ -30,8 +30,12 @@ public class TipoPeca {
         this.nome = nome;
     }
 
-    public static List<TipoPeca> obterTiposPecas() throws ClassNotFoundException, SQLException {
-        return TipoPecaDAO.obterTipoPecas();
+    public static List<TipoPeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
+        return TipoPecaDAO.obterTiposPeca();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        TipoPecaDAO.gravar(this);
     }
 
     public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {

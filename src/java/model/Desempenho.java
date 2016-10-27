@@ -7,7 +7,7 @@ import java.util.List;
 public class Desempenho {
 
     private int idDesempenho;
-    private String nome,data, hora;
+    private String nome, data, hora;
 
     public Desempenho(int idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, float tempoCorrida, float frenagem) {
         this.idDesempenho = idDesempenho;
@@ -19,10 +19,7 @@ public class Desempenho {
         this.tempoCorrida = tempoCorrida;
         this.frenagem = frenagem;
     }
-    private float aceleracaoMedia,velocidadeMedia, tempoCorrida, frenagem;
- 
-
-    
+    private float aceleracaoMedia, velocidadeMedia, tempoCorrida, frenagem;
 
     public int getIdDesempenho() {
         return idDesempenho;
@@ -87,9 +84,17 @@ public class Desempenho {
     public void setFrenagem(float frenagem) {
         this.frenagem = frenagem;
     }
-    
-    public static List<Desempenho>obterDesempenhos() throws ClassNotFoundException, SQLException{
+
+    public static List<Desempenho> obterDesempenhos() throws ClassNotFoundException, SQLException {
         return DesempenhoDAO.obterDesempenhos();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        DesempenhoDAO.gravar(this);
+    }
+
+    public static Desempenho obterDesempenho(int idDesempenho) throws ClassNotFoundException {
+        return DesempenhoDAO.obterDesempenho(idDesempenho);
     }
 
 }

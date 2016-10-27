@@ -16,7 +16,7 @@ import model.TipoPeca;
 
 public class TipoPecaDAO {
 
-     public static void fecharConexao(Connection conexao, Statement comando) {
+      public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -29,14 +29,14 @@ public class TipoPecaDAO {
         }
     }
 
-    public static void gravar(TipoPeca tipopeca) throws SQLException, ClassNotFoundException {
+    public static void gravar(TipoPeca tipoPeca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO tipopeca (idTipoPeca, nome) VALUES (?, ?) ";
+            String sql = "INSERT INTO tipoPeca (idTipoPeca,nome) VALUES (?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, tipopeca.getIdTipoPeca());
-            comando.setString(2, tipopeca.getNome());
+            comando.setInt(1, tipoPeca.getIdTipoPeca());
+            comando.setString(2, tipoPeca.getNome());
             comando.execute();
             comando.close();
             conexao.close();
@@ -45,51 +45,48 @@ public class TipoPecaDAO {
         }
     }
 
-    // problema
-    public static List<TipoPeca> obterTipoPecas() throws ClassNotFoundException, SQLException {
+    public static List<TipoPeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<TipoPeca> tipopecas = new ArrayList<TipoPeca>();
+        List<TipoPeca> tiposPeca = new ArrayList<TipoPeca>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("SELECT * FROM tipopeca");
             while (rs.next()) {
-                TipoPeca tipopeca = new TipoPeca(
+                TipoPeca tipoPeca = new TipoPeca(
                         rs.getInt("idTipoPeca"),
                         rs.getString("nome")
                 );
-                tipopecas.add(tipopeca);
+                tiposPeca.add(tipoPeca);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return tipopecas;
+        return tiposPeca;
     }
 
     public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
-        TipoPeca tipopeca = null;
+        TipoPeca tipoPeca = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("SELECT * FROM tipopeca where idTipoPeca = " + idTipoPeca);
             rs.first();
-            tipopeca = new TipoPeca(
+            tipoPeca = new TipoPeca(
                     rs.getInt("idTipoPeca"),
                     rs.getString("nome")
-            //null
             );
-            //tipopeca.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return tipopeca;
+        return tipoPeca;
     }
 
 }

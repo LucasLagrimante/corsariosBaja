@@ -6,6 +6,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,29 +15,6 @@ import java.util.List;
 import model.TipoPista;
 
 public class TipoPistaDAO {
-
-    public static List<TipoPista> obterTiposPistas() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<TipoPista> tipoPistas = new ArrayList<TipoPista>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from tipoPista");
-            while (rs.next()) {
-                TipoPista tipoPista = new TipoPista(
-                        rs.getInt("idTipoPista"),
-                        rs.getString("nome")
-                );
-                tipoPistas.add(tipoPista);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return tipoPistas;
-    }
 
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
@@ -49,6 +27,66 @@ public class TipoPistaDAO {
 
         } catch (SQLException e) {
         }
+    }
+
+    public static void gravar(TipoPista tipoPista) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "INSERT INTO tipoPista (idTipoPista,nome) VALUES (?, ?) ";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, tipoPista.getIdTipoPista());
+            comando.setString(2, tipoPista.getNome());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static List<TipoPista> obterTiposPista() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<TipoPista> tiposPista = new ArrayList<TipoPista>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM tipopista");
+            while (rs.next()) {
+                TipoPista tipoPista = new TipoPista(
+                        rs.getInt("idTipoPista"),
+                        rs.getString("nome")
+                );
+                tiposPista.add(tipoPista);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return tiposPista;
+    }
+
+    public static TipoPista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        TipoPista tipoPista = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM tipopista where idTipoPista = " + idTipoPista);
+            rs.first();
+            tipoPista = new TipoPista(
+                    rs.getInt("idTipoPista"),
+                    rs.getString("nome")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return tipoPista;
     }
 
 }

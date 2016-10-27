@@ -9,6 +9,7 @@ public class DesempenhoTeste {
     private int idDesempenhoTeste;
     private String data, nome, hora, tempoPista;
     private float  frenagem, velocidadeMedia, aceleracaoMedia;
+    
 
     public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista ,float frenagem) {
         this.idDesempenhoTeste = idDesempenhoTeste;
@@ -85,7 +86,15 @@ public class DesempenhoTeste {
         this.frenagem = frenagem;
     }
 
-    public static List<DesempenhoTeste>obterDesempenhosTestes() throws ClassNotFoundException, SQLException{
-        return DesempenhoTesteDAO.obterDesempenhosTestes();
+       public static List<DesempenhoTeste> obterDesempenhosTeste() throws ClassNotFoundException, SQLException {
+        return DesempenhoTesteDAO.obterDesempenhosTeste();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        DesempenhoTesteDAO.gravar(this);
+    }
+
+    public static DesempenhoTeste obterDesempenhoTeste(int idDesempenhoTeste) throws ClassNotFoundException {
+        return DesempenhoTesteDAO.obterDesempenhoTeste(idDesempenhoTeste);
     }
 }

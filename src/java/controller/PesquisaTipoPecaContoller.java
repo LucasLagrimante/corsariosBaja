@@ -35,7 +35,7 @@ public class PesquisaTipoPecaContoller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException, SQLException {
         try {
-            request.setAttribute("tiposPecas", TipoPeca.obterTiposPecas());
+            request.setAttribute("tiposPecas", TipoPeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaTipoPeca.jsp");
             view.forward(request, response);
 

@@ -9,17 +9,36 @@ public class Investidor {
     private int idInvestidor;
     private float valorDoado;
 
-    public Investidor(int id, float valorDoado) {
-        this.idInvestidor = id;
+    public Investidor(int idInvestidor, float valorDoado, Pessoa pessoa) {
+        this.idInvestidor = idInvestidor;
         this.valorDoado = valorDoado;
+        this.pessoa = pessoa;
+    }
+    private Pessoa pessoa;
+    private int idPessoa;
+
+    public int getIdPessoa() {
+        return idPessoa;
     }
 
-    public int getId() {
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    public int getIdInvestidor() {
         return idInvestidor;
     }
 
-    public void setId(int id) {
-        this.idInvestidor = id;
+    public void setIdInvestidor(int idInvestidor) {
+        this.idInvestidor = idInvestidor;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public float getValorDoado() {
@@ -27,10 +46,18 @@ public class Investidor {
     }
 
     public void setValorDoado(float valorDoado) {
-        this.valorDoado = valorDoado;
+        this.valorDoado += valorDoado;
     }
 
-    public static List<Investidor> obterInvestidores() throws ClassNotFoundException, SQLException{
+    public static List<Investidor> obterInvestidores() throws ClassNotFoundException, SQLException {
         return InvestidorDAO.obterInvestidores();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        InvestidorDAO.gravar(this);
+    }
+
+    public static Investidor obterInvestidor(int idInvestidor) throws ClassNotFoundException {
+        return InvestidorDAO.obterInvestidor(idInvestidor);
     }
 }

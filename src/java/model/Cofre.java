@@ -9,21 +9,25 @@ public class Cofre {
     private int idCofre;
     private float total;
 
-    public Cofre(int id, float total) {
-        this.idCofre = id;
+    public Cofre(int idCofre, float total) {
+        this.idCofre = idCofre;
         this.total = total;
     }
 
-    public Cofre(int id) {
-        this.idCofre = id;
-    }
-
-    public int getId() {
+    public int getIdCofre() {
         return idCofre;
     }
 
-    public void setId(int id) {
-        this.idCofre = id;
+    public void setIdCofre(int idCofre) {
+        this.idCofre = idCofre;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     public float geTotal() {
@@ -34,11 +38,19 @@ public class Cofre {
         this.total = total;
     }
 
-    public void depositar(float valor) {
-        this.total = total + valor;
+    public void depositar(float total) {
+        this.total += total;
     }
-    
-    public static List<Cofre>obterCofres() throws ClassNotFoundException, SQLException{
+
+    public static List<Cofre> obterCofres() throws ClassNotFoundException, SQLException {
         return CofreDAO.obterCofres();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        CofreDAO.gravar(this);
+    }
+
+    public static Cofre obterCofre(int idCofre) throws ClassNotFoundException {
+        return CofreDAO.obterCofre(idCofre);
     }
 }

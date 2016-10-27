@@ -6,6 +6,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,29 +15,6 @@ import java.util.List;
 import model.Cofre;
 
 public class CofreDAO {
-
-    public static List<Cofre> obterCofres() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Cofre> cofres = new ArrayList<Cofre>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from cofre");
-            while (rs.next()) {
-                Cofre cofre = new Cofre(
-                        rs.getInt("idCofre"),
-                        rs.getFloat("valor")
-                );
-                cofres.add(cofre);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return cofres;
-    }
 
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
@@ -49,6 +27,66 @@ public class CofreDAO {
 
         } catch (SQLException e) {
         }
+    }
+
+    public static void gravar(Cofre cofre) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "INSERT INTO cofre (idCofre , valor) VALUES (?, ?) ";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setInt(1, cofre.getIdCofre());
+            comando.setFloat(2, cofre.geTotal());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static List<Cofre> obterCofres() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Cofre> cofrees = new ArrayList<Cofre>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM cofre");
+            while (rs.next()) {
+                Cofre cofre = new Cofre(
+                   rs.getInt("idCofre"),
+                    rs.getInt("total")
+                );
+                cofrees.add(cofre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return cofrees;
+    }
+
+    public static Cofre obterCofre(int registro) throws ClassNotFoundException {
+        Connection conexao = null;
+        Statement comando = null;
+        Cofre cofre = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT * FROM cofre where registro = " + registro);
+            rs.first();
+            cofre = new Cofre(
+                    rs.getInt("idCofre"),
+                    rs.getInt("total")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return cofre;
     }
 
 }

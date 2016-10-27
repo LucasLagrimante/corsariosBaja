@@ -10,6 +10,7 @@ public class Peca {
     private String nome, modelo;
     private float precoCompra;
     private TipoPeca tipopeca;
+    private int idTipoPeca;
 
     public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, TipoPeca tipopeca) {
         this.idPeca = idPeca;
@@ -20,11 +21,19 @@ public class Peca {
         this.tipopeca = tipopeca;
     }
 
-    public TipoPeca getTipopeca() {
+    public int getIdTipoPeca() {
+        return idTipoPeca;
+    }
+
+    public void setIdTipoPeca(int idTipoPeca) {
+        this.idTipoPeca = idTipoPeca;
+    }
+
+    public TipoPeca getTipoPeca() {
         return tipopeca;
     }
 
-    public void setTipopeca(TipoPeca tipopeca) {
+    public void setTipoPeca(TipoPeca tipopeca) {
         this.tipopeca = tipopeca;
     }
 

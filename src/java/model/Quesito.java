@@ -6,8 +6,6 @@ import java.util.List;
 
 public class Quesito {
 
-
-
     private int idQuesito;
     private String nome;
     private float nota;
@@ -18,13 +16,14 @@ public class Quesito {
         this.nota = nota;
     }
 
-    public int getId() {
+    public int getIdQuesito() {
         return idQuesito;
     }
 
-    public void setId(int id) {
-        this.idQuesito = id;
+    public void setIdQuesito(int idQuesito) {
+        this.idQuesito = idQuesito;
     }
+
 
     public String getNome() {
         return nome;
@@ -41,7 +40,16 @@ public class Quesito {
     public void setNota(float nota) {
         this.nota = nota;
     }
-    public static List<Quesito> obterQuesitos() throws ClassNotFoundException, SQLException{
+
+    public static List<Quesito> obterQuesitos() throws ClassNotFoundException, SQLException {
         return QuesitoDAO.obterQuesitos();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        QuesitoDAO.gravar(this);
+    }
+
+    public static Quesito obterQuesito(int idQuesito) throws ClassNotFoundException {
+        return QuesitoDAO.obterQuesito(idQuesito);
     }
 }

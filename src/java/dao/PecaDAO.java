@@ -27,7 +27,8 @@ public class PecaDAO {
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
-            comando.setInt(6, peca.getIdTipoPeca());
+            comando.setInt(6, peca.getTipoPeca().getIdTipoPeca());
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -53,7 +54,7 @@ public class PecaDAO {
                         rs.getFloat("precoCompra"),
                         null
                 );
-                peca.setIdTipoPeca(rs.getInt("FK_tipopeca"));
+                peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
                 pecas.add(peca);
             }
         } catch (SQLException e) {
@@ -81,7 +82,7 @@ public class PecaDAO {
                     rs.getFloat("precoCompra"),
                     null
             );
-            peca.setIdTipoPeca(rs.getInt("FK_tipopeca"));
+            peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

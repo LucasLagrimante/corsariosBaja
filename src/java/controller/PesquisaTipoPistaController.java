@@ -35,7 +35,7 @@ public class PesquisaTipoPistaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException, SQLException {
         try {
-            request.setAttribute("tiposPistas", TipoPista.obterTiposPistas());
+            request.setAttribute("tiposPistas", TipoPista.obterTiposPista());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaTipoPista.jsp");
             view.forward(request, response);
 

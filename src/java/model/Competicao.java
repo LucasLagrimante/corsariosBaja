@@ -57,7 +57,15 @@ public class Competicao {
         this.hora = hora;
     }
 
-    public static List<Competicao>obterCompeticoes() throws ClassNotFoundException, SQLException{
+    public static List<Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
         return CompeticaoDAO.obterCompeticoes();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        CompeticaoDAO.gravar(this);
+    }
+
+    public static Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
+        return CompeticaoDAO.obterCompeticao(idCompeticao);
     }
 }
