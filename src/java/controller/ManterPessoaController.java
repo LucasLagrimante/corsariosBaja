@@ -42,10 +42,11 @@ public class ManterPessoaController extends HttpServlet {
         else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         }
-        /*
         else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
+        }
+        /*
+        else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
         } else if (acao.equals("prepararExcluir")) {
             prepararExcluir(request, response);
@@ -83,9 +84,9 @@ public class ManterPessoaController extends HttpServlet {
         
         
         try {
-            /*Automovel automovel = null;
+            /*Pessoa pessoa = null;
             if (coordenador != 0) {
-                automovel = Professor.obterProfessor(coordenador);
+                pessoa = Professor.obterProfessor(coordenador);
             }*/
             Pessoa pessoa = new Pessoa(idPessoa,nome,cpf, logradouro,cep,bairro,uf,numero,telefone);
             pessoa.gravar();
@@ -97,6 +98,25 @@ public class ManterPessoaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
+    
+    public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            int idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
+            Pessoa pessoa = Pessoa.obterPessoa(idPessoa);
+            request.setAttribute("pessoa", pessoa);
+            RequestDispatcher view = request.getRequestDispatcher("/manterPessoa.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
