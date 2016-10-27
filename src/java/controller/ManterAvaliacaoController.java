@@ -31,9 +31,9 @@ public class ManterAvaliacaoController extends HttpServlet {
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         }
-        /*else if (acao.equals("prepararEditar")) {
+        else if (acao.equals("prepararEditar")) {
          prepararEditar(request, response);
-         }  else if (acao.equals("confirmarEditar")) {
+         } /* else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
@@ -76,6 +76,25 @@ public class ManterAvaliacaoController extends HttpServlet {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
+        }
+    }
+    
+    public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
+            int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
+            Avaliacao arquitetura = Avaliacao.obterAvaliacao(idAvaliacao);
+            request.setAttribute("arquitetura", arquitetura);
+            RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
         }
     }
 

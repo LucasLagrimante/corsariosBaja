@@ -13,39 +13,23 @@
             <form action="">
                 <table>
                     <tr>
-                        <td align="left">Nome: </td>
-                        <td align="right"> <input type="text" value="${integrante.nome}"></td>
+                        <td align="left">Matricula: </td>
+                        <td align="right"> <input type="text" name="txtMatricula" value="${integrante.nome}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Sobrenome: </td>
-                        <td align="right"> <input type="text" value="${integrante.sobrenome}"></td>
+                        <td align="left">Carga Horaria Disponivel: </td>
+                        <td align="right"> <input type="text" name="txtCargaHorariaDisponivel" value="${integrante.sobrenome}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Caracteristica no projeto: </td>
+                        <td align="left">Pessoa: </td>
                         <td align="right">
-                            <select>
-                                <option value="volvo">...</option>
-                                <option value="saab">Aluno</option>
-                                <option value="mercedes">Professor</option>
-                                <option value="audi">Nada</option>
+                            <select name="selectTipoPeca"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                                <option value="0" <c:if test="${pessoa.idPessoa == null}"> selected</c:if>> </option>
+                                <c:forEach items="${pessoas}" var="tipopeca">
+                                    <option value="${pessoa.idPessoa}" <c:if test="${integrante.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
+                                </c:forEach>
                             </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left">CPF: </td>
-                        <td align="right"> <input type="text" value="${integrante.cpf}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Telefone: </td>
-                        <td align="right"> <input type="text" value="${integrante.telefone}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Endereço: </td>
-                        <td align="right"> <input type="text" value="${integrante.endereco}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Email: </td>
-                        <td align="right"> <input type="email" value="${integrante.email}"></td>
+                        </td>				
                     </tr>
                     <tr>
                         <td colspan="2" align="center"><input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>

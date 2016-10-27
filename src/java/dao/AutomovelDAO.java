@@ -50,7 +50,6 @@ public class AutomovelDAO {
         }
     }
 
-    // problema
     public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;

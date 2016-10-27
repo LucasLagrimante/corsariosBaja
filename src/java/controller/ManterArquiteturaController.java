@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Arquitetura;
+import model.Automovel;
 
 /**
  *
@@ -22,17 +23,16 @@ import model.Arquitetura;
  */
 public class ManterArquiteturaController extends HttpServlet {
 
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
-        }
-        /*else if (acao.equals("prepararEditar")) {
-         prepararEditar(request, response);
-         }  else if (acao.equals("confirmarEditar")) {
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        }  /*else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
@@ -40,6 +40,7 @@ public class ManterArquiteturaController extends HttpServlet {
          confirmarExcluir(request, response);
          }
          */
+
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -62,9 +63,9 @@ public class ManterArquiteturaController extends HttpServlet {
 
         try {
             /*Arquitetura automovel = null;
-            if (coordenador != 0) {
-                automovel = Professor.obterProfessor(coordenador);
-            }*/
+             if (coordenador != 0) {
+             automovel = Professor.obterProfessor(coordenador);
+             }*/
             Arquitetura arquitetura = new Arquitetura(idArquitetura, caminho_imagem, FK_automovel);
             arquitetura.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaArquiteturaController");
@@ -73,6 +74,25 @@ public class ManterArquiteturaController extends HttpServlet {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
+        }
+    }
+    
+    public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            int idArquitetura = Integer.parseInt(request.getParameter("idArquitetura"));
+            Arquitetura arquitetura = Arquitetura.obterArquitetura(idArquitetura);
+            request.setAttribute("arquitetura", arquitetura);
+            RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
         }
     }
 
@@ -88,11 +108,11 @@ public class ManterArquiteturaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
-           processRequest(request, response);
-       } catch (SQLException ex) {
-           Logger.getLogger(ManterArquiteturaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterArquiteturaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,11 +126,11 @@ public class ManterArquiteturaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
-           processRequest(request, response);
-       } catch (SQLException ex) {
-           Logger.getLogger(ManterArquiteturaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterArquiteturaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

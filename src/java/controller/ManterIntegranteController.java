@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Integrante;
+import model.Pessoa;
 
 /**
  *
@@ -38,22 +37,20 @@ public class ManterIntegranteController extends HttpServlet {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        }
-        /*
-        else if (acao.equals("confirmarIncluir")) {
+        } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request, response);
-        } else if (acao.equals("prepararExcluir")) {
-            prepararExcluir(request, response);
-        } else if (acao.equals("confirmarExcluir")) {
-            confirmarExcluir(request, response);
-        }
-        */
+        } /* else if (acao.equals("confirmarEditar")) {
+         confirmarEditar(request, response);
+         } else if (acao.equals("prepararExcluir")) {
+         prepararExcluir(request, response);
+         } else if (acao.equals("confirmarExcluir")) {
+         confirmarExcluir(request, response);
+         }
+         */
+
     }
-        
 
     public void prepararIncluir(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
@@ -65,6 +62,47 @@ public class ManterIntegranteController extends HttpServlet {
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
+        }
+    }
+
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+        int matricula = Integer.parseInt(request.getParameter("matricula"));
+        String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
+        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        try {
+            /*Integrante integrante = null;
+             if (coordenador != 0) {
+             integrante = Professor.obterProfessor(coordenador);
+             }*/
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
+            integrante.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //fk
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            int matricula = Integer.parseInt(request.getParameter("matricula"));
+            Integrante integrante = Integrante.obterIntegrante(matricula);
+            request.setAttribute("integrante", integrante);
+            RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
         }
     }
 

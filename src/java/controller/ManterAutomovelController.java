@@ -29,10 +29,12 @@ public class ManterAutomovelController extends HttpServlet {
             prepararIncluir(request, response);
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
         }
-        /*else if (acao.equals("prepararEditar")) {
-         prepararEditar(request, response);
-         }  else if (acao.equals("confirmarEditar")) {
+
+        /* else
+         if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
@@ -65,9 +67,9 @@ public class ManterAutomovelController extends HttpServlet {
         float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
             /*Automovel automovel = null;
-            if (coordenador != 0) {
-                automovel = Professor.obterProfessor(coordenador);
-            }*/
+             if (coordenador != 0) {
+             automovel = Professor.obterProfessor(coordenador);
+             }*/
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
@@ -76,6 +78,25 @@ public class ManterAutomovelController extends HttpServlet {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararEditar(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            //request.setAttribute("automoveis", Automovel.obterAutomoveis()); - para combo box
+            int idAutomovel = Integer.parseInt(request.getParameter("idAutomovel"));
+            Automovel automovel = Automovel.obterAutomovel(idAutomovel);
+            request.setAttribute("automovel", automovel);
+            RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
         }
     }
 

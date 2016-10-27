@@ -10,7 +10,6 @@ public class Peca {
     private String nome, modelo;
     private float precoCompra;
     private TipoPeca tipopeca;
-    private int idTipoPeca;
 
     public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, TipoPeca tipopeca) {
         this.idPeca = idPeca;
@@ -19,7 +18,6 @@ public class Peca {
         this.modelo = modelo;
         this.precoCompra = precoCompra;
         this.tipopeca = tipopeca;
-
     }
 
     public TipoPeca getTipopeca() {
@@ -28,14 +26,6 @@ public class Peca {
 
     public void setTipopeca(TipoPeca tipopeca) {
         this.tipopeca = tipopeca;
-    }
-
-    public int getIdTipoPeca() {
-        return idTipoPeca;
-    }
-
-    public void setIdTipoPeca(int idTipoPeca) {
-        this.idTipoPeca = idTipoPeca;
     }
 
     public int getIdPeca() {
@@ -84,17 +74,6 @@ public class Peca {
 
     public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
-    }
-
-    public TipoPeca getTipoPeca() {
-        if (this.idTipoPeca != 0 && this.tipopeca == null) {
-            try {
-                this.tipopeca = TipoPeca.obterTipoPeca(this.idTipoPeca);
-            } catch (ClassNotFoundException ex) {
-
-            }
-        }
-        return this.tipopeca;
     }
 
     public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
