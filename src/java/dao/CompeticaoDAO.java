@@ -6,6 +6,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +16,7 @@ import model.Competicao;
 
 public class CompeticaoDAO {
     
- public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -57,11 +58,11 @@ public class CompeticaoDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM competicao");
             while (rs.next()) {
                 Competicao competicao = new Competicao(
-                   rs.getInt("idCompeticao"),
-                   rs.getString("nome"),
-                   rs.getString("data"),
-                   rs.getString("hora"),
-                   rs.getString("local")
+                        rs.getInt("idCompeticao"),
+                        rs.getString("nome"),
+                        rs.getString("data"),
+                        rs.getString("hora"),
+                        rs.getString("local")
                 );
                 competicaoes.add(competicao);
             }

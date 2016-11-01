@@ -63,8 +63,8 @@ public class ManterCompeticaoController extends HttpServlet {
         int idCompeticao = Integer.parseInt(request.getParameter("txtIdCompeticao"));
         String nome = request.getParameter("txtNome");
         String data = request.getParameter("txtData");
-        String local = request.getParameter("txtLocal");
         String hora = request.getParameter("txtHora");
+        String local = request.getParameter("txtLocal");
 
         try {
             /*Competicao competicao = null;
