@@ -19,14 +19,20 @@
         <h1>Pesquisa de Competição</h1>
         <table border="1">
             <tr>
-                <th>Código Competicao</th>
-                <th>Nome Competicao</th>
+                <th>Código da Competição</th>
+                <th>Nome da Competição</th>
+                <th>Data da Competição</th>
+                <th>Hora da Competição</th>
+                <th>Local da Competição</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${competicoes}" var="competicao">
                 <tr>
                     <td><c:out value="${competicao.idCompeticao}" /></td>
                     <td><c:out value="${competicao.nome}" /></td>
+                    <td><c:out value="${competicao.data}" /></td>
+                    <td><c:out value="${competicao.hora}" /></td>
+                    <td><c:out value="${competicao.local}" /></td>
                     <td><a href="ManterCompeticaoController?acao=prepararEditar&idCompeticao=<c:out value="${competicao.idCompeticao}" />">Editar</a></td>
                     <td><a href="ManterCompeticaoController?acao=prepararExcluir&idCompeticao=<c:out value="${competicao.idCompeticao}" />">Excluir</a></td>
                 </tr>
