@@ -21,12 +21,24 @@
             <tr>
                 <th>Código Desempenho</th>
                 <th>Nome Desempenho</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Aceleração Média</th>
+                <th>Velocidade Média</th>
+                <th>Tempo Corrida</th>
+                <th>Frenagem</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${desempenhos}" var="desempenho">
                 <tr>
                     <td><c:out value="${desempenho.idDesempenho}" /></td>
                     <td><c:out value="${desempenho.nome}" /></td>
+                    <td><c:out value="${desempenho.data}" /></td>
+                    <td><c:out value="${desempenho.hora}" /></td>
+                    <td><c:out value="${desempenho.aceleracaoMedia}" /></td>
+                    <td><c:out value="${desempenho.velocidadeMedia}" /></td>
+                    <td><c:out value="${desempenho.tempoCorrida}" /></td>
+                    <td><c:out value="${desempenho.frenagem}" /></td>
                     <td><a href="ManterDesempenhoController?acao=prepararEditar&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Editar</a></td>
                     <td><a href="ManterDesempenhoController?acao=prepararExcluir&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Excluir</a></td>
                 </tr>
