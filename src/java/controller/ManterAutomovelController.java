@@ -31,12 +31,11 @@ public class ManterAutomovelController extends HttpServlet {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
         }
-
-        /* else
-         if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
+        /*
+         else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
          } else if (acao.equals("confirmarExcluir")) {
          confirmarExcluir(request, response);
@@ -99,6 +98,32 @@ public class ManterAutomovelController extends HttpServlet {
 
         }
     }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
+        String cor = request.getParameter("txtCor");
+        String nome = request.getParameter("txtNome");
+        String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
+        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        try {
+            /*Automovel automovel = null;
+             if (coordenador != 0) {
+             automovel = Professor.obterProfessor(coordenador);
+             }*/
+            Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
+            automovel.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

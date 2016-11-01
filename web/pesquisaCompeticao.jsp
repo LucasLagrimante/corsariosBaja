@@ -16,8 +16,8 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Competição</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Competição</h1>
+        <table border align="center">
             <tr>
                 <th>Código da Competição</th>
                 <th>Nome da Competição</th>
@@ -37,9 +37,12 @@
                     <td><a href="ManterCompeticaoController?acao=prepararExcluir&idCompeticao=<c:out value="${competicao.idCompeticao}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
         </table>
-        <form action="ManterCompeticaoController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+
     </body>
 </html>

@@ -16,24 +16,42 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Pessoa</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Pessoa</h1>
+        <table align="center" border>
             <tr>
                 <th>Código Pessoa</th>
                 <th>Nome Pessoa</th>
+                <th>CPF</th>
+                <th>Logradouro</th>
+                <th>CEP</th>
+                <th>Bairro</th>
+                <th>UF</th>
+                <th>Número</th>
+                <th>Telefone</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${pessoas}" var="pessoa">
                 <tr>
                     <td><c:out value="${pessoa.idPessoa}" /></td>
                     <td><c:out value="${pessoa.nome}" /></td>
+                    <td><c:out value="${pessoa.cpf}" /></td>
+                    <td><c:out value="${pessoa.logradouro}" /></td>
+                    <td><c:out value="${pessoa.cep}" /></td>
+                    <td><c:out value="${pessoa.bairro}" /></td>
+                    <td><c:out value="${pessoa.uf}" /></td>
+                    <td><c:out value="${pessoa.numero}" /></td>
+                    <td><c:out value="${pessoa.telefone}" /></td>
+
                     <td><a href="ManterPessoaController?acao=prepararEditar&idPessoa=<c:out value="${pessoa.idPessoa}" />">Editar</a></td>
                     <td><a href="ManterPessoaController?acao=prepararExcluir&idPessoa=<c:out value="${pessoa.idPessoa}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="11"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
         </table>
-        <form action="ManterPessoaController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+
     </body>
 </html>

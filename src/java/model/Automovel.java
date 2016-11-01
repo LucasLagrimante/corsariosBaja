@@ -79,7 +79,11 @@ public class Automovel {
     public void gravar() throws SQLException, ClassNotFoundException {
         AutomovelDAO.gravar(this);
     }
-    
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        AutomovelDAO.alterar(this);
+    }
+
     public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterAutomoveis();
     }

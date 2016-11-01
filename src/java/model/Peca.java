@@ -9,32 +9,13 @@ public class Peca {
     private int idPeca, quantidade;
     private String nome, modelo;
     private float precoCompra;
-    private TipoPeca tipopeca;
-    private int idTipoPeca;
 
-    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, TipoPeca tipopeca) {
+    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra) {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
         this.modelo = modelo;
         this.precoCompra = precoCompra;
-        this.tipopeca = tipopeca;
-    }
-
-    public int getIdTipoPeca() {
-        return idTipoPeca;
-    }
-
-    public void setIdTipoPeca(int idTipoPeca) {
-        this.idTipoPeca = idTipoPeca;
-    }
-
-    public TipoPeca getTipoPeca() {
-        return tipopeca;
-    }
-
-    public void setTipoPeca(TipoPeca tipopeca) {
-        this.tipopeca = tipopeca;
     }
 
     public int getIdPeca() {
@@ -47,14 +28,6 @@ public class Peca {
 
     public int getQuantidade() {
         return quantidade;
-    }
-
-    public TipoPeca gettipopeca() {
-        return tipopeca;
-    }
-
-    public void settipopeca(TipoPeca tipopeca) {
-        this.tipopeca = tipopeca;
     }
 
     public void setQuantidade(int quantidade) {
@@ -89,6 +62,10 @@ public class Peca {
         return PecaDAO.obterPecas();
     }
 
+    public void alterar() throws SQLException, ClassNotFoundException {
+        PecaDAO.alterar(this);
+    }
+
     public void gravar() throws SQLException, ClassNotFoundException {
         PecaDAO.gravar(this);
     }
@@ -96,4 +73,5 @@ public class Peca {
     public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
         return PecaDAO.obterPeca(idPeca);
     }
+
 }

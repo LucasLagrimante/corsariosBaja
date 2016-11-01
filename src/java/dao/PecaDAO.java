@@ -20,14 +20,14 @@ public class PecaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO peca (idPeca, quantidade, nome, modelo, precoCompra, FK_tipopeca) VALUES (?, ?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO peca (idPeca, quantidade, nome, modelo, precoCompra) VALUES (?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, peca.getIdPeca());
             comando.setInt(2, peca.getQuantidade());
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
-            comando.setInt(6, peca.getTipoPeca().getIdTipoPeca());
+            //comando.setInt(6, peca.getTipoPeca().getIdTipoPeca());
 
             comando.execute();
             comando.close();
@@ -51,10 +51,10 @@ public class PecaDAO {
                         rs.getInt("quantidade"),
                         rs.getString("nome"),
                         rs.getString("modelo"),
-                        rs.getFloat("precoCompra"),
-                        null
+                        rs.getFloat("precoCompra")
+                        //null
                 );
-                peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
+                //peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
                 pecas.add(peca);
             }
         } catch (SQLException e) {
@@ -79,16 +79,40 @@ public class PecaDAO {
                     rs.getInt("quantidade"),
                     rs.getString("nome"),
                     rs.getString("modelo"),
-                    rs.getFloat("precoCompra"),
-                    null
+                    rs.getFloat("precoCompra")
+                    //null
             );
-            peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
+            //peca.setIdTipoPeca(rs.getInt("idTipoPeca"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return peca;
+    }
+    
+    public static void alterar(Peca peca) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE peca SET quantidade = ?, "
+                    + "nome = ?, modelo = ?, precoCompra = ? "
+                   // + "---FK--- = ? "
+                    + "WHERE IdPeca = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setInt(1, peca.getQuantidade());
+            comando.setString(2, peca.getNome());
+            comando.setString(3, peca.getModelo());
+            comando.setFloat(4, peca.getPrecoCompra());
+//            cquantidadeomando.setFloat(5, peca.FK_tipoPeca());
+            comando.setInt(6, peca.getIdPeca());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
     public static void fecharConexao(Connection conexao, Statement comando) {

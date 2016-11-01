@@ -57,4 +57,12 @@ public class DesempenhoDAO {
         }
     }
 
+    public static Desempenho obterDesempenho(int idDesempenho) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void gravar(Desempenho aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

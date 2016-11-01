@@ -59,4 +59,16 @@ public class DesempenhoTesteDAO {
         }
     }
 
+    public static DesempenhoTeste obterDesempenhoTeste(int idDesempenhoTeste) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void gravar(DesempenhoTeste aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static List<DesempenhoTeste> obterDesempenhosTeste() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

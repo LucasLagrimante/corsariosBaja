@@ -89,8 +89,8 @@ public class AutomovelDAO {
             rs.first();
             automovel = new Automovel(
                     rs.getInt("idAutomovel"),
-                    rs.getString("nome"),
                     rs.getString("cor"),
+                    rs.getString("nome"),
                     rs.getString("DataTerminoProjeto"),
                     rs.getFloat("PesoCarro"),
                     rs.getFloat("PesoChassi"),
@@ -104,6 +104,31 @@ public class AutomovelDAO {
             fecharConexao(conexao, comando);
         }
         return automovel;
+    }
+
+    public static void alterar(Automovel automovel) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE automovel SET cor = ?, "
+                    + "nome = ?, dataTerminoProjeto = ?, pesoCarro = ?, "
+                    + "pesoChassi = ?, custoTotal = ? "
+                    + "WHERE IdAutomovel = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setString(1, automovel.getCor());
+            comando.setString(2, automovel.getNome());
+            comando.setString(3, automovel.getDataTerminoProjeto());
+            comando.setFloat(4, automovel.getPesoCarro());
+            comando.setFloat(5, automovel.getPesoChassi());
+            comando.setFloat(6, automovel.getCustoTotal());
+            comando.setInt(7, automovel.getIdAutomovel());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
 }
