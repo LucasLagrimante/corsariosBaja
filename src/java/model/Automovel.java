@@ -80,15 +80,15 @@ public class Automovel {
         AutomovelDAO.gravar(this);
     }
 
-    public void alterar() throws SQLException, ClassNotFoundException {
-        AutomovelDAO.alterar(this);
-    }
-
     public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterAutomoveis();
     }
 
     public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
         return AutomovelDAO.obterAutomovel(idAutomovel);
+    }
+    
+     public void alterar() throws SQLException, ClassNotFoundException {
+        AutomovelDAO.alterar(this);
     }
 }

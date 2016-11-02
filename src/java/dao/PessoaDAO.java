@@ -102,12 +102,41 @@ public class PessoaDAO {
                         rs.getString("telefone")
             //null
             );
-            //automovel.setCodigoPessoa(rs.getString("pessoa"));
+            //pessoa.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return pessoa;
+    }
+    
+    public static void alterar(Pessoa pessoa) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE pessoa SET nome = ?, "
+                    + "cpf = ?, logradouro = ?, cep = ?, "
+                    + "bairro = ?, uf = ?, numero = ? "
+                    + "telefone = ?"
+                    + "WHERE IdPessoa = ?";
+             //public Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero,telefone)
+
+            PreparedStatement comando = conexao.prepareStatement(sql);
+            comando.setString(1, pessoa.getNome());
+            comando.setString(2, pessoa.getCpf());
+            comando.setString(3, pessoa.getLogradouro());
+            comando.setString(4, pessoa.getCep());
+            comando.setString(5, pessoa.getBairro());
+            comando.setString(6, pessoa.getUf());
+            comando.setString(7, pessoa.getNumero());
+            comando.setString(8, pessoa.getTelefone());
+            comando.setInt(9, pessoa.getIdPessoa());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 }

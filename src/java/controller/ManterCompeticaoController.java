@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package controller;
 
@@ -31,13 +26,13 @@ public class ManterCompeticaoController extends HttpServlet {
        
         else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
-        } else if (acao.equals("prepararEditar")) {
+        }else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         }
-        /*
         else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
-        } else if (acao.equals("prepararExcluir")) {
+        }/*
+        else if (acao.equals("prepararExcluir")) {
             prepararExcluir(request, response);
         } else if (acao.equals("confirmarExcluir")) {
             confirmarExcluir(request, response);
@@ -71,7 +66,7 @@ public class ManterCompeticaoController extends HttpServlet {
              if (coordenador != 0) {
              competicao = Professor.obterProfessor(coordenador);
              }*/
-            Competicao competicao = new Competicao(idCompeticao, nome,data,local,hora);
+            Competicao competicao = new Competicao(idCompeticao, nome,data,hora,local);
             competicao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
             view.forward(request, response);
@@ -99,6 +94,30 @@ public class ManterCompeticaoController extends HttpServlet {
 
         }
     }
+   
+   public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idCompeticao = Integer.parseInt(request.getParameter("txtIdCompeticao"));
+        String nome = request.getParameter("txtNome");
+        String data = request.getParameter("txtData");
+        String hora = request.getParameter("txtHora");
+        String local = request.getParameter("txtLocal");
+
+        try {
+            /*Competicao competicao = null;
+             if (coordenador != 0) {
+             competicao = Professor.obterProfessor(coordenador);
+             }*/
+            Competicao competicao = new Competicao(idCompeticao, nome,data,hora,local);
+            competicao.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

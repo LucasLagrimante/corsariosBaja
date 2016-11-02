@@ -21,17 +21,6 @@
                         <td align="right"><input name="txtNome" type="text" value="${competicao.nome}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Tipo de Pista: </td>
-                        <td align="right">
-                            <select>
-                                <option value="volvo">...</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <td align="left">Data: </td>
                         <td align="right"><input name="txtData" type="text" value="${competicao.data}"></td>
                     </tr>

@@ -45,10 +45,12 @@ public class ManterPessoaController extends HttpServlet {
         else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         }
-        /*
+        
         else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
-        } else if (acao.equals("prepararExcluir")) {
+        }
+        /*
+        else if (acao.equals("prepararExcluir")) {
             prepararExcluir(request, response);
         } else if (acao.equals("confirmarExcluir")) {
             confirmarExcluir(request, response);
@@ -73,7 +75,6 @@ public class ManterPessoaController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
         int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
         String nome = request.getParameter("txtNome");
-        String cor = request.getParameter("txtCor");
         String cpf = request.getParameter("txtCpf");
         String logradouro = request.getParameter("txtLogradouro");
         String cep = request.getParameter("txtCep");
@@ -114,6 +115,34 @@ public class ManterPessoaController extends HttpServlet {
 
         } catch (ClassNotFoundException ex) {
 
+        }
+    }
+    
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response){
+        int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
+        String nome = request.getParameter("txtNome");
+        String cpf = request.getParameter("txtCpf");
+        String logradouro = request.getParameter("txtLogradouro");
+        String cep = request.getParameter("txtCep");
+        String bairro = request.getParameter("txtBairro");
+        String uf = request.getParameter("txtUf");
+        String numero = request.getParameter("txtNumero");
+        String telefone = request.getParameter("txtTelefone");
+        
+        
+        try {
+            /*Pessoa pessoa = null;
+            if (coordenador != 0) {
+                pessoa = Professor.obterProfessor(coordenador);
+            }*/
+            Pessoa pessoa = new Pessoa(idPessoa,nome,cpf, logradouro,cep,bairro,uf,numero,telefone);
+            pessoa.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPessoaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
         }
     }
 

@@ -9,12 +9,13 @@ public class Competicao {
     private int idCompeticao;
     private String nome, data, local, hora;
 
-    public Competicao(int idCompeticao, String nome, String data, String local, String hora) {
+    public Competicao(int idCompeticao, String nome, String data, String hora, String local) {
         this.idCompeticao = idCompeticao;
         this.nome = nome;
         this.data = data;
-        this.local = local;
         this.hora = hora;
+        this.local = local;
+      
     }
 
     public int getIdCompeticao() {
@@ -56,16 +57,19 @@ public class Competicao {
     public void setHora(String hora) {
         this.hora = hora;
     }
-
+     public void gravar() throws SQLException, ClassNotFoundException {
+        CompeticaoDAO.gravar(this);
+    }
+    
     public static List<Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
         return CompeticaoDAO.obterCompeticoes();
     }
 
-    public void gravar() throws SQLException, ClassNotFoundException {
-        CompeticaoDAO.gravar(this);
-    }
-
     public static Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
         return CompeticaoDAO.obterCompeticao(idCompeticao);
+    }
+    
+     public void alterar() throws SQLException, ClassNotFoundException {
+        CompeticaoDAO.alterar(this);
     }
 }

@@ -24,6 +24,7 @@
                 <th>Data da Competição</th>
                 <th>Hora da Competição</th>
                 <th>Local da Competição</th>
+                
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${competicoes}" var="competicao">

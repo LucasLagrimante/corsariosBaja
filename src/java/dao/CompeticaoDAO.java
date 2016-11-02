@@ -97,5 +97,27 @@ public class CompeticaoDAO {
         }
         return competicao;
     }
+    
+      public static void alterar(Competicao competicao) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE competicao SET nome = ?, "
+                    + "data = ?, hora = ?, local = ?, "
+                    + "WHERE IdCompeticao = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setString(1, competicao.getNome());
+            comando.setString(2, competicao.getData());
+            comando.setString(3, competicao.getHora());
+            comando.setString(4, competicao.getLocal());
+            comando.setInt(5, competicao.getIdCompeticao());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
 }

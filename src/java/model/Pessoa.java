@@ -107,5 +107,9 @@ public class Pessoa {
     public static Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
         return PessoaDAO.obterPessoa(idPessoa);
     }
+    
+     public void alterar() throws SQLException, ClassNotFoundException {
+        PessoaDAO.alterar(this);
+    }
 
 }
