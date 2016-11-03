@@ -30,12 +30,20 @@ public class TipoPeca {
         this.nome = nome;
     }
 
-    public static List<TipoPeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
-        return TipoPecaDAO.obterTiposPeca();
-    }
-
     public void gravar() throws SQLException, ClassNotFoundException {
         TipoPecaDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        TipoPecaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        TipoPecaDAO.excluir(this);
+    }
+
+    public static List<TipoPeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
+        return TipoPecaDAO.obterTiposPeca();
     }
 
     public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {

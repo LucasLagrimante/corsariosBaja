@@ -30,7 +30,7 @@ public class ManterDesignController extends HttpServlet {
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
         }
-        /*else if (acao.equals("prepararEditar")) {
+        else if (acao.equals("prepararEditar")) {
          prepararEditar(request, response);
          }  else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
@@ -39,7 +39,7 @@ public class ManterDesignController extends HttpServlet {
          } else if (acao.equals("confirmarExcluir")) {
          confirmarExcluir(request, response);
          }
-         */
+         
     }
 
     public void prepararIncluir(HttpServletRequest request,

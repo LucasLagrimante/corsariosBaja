@@ -38,7 +38,6 @@ public class Design {
     public void setCaminho_imagem(String caminho_imagem) {
         this.caminho_imagem = caminho_imagem;
     }
-    
 
     public int getId() {
         return idDesign;
@@ -47,10 +46,19 @@ public class Design {
     public void setId(int id) {
         this.idDesign = id;
     }
+
     public void gravar() throws SQLException, ClassNotFoundException {
         DesignDAO.gravar(this);
     }
-    
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        DesignDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        DesignDAO.excluir(this);
+    }
+
     public static List<Design> obterDesigns() throws ClassNotFoundException, SQLException {
         return DesignDAO.obterDesigns();
     }

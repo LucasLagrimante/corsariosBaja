@@ -29,13 +29,21 @@ public class TipoPista {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public static List<TipoPista> obterTiposPista() throws ClassNotFoundException, SQLException {
-        return TipoPistaDAO.obterTiposPista();
-    }
 
     public void gravar() throws SQLException, ClassNotFoundException {
         TipoPistaDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        TipoPistaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        TipoPistaDAO.excluir(this);
+    }
+
+    public static List<TipoPista> obterTiposPista() throws ClassNotFoundException, SQLException {
+        return TipoPistaDAO.obterTiposPista();
     }
 
     public static TipoPista obterTipoPista(int idTipoPista) throws ClassNotFoundException {

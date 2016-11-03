@@ -53,6 +53,14 @@ public class Integrante {
         IntegranteDAO.gravar(this);
     }
 
+    public void alterar() throws SQLException, ClassNotFoundException {
+        IntegranteDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        IntegranteDAO.excluir(this);
+    }
+
     public static List<Integrante> obterIntegrantes() throws ClassNotFoundException, SQLException {
         return IntegranteDAO.obterIntegrantes();
 

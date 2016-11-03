@@ -60,6 +60,13 @@ public class Competicao {
      public void gravar() throws SQLException, ClassNotFoundException {
         CompeticaoDAO.gravar(this);
     }
+     public void alterar() throws SQLException, ClassNotFoundException {
+        CompeticaoDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        CompeticaoDAO.excluir(this);
+    }
     
     public static List<Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
         return CompeticaoDAO.obterCompeticoes();
@@ -68,8 +75,5 @@ public class Competicao {
     public static Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
         return CompeticaoDAO.obterCompeticao(idCompeticao);
     }
-    
-     public void alterar() throws SQLException, ClassNotFoundException {
-        CompeticaoDAO.alterar(this);
-    }
+
 }

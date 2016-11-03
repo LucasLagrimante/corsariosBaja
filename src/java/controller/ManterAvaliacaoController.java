@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Automovel;
+import model.Avaliacao;
 import model.Avaliacao;
 import model.Integrante;
 
@@ -33,14 +33,14 @@ public class ManterAvaliacaoController extends HttpServlet {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        } /* else if (acao.equals("confirmarEditar")) {
+        } else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
          } else if (acao.equals("confirmarExcluir")) {
          confirmarExcluir(request, response);
          }
-         */
+         
 
     }
 
@@ -48,7 +48,7 @@ public class ManterAvaliacaoController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("avaliacoes", Automovel.obterAutomoveis());
+            request.setAttribute("avaliacoes", Avaliacao.obterAvaliacoes());
             RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -62,16 +62,10 @@ public class ManterAvaliacaoController extends HttpServlet {
         int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
-        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
-
         try {
-            /*Automovel automovel = null;
-             if (coordenador != 0) {
-             automovel = Professor.obterProfessor(coordenador);
-             }*/
-            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, FK_integrante);
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
             avaliacao.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -96,6 +90,57 @@ public class ManterAvaliacaoController extends HttpServlet {
 
         } catch (ClassNotFoundException ex) {
 
+        }
+    }
+    
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idAvaliacao = Integer.parseInt(request.getParameter("txtIdAvaliacao"));
+        int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
+        String comparecimento = request.getParameter("txtComparecimento");
+        String data = request.getParameter("txtData");
+        try {
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
+            avaliacao.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
+            Avaliacao avaliacao = Avaliacao.obterAvaliacao(idAvaliacao);
+            request.setAttribute("avaliacao", avaliacao);
+            RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idAvaliacao = Integer.parseInt(request.getParameter("txtIdAvaliacao"));
+        int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
+        String comparecimento = request.getParameter("txtComparecimento");
+        String data = request.getParameter("txtData");
+        try {
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
+            avaliacao.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
         }
     }
 

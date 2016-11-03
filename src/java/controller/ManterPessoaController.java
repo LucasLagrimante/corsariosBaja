@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -34,30 +33,22 @@ public class ManterPessoaController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-    String acao = request.getParameter("acao");
+        String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
-        }
-        
-        else if (acao.equals("confirmarIncluir")) {
+        } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
-        }
-        else if (acao.equals("prepararEditar")) {
+        } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }
-        
-        else if (acao.equals("confirmarEditar")) {
+        } else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
-        }
-        /*
-        else if (acao.equals("prepararExcluir")) {
+        } else if (acao.equals("prepararExcluir")) {
             prepararExcluir(request, response);
         } else if (acao.equals("confirmarExcluir")) {
             confirmarExcluir(request, response);
         }
-        */
+
     }
-        
 
     public void prepararIncluir(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
@@ -71,8 +62,8 @@ public class ManterPessoaController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
         }
     }
-    
-    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
+
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
         String nome = request.getParameter("txtNome");
         String cpf = request.getParameter("txtCpf");
@@ -82,14 +73,9 @@ public class ManterPessoaController extends HttpServlet {
         String uf = request.getParameter("txtUf");
         String numero = request.getParameter("txtNumero");
         String telefone = request.getParameter("txtTelefone");
-        
-        
+
         try {
-            /*Pessoa pessoa = null;
-            if (coordenador != 0) {
-                pessoa = Professor.obterProfessor(coordenador);
-            }*/
-            Pessoa pessoa = new Pessoa(idPessoa,nome,cpf, logradouro,cep,bairro,uf,numero,telefone);
+            Pessoa pessoa = new Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero, telefone);
             pessoa.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPessoaController");
             view.forward(request, response);
@@ -99,7 +85,7 @@ public class ManterPessoaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
+
     public void prepararEditar(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
         try {
@@ -117,8 +103,8 @@ public class ManterPessoaController extends HttpServlet {
 
         }
     }
-    
-    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response){
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
         String nome = request.getParameter("txtNome");
         String cpf = request.getParameter("txtCpf");
@@ -128,14 +114,9 @@ public class ManterPessoaController extends HttpServlet {
         String uf = request.getParameter("txtUf");
         String numero = request.getParameter("txtNumero");
         String telefone = request.getParameter("txtTelefone");
-        
-        
+
         try {
-            /*Pessoa pessoa = null;
-            if (coordenador != 0) {
-                pessoa = Professor.obterProfessor(coordenador);
-            }*/
-            Pessoa pessoa = new Pessoa(idPessoa,nome,cpf, logradouro,cep,bairro,uf,numero,telefone);
+            Pessoa pessoa = new Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero, telefone);
             pessoa.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPessoaController");
             view.forward(request, response);
@@ -146,7 +127,45 @@ public class ManterPessoaController extends HttpServlet {
         }
     }
 
-    
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
+            Pessoa pessoa = Pessoa.obterPessoa(idPessoa);
+            request.setAttribute("pessoa", pessoa);
+            RequestDispatcher view = request.getRequestDispatcher("/manterPessoa.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
+        String nome = request.getParameter("txtNome");
+        String cpf = request.getParameter("txtCpf");
+        String logradouro = request.getParameter("txtLogradouro");
+        String cep = request.getParameter("txtCep");
+        String bairro = request.getParameter("txtBairro");
+        String uf = request.getParameter("txtUf");
+        String numero = request.getParameter("txtNumero");
+        String telefone = request.getParameter("txtTelefone");
+
+        try {
+            Pessoa pessoa = new Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero, telefone);
+            pessoa.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPessoaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -163,7 +182,7 @@ public class ManterPessoaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterPessoaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -181,7 +200,7 @@ public class ManterPessoaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterPessoaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -85,12 +85,20 @@ public class Desempenho {
         this.frenagem = frenagem;
     }
 
-    public static List<Desempenho> obterDesempenhos() throws ClassNotFoundException, SQLException {
-        return DesempenhoDAO.obterDesempenhos();
-    }
-
     public void gravar() throws SQLException, ClassNotFoundException {
         DesempenhoDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        DesempenhoDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        DesempenhoDAO.excluir(this);
+    }
+
+    public static List<Desempenho> obterDesempenhos() throws ClassNotFoundException, SQLException {
+        return DesempenhoDAO.obterDesempenhos();
     }
 
     public static Desempenho obterDesempenho(int idDesempenho) throws ClassNotFoundException {

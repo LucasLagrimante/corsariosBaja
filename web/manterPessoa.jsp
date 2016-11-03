@@ -35,11 +35,11 @@
                     </tr>
                     <tr>
                         <td align="left">Bairro:</td>
-                        <td align="right"><input type="text" name="txtBairro"  value="${pessoa.bairro}"></td>
+                        <td align="right"><input name="txtBairro" type="text"  value="${pessoa.bairro}"></td>
                     </tr>
                     <tr>
                         <td align="left">Uf:</td>
-                        <td align="right"><input type="text" name="txtUf" maxlength="2"  value="${pessoa.uf}"></td>
+                        <td align="right"><input name="txtUf" type="text"  maxlength="2"  value="${pessoa.uf}"></td>
                     </tr>
                     <tr>
                         <td align="left">Numero:</td>
@@ -50,7 +50,7 @@
                         <td align="right"><input type="text" name="txtTelefone"  value="${pessoa.telefone}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Incluir"> <input type="reset" value="Apagar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

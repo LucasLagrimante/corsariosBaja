@@ -16,6 +16,19 @@ import model.Pessoa;
 
 public class PessoaDAO {
 
+    public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
+                comando.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+
+        } catch (SQLException e) {
+        }
+    }
+
     public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
@@ -46,18 +59,6 @@ public class PessoaDAO {
         return pessoas;
     }
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
-
-        } catch (SQLException e) {
-        }
-    }
     public static void gravar(Pessoa pessoa) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -80,7 +81,7 @@ public class PessoaDAO {
             throw e;
         }
     }
-    
+
     public static Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
@@ -91,15 +92,15 @@ public class PessoaDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM pessoa where idPessoa = " + idPessoa);
             rs.first();
             pessoa = new Pessoa(
-                        rs.getInt("idPessoa"),
-                        rs.getString("nome"),
-                        rs.getString("cpf"),
-                        rs.getString("logradouro"),
-                        rs.getString("cep"),
-                        rs.getString("bairro"),
-                        rs.getString("uf"),
-                        rs.getString("numero"),
-                        rs.getString("telefone")
+                    rs.getInt("idPessoa"),
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("logradouro"),
+                    rs.getString("cep"),
+                    rs.getString("bairro"),
+                    rs.getString("uf"),
+                    rs.getString("numero"),
+                    rs.getString("telefone")
             //null
             );
             //pessoa.setCodigoPessoa(rs.getString("pessoa"));
@@ -110,7 +111,7 @@ public class PessoaDAO {
         }
         return pessoa;
     }
-    
+
     public static void alterar(Pessoa pessoa) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -120,7 +121,7 @@ public class PessoaDAO {
                     + "bairro = ?, uf = ?, numero = ? "
                     + "telefone = ?"
                     + "WHERE IdPessoa = ?";
-             //public Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero,telefone)
+            //public Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero,telefone)
 
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setString(1, pessoa.getNome());
@@ -137,6 +138,18 @@ public class PessoaDAO {
             conexao.close();
         } catch (SQLException e) {
             throw e;
+        }
+    }
+
+    public static void excluir(Pessoa pessoa) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from pessoa where idPessoa = ? ");
+            st.setInt(1, pessoa.getIdPessoa());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
         }
     }
 }

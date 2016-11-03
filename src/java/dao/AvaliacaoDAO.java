@@ -33,13 +33,12 @@ public class AvaliacaoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data, FK_integrante) VALUES (?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data) VALUES (?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, avaliacao.getIdAvaliacao());
             comando.setInt(2, avaliacao.getFrequencia());
             comando.setString(3, avaliacao.getComparecimento());
-            comando.setInt(4, avaliacao.getFK_integrante());
-            comando.setString(5, avaliacao.getData());
+            comando.setString(4, avaliacao.getData());
             comando.execute();
             comando.close();
             conexao.close();
@@ -48,7 +47,6 @@ public class AvaliacaoDAO {
         }
     }
 
-    // problema
     public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
@@ -62,9 +60,7 @@ public class AvaliacaoDAO {
                         rs.getInt("idAvaliacao"),
                         rs.getInt("frequencia"),
                         rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
-
+                        rs.getString("data")
                 );
                 avaliacoes.add(avaliacao);
             }
@@ -87,19 +83,49 @@ public class AvaliacaoDAO {
             rs.first();
             avaliacao = new Avaliacao(
                     rs.getInt("idAvaliacao"),
-                        rs.getInt("frequencia"),
-                        rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
-            //null
+                    rs.getInt("frequencia"),
+                    rs.getString("comparecimento"),
+                    rs.getString("data")
             );
-            //avaliacao.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return avaliacao;
+    }
+
+    public static void alterar(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE avaliacao SET frequencia = ?, "
+                    + "comparecimento = ?, data = ? "
+                    + "WHERE IdAvaliacao = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setInt(1, avaliacao.getFrequencia());
+            comando.setString(2, avaliacao.getComparecimento());
+            comando.setString(3, avaliacao.getData());
+            comando.setInt(4, avaliacao.getIdAvaliacao());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from avaliacao where idAvaliacao = ? ");
+            st.setInt(1, avaliacao.getIdAvaliacao());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+
+        }
     }
 
 }

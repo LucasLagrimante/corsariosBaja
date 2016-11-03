@@ -16,6 +16,19 @@ import model.Peca;
 
 public class PecaDAO {
 
+     public static void fecharConexao(Connection conexao, Statement comando) {
+        try {
+            if (comando != null) {
+                comando.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+
+        } catch (SQLException e) {
+        }
+    }
+    
     public static void gravar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -115,16 +128,16 @@ public class PecaDAO {
         }
     }
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
+    
+    public static void excluir(Peca peca) throws SQLException, ClassNotFoundException {
         try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
-
-        } catch (SQLException e) {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from peca where idPeca = ? ");
+            st.setInt(1, peca.getIdPeca());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
         }
     }
 }

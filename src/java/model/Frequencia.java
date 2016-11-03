@@ -7,7 +7,7 @@ import java.util.List;
 public class Frequencia {
 
     private int idFrequencia, FK_integrante;
-    private String data,estado;
+    private String data, estado;
 
     public Frequencia(int idFrequencia, int FK_integrante, String data, String estado) {
         this.idFrequencia = idFrequencia;
@@ -15,7 +15,7 @@ public class Frequencia {
         this.data = data;
         this.estado = estado;
     }
-    
+
     public int getFK_integrante() {
         return FK_integrante;
     }
@@ -24,12 +24,8 @@ public class Frequencia {
         this.FK_integrante = FK_integrante;
     }
 
-   
-
     public Frequencia() {
     }
-
-
 
     public int getIdFrequencia() {
         return idFrequencia;
@@ -54,9 +50,19 @@ public class Frequencia {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     public void gravar() throws SQLException, ClassNotFoundException {
         FrequenciaDAO.gravar(this);
     }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        FrequenciaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        FrequenciaDAO.excluir(this);
+    }
+
     public static List<Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
         return FrequenciaDAO.obterFrequencias();
     }

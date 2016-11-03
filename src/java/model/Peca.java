@@ -57,17 +57,20 @@ public class Peca {
     public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
     }
-
-    public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
-        return PecaDAO.obterPecas();
+    public void gravar() throws SQLException, ClassNotFoundException {
+        PecaDAO.gravar(this);
     }
-
-    public void alterar() throws SQLException, ClassNotFoundException {
+    
+     public void alterar() throws SQLException, ClassNotFoundException {
         PecaDAO.alterar(this);
     }
 
-    public void gravar() throws SQLException, ClassNotFoundException {
-        PecaDAO.gravar(this);
+    public void excluir() throws SQLException, ClassNotFoundException {
+        PecaDAO.excluir(this);
+    }
+
+    public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
+        return PecaDAO.obterPecas();
     }
 
     public static Peca obterPeca(int idPeca) throws ClassNotFoundException {

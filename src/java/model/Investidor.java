@@ -48,14 +48,20 @@ public class Investidor {
     public void setValorDoado(float valorDoado) {
         this.valorDoado += valorDoado;
     }
+    public void gravar() throws SQLException, ClassNotFoundException {
+        InvestidorDAO.gravar(this);
+    }
+     public void alterar() throws SQLException, ClassNotFoundException {
+        InvestidorDAO.alterar(this);
+    }
 
+    public void excluir() throws SQLException, ClassNotFoundException {
+        InvestidorDAO.excluir(this);
+    }
     public static List<Investidor> obterInvestidores() throws ClassNotFoundException, SQLException {
         return InvestidorDAO.obterInvestidores();
     }
 
-    public void gravar() throws SQLException, ClassNotFoundException {
-        InvestidorDAO.gravar(this);
-    }
 
     public static Investidor obterInvestidor(int idInvestidor) throws ClassNotFoundException {
         return InvestidorDAO.obterInvestidor(idInvestidor);

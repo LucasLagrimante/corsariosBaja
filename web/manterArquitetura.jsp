@@ -19,16 +19,16 @@
                     <tr>
                         <td align="left">Automovel:</td>
                         <td align="right">
-                            <select name="FK_automovel" name="txtFK_integrante">
-                                <option value="${arquitetura.FK_integrante}" selected>Lucas</option>
-                                <option value="${arquitetura.FK_integrante}" selected>Vitor</option>
+                            <select name="selectAutomovel" name="selectAutomovel">
+                                <option value="${arquitetura.FK_automovel}" selected>Lucas</option>
+                                <option value="${arquitetura.FK_Automovel}" selected>Vitor</option>
                             </select>
                         </td></td>
                     </tr>
                     <tr>
                         <td align="left">Imagem:</td>
                         <td align="right">
-                        <input type="button" name="txtCaminho_imagem" value="Abrir....">
+                        <input type="button" name="txtCaminhoImagem" value="Abrir....">
                         </td>
                     </tr>
                     <tr>

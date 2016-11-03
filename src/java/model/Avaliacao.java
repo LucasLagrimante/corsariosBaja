@@ -6,14 +6,13 @@ import java.util.List;
 
 public class Avaliacao {
 
-    private int idAvaliacao, frequencia, FK_integrante;
+    private int idAvaliacao, frequencia;
     private String comparecimento, data;
 
-    public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data, int FK_integrante) {
+    public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data) {
         this.idAvaliacao = idAvaliacao;
         this.frequencia = frequencia;
         this.comparecimento = comparecimento;
-        this.FK_integrante = FK_integrante;
         this.data = data;
     }
 
@@ -23,14 +22,6 @@ public class Avaliacao {
 
     public void setIdAvaliacao(int idAvaliacao) {
         this.idAvaliacao = idAvaliacao;
-    }
-
-    public int getFK_integrante() {
-        return FK_integrante;
-    }
-
-    public void setFK_integrante(int FK_integrante) {
-        this.FK_integrante = FK_integrante;
     }
 
     public String getData() {
@@ -67,6 +58,14 @@ public class Avaliacao {
 
     public void gravar() throws SQLException, ClassNotFoundException {
         AvaliacaoDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        AvaliacaoDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        AvaliacaoDAO.excluir(this);
     }
 
     public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {

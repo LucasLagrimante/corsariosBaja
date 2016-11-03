@@ -41,14 +41,14 @@ public class ManterIntegranteController extends HttpServlet {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        } /* else if (acao.equals("confirmarEditar")) {
+        }  else if (acao.equals("confirmarEditar")) {
          confirmarEditar(request, response);
          } else if (acao.equals("prepararExcluir")) {
          prepararExcluir(request, response);
          } else if (acao.equals("confirmarExcluir")) {
          confirmarExcluir(request, response);
          }
-         */
+         
 
     }
 

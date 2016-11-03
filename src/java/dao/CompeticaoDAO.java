@@ -15,7 +15,7 @@ import java.util.List;
 import model.Competicao;
 
 public class CompeticaoDAO {
-    
+
     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
@@ -51,7 +51,7 @@ public class CompeticaoDAO {
     public static List<Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Competicao> competicaoes = new ArrayList<Competicao>();
+        List<Competicao> competicoes = new ArrayList<Competicao>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -64,14 +64,14 @@ public class CompeticaoDAO {
                         rs.getString("hora"),
                         rs.getString("local")
                 );
-                competicaoes.add(competicao);
+                competicoes.add(competicao);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return competicaoes;
+        return competicoes;
     }
 
     public static Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
@@ -84,11 +84,11 @@ public class CompeticaoDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM competicao where idCompeticao = " + idCompeticao);
             rs.first();
             competicao = new Competicao(
-                   rs.getInt("idCompeticao"),
-                   rs.getString("nome"),
-                   rs.getString("data"),
-                   rs.getString("hora"),
-                   rs.getString("local")
+                    rs.getInt("idCompeticao"),
+                    rs.getString("nome"),
+                    rs.getString("data"),
+                    rs.getString("hora"),
+                    rs.getString("local")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,12 +97,12 @@ public class CompeticaoDAO {
         }
         return competicao;
     }
-    
-      public static void alterar(Competicao competicao) throws SQLException, ClassNotFoundException {
+
+    public static void alterar(Competicao competicao) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE competicao SET nome = ?, "
+            String sql = "UPDATE competicao , nome = ?, "
                     + "data = ?, hora = ?, local = ?, "
                     + "WHERE IdCompeticao = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
@@ -117,6 +117,18 @@ public class CompeticaoDAO {
             conexao.close();
         } catch (SQLException e) {
             throw e;
+        }
+    }
+
+    public static void excluir(Competicao competicao) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from competicao where idCompeticao = ? ");
+            st.setInt(1, competicao.getIdCompeticao());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
         }
     }
 

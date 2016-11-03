@@ -8,10 +8,9 @@ public class DesempenhoTeste {
 
     private int idDesempenhoTeste;
     private String data, nome, hora, tempoPista;
-    private float  frenagem, velocidadeMedia, aceleracaoMedia;
-    
+    private float frenagem, velocidadeMedia, aceleracaoMedia;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista ,float frenagem) {
+    public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem) {
         this.idDesempenhoTeste = idDesempenhoTeste;
         this.data = data;
         this.hora = hora;
@@ -85,20 +84,25 @@ public class DesempenhoTeste {
     public void setFrenagem(float frenagem) {
         this.frenagem = frenagem;
     }
-    
+
     public void gravar() throws SQLException, ClassNotFoundException {
         DesempenhoTesteDAO.gravar(this);
     }
 
-       public static List<DesempenhoTeste> obterDesempenhosTeste() throws ClassNotFoundException, SQLException {
+    public void alterar() throws SQLException, ClassNotFoundException {
+        DesempenhoTesteDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        DesempenhoTesteDAO.excluir(this);
+    }
+
+    public static List<DesempenhoTeste> obterDesempenhosTeste() throws ClassNotFoundException, SQLException {
         return DesempenhoTesteDAO.obterDesempenhosTeste();
     }
 
     public static DesempenhoTeste obterDesempenhoTeste(int idDesempenhoTeste) throws ClassNotFoundException {
         return DesempenhoTesteDAO.obterDesempenhoTeste(idDesempenhoTeste);
     }
-    
-    public void alterar() throws SQLException, ClassNotFoundException {
-        DesempenhoTesteDAO.alterar(this);
-    }
+
 }

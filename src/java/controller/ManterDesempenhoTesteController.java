@@ -33,14 +33,12 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
-        /*
-         else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         */
+
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -110,10 +108,6 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         try {
-            /*DesempenhoTeste desempenhoTeste = null;
-             if (coordenador != 0) {
-             desempenhoTeste = Professor.obterProfessor(coordenador);
-             }*/
             DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
             desempenhoTeste.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
@@ -125,7 +119,40 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         }
     }
     
-    
+     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idDesempenhoTeste = Integer.parseInt(request.getParameter("idDesempenhoTeste"));
+            DesempenhoTeste desempenhoTeste = DesempenhoTeste.obterDesempenhoTeste(idDesempenhoTeste);
+            request.setAttribute("desempenhoTeste", desempenhoTeste);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDesempenhoTeste.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idDesempenhoTeste = Integer.parseInt(request.getParameter("txtIdDesempenhoTeste"));
+        String nome = request.getParameter("txtNome");
+        String data = request.getParameter("txtData");
+        String hora = request.getParameter("txtHora");
+        float velocidadeMedia = Float.parseFloat(request.getParameter("txtVelocidadeMedia"));
+        float aceleracaoMedia = Float.parseFloat(request.getParameter("txtAceleracaoMedia"));
+        String tempoPista = request.getParameter("txtTempoPista");
+        float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
+        try {
+            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
+            desempenhoTeste.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

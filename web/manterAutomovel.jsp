@@ -41,7 +41,7 @@
                         <td align="right"><input type="text" name="txtCustoTotal"  value="${automovel.custoTotal}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="reset" value="Apagar"> <input type="submit" value="Incluir"></td>
+                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

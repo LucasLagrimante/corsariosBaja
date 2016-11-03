@@ -6,39 +6,29 @@ import java.util.List;
 
 public class Arquitetura {
 
-    private int idArquitetura, FK_automovel;
-    private String caminho_imagem;
+    private int idArquitetura;
+    private String caminhoImagem;
 
-    public Arquitetura(int idArquitetura, String caminho_imagem, int FK_automovel) {
+    public Arquitetura(int idArquitetura, String caminhoImagem) {
         this.idArquitetura = idArquitetura;
-        this.FK_automovel = FK_automovel;
-        this.caminho_imagem = caminho_imagem;
+        this.caminhoImagem = caminhoImagem;
     }
 
     public int getIdArquitetura() {
         return idArquitetura;
     }
 
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
     public void setIdArquitetura(int idArquitetura) {
         this.idArquitetura = idArquitetura;
     }
-
-    public int getFK_automovel() {
-        return FK_automovel;
-    }
-
-    public void setFK_automovel(int FK_automovel) {
-        this.FK_automovel = FK_automovel;
-    }
-
-    public String getCaminho_imagem() {
-        return caminho_imagem;
-    }
-
-    public void setCaminho_imagem(String caminho_imagem) {
-        this.caminho_imagem = caminho_imagem;
-    }
-
 
     public int getId() {
         return idArquitetura;
@@ -52,6 +42,14 @@ public class Arquitetura {
         ArquiteturaDAO.gravar(this);
     }
 
+    public void alterar() throws SQLException, ClassNotFoundException {
+        ArquiteturaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        ArquiteturaDAO.excluir(this);
+    }
+
     public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
         return ArquiteturaDAO.obterArquiteturas();
     }
@@ -59,4 +57,5 @@ public class Arquitetura {
     public static Arquitetura obterArquitetura(int idArquitetura) throws ClassNotFoundException {
         return ArquiteturaDAO.obterArquitetura(idArquitetura);
     }
+
 }

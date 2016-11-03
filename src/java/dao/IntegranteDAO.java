@@ -33,11 +33,10 @@ public class IntegranteDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO integrante (matricula, cargaHorariaDisponivel, FK_pessoa) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO integrante (matricula, cargaHorariaDisponivel, FK_integrante) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, integrante.getMatricula());
             comando.setString(2, integrante.getCargaHorariaDisponivel());
-            comando.setInt(3, integrante.getPessoa().getIdPessoa());
             comando.execute();
             comando.close();
             conexao.close();
@@ -60,7 +59,6 @@ public class IntegranteDAO {
                         rs.getString("cargaHorariaDisponivel"),
                         null
                 );
-                integrante.setIdPessoa(rs.getInt("IdPessoa"));
                 integrantes.add(integrante);
             }
         } catch (SQLException e) {
@@ -85,13 +83,24 @@ public class IntegranteDAO {
                     rs.getString("cargaHorariaDisponivel"),
                     null
             );
-            integrante.setIdPessoa(rs.getInt("IdPessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return integrante;
+    }
+    
+    public void excluir(Integrante Integrante) {
+        try {
+            Connection db = Conexao.getConnection();
+            PreparedStatement st = db.prepareStatement("delete from integrante where matricula = ?");
+            st.setInt(1, Integrante.getMatricula());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+
+        }
     }
 
 }

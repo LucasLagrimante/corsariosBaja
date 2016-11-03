@@ -24,7 +24,6 @@ public class Quesito {
         this.idQuesito = idQuesito;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -41,12 +40,20 @@ public class Quesito {
         this.nota = nota;
     }
 
-    public static List<Quesito> obterQuesitos() throws ClassNotFoundException, SQLException {
-        return QuesitoDAO.obterQuesitos();
-    }
-
     public void gravar() throws SQLException, ClassNotFoundException {
         QuesitoDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        QuesitoDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        QuesitoDAO.excluir(this);
+    }
+
+    public static List<Quesito> obterQuesitos() throws ClassNotFoundException, SQLException {
+        return QuesitoDAO.obterQuesitos();
     }
 
     public static Quesito obterQuesito(int idQuesito) throws ClassNotFoundException {

@@ -131,4 +131,16 @@ public class AutomovelDAO {
         }
     }
 
+    public static void excluir(Automovel automovel) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from automovel where idAutomovel = ? ");
+            st.setInt(1, automovel.getIdAutomovel());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
+    }
+
 }

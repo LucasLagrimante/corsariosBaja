@@ -134,5 +134,17 @@ public class DesempenhoTesteDAO {
             throw e;
         }
     }
+    
+        public static void excluir(DesempenhoTeste desempenhoteste) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from desempenhoteste where idDesempenhoTeste = ? ");
+            st.setInt(1, desempenhoteste.getIdDesempenhoTeste());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
+    }
 
 }

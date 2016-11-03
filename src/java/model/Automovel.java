@@ -87,8 +87,12 @@ public class Automovel {
     public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
         return AutomovelDAO.obterAutomovel(idAutomovel);
     }
-    
-     public void alterar() throws SQLException, ClassNotFoundException {
+
+    public void alterar() throws SQLException, ClassNotFoundException {
         AutomovelDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        AutomovelDAO.excluir(this);
     }
 }

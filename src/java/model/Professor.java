@@ -43,12 +43,20 @@ public class Professor {
         this.pessoa = pessoa;
     }
 
-    public static List<Professor> obterProfessores() throws ClassNotFoundException, SQLException {
-        return ProfessorDAO.obterProfessores();
-    }
-
     public void gravar() throws SQLException, ClassNotFoundException {
         ProfessorDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        ProfessorDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        ProfessorDAO.excluir(this);
+    }
+
+    public static List<Professor> obterProfessores() throws ClassNotFoundException, SQLException {
+        return ProfessorDAO.obterProfessores();
     }
 
     public static Professor obterProfessor(int idProfessor) throws ClassNotFoundException {

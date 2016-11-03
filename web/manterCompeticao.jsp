@@ -13,7 +13,7 @@
             <form action="ManterCompeticaoController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Id:</td>
+                        <td align="left">ID:</td>
                         <td align="right"><input name="txtIdCompeticao" type="text" value="${competicao.idCompeticao}"></td>
                     </tr>
                     <tr>
@@ -34,7 +34,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Cadastrar tipos de pista"> <input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Cadastrar tipos de pista"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

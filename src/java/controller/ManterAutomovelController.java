@@ -33,14 +33,11 @@ public class ManterAutomovelController extends HttpServlet {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
-        /*
-         else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         */
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -65,10 +62,6 @@ public class ManterAutomovelController extends HttpServlet {
         float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
         float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
-            /*Automovel automovel = null;
-             if (coordenador != 0) {
-             automovel = Professor.obterProfessor(coordenador);
-             }*/
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
@@ -80,11 +73,9 @@ public class ManterAutomovelController extends HttpServlet {
         }
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("automoveis", Automovel.obterAutomoveis()); - para combo box
             int idAutomovel = Integer.parseInt(request.getParameter("idAutomovel"));
             Automovel automovel = Automovel.obterAutomovel(idAutomovel);
             request.setAttribute("automovel", automovel);
@@ -108,10 +99,6 @@ public class ManterAutomovelController extends HttpServlet {
         float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
         float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
-            /*Automovel automovel = null;
-             if (coordenador != 0) {
-             automovel = Professor.obterProfessor(coordenador);
-             }*/
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
@@ -122,8 +109,43 @@ public class ManterAutomovelController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
-    
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idAutomovel = Integer.parseInt(request.getParameter("idAutomovel"));
+            Automovel automovel = Automovel.obterAutomovel(idAutomovel);
+            request.setAttribute("automovel", automovel);
+            RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
+        String cor = request.getParameter("txtCor");
+        String nome = request.getParameter("txtNome");
+        String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
+        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        try {
+            Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
+            automovel.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaAutomovelController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

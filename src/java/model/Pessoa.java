@@ -7,7 +7,7 @@ import java.util.List;
 public class Pessoa {
 
     private int idPessoa;
-    private String nome,cpf,logradouro,cep, bairro, uf, numero, telefone;
+    private String nome, cpf, logradouro, cep, bairro, uf, numero, telefone;
 
     public Pessoa(int idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, String numero, String telefone) {
         this.idPessoa = idPessoa;
@@ -24,7 +24,6 @@ public class Pessoa {
     public String getCpf() {
         return cpf;
     }
-
 
     public int getIdPessoa() {
         return idPessoa;
@@ -97,19 +96,26 @@ public class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException{
-        return PessoaDAO.obterPessoas();
-    }
-     public void gravar() throws SQLException, ClassNotFoundException {
+
+    public void gravar() throws SQLException, ClassNotFoundException {
         PessoaDAO.gravar(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        PessoaDAO.alterar(this);
+    }
+
+    public void excluir() throws SQLException, ClassNotFoundException {
+        PessoaDAO.excluir(this);
+    }
+
+    public static List<Pessoa> obterPessoas() throws ClassNotFoundException, SQLException {
+        return PessoaDAO.obterPessoas();
     }
 
     public static Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
         return PessoaDAO.obterPessoa(idPessoa);
     }
     
-     public void alterar() throws SQLException, ClassNotFoundException {
-        PessoaDAO.alterar(this);
-    }
 
 }
