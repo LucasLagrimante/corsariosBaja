@@ -19,8 +19,14 @@
         <h1>Pesquisa de Desempenho Teste</h1>
         <table border="1">
             <tr>
-                <th>Código DesempenhoTeste</th>
-                <th>Nome DesempenhoTeste</th>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Velocidade Média</th>
+                <th>Aceleração Média</th>
+                <th>Tempo Pista</th>
+                <th>Frenagem</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${desempenhosTestes}" var="desempenhoTeste">

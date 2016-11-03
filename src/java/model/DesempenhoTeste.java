@@ -85,16 +85,20 @@ public class DesempenhoTeste {
     public void setFrenagem(float frenagem) {
         this.frenagem = frenagem;
     }
+    
+    public void gravar() throws SQLException, ClassNotFoundException {
+        DesempenhoTesteDAO.gravar(this);
+    }
 
        public static List<DesempenhoTeste> obterDesempenhosTeste() throws ClassNotFoundException, SQLException {
         return DesempenhoTesteDAO.obterDesempenhosTeste();
     }
 
-    public void gravar() throws SQLException, ClassNotFoundException {
-        DesempenhoTesteDAO.gravar(this);
-    }
-
     public static DesempenhoTeste obterDesempenhoTeste(int idDesempenhoTeste) throws ClassNotFoundException {
         return DesempenhoTesteDAO.obterDesempenhoTeste(idDesempenhoTeste);
+    }
+    
+    public void alterar() throws SQLException, ClassNotFoundException {
+        DesempenhoTesteDAO.alterar(this);
     }
 }
