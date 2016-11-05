@@ -6,13 +6,12 @@ import java.util.List;
 
 public class Design {
 
-    private int idDesign, FK_automovel;
-    private String caminho_imagem;
+    private int idDesign;
+    private String imagem;
 
-    public Design(int idDesign, String caminho_imagem, int FK_automovel) {
+    public Design(int idDesign, String imagem) {
         this.idDesign = idDesign;
-        this.FK_automovel = FK_automovel;
-        this.caminho_imagem = caminho_imagem;
+        this.imagem = imagem;
     }
 
     public int getIdDesign() {
@@ -23,28 +22,12 @@ public class Design {
         this.idDesign = idDesign;
     }
 
-    public int getFK_automovel() {
-        return FK_automovel;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setFK_automovel(int FK_automovel) {
-        this.FK_automovel = FK_automovel;
-    }
-
-    public String getCaminho_imagem() {
-        return caminho_imagem;
-    }
-
-    public void setCaminho_imagem(String caminho_imagem) {
-        this.caminho_imagem = caminho_imagem;
-    }
-
-    public int getId() {
-        return idDesign;
-    }
-
-    public void setId(int id) {
-        this.idDesign = id;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public void gravar() throws SQLException, ClassNotFoundException {

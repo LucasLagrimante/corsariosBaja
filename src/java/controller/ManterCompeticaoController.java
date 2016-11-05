@@ -33,7 +33,6 @@ public class ManterCompeticaoController extends HttpServlet {
         } else if (acao.equals("confirmarExcluir")) {
             confirmarExcluir(request, response);
         }
-
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -95,9 +94,7 @@ public class ManterCompeticaoController extends HttpServlet {
         String data = request.getParameter("txtData");
         String hora = request.getParameter("txtHora");
         String local = request.getParameter("txtLocal");
-
         try {
-
             Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local);
             competicao.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");

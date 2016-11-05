@@ -17,22 +17,14 @@
                         <td align="right"><input name="txtIdDesign" type="text" value="${design.idDesign}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Automovel:</td>
-                        <td align="right">
-                            <select name="FK_automovel" >
-                                <option value="${design.FK_automovel}" selected>Lucas</option>
-                                <option value="${design.FK_automovel}" selected>Vitor</option>
-                            </select>
-                        </td></td>
                     </tr>
                     <tr>
                         <td align="left">Imagem:</td>
-                        <td align="right">
-                        <input type="button" name="txtCaminho_imagem" value="Abrir....">
+                        <td align="right"><input name="txtImagem" type="text" value="${design.imagem}"></td>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Incluir"><input type="reset" value="Apagar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"><input type="reset" value="Apagar"></td>
                     </tr>
                 </table>
             </form>

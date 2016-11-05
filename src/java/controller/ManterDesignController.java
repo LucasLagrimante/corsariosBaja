@@ -22,24 +22,22 @@ import model.Design;
  */
 public class ManterDesignController extends HttpServlet {
 
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
         } else if (acao.equals("confirmarIncluir")) {
             confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
-        else if (acao.equals("prepararEditar")) {
-         prepararEditar(request, response);
-         }  else if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         
     }
 
     public void prepararIncluir(HttpServletRequest request,
@@ -57,16 +55,74 @@ public class ManterDesignController extends HttpServlet {
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
-        String caminho_imagem = request.getParameter("txtCaminho_imagem");
-        int FK_automovel = Integer.parseInt(request.getParameter("txtFK_automovel"));
-
+        String imagem = request.getParameter("txtImagem");
         try {
-            /*Design automovel = null;
-            if (coordenador != 0) {
-                automovel = Professor.obterProfessor(coordenador);
-            }*/
-            Design design = new Design(idDesign, caminho_imagem, FK_automovel);
+            Design design = new Design(idDesign, imagem);
             design.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+    
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            int idDesign = Integer.parseInt(request.getParameter("idDesign"));
+            Design design = Design.obterDesign(idDesign);
+            request.setAttribute("design", design);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDesign.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
+        String imagem = request.getParameter("txtImagem");
+        try {
+            Design design = new Design(idDesign, imagem);
+            design.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idDesign = Integer.parseInt(request.getParameter("idDesign"));
+            Design design = Design.obterDesign(idDesign);
+            request.setAttribute("design", design);
+            RequestDispatcher view = request.getRequestDispatcher("/manterDesign.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
+        String imagem = request.getParameter("txtImagem");
+        try {
+            Design design = new Design(idDesign, imagem);
+            design.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
         } catch (ServletException ex) {

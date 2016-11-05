@@ -33,7 +33,7 @@ public class CompeticaoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO competicao (idCompeticao , nome, data, hora, local) VALUES (?, ?, ?, ?,?) ";
+            String sql = "INSERT INTO competicao (idCompeticao , nome, data, hora, local) VALUES (?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, competicao.getIdCompeticao());
             comando.setString(2, competicao.getNome());

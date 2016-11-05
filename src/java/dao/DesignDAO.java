@@ -33,11 +33,10 @@ public class DesignDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO design (idDesign, caminho_imagem, FK_automovel) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO design (idDesign, imagem) VALUES (?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, design.getIdDesign());
-            comando.setString(2, design.getCaminho_imagem());
-            comando.setInt(3, design.getFK_automovel());
+            comando.setString(2, design.getImagem());
             comando.execute();
             comando.close();
             conexao.close();
@@ -58,8 +57,7 @@ public class DesignDAO {
             while (rs.next()) {
                 Design design = new Design(
                         rs.getInt("idDesign"),
-                        rs.getString("caminho_imagem"),
-                        rs.getInt("FK_automovel")
+                        rs.getString("imagem")
                 );
                 designs.add(design);
             }
@@ -82,17 +80,44 @@ public class DesignDAO {
             rs.first();
             design = new Design(
                     rs.getInt("idDesign"),
-                    rs.getString("caminho_imagem"),
-                    rs.getInt("FK_automovel")
-            //null
+                    rs.getString("imagem")
             );
-            //design.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return design;
+    }
+    
+    public static void alterar(Design design) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE design SET imagem = ?, "
+                    + "WHERE IdDesign = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setString(1, design.getImagem());
+            comando.setInt(7, design.getIdDesign());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(Design design) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from design where idDesign = ? ");
+            st.setInt(1, design.getIdDesign());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
     }
 
 }
