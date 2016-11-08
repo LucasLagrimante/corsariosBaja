@@ -9,13 +9,16 @@ public class Peca {
     private int idPeca, quantidade;
     private String nome, modelo;
     private float precoCompra;
+    private final int idTipoPeca;
+    private TipoPeca tipopeca;
 
-    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra) {
+    public Peca(int idPeca,int quantidade, String nome, String modelo,float precoCompra,int idTipoPeca) {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
         this.modelo = modelo;
         this.precoCompra = precoCompra;
+        this.idTipoPeca = idTipoPeca;
     }
 
     public int getIdPeca() {
@@ -57,6 +60,8 @@ public class Peca {
     public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
     }
+    
+    
     public void gravar() throws SQLException, ClassNotFoundException {
         PecaDAO.gravar(this);
     }
@@ -75,6 +80,10 @@ public class Peca {
 
     public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
         return PecaDAO.obterPeca(idPeca);
+    }
+
+    public int getTipoPeca() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

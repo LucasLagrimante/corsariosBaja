@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Peca;
+import model.TipoPeca;
 
 /**
  *
@@ -63,15 +64,18 @@ public class ManterPecaController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        //int tipopeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-
+        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
+      
         try {
-
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra);
-            //peca.setIdTipoPeca(tipopeca);
+            TipoPeca tipopeca = null;
+            if(idTipoPeca != 0){
+                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            }
+            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
             peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
+            
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
@@ -105,17 +109,18 @@ public class ManterPecaController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        //int tipopeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
+        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
         
         try {
-            /*Peca peca = null;
-             if (coordenador != 0) {
-             peca = Professor.obterProfessor(coordenador);
-             }*/
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra);
-            peca.alterar();
+            TipoPeca tipopeca = null;
+            if(idTipoPeca != 0){
+                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            }
+            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
+            peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
+            
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
@@ -146,9 +151,9 @@ public class ManterPecaController extends HttpServlet {
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        //int tipopeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
+        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
         try {
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra);
+            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
             peca.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
