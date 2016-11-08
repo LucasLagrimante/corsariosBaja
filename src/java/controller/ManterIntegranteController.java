@@ -106,7 +106,56 @@ public class ManterIntegranteController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+   public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int matricula = Integer.parseInt(request.getParameter("matricula"));
+        String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
+        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        try {
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
+            integrante.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idIntegrante = Integer.parseInt(request.getParameter("idIntegrante"));
+            Integrante integrante = Integrante.obterIntegrante(idIntegrante);
+            request.setAttribute("integrante", integrante);
+            RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int matricula = Integer.parseInt(request.getParameter("matricula"));
+        String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
+        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        try {
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
+            integrante.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

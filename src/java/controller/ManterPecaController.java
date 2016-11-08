@@ -123,7 +123,41 @@ public class ManterPecaController extends HttpServlet {
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idPeca = Integer.parseInt(request.getParameter("idPeca"));
+            Peca peca = Peca.obterPeca(idPeca);
+            request.setAttribute("peca", peca);
+            RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
+        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
+        String nome = request.getParameter("txtNome");
+        String modelo = request.getParameter("txtModelo");
+        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
+        //int tipopeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
+        try {
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra);
+            peca.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

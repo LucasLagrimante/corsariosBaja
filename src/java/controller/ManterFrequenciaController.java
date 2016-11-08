@@ -76,6 +76,73 @@ public class ManterFrequenciaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
+            Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
+            request.setAttribute("frequencia", frequencia);
+            RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
+        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
+        String data = request.getParameter("txtData");
+        String estado = request.getParameter("estado");
+        try {
+            Frequencia frequencia = new Frequencia(idFrequencia, FK_integrante, data, estado);
+            frequencia.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
+            Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
+            request.setAttribute("frequencia", frequencia);
+            RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
+        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
+        String data = request.getParameter("txtData");
+        String estado = request.getParameter("estado");
+        try {
+            Frequencia frequencia = new Frequencia(idFrequencia, FK_integrante, data, estado);
+            frequencia.excluir();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
