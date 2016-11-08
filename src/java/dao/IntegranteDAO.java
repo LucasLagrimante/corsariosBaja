@@ -101,7 +101,7 @@ public class IntegranteDAO {
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, integrante.getCargaHorariaDisponivel());
-            comando.setString(2, integrante.getFK_pessoa());
+            comando.setInt(2, integrante.getFK_pessoa());
             comando.setInt(3, integrante.getMatricula());
             comando.execute();
             comando.close();

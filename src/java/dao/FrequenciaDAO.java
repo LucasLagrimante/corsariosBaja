@@ -96,6 +96,39 @@ public class FrequenciaDAO {
         }
         return frequencia;
     }
+    
+     public static void alterar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE frequencia SET cor = ?, "
+                    + "nome = ?, dataTerminoProjeto = ?, pesoCarro = ?, "
+                    + "pesoChassi = ?, custoTotal = ? "
+                    + "WHERE IdFrequencia = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
 
+            comando.setString(1, frequencia.getData());
+            comando.setString(2, frequencia.getEstado());
+            comando.setInt(3, frequencia.getFK_integrante());
+            comando.setInt(4, frequencia.getIdFrequencia());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(Frequencia frequencia) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from frequencia where idFrequencia = ? ");
+            st.setInt(1, frequencia.getIdFrequencia());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
+    }
 
 }
