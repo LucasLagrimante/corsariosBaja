@@ -49,7 +49,7 @@ public class ManterPecaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("pecas", Peca.obterPecas());
+            request.setAttribute("tipopeca", TipoPeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -88,7 +88,7 @@ public class ManterPecaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("pecas", Peca.obterPecas());
+            request.setAttribute("tipopeca", TipoPeca.obterTiposPeca());
             int idPeca = Integer.parseInt(request.getParameter("idPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);

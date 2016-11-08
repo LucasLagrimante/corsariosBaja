@@ -21,6 +21,16 @@ public class Peca {
         this.idTipoPeca = idTipoPeca;
     }
 
+    public TipoPeca getTipopeca() {
+        return tipopeca;
+    }
+
+    public void setTipopeca(TipoPeca tipopeca) {
+        this.tipopeca = tipopeca;
+    }
+
+    
+    
     public int getIdTipoPeca() {
         return idTipoPeca;
     }
@@ -85,7 +95,4 @@ public class Peca {
         return PecaDAO.obterPeca(idPeca);
     }
 
-    public int getTipoPeca() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

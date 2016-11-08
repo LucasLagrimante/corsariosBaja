@@ -40,7 +40,7 @@ public class PecaDAO {
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
-             comando.setInt(6, peca.getTipoPeca());
+             comando.setInt(6, peca.getIdTipoPeca());
 
             comando.execute();
             comando.close();
@@ -119,7 +119,7 @@ public class PecaDAO {
             comando.setString(2, peca.getNome());
             comando.setString(3, peca.getModelo());
             comando.setFloat(4, peca.getPrecoCompra());
-            comando.setInt(5, peca.getTipoPeca()); 
+            comando.setInt(5, peca.getIdTipoPeca()); 
             comando.setInt(6, peca.getIdPeca());
             comando.execute();
             comando.close();
