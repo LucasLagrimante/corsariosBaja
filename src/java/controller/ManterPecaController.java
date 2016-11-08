@@ -88,7 +88,7 @@ public class ManterPecaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("automoveis", Peca.obterAutomoveis()); - para combo box
+            request.setAttribute("pecas", Peca.obterPecas());
             int idPeca = Integer.parseInt(request.getParameter("idPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);

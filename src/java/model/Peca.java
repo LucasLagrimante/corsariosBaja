@@ -21,6 +21,9 @@ public class Peca {
         this.idTipoPeca = idTipoPeca;
     }
 
+    public int getIdTipoPeca() {
+        return idTipoPeca;
+    }
     public int getIdPeca() {
         return idPeca;
     }
@@ -85,5 +88,4 @@ public class Peca {
     public int getTipoPeca() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
