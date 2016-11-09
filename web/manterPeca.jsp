@@ -15,11 +15,11 @@
                 <table>
                     <tr>
                         <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdPeca" type="text" value="${peca.idPeca}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Quantidade: </td>
-                        <td align="right"><input name="txtQuantidade" type="number" value="${peca.quantidade}"  min="1" size="4"> </td>
+                        <td align="right"><input name="txtIdPeca"  type="text" value="${peca.idPeca}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Quantidade: </td>
+                            <td align="right"><input name="txtQuantidade" type="number" value="${peca.quantidade}"  min="1" size="4"> </td>
                     </tr>
                     <tr>
                         <td align="left">Nome: </td>
@@ -37,10 +37,16 @@
                         <td align="left">Tipo Peça: </td>
                         <td align="right">
                             <select name="selectTipoPeca"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                                <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
-                                <c:forEach items="${tipoPecas}" var="tipopeca">
-                                    <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
-                                </c:forEach>
+                                <c:if test="${operacao == 'Incluir'}"> <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
+                                    <c:forEach items="${tipopecas}" var="tipopeca">
+                                        <option value="${tipopeca.idTipoPeca}">${tipopeca.nome} </option>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${operacao != 'Incluir'}">
+                                    <c:forEach items="${tipopecas}" var="tipopeca">
+                                        <option value="${peca.idTipoPeca}" <c:if test="${peca.idTipoPeca== tipopeca.idTipoPeca}"> selected </c:if>>${tipopeca.nome}</option>
+                                    </c:forEach> 
+                                </c:if>
                             </select>
                         </td>
                     </tr>     

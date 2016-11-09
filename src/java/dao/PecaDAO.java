@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.Peca;
@@ -40,8 +41,8 @@ public class PecaDAO {
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
-             comando.setInt(6, peca.getIdTipoPeca());
-
+            comando.setInt(6, peca.getIdTipoPeca());
+            
             comando.execute();
             comando.close();
             conexao.close();
@@ -110,17 +111,19 @@ public class PecaDAO {
         try {
             conexao = BD.getConexao();
             String sql = "UPDATE peca SET quantidade = ?, "
-                    + "nome = ?, modelo = ?, precoCompra = ? "
+                    + "nome = ?, modelo = ?, precoCompra = ?, "
                     + "FK_tipopeca = ? "
                     + "WHERE IdPeca = ?";
+            
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setInt(1, peca.getQuantidade());
             comando.setString(2, peca.getNome());
             comando.setString(3, peca.getModelo());
             comando.setFloat(4, peca.getPrecoCompra());
-            comando.setInt(5, peca.getIdTipoPeca()); 
+            comando.setInt(5, peca.getIdTipoPeca());
             comando.setInt(6, peca.getIdPeca());
+       
             comando.execute();
             comando.close();
             conexao.close();

@@ -108,6 +108,10 @@
         <servlet-name>ManterArquiteturaController</servlet-name>
         <servlet-class>controller.ManterArquiteturaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterTipoPecaController</servlet-name>
+        <servlet-class>controller.ManterTipoPecaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>ManterArquiteturaController</servlet-name>
         <url-pattern>/ManterArquiteturaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterTipoPecaController</servlet-name>
+        <url-pattern>/ManterTipoPecaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

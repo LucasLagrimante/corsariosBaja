@@ -102,8 +102,8 @@ public class CompeticaoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE competicao , nome = ?, "
-                    + "data = ?, hora = ?, local = ?, "
+            String sql = "UPDATE competicao SET nome = ?, "
+                    + "data = ?, hora = ?, local = ? "
                     + "WHERE IdCompeticao = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 

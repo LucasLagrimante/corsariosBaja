@@ -118,8 +118,8 @@ public class PessoaDAO {
             conexao = BD.getConexao();
             String sql = "UPDATE pessoa SET nome = ?, "
                     + "cpf = ?, logradouro = ?, cep = ?, "
-                    + "bairro = ?, uf = ?, numero = ? "
-                    + "telefone = ?"
+                    + "bairro = ?, uf = ?, numero = ?, "
+                    + "telefone = ? "
                     + "WHERE IdPessoa = ?";
             //public Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero,telefone)
 

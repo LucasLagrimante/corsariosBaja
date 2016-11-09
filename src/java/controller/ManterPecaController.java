@@ -24,7 +24,7 @@ import model.TipoPeca;
 public class ManterPecaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -40,16 +40,13 @@ public class ManterPecaController extends HttpServlet {
          } else if (acao.equals("confirmarExcluir")) {
          confirmarExcluir(request, response);
          }
-          {
-
-        }
+          
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("tipopeca", TipoPeca.obterTiposPeca());
+            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -75,20 +72,17 @@ public class ManterPecaController extends HttpServlet {
             peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
-            
         } catch (ServletException ex) {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
         }
-
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("tipopeca", TipoPeca.obterTiposPeca());
+            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
             int idPeca = Integer.parseInt(request.getParameter("idPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);
@@ -103,34 +97,38 @@ public class ManterPecaController extends HttpServlet {
         }
     }
 
-    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
-        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+         int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-        
+      
         try {
             TipoPeca tipopeca = null;
             if(idTipoPeca != 0){
                 tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
             }
             Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
-            peca.gravar();
+            peca.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
-            
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         } catch (SQLException ex) {
+            throw ex;
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
             int idPeca = Integer.parseInt(request.getParameter("idPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);
@@ -162,21 +160,16 @@ public class ManterPecaController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
         }
-    }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+}
+    
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -195,6 +188,8 @@ public class ManterPecaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -204,9 +199,5 @@ public class ManterPecaController extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

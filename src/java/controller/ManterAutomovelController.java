@@ -44,12 +44,12 @@ public class ManterAutomovelController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            //request.setAttribute("automoveis", Automovel.obterAutomoveis());
             RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        //} catch (ClassNotFoundException ex) {
         }
     }
 

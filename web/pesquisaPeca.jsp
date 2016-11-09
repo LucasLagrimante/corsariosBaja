@@ -24,7 +24,7 @@
                 <th>Quantidade</th>
                 <th>Modelo</th>
                 <th>Preço de Compra</th>
-                <th>Tipo da Peça</th>
+                <th>Tipo da Peça</th>                
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${pecas}" var="peca">
@@ -33,7 +33,8 @@
                     <td><c:out value="${peca.nome}" /></td>
                     <td><c:out value="${peca.quantidade}" /></td>
                     <td><c:out value="${peca.modelo}" /></td>
-                    <td><c:out value="${peca.precoCompra}" /></td>
+                    <td><c:out value="${peca.precoCompra}" /></td>                   
+                    <td><c:out value="${peca.idTipoPeca}" /></td>
                    
                     <td><a href="ManterPecaController?acao=prepararEditar&idPeca=<c:out value="${peca.idPeca}" />">Editar</a></td>
                     <td><a href="ManterPecaController?acao=prepararExcluir&idPeca=<c:out value="${peca.idPeca}" />">Excluir</a></td>
