@@ -16,7 +16,7 @@ import model.TipoPista;
 
 public class TipoPistaDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
+      public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -33,7 +33,7 @@ public class TipoPistaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO tipoPista (idTipoPista,nome) VALUES (?, ?) ";
+            String sql = "INSERT INTO tipopista (idTipoPista,nome) VALUES (?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, tipoPista.getIdTipoPista());
             comando.setString(2, tipoPista.getNome());
@@ -66,6 +66,7 @@ public class TipoPistaDAO {
             fecharConexao(conexao, comando);
         }
         return tiposPista;
+        
     }
 
     public static TipoPista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
@@ -87,6 +88,36 @@ public class TipoPistaDAO {
             fecharConexao(conexao, comando);
         }
         return tipoPista;
+    }
+    
+     public static void alterar(TipoPista tipoPista) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE tipopista SET nome = ? "
+                    + "WHERE IdTipoPista = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setString(1, tipoPista.getNome());
+            comando.setInt(2, tipoPista.getIdTipoPista());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(TipoPista tipoPista) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from tipopista where idTipoPista = ? ");
+            st.setInt(1, tipoPista.getIdTipoPista());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
     }
 
 }

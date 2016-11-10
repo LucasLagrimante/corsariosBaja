@@ -7,16 +7,16 @@ import java.util.List;
 public class DesempenhoTeste {
 
     private int idDesempenhoTeste;
-    private String data, nome, hora, tempoPista;
-    private float frenagem, velocidadeMedia, aceleracaoMedia;
+    private String nome, data, hora, tempoPista;
+    private float aceleracaoMedia, velocidadeMedia, frenagem;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem) {
+    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem) {
         this.idDesempenhoTeste = idDesempenhoTeste;
+        this.nome = nome;
         this.data = data;
         this.hora = hora;
-        this.nome = nome;
-        this.velocidadeMedia = velocidadeMedia;
         this.aceleracaoMedia = aceleracaoMedia;
+        this.velocidadeMedia = velocidadeMedia;
         this.tempoPista = tempoPista;
         this.frenagem = frenagem;
     }

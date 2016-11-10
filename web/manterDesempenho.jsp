@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastrar Desempenho de Teste</title>
+        <title>Cadastrar Desempenho de Competição</title>
         <link rel="stylesheet" type="text/css"  href="estilo.css" />
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Manter Desempenho Teste - ${operacao}</h2>
-            <form action="ManterDesempenhoTesteController?acao=confirmar${operacao}" method="POST" >
+            <h2 align="center">Manter Desempenho Competicao - ${operacao}</h2>
+            <form action="ManterDesempenhoController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <!--                    <tr>
                                             <td align="left">Veículo: </td>
@@ -36,36 +36,36 @@
                                         </tr>  -->
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"> <input name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" type="text"></td>
+                        <td align="right"> <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Nome: </td>
-                        <td align="right"> <input name="txtNome" value="${desempenhoTeste.nome}" type="text"></td>
+                        <td align="right"> <input name="txtNome" value="${desempenho.nome}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Data: </td>
-                        <td align="right"> <input name="txtData" value="${desempenhoTeste.data}" type="text"></td>
+                        <td align="right"> <input name="txtData" value="${desempenho.data}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Hora: </td>
-                        <td align="right"> <input name="txtHora" value="${desempenhoTeste.hora}" type="text"></td>
+                        <td align="right"> <input name="txtHora" value="${desempenho.hora}" type="text"></td>
                     </tr></td>
                     </tr>
                     <tr>
                         <td align="left">Aceleração Média: </td>
-                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}" type="text"></td>
+                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenho.aceleracaoMedia}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Velocidade Média: </td>
-                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}" type="text"></td>
+                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenho.velocidadeMedia}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Tempo de Pista: </td>
-                        <td align="right"> <input name="txtTempoPista" value="${desempenhoTeste.tempoPista}" type="text"></td>
+                        <td align="right"> <input name="txtTempoPista" value="${desempenho.tempoPista}" type="text"></td>
                     </tr>
                     <tr>
                         <td align="left">Frenagem: </td>
-                        <td align="right"><input name="txtFrenagem" value="${desempenhoTeste.frenagem}" type="text"></td>
+                        <td align="right"><input name="txtFrenagem" value="${desempenho.frenagem}" type="text"></td>
                     </tr>
                     <!--                    <tr>
                                             <td align="left">Quesitos: </td>

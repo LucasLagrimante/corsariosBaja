@@ -16,8 +16,8 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Desempenho</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Desempenho</h1>
+        <table border align="center">
             <tr>
                 <th>Código Desempenho</th>
                 <th>Nome Desempenho</th>
@@ -37,15 +37,17 @@
                     <td><c:out value="${desempenho.hora}" /></td>
                     <td><c:out value="${desempenho.aceleracaoMedia}" /></td>
                     <td><c:out value="${desempenho.velocidadeMedia}" /></td>
-                    <td><c:out value="${desempenho.tempoCorrida}" /></td>
+                    <td><c:out value="${desempenho.tempoPista}" /></td>
                     <td><c:out value="${desempenho.frenagem}" /></td>
                     <td><a href="ManterDesempenhoController?acao=prepararEditar&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Editar</a></td>
                     <td><a href="ManterDesempenhoController?acao=prepararExcluir&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="10"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
         </table>
-        <form action="ManterDesempenhoController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
     </body>
 </html>

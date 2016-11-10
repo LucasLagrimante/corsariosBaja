@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,30 +18,21 @@ import model.DesempenhoTeste;
 
 /**
  *
- * @author Pablo
+ * @author Lucas
  */
 public class PesquisaDesempenhoTesteController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-             throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
-            request.setAttribute("desempenhosTestes", DesempenhoTeste.obterDesempenhosTeste());
+            request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaDesempenhoTeste.jsp");
             view.forward(request, response);
 
         } catch (ClassNotFoundException ex) {
 
         }
-     
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

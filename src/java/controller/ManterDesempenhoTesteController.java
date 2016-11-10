@@ -64,10 +64,6 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         try {
-            /*DesempenhoTeste desempenhoTeste = null;
-             if (coordenador != 0) {
-             desempenhoTeste = Professor.obterProfessor(coordenador);
-             }*/
             DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
             desempenhoTeste.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
@@ -79,22 +75,17 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         }
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            //request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste()); - para combo box
             int idDesempenhoTeste = Integer.parseInt(request.getParameter("idDesempenhoTeste"));
             DesempenhoTeste desempenhoTeste = DesempenhoTeste.obterDesempenhoTeste(idDesempenhoTeste);
             request.setAttribute("desempenhoTeste", desempenhoTeste);
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenhoTeste.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
-
         } catch (IOException ex) {
-
         } catch (ClassNotFoundException ex) {
-
         }
     }
 
@@ -118,8 +109,8 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
-     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Excluir");
             int idDesempenhoTeste = Integer.parseInt(request.getParameter("idDesempenhoTeste"));
@@ -200,5 +191,9 @@ public class ManterDesempenhoTesteController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void alert(String hello_I_am_an_alert_box) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
