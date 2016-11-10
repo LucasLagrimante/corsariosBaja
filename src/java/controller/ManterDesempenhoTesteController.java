@@ -38,19 +38,18 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         } else if (acao.equals("confirmarExcluir")) {
             confirmarExcluir(request, response);
         }
-
     }
 
     public void prepararIncluir(HttpServletRequest request,
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste());
+            //request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste());
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenhoTeste.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        //} catch (ClassNotFoundException ex) {
         }
     }
 
@@ -64,10 +63,6 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         try {
-            /*DesempenhoTeste desempenhoTeste = null;
-             if (coordenador != 0) {
-             desempenhoTeste = Professor.obterProfessor(coordenador);
-             }*/
             DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
             desempenhoTeste.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
@@ -79,8 +74,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         }
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
             //request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste()); - para combo box

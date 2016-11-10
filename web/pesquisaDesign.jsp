@@ -31,7 +31,7 @@
                     <td><a href="ManterDesignController?acao=prepararExcluir&idDesign=<c:out value="${design.idDesign}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
-        <tr> 
+            <tr> 
                 <td  align="center" colspan="9"> 
                     <button onclick="window.location.href = 'index.jsp'">Voltar</button>
                 </td>

@@ -33,7 +33,7 @@ public class DesempenhoTesteDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO desempenhoTeste (idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem) VALUES (?, ?, ?, ?, ?, ?, ?,?) ";
+            String sql = "INSERT INTO desempenhoTeste (idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, desempenhoTeste.getIdDesempenhoTeste());
             comando.setString(2, desempenhoTeste.getNome());

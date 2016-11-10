@@ -33,13 +33,23 @@
                 <tr>
                     <td><c:out value="${desempenhoTeste.idDesempenhoTeste}" /></td>
                     <td><c:out value="${desempenhoTeste.nome}" /></td>
+                    <td><c:out value="${desempenhoTeste.data}" /></td>
+                    <td><c:out value="${desempenhoTeste.hora}" /></td>
+                    <td><c:out value="${desempenhoTeste.velocidadeMedia}" /></td>
+                    <td><c:out value="${desempenhoTeste.aceleracaoMedia}" /></td>
+                    <td><c:out value="${desempenhoTeste.tempoPista}" /></td>
+                    <td><c:out value="${desempenhoTeste.frenagem}" /></td>
                     <td><a href="ManterDesempenhoTesteController?acao=prepararEditar&idDesempenhoTeste=<c:out value="${desempenhoTeste.idDesempenhoTeste}" />">Editar</a></td>
                     <td><a href="ManterDesempenhoTesteController?acao=prepararExcluir&idDesempenhoTeste=<c:out value="${desempenhoTeste.idDesempenhoTeste}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
+
         </table>
-        <form action="ManterDesempenhoTesteController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+
     </body>
 </html>
