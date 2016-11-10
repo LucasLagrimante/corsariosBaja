@@ -8,12 +8,32 @@ public class Design {
 
     private int idDesign;
     private String imagem;
+    private final int idAutomovel;
+    private Automovel automovel;
 
-    public Design(int idDesign, String imagem) {
+    public Design(int idDesign, String imagem, int idAutomovel) {
         this.idDesign = idDesign;
         this.imagem = imagem;
+        this.idAutomovel = idAutomovel;
+        
     }
+    
+    public Automovel getAutomovel() {
+        return automovel;
+    }
+    
+    public Automovel gsetAutomovel() {
+        return this.automovel = automovel;
+    }
+    
 
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
+    }
+    public int getIdAutomovel() {
+        return idAutomovel;
+    }
+    
     public int getIdDesign() {
         return idDesign;
     }

@@ -22,6 +22,7 @@
                         <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
                         <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
                         <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
+                        <li><a href="ManterTipoPecaController?acao=prepararIncluir">TipoPeca</a></li>
                         <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequencia</a></li>
                         <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliacao</a></li>
                         <li><a href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
@@ -29,6 +30,7 @@
                         <li><a href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
                         <li><a href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
                         <li><a href="ManterDesignController?acao=prepararIncluir">Design</a></li>
+                        
                     </ul>
                 </li>
                 <li><a href="#">Pesquisar</a>
@@ -37,6 +39,7 @@
                         <li><a href="PesquisaPecaController">Peça</a></li>
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
+                        <li><a href="PesquisaTipoPecaController">TipoPeca</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
                         <li><a href="PesquisaAvaliacaoController">Avaliacao</a></li>
                         <li><a href="PesquisaCompeticaoController">Competição</a></li>

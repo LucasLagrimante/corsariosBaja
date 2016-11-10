@@ -31,9 +31,13 @@
                     <td><a href="ManterTipoPecaController?acao=prepararExcluir&idtipoPeca=<c:out value="${tipoPeca.idTipoPeca}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
         </table>
-        <form action="MantertipoPecaController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+       
+        
     </body>
 </html>

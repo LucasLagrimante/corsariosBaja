@@ -7,14 +7,14 @@ import java.util.List;
 public class DesempenhoTeste {
 
     private int idDesempenhoTeste;
-    private String nome, data, hora, tempoPista;
+    private String data, nome, hora, tempoPista;
     private float frenagem, velocidadeMedia, aceleracaoMedia;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem) {
+    public DesempenhoTeste(int idDesempenhoTeste, String data, String hora, String nome, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem) {
         this.idDesempenhoTeste = idDesempenhoTeste;
-        this.nome = nome;
         this.data = data;
         this.hora = hora;
+        this.nome = nome;
         this.velocidadeMedia = velocidadeMedia;
         this.aceleracaoMedia = aceleracaoMedia;
         this.tempoPista = tempoPista;
@@ -24,17 +24,9 @@ public class DesempenhoTeste {
     public int getIdDesempenhoTeste() {
         return idDesempenhoTeste;
     }
-    
+
     public void setIdDesempenhoTeste(int idDesempenhoTeste) {
         this.idDesempenhoTeste = idDesempenhoTeste;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-    
-    public String setNome(String nome) {
-        return this.nome = nome;
     }
 
     public float getVelocidadeMedia() {
@@ -51,6 +43,14 @@ public class DesempenhoTeste {
 
     public void setaceleracaoMedia(int aceleracaoMedia) {
         this.aceleracaoMedia = aceleracaoMedia;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String setNome(String nome) {
+        return this.nome = nome;
     }
 
     public String getData() {

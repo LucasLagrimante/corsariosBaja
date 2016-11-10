@@ -33,7 +33,7 @@ public class TipoPecaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO tipoPeca (idTipoPeca,nome) VALUES (?, ?) ";
+            String sql = "INSERT INTO tipopeca (idTipoPeca,nome) VALUES (?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, tipoPeca.getIdTipoPeca());
             comando.setString(2, tipoPeca.getNome());
@@ -66,6 +66,7 @@ public class TipoPecaDAO {
             fecharConexao(conexao, comando);
         }
         return tiposPeca;
+        
     }
 
     public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
@@ -87,6 +88,36 @@ public class TipoPecaDAO {
             fecharConexao(conexao, comando);
         }
         return tipoPeca;
+    }
+    
+     public static void alterar(TipoPeca tipoPeca) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE tipopeca SET nome = ? "
+                    + "WHERE IdTipoPeca = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setString(1, tipoPeca.getNome());
+            comando.setInt(2, tipoPeca.getIdTipoPeca());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void excluir(TipoPeca tipoPeca) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from tipopeca where idTipoPeca = ? ");
+            st.setInt(1, tipoPeca.getIdTipoPeca());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
     }
 
 }

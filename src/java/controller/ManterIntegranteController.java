@@ -33,7 +33,7 @@ public class ManterIntegranteController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -41,121 +41,145 @@ public class ManterIntegranteController extends HttpServlet {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
+        }
 
     }
 
     public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+            HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("integrantes", Integrante.obterIntegrantes());
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
             RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         }
     }
 
-    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int matricula = Integer.parseInt(request.getParameter("matricula"));
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+        int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
         String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
-        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
-        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            /*Integrante integrante = null;
-             if (coordenador != 0) {
-             integrante = Professor.obterProfessor(coordenador);
-             }*/
-            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
-            integrante.gravar();
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Integrante peca = new Integrante(matricula, cargaHorariaDisponivel, idPessoa);
+            peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         } catch (SQLException ex) {
+            throw ex;
         }
     }
 
     public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+            HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
+
             request.setAttribute("operacao", "Editar");
-            //fk
             request.setAttribute("pessoas", Pessoa.obterPessoas());
-            int matricula = Integer.parseInt(request.getParameter("matricula"));
+            int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
             Integrante integrante = Integrante.obterIntegrante(matricula);
             request.setAttribute("integrante", integrante);
             RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
 
         } catch (IOException ex) {
+            throw ex;
 
         } catch (ClassNotFoundException ex) {
+            throw ex;
 
         }
     }
 
-   public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
-        int matricula = Integer.parseInt(request.getParameter("matricula"));
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+        int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
         String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
-        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
-        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, idPessoa);
             integrante.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         } catch (SQLException ex) {
+            throw ex;
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException, ServletException {
         try {
             request.setAttribute("operacao", "Excluir");
-            int idIntegrante = Integer.parseInt(request.getParameter("idIntegrante"));
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            int idIntegrante = Integer.parseInt(request.getParameter("txtMatricula"));
             Integrante integrante = Integrante.obterIntegrante(idIntegrante);
             request.setAttribute("integrante", integrante);
             RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
-
+            throw ex;
         } catch (IOException ex) {
-
+            throw ex;
         } catch (ClassNotFoundException ex) {
-
+            throw ex;
         }
     }
 
-    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-        int matricula = Integer.parseInt(request.getParameter("matricula"));
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
+        int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
         String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
-        int FK_pessoa = Integer.parseInt(request.getParameter("selectPessoa"));
-        Pessoa pessoa = new Pessoa(FK_pessoa, null, null, null, null, null, null, null, null);
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, idPessoa);
             integrante.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         } catch (SQLException ex) {
+            throw ex;
         }
     }    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -170,6 +194,8 @@ public class ManterIntegranteController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -188,6 +214,8 @@ public class ManterIntegranteController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

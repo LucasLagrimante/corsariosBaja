@@ -6,11 +6,16 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.TipoPeca;
+import model.TipoPista;
 
 /**
  *
@@ -28,22 +33,115 @@ public class ManterTipoPecaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+            throws ServletException, IOException, SQLException {
+        String acao = request.getParameter("acao");
+        if (acao.equals("prepararIncluir")) {
+            prepararIncluir(request, response);
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
+        }
+    }
+
+    public void prepararIncluir(HttpServletRequest request,
+            HttpServletResponse response) throws SQLException {
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManterTipoPecaController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManterTipoPecaController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+            request.setAttribute("operacao", "Incluir");
+            request.setAttribute("tiposPecas", TipoPista.obterTiposPista());
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        }
+    }
+
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
+        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        String nome = request.getParameter("txtNome");
+
+        try {
+            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            tipoPeca.gravar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Editar");
+            int idTipoPeca = Integer.parseInt(request.getParameter("idTipoPeca"));
+            TipoPeca tipoPeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            request.setAttribute("tipoPeca", tipoPeca);
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        String nome = request.getParameter("txtNome");
+
+        try {
+            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            tipoPeca.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setAttribute("operacao", "Excluir");           
+            int idTipoPeca = Integer.parseInt(request.getParameter("idTipoPeca"));
+            TipoPeca tipoPeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            request.setAttribute("tipoPeca", tipoPeca);
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
+    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
+        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        String nome = request.getParameter("txtNome");
+
+        try {
+            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            tipoPeca.alterar();
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
         }
     }
 
@@ -59,7 +157,11 @@ public class ManterTipoPecaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterTipoPecaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,7 +175,11 @@ public class ManterTipoPecaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterTipoPecaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

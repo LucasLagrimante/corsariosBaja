@@ -98,7 +98,7 @@ public class ManterPecaController extends HttpServlet {
     }
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
-         int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
+        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
@@ -150,7 +150,12 @@ public class ManterPecaController extends HttpServlet {
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
+      
         try {
+            TipoPeca tipopeca = null;
+            if(idTipoPeca != 0){
+                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            }
             Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
             peca.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");

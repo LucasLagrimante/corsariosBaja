@@ -21,14 +21,16 @@
             <tr>
                 <th>Matricula</th>
                 <th>Carga Horaria Disponivel</th>
+                <th>Pessoa</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${integrantes}" var="integrante">
                 <tr>
                     <td><c:out value="${integrante.matricula}" /></td>
                     <td><c:out value="${integrante.cargaHorariaDisponivel}" /></td>
-                    <td><a href="ManterIntegranteController?acao=prepararEditar&idIntegrante=<c:out value="${integrante.matricula}" />">Editar</a></td>
-                    <td><a href="ManterIntegranteController?acao=prepararExcluir&idIntegrante=<c:out value="${integrante.matricula}" />">Excluir</a></td>
+                    <td><c:out value="${integrante.idPessoa}" /></td>
+                    <td><a href="ManterIntegranteController?acao=prepararEditar&txtMatricula=<c:out value="${integrante.matricula}" />">Editar</a></td>
+                    <td><a href="ManterIntegranteController?acao=prepararExcluir&txtMatricula=<c:out value="${integrante.matricula}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

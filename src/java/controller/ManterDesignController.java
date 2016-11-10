@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Automovel;
 import model.Design;
 
 /**
@@ -44,7 +45,7 @@ public class ManterDesignController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("designs", Design.obterDesigns());
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
             RequestDispatcher view = request.getRequestDispatcher("/manterDesign.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -56,8 +57,13 @@ public class ManterDesignController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
         String imagem = request.getParameter("txtImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));      
         try {
-            Design design = new Design(idDesign, imagem);
+            Automovel automovel = null;
+            if(idAutomovel != 0){
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Design design = new Design(idDesign, imagem, idAutomovel);
             design.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
@@ -71,6 +77,7 @@ public class ManterDesignController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("tipopecas", Automovel.obterAutomoveis());
             int idDesign = Integer.parseInt(request.getParameter("idDesign"));
             Design design = Design.obterDesign(idDesign);
             request.setAttribute("design", design);
@@ -88,8 +95,13 @@ public class ManterDesignController extends HttpServlet {
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
         String imagem = request.getParameter("txtImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));      
         try {
-            Design design = new Design(idDesign, imagem);
+            Automovel automovel = null;
+            if(idAutomovel != 0){
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Design design = new Design(idDesign, imagem, idAutomovel);
             design.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
@@ -100,9 +112,10 @@ public class ManterDesignController extends HttpServlet {
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("tipopecas", Automovel.obterAutomoveis());
             int idDesign = Integer.parseInt(request.getParameter("idDesign"));
             Design design = Design.obterDesign(idDesign);
             request.setAttribute("design", design);
@@ -120,8 +133,9 @@ public class ManterDesignController extends HttpServlet {
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
         String imagem = request.getParameter("txtImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
-            Design design = new Design(idDesign, imagem);
+            Design design = new Design(idDesign, imagem, idAutomovel);
             design.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);

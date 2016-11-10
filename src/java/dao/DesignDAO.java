@@ -33,10 +33,11 @@ public class DesignDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO design (idDesign, imagem) VALUES (?, ?) ";
+            String sql = "INSERT INTO design (idDesign, camino_imagem, FK_automovel) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, design.getIdDesign());
             comando.setString(2, design.getImagem());
+            comando.setInt(3, design.getIdAutomovel());
             comando.execute();
             comando.close();
             conexao.close();
@@ -45,7 +46,6 @@ public class DesignDAO {
         }
     }
 
-    // problema
     public static List<Design> obterDesigns() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
@@ -57,7 +57,8 @@ public class DesignDAO {
             while (rs.next()) {
                 Design design = new Design(
                         rs.getInt("idDesign"),
-                        rs.getString("imagem")
+                        rs.getString("imagem"),
+                        rs.getInt("FK_automovel")
                 );
                 designs.add(design);
             }
@@ -80,7 +81,8 @@ public class DesignDAO {
             rs.first();
             design = new Design(
                     rs.getInt("idDesign"),
-                    rs.getString("imagem")
+                    rs.getString("imagem"),
+                    rs.getInt("FK_automovel")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,12 +96,13 @@ public class DesignDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE design SET imagem = ?, "
+            String sql = "UPDATE design SET caminho_imagem = ?, FK_automovel "
                     + "WHERE IdDesign = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, design.getImagem());
-            comando.setInt(7, design.getIdDesign());
+            comando.setInt(2, design.getIdAutomovel());
+            comando.setInt(3, design.getIdDesign());
             comando.execute();
             comando.close();
             conexao.close();

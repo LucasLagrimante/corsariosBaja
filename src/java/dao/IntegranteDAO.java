@@ -33,10 +33,11 @@ public class IntegranteDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO integrante (matricula, cargaHorariaDisponivel, FK_pessoa) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO integrante (matricula, cargaHorariaDisponivel, FK_idPessoa) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, integrante.getMatricula());
             comando.setString(2, integrante.getCargaHorariaDisponivel());
+            comando.setInt(3, integrante.getIdPessoa());
             comando.execute();
             comando.close();
             conexao.close();
@@ -57,7 +58,7 @@ public class IntegranteDAO {
                 Integrante integrante = new Integrante(
                         rs.getInt("matricula"),
                         rs.getString("cargaHorariaDisponivel"),
-                        null
+                        rs.getInt("FK_idPessoa")
                 );
                 integrantes.add(integrante);
             }
@@ -81,7 +82,7 @@ public class IntegranteDAO {
             integrante = new Integrante(
                     rs.getInt("matricula"),
                     rs.getString("cargaHorariaDisponivel"),
-                    null
+                    rs.getInt("FK_idPessoa")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,18 +91,18 @@ public class IntegranteDAO {
         }
         return integrante;
     }
-    
+
     public static void alterar(Integrante integrante) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
             String sql = "UPDATE integrante SET cargaHorariaDisponivel = ?, "
-                    + "FK_pessoa = ?,"
+                    + "FK_idPessoa = ? "
                     + "WHERE matricula = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, integrante.getCargaHorariaDisponivel());
-            comando.setInt(2, integrante.getFK_pessoa());
+            comando.setInt(2, integrante.getIdPessoa());
             comando.setInt(3, integrante.getMatricula());
             comando.execute();
             comando.close();
@@ -114,9 +115,9 @@ public class IntegranteDAO {
    public static void excluir(Integrante integrante) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from integrante where matricula = ? ");
+            PreparedStatement st = db.prepareStatement("delete from integrante where matricula = ?");
             st.setInt(1, integrante.getMatricula());
-            st.executeUpdate();
+            st.execute();
             st.close();
         } catch (SQLException ex) {
             

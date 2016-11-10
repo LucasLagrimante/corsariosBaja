@@ -8,33 +8,13 @@ public class Integrante {
 
     private int matricula;
     private String cargaHorariaDisponivel;
+     private final int idPessoa;
     private Pessoa pessoa;
-    private int idPessoa;
 
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
-    }
-
-    public Integrante(int matricula, String cargaHorariaDisponivel, Pessoa pessoa) {
+    public Integrante(int matricula, String cargaHorariaDisponivel, int idPessoa) {
         this.matricula = matricula;
-        this.pessoa = pessoa;
         this.cargaHorariaDisponivel = cargaHorariaDisponivel;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    public void setCargaHorariaDisponivel(String cargaHorariaDisponivel) {
-        this.cargaHorariaDisponivel = cargaHorariaDisponivel;
+        this.idPessoa = idPessoa;
     }
 
     public int getMatricula() {
@@ -49,6 +29,22 @@ public class Integrante {
         return cargaHorariaDisponivel;
     }
 
+    public void setCargaHorariaDisponivel(String cargaHorariaDisponivel) {
+        this.cargaHorariaDisponivel = cargaHorariaDisponivel;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+    
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+   
     public void gravar() throws SQLException, ClassNotFoundException {
         IntegranteDAO.gravar(this);
     }
