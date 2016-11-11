@@ -23,6 +23,7 @@
                         <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
                         <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
                         <li><a href="ManterTipoPecaController?acao=prepararIncluir">TipoPeca</a></li>
+                        <li><a href="ManterTipoPistaController?acao=prepararIncluir">TipoPista</a></li>
                         <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequencia</a></li>
                         <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliacao</a></li>
                         <li><a href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
@@ -40,6 +41,7 @@
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
                         <li><a href="PesquisaTipoPecaController">TipoPeca</a></li>
+                        <li><a href="PesquisaTipoPistaController">TipoPista</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
                         <li><a href="PesquisaAvaliacaoController">Avaliacao</a></li>
                         <li><a href="PesquisaCompeticaoController">Competição</a></li>

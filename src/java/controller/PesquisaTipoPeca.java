@@ -19,23 +19,14 @@ import model.TipoPeca;
 
 /**
  *
- * @author Gustavo
+ * @author lukin
  */
-public class PesquisaTipoPecaContoller extends HttpServlet {
+public class PesquisaTipoPeca extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException, SQLException {
         try {
-            request.setAttribute("tiposPecas", TipoPeca.obterTiposPeca());
+            request.setAttribute("tiposPeca", TipoPeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaTipoPeca.jsp");
             view.forward(request, response);
 
@@ -59,7 +50,7 @@ public class PesquisaTipoPecaContoller extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaTipoPecaContoller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaTipoPeca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -77,7 +68,7 @@ public class PesquisaTipoPecaContoller extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaTipoPecaContoller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaTipoPeca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

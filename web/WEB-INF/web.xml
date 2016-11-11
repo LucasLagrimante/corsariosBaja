@@ -57,16 +57,8 @@
         <servlet-class>controller.PesquisaQuesitoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaTipoPecaContoller</servlet-name>
-        <servlet-class>controller.PesquisaTipoPecaContoller</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PesquisaTipoPistaController</servlet-name>
         <servlet-class>controller.PesquisaTipoPistaController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisaCofreController</servlet-name>
-        <servlet-class>controller.PesquisaCofreController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManterAutomovelController</servlet-name>
@@ -97,10 +89,6 @@
         <servlet-class>controller.ManterAvaliacaoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManterDesignController</servlet-name>
         <servlet-class>controller.ManterDesignController</servlet-class>
     </servlet>
@@ -113,12 +101,24 @@
         <servlet-class>controller.ManterTipoPecaController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManterTipoPistaController</servlet-name>
+        <servlet-class>controller.ManterTipoPistaController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ManterDesempenhoController</servlet-name>
         <servlet-class>controller.ManterDesempenhoController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ManterDesempenhoTesteController</servlet-name>
         <servlet-class>controller.ManterDesempenhoTesteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaAvaliacaoController</servlet-name>
+        <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaTipoPeca</servlet-name>
+        <servlet-class>controller.PesquisaTipoPeca</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
@@ -177,16 +177,8 @@
         <url-pattern>/PesquisaQuesitoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaTipoPecaContoller</servlet-name>
-        <url-pattern>/PesquisaTipoPecaContoller</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PesquisaTipoPistaController</servlet-name>
         <url-pattern>/PesquisaTipoPistaController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisaCofreController</servlet-name>
-        <url-pattern>/PesquisaCofreController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManterAutomovelController</servlet-name>
@@ -217,10 +209,6 @@
         <url-pattern>/ManterAvaliacaoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <url-pattern>/PesquisaAvaliacaoController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ManterDesignController</servlet-name>
         <url-pattern>/ManterDesignController</url-pattern>
     </servlet-mapping>
@@ -233,12 +221,24 @@
         <url-pattern>/ManterTipoPecaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ManterTipoPistaController</servlet-name>
+        <url-pattern>/ManterTipoPistaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ManterDesempenhoController</servlet-name>
         <url-pattern>/ManterDesempenhoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManterDesempenhoTesteController</servlet-name>
         <url-pattern>/ManterDesempenhoTesteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaAvaliacaoController</servlet-name>
+        <url-pattern>/PesquisaAvaliacaoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaTipoPeca</servlet-name>
+        <url-pattern>/PesquisaTipoPeca</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

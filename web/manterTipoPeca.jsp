@@ -21,7 +21,7 @@
                         <td align="right"> <input name="txtNome" type="text" value="${tipoPeca.nome}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Enviar"></td>
                     </tr>
                 </table>
             </form>

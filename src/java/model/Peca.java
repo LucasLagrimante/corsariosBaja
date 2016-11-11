@@ -28,6 +28,7 @@ public class Peca {
     public void setTipopeca(TipoPeca tipopeca) {
         this.tipopeca = tipopeca;
     }
+    
     public int getIdTipoPeca() {
         return idTipoPeca;
     }

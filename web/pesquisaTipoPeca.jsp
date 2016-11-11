@@ -16,14 +16,14 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de tipoPeca</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Tipo de Peça</h1>
+        <table border align="center">
             <tr>
-                <th>Código tipoPeca</th>
-                <th>Nome tipoPeca</th>
+                <th>Código Tipo Peça</th>
+                <th>Nome Tipo Peça</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <c:forEach items="${tiposPecas}" var="tipoPeca">
+            <c:forEach items="${tiposPeca}" var="tipoPeca">
                 <tr>
                     <td><c:out value="${tipoPeca.idTipoPeca}" /></td>
                     <td><c:out value="${tipoPeca.nome}" /></td>
@@ -37,7 +37,5 @@
                 </td>
             </tr>
         </table>
-       
-        
     </body>
 </html>
