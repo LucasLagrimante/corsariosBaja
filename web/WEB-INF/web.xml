@@ -120,6 +120,10 @@
         <servlet-name>PesquisaTipoPeca</servlet-name>
         <servlet-class>controller.PesquisaTipoPeca</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PesquisaTipoPecaController</servlet-name>
+        <servlet-class>controller.PesquisaTipoPecaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>PesquisaTipoPeca</servlet-name>
         <url-pattern>/PesquisaTipoPeca</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaTipoPecaController</servlet-name>
+        <url-pattern>/PesquisaTipoPecaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

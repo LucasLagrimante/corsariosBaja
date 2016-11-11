@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +18,9 @@ import model.TipoPeca;
 
 /**
  *
- * @author lukin
+ * @author Lucas
  */
-public class PesquisaTipoPeca extends HttpServlet {
+public class PesquisaTipoPecaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException, SQLException {
@@ -34,7 +33,6 @@ public class PesquisaTipoPeca extends HttpServlet {
 
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -50,7 +48,7 @@ public class PesquisaTipoPeca extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaTipoPeca.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaTipoPecaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -68,7 +66,7 @@ public class PesquisaTipoPeca extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaTipoPeca.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PesquisaTipoPecaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -56,10 +56,7 @@ public class ManterCompeticaoController extends HttpServlet {
         String local = request.getParameter("txtLocal");
 
         try {
-            /*Competicao competicao = null;
-             if (coordenador != 0) {
-             competicao = Professor.obterProfessor(coordenador);
-             }*/
+          
             Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local);
             competicao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");

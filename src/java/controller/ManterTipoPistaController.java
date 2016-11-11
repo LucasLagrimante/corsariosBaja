@@ -124,7 +124,7 @@ public class ManterTipoPistaController extends HttpServlet {
 
         try {
             TipoPista tipoPista = new TipoPista(idTipoPista, nome);
-            tipoPista.alterar();
+            tipoPista.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPistaController");
             view.forward(request, response);
         } catch (ServletException ex) {

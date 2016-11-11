@@ -124,7 +124,7 @@ public class ManterTipoPecaController extends HttpServlet {
 
         try {
             TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
-            tipoPeca.alterar();
+            tipoPeca.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -133,6 +133,7 @@ public class ManterTipoPecaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
