@@ -44,16 +44,15 @@ public class ManterAvaliacaoController extends HttpServlet {
 
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("avaliacoes", Avaliacao.obterAvaliacoes());
+            //request.setAttribute("avaliacoes", Avaliacao.obterAvaliacoes());
             RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        //} catch (ClassNotFoundException ex) {
         }
     }
 
@@ -74,14 +73,12 @@ public class ManterAvaliacaoController extends HttpServlet {
         }
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
-            Avaliacao arquitetura = Avaliacao.obterAvaliacao(idAvaliacao);
-            request.setAttribute("arquitetura", arquitetura);
+            Avaliacao avaliacao = Avaliacao.obterAvaliacao(idAvaliacao);
+            request.setAttribute("avaliacao", avaliacao);
             RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {

@@ -40,8 +40,7 @@ public class ManterAutomovelController extends HttpServlet {
         }
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             //request.setAttribute("automoveis", Automovel.obterAutomoveis());

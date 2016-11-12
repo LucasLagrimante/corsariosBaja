@@ -19,21 +19,29 @@
         <h1>Pesquisa de Avaliação</h1>
         <table border="1">
             <tr>
-                <th>Código Avaliacao</th>
-                <th>Nome Avaliacao</th>
+                <th>Código Avaliação</th>
+                <th>Frequencia Avaliação</th>
+                <th>Comparecimento Avaliação</th>
+                <th>Data Avaliação</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${avaliacoes}" var="avaliacao">
                 <tr>
                     <td><c:out value="${avaliacao.idAvaliacao}" /></td>
+                    <td><c:out value="${avaliacao.frequencia}" /></td>
                     <td><c:out value="${avaliacao.comparecimento}" /></td>
+                    <td><c:out value="${avaliacao.data}" /></td>
                     <td><a href="ManterAvaliacaoController?acao=prepararEditar&idAvaliacao=<c:out value="${avaliacao.idAvaliacao}" />">Editar</a></td>
                     <td><a href="ManterAvaliacaoController?acao=prepararExcluir&idAvaliacao=<c:out value="${avaliacao.idAvaliacao}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+        <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
+
         </table>
-        <form action="ManterAvaliacaoController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+
     </body>
 </html>
