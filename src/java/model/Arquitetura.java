@@ -17,25 +17,17 @@ public class Arquitetura {
     public int getIdArquitetura() {
         return idArquitetura;
     }
-
-    public void setCaminhoImagem(String caminhoImagem) {
-        this.caminhoImagem = caminhoImagem;
+    
+    public void setIdArquitetura(int idArquitetura) {
+        this.idArquitetura = idArquitetura;
     }
-
+    
     public String getCaminhoImagem() {
         return caminhoImagem;
     }
 
-    public void setIdArquitetura(int idArquitetura) {
-        this.idArquitetura = idArquitetura;
-    }
-
-    public int getId() {
-        return idArquitetura;
-    }
-
-    public void setId(int id) {
-        this.idArquitetura = id;
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
 
     public void gravar() throws SQLException, ClassNotFoundException {

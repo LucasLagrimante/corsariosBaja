@@ -13,22 +13,12 @@
             <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">ID:</td>
+                        <td align="left">ID: </td>
                         <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Automovel:</td>
-                        <td align="right">
-                            <select name="selectAutomovel" name="selectAutomovel">
-                                <option value="${arquitetura.FK_automovel}" selected>Lucas</option>
-                                <option value="${arquitetura.FK_Automovel}" selected>Vitor</option>
-                            </select>
-                        </td></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Imagem:</td>
-                        <td align="right">
-                        <input type="button" name="txtCaminhoImagem" value="Abrir....">
+                        <td align="left">Imagem: </td>
+                        <td align="right"><input name="txtCaminhoImagem" type="text" value="${arquitetura.caminhoImagem}"></td>
                         </td>
                     </tr>
                     <tr>

@@ -26,14 +26,18 @@
             <c:forEach items="${arquiteturas}" var="arquitetura">
                 <tr>
                     <td><c:out value="${arquitetura.idArquitetura}" /></td>
-                    <td><c:out value="${arquitetura.caminho_imagem}" /></td>
+                    <td><c:out value="${arquitetura.caminhoImagem}" /></td>
                     <td><a href="ManterArquiteturaController?acao=prepararEditar&idArquitetura=<c:out value="${arquitetura.idArquitetura}" />">Editar</a></td>
                     <td><a href="ManterArquiteturaController?acao=prepararExcluir&idArquitetura=<c:out value="${arquitetura.idArquitetura}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
+
         </table>
-        <form action="ManterArquiteturaController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+
     </body>
 </html>

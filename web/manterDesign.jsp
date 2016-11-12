@@ -21,7 +21,10 @@
                     <tr>
                         <td align="left">Imagem:</td>
                         <td align="right"><input name="txtImagem" type="text" value="${design.imagem}"></td>
-                        </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
                          <td align="left">Automovel: </td>
                         <td align="right">
                             <select name="selectAutomovel"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
