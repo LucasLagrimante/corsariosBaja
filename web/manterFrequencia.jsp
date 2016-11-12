@@ -14,29 +14,19 @@
             <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Id:</td>
+                        <td align="left">Id: </td>
                         <td align="right"><input name="txtIdFrequencia" type="text" value="${frequencia.idFrequencia}"></td>
                     </tr>
-                    <tr>
-                        <td align="left">Integrante</td>
-                        <td>
-                            <select name="integrante" > disabled
-                                <option value="${frequencia.FK_integrante}" selected>Lucas</option>
-                                <option value="${frequencia.FK_integrante}" selected>Pablo</option>
-                            </select>
-                        </td>				
-                    </tr>
-                    <tr>
-                        <td align="left">Data:</td>
+                    <tr>                       
+                        <td align="left">Data: </td>
                         <td align="right"><input name="txtData" type="text" value="${frequencia.data}"></td>
                     </tr>
                     <tr>
-                        <td align="left">Estado:</td>
-                        <td align="right"> <input type="radio" name="estado" value="${frequencia.estado}">Presente
-                        <input type="radio" name="estado" value="${frequencia.estado}">Ausente</td>
+                        <td align="left">Estado: </td>
+                        <td align="right"><input name="txtEstado" type="text" value="${frequencia.estado}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" value="Enviar"><input type="reset" value="Apagar"> </td>
+                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

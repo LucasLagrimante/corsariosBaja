@@ -33,12 +33,11 @@ public class FrequenciaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO frequencia (idFrequencia, FK_integrante, data, estado) VALUES (?, ?, ?, ?) ";
+            String sql = "INSERT INTO frequencia (idFrequencia, data, estado) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, frequencia.getIdFrequencia());
-            comando.setInt(2, frequencia.getFK_integrante());
-            comando.setString(3, frequencia.getData());
-            comando.setString(4, frequencia.getEstado());
+            comando.setString(2, frequencia.getData());
+            comando.setString(3, frequencia.getEstado());
             comando.execute();
             comando.close();
             conexao.close();
@@ -59,7 +58,6 @@ public class FrequenciaDAO {
             while (rs.next()) {
                 Frequencia frequencia = new Frequencia(
                         rs.getInt("idFrequencia"),
-                        rs.getInt("FK_integrante"),
                         rs.getString("data"),
                         rs.getString("estado")
                 );
@@ -84,11 +82,11 @@ public class FrequenciaDAO {
             rs.first();
             frequencia = new Frequencia(
                         rs.getInt("idFrequencia"),
-                        rs.getInt("FK_integrante"),
                         rs.getString("data"),
                         rs.getString("estado")
+            //null
             );
-            frequencia.setFK_integrante(rs.getInt("FK_integrante"));
+            //frequencia.setFK_integrante(rs.getInt("FK_integrante"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -101,16 +99,14 @@ public class FrequenciaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE frequencia SET cor = ?, "
-                    + "nome = ?, dataTerminoProjeto = ?, pesoCarro = ?, "
-                    + "pesoChassi = ?, custoTotal = ? "
+            String sql = "UPDATE frequencia SET data = ?, "
+                    + "estado = ? "
                     + "WHERE IdFrequencia = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, frequencia.getData());
             comando.setString(2, frequencia.getEstado());
-            comando.setInt(3, frequencia.getFK_integrante());
-            comando.setInt(4, frequencia.getIdFrequencia());
+            comando.setInt(3, frequencia.getIdFrequencia());
             comando.execute();
             comando.close();
             conexao.close();

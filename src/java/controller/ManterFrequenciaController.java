@@ -58,15 +58,14 @@ public class ManterFrequenciaController extends HttpServlet {
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
-        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("estado");
+        String estado = request.getParameter("txtEstado");
         try {
             /*Frequencia frequencia = null;
             if (coordenador != 0) {
                 frequencia = Professor.obterProfessor(coordenador);
             }*/
-            Frequencia frequencia = new Frequencia(idFrequencia, FK_integrante, data, estado);
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -95,11 +94,10 @@ public class ManterFrequenciaController extends HttpServlet {
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
-        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("estado");
+        String estado = request.getParameter("txtEstado");
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, FK_integrante, data, estado);
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -129,11 +127,10 @@ public class ManterFrequenciaController extends HttpServlet {
 
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
-        int FK_integrante = Integer.parseInt(request.getParameter("FK_integrante"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("estado");
+        String estado = request.getParameter("txtEstado");
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, FK_integrante, data, estado);
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);

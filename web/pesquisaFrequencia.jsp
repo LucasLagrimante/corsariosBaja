@@ -20,24 +20,24 @@
         <table border="1">
             <tr>
                 <th>Código Frequencia</th>
-                <th>codigo integrante</th>
-                <th>Estado</th>
                 <th>Data</th>
+                <th>Estado</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${frequencias}" var="frequencia">
                 <tr>
                     <td><c:out value="${frequencia.idFrequencia}" /></td>
-                    <td><c:out value="${frequencia.FK_integrante}" /></td>
+                    <td><c:out value="${frequencia.data}" /></td>
                     <td><c:out value="${frequencia.estado}" /></td>
-                    <td><c:out value="${frequencia.data}" /></td>   
                     <td><a href="ManterFrequenciaController?acao=prepararEditar&idFrequencia=<c:out value="${frequencia.idFrequencia}" />">Editar</a></td>
                     <td><a href="ManterFrequenciaController?acao=prepararExcluir&idFrequencia=<c:out value="${frequencia.idFrequencia}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
+            <tr> 
+                <td  align="center" colspan="9"> 
+                    <button onclick="window.location.href = 'index.jsp'">Voltar</button>
+                </td>
+            </tr>
         </table>
-        <form action="ManterFrequenciaController?acao=prepararIncluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
     </body>
 </html>
