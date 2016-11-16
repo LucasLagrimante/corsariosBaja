@@ -8,7 +8,7 @@ public class Integrante {
 
     private int matricula;
     private String cargaHorariaDisponivel;
-     private final int idPessoa;
+    private final int idPessoa;
     private Pessoa pessoa;
 
     public Integrante(int matricula, String cargaHorariaDisponivel, int idPessoa) {

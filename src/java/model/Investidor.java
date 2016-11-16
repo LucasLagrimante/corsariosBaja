@@ -8,23 +8,15 @@ public class Investidor {
 
     private int idInvestidor;
     private float valorDoado;
+    private final int idPessoa;
+    private Pessoa pessoa;
 
-    public Investidor(int idInvestidor, float valorDoado, Pessoa pessoa) {
+    public Investidor(int idInvestidor, float valorDoado, int idPessoa) {
         this.idInvestidor = idInvestidor;
         this.valorDoado = valorDoado;
-        this.pessoa = pessoa;
-    }
-    private Pessoa pessoa;
-    private int idPessoa;
-
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
     }
-
+    
     public int getIdInvestidor() {
         return idInvestidor;
     }
@@ -40,7 +32,11 @@ public class Investidor {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-
+    
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+   
     public float getValorDoado() {
         return valorDoado;
     }
@@ -48,6 +44,7 @@ public class Investidor {
     public void setValorDoado(float valorDoado) {
         this.valorDoado += valorDoado;
     }
+    
     public void gravar() throws SQLException, ClassNotFoundException {
         InvestidorDAO.gravar(this);
     }

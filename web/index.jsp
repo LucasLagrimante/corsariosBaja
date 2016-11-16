@@ -40,6 +40,7 @@
                         <li><a href="PesquisaPecaController">Peça</a></li>
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
+                        <li><a href="PesquisaInvestidorController">Investidor</a></li>
                         <li><a href="PesquisaTipoPecaController">TipoPeca</a></li>
                         <li><a href="PesquisaTipoPistaController">TipoPista</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
@@ -53,7 +54,7 @@
                 </li>
                 <li><a href="#">Investimentos</a>
                     <ul>
-                        <li><a href="#">Investir</a></li>
+                        <li><a href="ManterInvestidorController?acao=prepararIncluir">Investir</a></li>
                         <li><a href="#">Cofre</a></li>
                     </ul>
                 </li>

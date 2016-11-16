@@ -10,17 +10,16 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Livro de Frequencia Diaria ${operacao}</h2>
-            <h2 align="center">10/09/2016   17:47</h2>
+            <h2 align="center">Livro de Frequencia Diaria - ${operacao}</h2>
             <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
                         <td align="left">Integrante: </td>
                         <td align="right">
                             <select name="selectIntegrante"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
-                                <option value="0" <c:if test="${integrante.idIntegrante == null}"> selected</c:if>> </option>
+                                <option value="0" <c:if test="${integrante.matricula == null}"> selected</c:if>> </option>
                                 <c:forEach items="${integrantes}" var="integrante">
-                                    <option value="${integrante.idIntegrante}" <c:if test="${frequencia.integrante.idIntegrante == integrante.idIntegrante}"> selected</c:if>> ${pessoa.integrante.nome} </option>
+                                    <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.nome} </option>
                                 </c:forEach>
                             </select>
                         </td>				

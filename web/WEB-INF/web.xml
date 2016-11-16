@@ -124,6 +124,14 @@
         <servlet-name>PesquisaTipoPecaController</servlet-name>
         <servlet-class>controller.PesquisaTipoPecaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterQuesitoController</servlet-name>
+        <servlet-class>controller.ManterQuesitoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterInvestidorController</servlet-name>
+        <servlet-class>controller.ManterInvestidorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -247,6 +255,14 @@
     <servlet-mapping>
         <servlet-name>PesquisaTipoPecaController</servlet-name>
         <url-pattern>/PesquisaTipoPecaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterQuesitoController</servlet-name>
+        <url-pattern>/ManterQuesitoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterInvestidorController</servlet-name>
+        <url-pattern>/ManterInvestidorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

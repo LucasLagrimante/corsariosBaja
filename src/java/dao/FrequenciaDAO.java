@@ -60,7 +60,7 @@ public class FrequenciaDAO {
                         rs.getInt("idFrequencia"),
                         rs.getString("data"),
                         rs.getString("estado"),
-                        rs.getInt("idIntegrante")
+                        rs.getInt("FK_integrante")
                 );
                 frequencias.add(frequencia);
             }
@@ -85,7 +85,7 @@ public class FrequenciaDAO {
                     rs.getInt("idFrequencia"),
                     rs.getString("data"),
                     rs.getString("estado"),
-                    rs.getInt("idIntegrante")
+                    rs.getInt("FK_integrante")
             );
         } catch (SQLException e) {
             e.printStackTrace();

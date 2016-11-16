@@ -16,7 +16,7 @@ import model.Investidor;
 
 public class InvestidorDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
+   public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -33,11 +33,11 @@ public class InvestidorDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO investidor (IdInvestidor ,valorDoado, FK_pessoa) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO investidor (IdInvestidor, valorDoado, FK_idPessoa) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, investidor.getIdInvestidor());
-            comando.setFloat(1, investidor.getValorDoado());
-            comando.setInt(2, investidor.getPessoa().getIdPessoa());
+            comando.setFloat(2, investidor.getValorDoado());
+            comando.setInt(3, investidor.getIdPessoa());
             comando.execute();
             comando.close();
             conexao.close();
@@ -57,10 +57,9 @@ public class InvestidorDAO {
             while (rs.next()) {
                 Investidor investidor = new Investidor(
                         rs.getInt("IdInvestidor"),
-                        rs.getInt("valorDoado"),
-                        null
+                        rs.getFloat("valorDoado"),
+                        rs.getInt("FK_idPessoa")
                 );
-                investidor.setIdPessoa(rs.getInt("IdPessoa"));
                 investidores.add(investidor);
             }
         } catch (SQLException e) {
@@ -71,27 +70,58 @@ public class InvestidorDAO {
         return investidores;
     }
 
-    public static Investidor obterInvestidor(int registro) throws ClassNotFoundException {
+    public static Investidor obterInvestidor(int IdInvestidor) throws ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         Investidor investidor = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM investidor where registro = " + registro);
+            ResultSet rs = comando.executeQuery("SELECT * FROM investidor where IdInvestidor = " + IdInvestidor);
             rs.first();
             investidor = new Investidor(
                     rs.getInt("IdInvestidor"),
-                    rs.getInt("valorDoado"),
-                    null
+                    rs.getFloat("valorDoado"),
+                    rs.getInt("FK_idPessoa")
             );
-            investidor.setIdPessoa(rs.getInt("IdPessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
         return investidor;
+    }
+
+    public static void alterar(Investidor investidor) throws SQLException, ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            conexao = BD.getConexao();
+            String sql = "UPDATE investidor SET valorDoado = ?, "
+                    + "FK_idPessoa = ? "
+                    + "WHERE IdInvestidor = ?";
+            PreparedStatement comando = conexao.prepareStatement(sql);
+
+            comando.setFloat(1, investidor.getValorDoado());
+            comando.setInt(2, investidor.getIdPessoa());
+            comando.setInt(3, investidor.getIdInvestidor());
+            comando.execute();
+            comando.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+   public static void excluir(Investidor investidor) throws SQLException, ClassNotFoundException {
+        try {
+            Connection db = BD.getConexao();
+            PreparedStatement st = db.prepareStatement("delete from investidor where IdInvestidor = ?");
+            st.setInt(1, investidor.getIdInvestidor());
+            st.execute();
+            st.close();
+        } catch (SQLException ex) {
+            
+        }
     }
 
 }

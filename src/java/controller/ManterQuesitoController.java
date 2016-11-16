@@ -6,21 +6,17 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Investidor;
 
 /**
  *
  * @author Gustavo
  */
-public class PesquisaInvestidorController extends HttpServlet {
+public class ManterQuesitoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,14 +28,22 @@ public class PesquisaInvestidorController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-       throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
-            request.setAttribute("invesidores", Investidor.obterInvestidores());
-            RequestDispatcher view = request.getRequestDispatcher("/pesquisaInvestidor.jsp");
-            view.forward(request, response);
-
-        } catch (ClassNotFoundException ex) {
-
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ManterQuesitoController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ManterQuesitoController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {
+            out.close();
         }
     }
 
@@ -55,11 +59,7 @@ public class PesquisaInvestidorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaInvestidorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +73,7 @@ public class PesquisaInvestidorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaInvestidorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
