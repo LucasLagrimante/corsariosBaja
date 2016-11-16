@@ -1,7 +1,7 @@
 <%-- 
     Document   : pesquisaDesign
     Created on : 20/09/2016, 09:17:12
-    Author     : Aluno
+    Author     : Lucas
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,26 +16,24 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Design</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Design</h1>
+        <table border align="center">
             <tr>
                 <th>Código Design</th>
-                <th>Imagem</th>
+                <th>Caminho</th>
                 <th>Automovel</th>
-
-                
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${designs}" var="design">
                 <tr>
                     <td><c:out value="${design.idDesign}" /></td>
-                    <td><c:out value="${design.imagem}" /></td>
+                    <td><c:out value="${design.caminhoImagem}" /></td>
                     <td><c:out value="${design.idAutomovel}" /></td>
                     <td><a href="ManterDesignController?acao=prepararEditar&idDesign=<c:out value="${design.idDesign}" />">Editar</a></td>
                     <td><a href="ManterDesignController?acao=prepararExcluir&idDesign=<c:out value="${design.idDesign}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
-        <tr> 
+            <tr> 
                 <td  align="center" colspan="9"> 
                     <button onclick="window.location.href = 'index.jsp'">Voltar</button>
                 </td>

@@ -19,19 +19,11 @@ import model.Pessoa;
 
 /**
  *
- * @author Aluno
+ * @author Lucas
  */
 public class ManterIntegranteController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
@@ -51,8 +43,7 @@ public class ManterIntegranteController extends HttpServlet {
 
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("pessoas", Pessoa.obterPessoas());
@@ -76,8 +67,8 @@ public class ManterIntegranteController extends HttpServlet {
             if (idPessoa != 0) {
                 pessoa = Pessoa.obterPessoa(idPessoa);
             }
-            Integrante peca = new Integrante(matricula, cargaHorariaDisponivel, idPessoa);
-            peca.gravar();
+            Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, idPessoa);
+            integrante.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaIntegranteController");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -91,10 +82,8 @@ public class ManterIntegranteController extends HttpServlet {
         }
     }
 
-    public void prepararEditar(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
+    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, ClassNotFoundException {
         try {
-
             request.setAttribute("operacao", "Editar");
             request.setAttribute("pessoas", Pessoa.obterPessoas());
             int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
@@ -104,13 +93,10 @@ public class ManterIntegranteController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
             throw ex;
-
         } catch (IOException ex) {
             throw ex;
-
         } catch (ClassNotFoundException ex) {
             throw ex;
-
         }
     }
 

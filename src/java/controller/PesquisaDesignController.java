@@ -18,12 +18,11 @@ import model.Design;
 
 /**
  *
- * @author Pablo
+ * @author Lucas
  */
 public class PesquisaDesignController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException, SQLException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("designs", Design.obterDesigns());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaDesign.jsp");

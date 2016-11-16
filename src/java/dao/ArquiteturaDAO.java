@@ -33,10 +33,11 @@ public class ArquiteturaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO arquitetura (idArquitetura, caminhoImagem) VALUES (?, ?) ";
+            String sql = "INSERT INTO arquitetura (idArquitetura, caminhoImagem, FK_automovel) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, arquitetura.getIdArquitetura());
             comando.setString(2, arquitetura.getCaminhoImagem());
+            comando.setInt(3, arquitetura.getIdAutomovel());
             comando.execute();
             comando.close();
             conexao.close();
@@ -48,7 +49,7 @@ public class ArquiteturaDAO {
     public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Arquitetura> automoveis = new ArrayList<Arquitetura>();
+        List<Arquitetura> arquiteturas = new ArrayList<Arquitetura>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -56,16 +57,17 @@ public class ArquiteturaDAO {
             while (rs.next()) {
                 Arquitetura arquitetura = new Arquitetura(
                         rs.getInt("idArquitetura"),
-                        rs.getString("caminhoImagem")
+                        rs.getString("caminhoImagem"),
+                        rs.getInt("FK_automovel")
                 );
-                automoveis.add(arquitetura);
+                arquiteturas.add(arquitetura);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return automoveis;
+        return arquiteturas;
     }
 
     public static Arquitetura obterArquitetura(int idArquitetura) throws ClassNotFoundException {
@@ -79,10 +81,9 @@ public class ArquiteturaDAO {
             rs.first();
             arquitetura = new Arquitetura(
                     rs.getInt("idArquitetura"),
-                    rs.getString("caminhoImagem")
-            //null
+                    rs.getString("caminhoImagem"),
+                    rs.getInt("FK_automovel")
             );
-            //arquitetura.setCodigoPessoa(rs.getString("pessoa"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -95,12 +96,14 @@ public class ArquiteturaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE arquitetura SET caminhoImagem = ? "
+            String sql = "UPDATE arquitetura SET caminhoImagem = ?, "
+                    + "FK_automovel = ? "
                     + "WHERE IdArquitetura = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, arquitetura.getCaminhoImagem());
-            comando.setInt(2, arquitetura.getIdArquitetura());
+            comando.setInt(2, arquitetura.getIdAutomovel());
+            comando.setInt(3, arquitetura.getIdArquitetura());
             comando.execute();
             comando.close();
             conexao.close();
@@ -109,15 +112,15 @@ public class ArquiteturaDAO {
         }
     }
 
-    public static void excluir(Arquitetura Arquitetura) throws SQLException, ClassNotFoundException {
+    public static void excluir(Arquitetura arquitetura) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
             PreparedStatement st = db.prepareStatement("delete from arquitetura where idArquitetura = ? ");
-            st.setInt(1, Arquitetura.getIdArquitetura());
+            st.setInt(1, arquitetura.getIdArquitetura());
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 }

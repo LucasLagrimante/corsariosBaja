@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -19,12 +18,11 @@ import model.Automovel;
 
 /**
  *
- * @author Aluno
+ * @author Lucas
  */
 public class PesquisaAutomovelController extends HttpServlet {
- 
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaAutomovel.jsp");
@@ -47,11 +45,11 @@ public class PesquisaAutomovelController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            try {
-                processRequest(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(PesquisaAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PesquisaAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -65,11 +63,11 @@ public class PesquisaAutomovelController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            try {
-                processRequest(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(PesquisaAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(PesquisaAutomovelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

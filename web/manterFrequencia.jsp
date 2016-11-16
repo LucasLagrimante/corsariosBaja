@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +15,18 @@
             <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Id: </td>
+                        <td align="left">Integrante: </td>
+                        <td align="right">
+                            <select name="selectIntegrante"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
+                                <option value="0" <c:if test="${integrante.idIntegrante == null}"> selected</c:if>> </option>
+                                <c:forEach items="${integrantes}" var="integrante">
+                                    <option value="${integrante.idIntegrante}" <c:if test="${frequencia.integrante.idIntegrante == integrante.idIntegrante}"> selected</c:if>> ${pessoa.integrante.nome} </option>
+                                </c:forEach>
+                            </select>
+                        </td>				
+                    </tr>
+                    <tr>
+                        <td align="left">ID: </td>
                         <td align="right"><input name="txtIdFrequencia" type="text" value="${frequencia.idFrequencia}"></td>
                     </tr>
                     <tr>                       

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,17 @@
             <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
+                        <td align="left">Automóvel: </td>
+                        <td align="right">
+                            <select name="selectAutomovel"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
+                                <option value="0" <c:if test="${automovel.idAutomovel == null}"> selected</c:if>> </option>
+                                <c:forEach items="${automoveis}" var="automovel">
+                                    <option value="${automovel.idAutomovel}" <c:if test="${arquitetura.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
+                                </c:forEach>
+                            </select>
+                        </td>				
+                    </tr>
+                    <tr>
                         <td align="left">ID: </td>
                         <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}"></td>
                     </tr>
@@ -22,7 +34,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Incluir"><input type="reset" value="Apagar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

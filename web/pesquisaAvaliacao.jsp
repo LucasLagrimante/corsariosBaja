@@ -16,8 +16,8 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Avaliação</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Avaliação</h1>
+        <table border align="center">
             <tr>
                 <th>Código Avaliação</th>
                 <th>Frequencia Avaliação</th>

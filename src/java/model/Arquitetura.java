@@ -8,20 +8,36 @@ public class Arquitetura {
 
     private int idArquitetura;
     private String caminhoImagem;
+    private final int idAutomovel;
+    private Automovel automovel;
 
-    public Arquitetura(int idArquitetura, String caminhoImagem) {
+    public Arquitetura(int idArquitetura, String caminhoImagem, int idAutomovel) {
         this.idArquitetura = idArquitetura;
         this.caminhoImagem = caminhoImagem;
+        this.idAutomovel = idAutomovel;
+
+    }
+
+    public Automovel getAutomovel() {
+        return automovel;
+    }
+
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
+    }
+
+    public int getIdAutomovel() {
+        return idAutomovel;
     }
 
     public int getIdArquitetura() {
         return idArquitetura;
     }
-    
+
     public void setIdArquitetura(int idArquitetura) {
         this.idArquitetura = idArquitetura;
     }
-    
+
     public String getCaminhoImagem() {
         return caminhoImagem;
     }

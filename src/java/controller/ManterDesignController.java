@@ -19,7 +19,7 @@ import model.Design;
 
 /**
  *
- * @author lukin
+ * @author Lucas
  */
 public class ManterDesignController extends HttpServlet {
 
@@ -41,8 +41,7 @@ public class ManterDesignController extends HttpServlet {
         }
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
@@ -56,14 +55,14 @@ public class ManterDesignController extends HttpServlet {
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
-        String imagem = request.getParameter("txtImagem");
-        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));      
+        String caminhoImagem = request.getParameter("txtCaminhoImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
             Automovel automovel = null;
-            if(idAutomovel != 0){
+            if (idAutomovel != 0) {
                 automovel = Automovel.obterAutomovel(idAutomovel);
             }
-            Design design = new Design(idDesign, imagem, idAutomovel);
+            Design design = new Design(idDesign, caminhoImagem, idAutomovel);
             design.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
@@ -73,35 +72,32 @@ public class ManterDesignController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-    
+
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("tipopecas", Automovel.obterAutomoveis());
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
             int idDesign = Integer.parseInt(request.getParameter("idDesign"));
             Design design = Design.obterDesign(idDesign);
             request.setAttribute("design", design);
             RequestDispatcher view = request.getRequestDispatcher("/manterDesign.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
-
         } catch (IOException ex) {
-
         } catch (ClassNotFoundException ex) {
-
         }
     }
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
-        String imagem = request.getParameter("txtImagem");
-        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));      
+        String caminhoImagem = request.getParameter("txtCaminhoImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
             Automovel automovel = null;
-            if(idAutomovel != 0){
+            if (idAutomovel != 0) {
                 automovel = Automovel.obterAutomovel(idAutomovel);
             }
-            Design design = new Design(idDesign, imagem, idAutomovel);
+            Design design = new Design(idDesign, caminhoImagem, idAutomovel);
             design.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
@@ -115,7 +111,7 @@ public class ManterDesignController extends HttpServlet {
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
-            request.setAttribute("tipopecas", Automovel.obterAutomoveis());
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
             int idDesign = Integer.parseInt(request.getParameter("idDesign"));
             Design design = Design.obterDesign(idDesign);
             request.setAttribute("design", design);
@@ -132,10 +128,14 @@ public class ManterDesignController extends HttpServlet {
 
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
         int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
-        String imagem = request.getParameter("txtImagem");
+        String caminhoImagem = request.getParameter("txtCaminhoImagem");
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
-            Design design = new Design(idDesign, imagem, idAutomovel);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Design design = new Design(idDesign, caminhoImagem, idDesign);
             design.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesignController");
             view.forward(request, response);
@@ -158,11 +158,11 @@ public class ManterDesignController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
-           processRequest(request, response);
-       } catch (SQLException ex) {
-           Logger.getLogger(ManterDesignController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterDesignController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -176,11 +176,11 @@ public class ManterDesignController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       try {
-           processRequest(request, response);
-       } catch (SQLException ex) {
-           Logger.getLogger(ManterDesignController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterDesignController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

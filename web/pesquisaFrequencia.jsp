@@ -16,12 +16,13 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1>Pesquisa de Frequencia</h1>
-        <table border="1">
+        <h1 align="center">Pesquisa de Frequencia</h1>
+        <table border align="center">
             <tr>
                 <th>Código Frequencia</th>
                 <th>Data</th>
                 <th>Estado</th>
+                <th>Integrante</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${frequencias}" var="frequencia">
@@ -29,6 +30,7 @@
                     <td><c:out value="${frequencia.idFrequencia}" /></td>
                     <td><c:out value="${frequencia.data}" /></td>
                     <td><c:out value="${frequencia.estado}" /></td>
+                    <td><c:out value="${frequencia.idIntegrante}" /></td>
                     <td><a href="ManterFrequenciaController?acao=prepararEditar&idFrequencia=<c:out value="${frequencia.idFrequencia}" />">Editar</a></td>
                     <td><a href="ManterFrequenciaController?acao=prepararExcluir&idFrequencia=<c:out value="${frequencia.idFrequencia}" />">Excluir</a></td>
                 </tr>

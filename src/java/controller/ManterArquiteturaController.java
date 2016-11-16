@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Arquitetura;
-import model.Arquitetura;
+import model.Automovel;
 
 /**
  *
- * @author lukin
+ * @author Lucas
  */
 public class ManterArquiteturaController extends HttpServlet {
 
@@ -32,21 +32,20 @@ public class ManterArquiteturaController extends HttpServlet {
             confirmarIncluir(request, response);
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
-        }  else if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
+        }
+
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("arquiteturas", Arquitetura.obterArquiteturas());
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
             RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -58,9 +57,13 @@ public class ManterArquiteturaController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idArquitetura = Integer.parseInt(request.getParameter("txtIdArquitetura"));
         String caminhoImagem = request.getParameter("txtCaminhoImagem");
-
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
-            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem, idAutomovel);
             arquitetura.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaArquiteturaController");
             view.forward(request, response);
@@ -74,43 +77,28 @@ public class ManterArquiteturaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
             int idArquitetura = Integer.parseInt(request.getParameter("idArquitetura"));
             Arquitetura arquitetura = Arquitetura.obterArquitetura(idArquitetura);
             request.setAttribute("arquitetura", arquitetura);
             RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
-
         } catch (IOException ex) {
-
         } catch (ClassNotFoundException ex) {
-
-        }
-    }
-
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            request.setAttribute("operacao", "Excluir");
-            int idArquitetura = Integer.parseInt(request.getParameter("idArquitetura"));
-            Arquitetura arquitetura = Arquitetura.obterArquitetura(idArquitetura);
-            request.setAttribute("arquitetura", arquitetura);
-            RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
-            view.forward(request, response);
-        } catch (ServletException ex) {
-
-        } catch (IOException ex) {
-
-        } catch (ClassNotFoundException ex) {
-
         }
     }
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idArquitetura = Integer.parseInt(request.getParameter("txtIdArquitetura"));
         String caminhoImagem = request.getParameter("txtCaminhoImagem");
-
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
-            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem, idAutomovel);
             arquitetura.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaArquiteturaController");
             view.forward(request, response);
@@ -121,11 +109,34 @@ public class ManterArquiteturaController extends HttpServlet {
         }
     }
 
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        try {
+            request.setAttribute("operacao", "Excluir");
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            int idArquitetura = Integer.parseInt(request.getParameter("idArquitetura"));
+            Arquitetura arquitetura = Arquitetura.obterArquitetura(idArquitetura);
+            request.setAttribute("arquitetura", arquitetura);
+            RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
+            view.forward(request, response);
+        } catch (ServletException ex) {
+
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
+    }
+
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
         int idArquitetura = Integer.parseInt(request.getParameter("txtIdArquitetura"));
         String caminhoImagem = request.getParameter("txtCaminhoImagem");
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         try {
-            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            Arquitetura arquitetura = new Arquitetura(idArquitetura, caminhoImagem, idAutomovel);
             arquitetura.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaArquiteturaController");
             view.forward(request, response);

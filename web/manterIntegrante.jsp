@@ -14,14 +14,6 @@
             <form action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Matricula: </td>
-                        <td align="right"> <input type="text" name="txtMatricula" value="${integrante.matricula}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Carga Horaria Disponivel: </td>
-                        <td align="right"> <input type="text" name="txtCargaHorariaDisponivel" value="${integrante.cargaHorariaDisponivel}"></td>
-                    </tr>
-                    <tr>
                         <td align="left">Pessoa: </td>
                         <td align="right">
                             <select name="selectPessoa"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
@@ -33,7 +25,15 @@
                         </td>				
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td align="left">Matricula: </td>
+                        <td align="right"> <input type="text" name="txtMatricula" value="${integrante.matricula}"></td>
+                    </tr>
+                    <tr>
+                        <td align="left">Carga Horaria Disponivel: </td>
+                        <td align="right"> <input type="text" name="txtCargaHorariaDisponivel" value="${integrante.cargaHorariaDisponivel}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

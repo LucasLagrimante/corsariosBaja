@@ -7,33 +7,16 @@ import java.util.List;
 public class Design {
 
     private int idDesign;
-    private String imagem;
+    private String caminhoImagem;
     private final int idAutomovel;
     private Automovel automovel;
 
-    public Design(int idDesign, String imagem, int idAutomovel) {
+    public Design(int idDesign, String caminhoImagem, int idAutomovel) {
         this.idDesign = idDesign;
-        this.imagem = imagem;
+        this.caminhoImagem = caminhoImagem;
         this.idAutomovel = idAutomovel;
-        
     }
-    
-    public Automovel getAutomovel() {
-        return automovel;
-    }
-    
-    public Automovel gsetAutomovel() {
-        return this.automovel = automovel;
-    }
-    
 
-    public void setAutomovel(Automovel automovel) {
-        this.automovel = automovel;
-    }
-    public int getIdAutomovel() {
-        return idAutomovel;
-    }
-    
     public int getIdDesign() {
         return idDesign;
     }
@@ -42,13 +25,26 @@ public class Design {
         this.idDesign = idDesign;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getCaminhoImagem() {
+        return caminhoImagem;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
+
+    public Automovel getAutomovel() {
+        return automovel;
+    }
+
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
+    }
+
+    public int getIdAutomovel() {
+        return idAutomovel;
+    }
+
 
     public void gravar() throws SQLException, ClassNotFoundException {
         DesignDAO.gravar(this);

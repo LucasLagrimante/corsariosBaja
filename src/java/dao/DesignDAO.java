@@ -33,10 +33,10 @@ public class DesignDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO design (idDesign, camino_imagem, FK_automovel) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO design (idDesign, caminhoImagem, FK_automovel) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, design.getIdDesign());
-            comando.setString(2, design.getImagem());
+            comando.setString(2, design.getCaminhoImagem());
             comando.setInt(3, design.getIdAutomovel());
             comando.execute();
             comando.close();
@@ -57,7 +57,7 @@ public class DesignDAO {
             while (rs.next()) {
                 Design design = new Design(
                         rs.getInt("idDesign"),
-                        rs.getString("imagem"),
+                        rs.getString("CaminhoImagem"),
                         rs.getInt("FK_automovel")
                 );
                 designs.add(design);
@@ -81,7 +81,7 @@ public class DesignDAO {
             rs.first();
             design = new Design(
                     rs.getInt("idDesign"),
-                    rs.getString("imagem"),
+                    rs.getString("caminhoImagem"),
                     rs.getInt("FK_automovel")
             );
         } catch (SQLException e) {
@@ -91,16 +91,17 @@ public class DesignDAO {
         }
         return design;
     }
-    
+
     public static void alterar(Design design) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "UPDATE design SET caminho_imagem = ?, FK_automovel "
+            String sql = "UPDATE design SET caminhoImagem = ?, "
+                    + "FK_automovel = ? "
                     + "WHERE IdDesign = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
-            comando.setString(1, design.getImagem());
+            comando.setString(1, design.getCaminhoImagem());
             comando.setInt(2, design.getIdAutomovel());
             comando.setInt(3, design.getIdDesign());
             comando.execute();
@@ -119,7 +120,7 @@ public class DesignDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 
