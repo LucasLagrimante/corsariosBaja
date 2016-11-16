@@ -55,3 +55,16 @@ body{
     width:150px;
 }
 
+#divCentro{
+    position:  absolute;
+    top: 73%;
+    left: 12%;
+    border: 10px solid #73AD21;
+}
+
+#h1Center{
+    color: #73AD21;
+    font-size: 45px;
+    font-family: Courier New, Courier, monospace;
+}
+

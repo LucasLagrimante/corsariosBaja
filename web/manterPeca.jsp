@@ -10,7 +10,7 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar peça ${operacao}</h2>
+            <h2 align="center">Manter Peça ${operacao}</h2>
             <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
@@ -47,7 +47,7 @@
                         </td>
                     </tr>     
                     <tr>
-                        <td colspan = "2" align="center"><input type="submit" value="Cadastrar Tipo de Peca"> <input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td colspan = "2" align="center"><input type="submit" value="Cadastrar Tipo de Peca"> <input type="submit" value="Confirmar"></td>
                     </tr>
 
                 </table>

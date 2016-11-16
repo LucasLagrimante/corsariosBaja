@@ -34,13 +34,12 @@ public class ManterPecaController extends HttpServlet {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
             confirmarEditar(request, response);
-        } else 
-            if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-          
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
+        }
+
     }
 
     public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
@@ -62,13 +61,13 @@ public class ManterPecaController extends HttpServlet {
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-      
+
         try {
             TipoPeca tipopeca = null;
-            if(idTipoPeca != 0){
+            if (idTipoPeca != 0) {
                 tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
             }
-            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
             peca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
@@ -104,13 +103,13 @@ public class ManterPecaController extends HttpServlet {
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-      
+
         try {
             TipoPeca tipopeca = null;
-            if(idTipoPeca != 0){
+            if (idTipoPeca != 0) {
                 tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
             }
-            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
             peca.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
@@ -150,13 +149,13 @@ public class ManterPecaController extends HttpServlet {
         String modelo = request.getParameter("txtModelo");
         float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-      
+
         try {
             TipoPeca tipopeca = null;
-            if(idTipoPeca != 0){
+            if (idTipoPeca != 0) {
                 tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
             }
-            Peca peca = new Peca(idPeca,quantidade,nome,modelo,precoCompra,idTipoPeca);
+            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
             peca.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
             view.forward(request, response);
@@ -165,9 +164,9 @@ public class ManterPecaController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
         } catch (SQLException ex) {
         }
-}
-    
-@Override
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -204,5 +203,4 @@ public class ManterPecaController extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-
 }

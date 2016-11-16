@@ -74,6 +74,6 @@
                 </li>
                 <li><a href="javascript:void()" onclick="window.close()">Sair</a></li>
             </ul>
-            <div align="center" top="900px"><h1 fontsize="90">Carro de Corrida Baja - Equipe Corsários</h1></div>
+            <div id="divCentro"><h1 id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
     </body>
 </html>
