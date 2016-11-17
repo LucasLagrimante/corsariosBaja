@@ -19,31 +19,29 @@
                         </tr>
                         <tr>
                             <td align="left">Quantidade: </td>
-                            <td align="right"><input name="txtQuantidade" type="number" value="${peca.quantidade}"  min="1" size="4"> </td>
-                    </tr>
-                    <tr>
-                        <td align="left">Nome: </td>
-                        <td align="right"><input name="txtNome" type="text" value="${peca.nome}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Modelo: </td>
-                        <td align="right"><input name="txtModelo" type="text" value="${peca.modelo}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Preço: </td>
-                        <td align="right"><input name="txtPrecoCompra" type="text" value="${peca.precoCompra}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Tipo Peça: </td>
-                        <td align="right">
-                            <select name="selectTipoPeca"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                               <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
+                            <td align="right"><input name="txtQuantidade" type="textr" value="${peca.quantidade}"  min="1" size="4" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Nome: </td>
+                            <td align="right"><input name="txtNome" type="text" value="${peca.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Modelo: </td>
+                            <td align="right"><input name="txtModelo" type="text" value="${peca.modelo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Preço: </td>
+                            <td align="right"><input name="txtPrecoCompra" type="text" value="${peca.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Tipo Peça: </td>
+                            <td align="right">
+                                <select name="selectTipoPeca" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                                <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
                                 <c:forEach items="${tipopecas}" var="tipopeca">
                                     <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
                                 </c:forEach>
                             </select>
-                                
-     
                         </td>
                     </tr>     
                     <tr>
@@ -53,6 +51,5 @@
                 </table>
             </form>
         </div>
-
     </body>
 </html>

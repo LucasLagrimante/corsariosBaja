@@ -16,7 +16,7 @@
                     <tr>
                         <td align="left">Automóvel: </td>
                         <td align="right">
-                            <select name="selectAutomovel"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
+                            <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> 
                                 <option value="0" <c:if test="${automovel.idAutomovel == null}"> selected</c:if>> </option>
                                 <c:forEach items="${automoveis}" var="automovel">
                                     <option value="${automovel.idAutomovel}" <c:if test="${arquitetura.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
@@ -26,15 +26,15 @@
                     </tr>
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}"></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Imagem: </td>
-                        <td align="right"><input name="txtCaminhoImagem" type="text" value="${arquitetura.caminhoImagem}"></td>
+                        <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Imagem: </td>
+                                <td align="right"><input name="txtCaminhoImagem" type="text" value="${arquitetura.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                 </table>
             </form>

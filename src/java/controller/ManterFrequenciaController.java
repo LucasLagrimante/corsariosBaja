@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Frequencia;
-import model.Integrante;
 
 /**
  *
@@ -48,7 +47,7 @@ public class ManterFrequenciaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("integrantes", Integrante.obterIntegrantes());
+            request.setAttribute("frequencias", Frequencia.obterFrequencias());
             RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -61,9 +60,12 @@ public class ManterFrequenciaController extends HttpServlet {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
-        int idIntegrante = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, idIntegrante);
+            /*Frequencia frequencia = null;
+            if (coordenador != 0) {
+                frequencia = Professor.obterProfessor(coordenador);
+            }*/
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -76,7 +78,6 @@ public class ManterFrequenciaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
@@ -95,9 +96,8 @@ public class ManterFrequenciaController extends HttpServlet {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
-        int idIntegrante = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, idIntegrante);
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -108,10 +108,9 @@ public class ManterFrequenciaController extends HttpServlet {
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Excluir");
-            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
@@ -130,9 +129,8 @@ public class ManterFrequenciaController extends HttpServlet {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
-        int idIntegrante = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, idIntegrante);
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
             frequencia.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);

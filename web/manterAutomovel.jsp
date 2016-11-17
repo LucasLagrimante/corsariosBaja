@@ -15,31 +15,31 @@
                 <table>
                     <tr>
                         <td align="left">Id:</td>
-                        <td align="right"><input name="txtIdAutomovel" type="text" value="${automovel.idAutomovel}"></td>
+                        <td align="right"><input name="txtIdAutomovel" type="text" value="${automovel.idAutomovel}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Nome:</td>
-                        <td align="right"><input name="txtNome" type="text" value="${automovel.nome}"></td>
+                        <td align="right"><input name="txtNome" type="text" value="${automovel.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Cor:</td>
-                        <td align="right"><input name="txtCor" type="text" value="${automovel.cor}"></td>
+                        <td align="right"><input name="txtCor" type="text" value="${automovel.cor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Data Término Projeto:</td>
-                        <td align="right"><input name="txtDataTerminoProjeto" type="data" value="${automovel.dataTerminoProjeto}"></td>
+                        <td align="right"><input name="txtDataTerminoProjeto" type="data" value="${automovel.dataTerminoProjeto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Peso Carro:</td>
-                        <td align="right"><input name="txtPesoCarro" type="text" value="${automovel.pesoCarro}"></td>
+                        <td align="right"><input name="txtPesoCarro" type="text" value="${automovel.pesoCarro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Peso Chassi:</td>
-                        <td align="right"><input type="text" name="txtPesoChassi"  value="${automovel.pesoChassi}"></td>
+                        <td align="right"><input type="text" name="txtPesoChassi"  value="${automovel.pesoChassi}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Custo Total:</td>
-                        <td align="right"><input type="text" name="txtCustoTotal"  value="${automovel.custoTotal}"></td>
+                        <td align="right"><input type="text" name="txtCustoTotal"  value="${automovel.custoTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>

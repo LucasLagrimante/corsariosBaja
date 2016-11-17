@@ -15,14 +15,14 @@
                 <table>
                     <tr>
                         <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdTipoPista" type="text" value="${tipoPista.idTipoPista}"></td>
+                        <td align="right"><input name="txtIdTipoPista" type="text" value="${tipoPista.idTipoPista}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Tipo da Pista: </td>
-                        <td align="right"> <input name="txtNome" type="text" value="${tipoPista.nome}"></td>
+                        <td align="right"> <input name="txtNome" type="text" value="${tipoPista.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" value="Enviar"></td>
+                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

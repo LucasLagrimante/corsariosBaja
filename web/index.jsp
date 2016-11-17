@@ -40,7 +40,6 @@
                         <li><a href="PesquisaPecaController">Peça</a></li>
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>
-                        <li><a href="PesquisaInvestidorController">Investidor</a></li>
                         <li><a href="PesquisaTipoPecaController">TipoPeca</a></li>
                         <li><a href="PesquisaTipoPistaController">TipoPista</a></li>
                         <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
@@ -52,29 +51,32 @@
                         <li><a href="PesquisaDesignController">Design</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Investimentos</a>
-                    <ul>
-                        <li><a href="ManterInvestidorController?acao=prepararIncluir">Investir</a></li>
-                        <li><a href="#">Cofre</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Relatórios</a>
-                    <ul>
-                        <li><a href="#">Integrantes</a></li>
-                        <li><a href="#">Desempenho Comparativo</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Exibir</a>
-                    <ul>
-                        <li><a href="#">Informações do Veículo</a></li>
-                        <li><a href="#">Banco de Peças</a></li>
-                        <li><a href="#">Arquitetura</a></li>
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Custo Total</a></li>
-                    </ul>
-                </li>
+                <!--                <li><a href="#">Investimentos</a>
+                                    <ul>
+                                        <li><a href="ManterInvestidorController?acao=prepararIncluir">Investir</a></li>
+                                        <li><a href="#">Cofre</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Relatórios</a>
+                                    <ul>
+                                        <li><a href="#">Integrantes</a></li>
+                                        <li><a href="#">Desempenho Comparativo</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Exibir</a>
+                                    <ul>
+                                        <li><a href="#">Informações do Veículo</a></li>
+                                        <li><a href="#">Banco de Peças</a></li>
+                                        <li><a href="#">Arquitetura</a></li>
+                                        <li><a href="#">Design</a></li>
+                                        <li><a href="#">Custo Total</a></li>
+                                    </ul>
+                                </li>-->
                 <li><a href="javascript:void()" onclick="window.close()">Sair</a></li>
             </ul>
-            <div id="divCentro"><h1 id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
+<!--            <img align="center" src="images/tiobarnabe.jpg"/> -->
+
+            <div id="divCentro">
+                <h1 id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
     </body>
 </html>

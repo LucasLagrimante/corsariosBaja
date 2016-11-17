@@ -8,26 +8,11 @@ public class Frequencia {
 
     private int idFrequencia;
     private String data, estado;
-    private final int idIntegrante;
-    private Integrante integrante;
 
-    public Frequencia(int idFrequencia, String data, String estado, int idIntegrante) {
+    public Frequencia(int idFrequencia, String data, String estado) {
         this.idFrequencia = idFrequencia;
         this.data = data;
         this.estado = estado;
-        this.idIntegrante = idIntegrante;
-    }
-
-    public int getIdIntegrante() {
-        return idIntegrante;
-    }
-
-    public Integrante getIntegrante() {
-        return integrante;
-    }
-
-    public void setIntegrante(Integrante integrante) {
-        this.integrante = integrante;
     }
 
     public int getIdFrequencia() {

@@ -16,7 +16,7 @@
                  <tr>
                         <td align="left">Pessoa: </td>
                         <td align="right">
-                            <select name="selectPessoa"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>> 
+                            <select name="selectPessoa"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>> 
                                 <option value="0" <c:if test="${pessoa.idPessoa == null}"> selected</c:if>> </option>
                                 <c:forEach items="${pessoas}" var="pessoa">
                                     <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
@@ -25,16 +25,16 @@
                         </td>				
                     </tr>
                     <tr>
-                        <td align="left">Id Investidor: </td>
-                        <td align="right"> <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}"></td>
+                        <td align="left">ID: </td>
+                        <td align="right"> <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Valor doado: </td>
-                        <td align="right"> <input type="text" name="txtValorDoado" value="${investidor.valorDoado}"></td>
+                        <td align="right"> <input type="text" name="txtValorDoado" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center"><input type="reset" value="Apagar"> <input type="submit" value="Enviar"></td>
+                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

@@ -15,23 +15,23 @@
                 <table>
                     <tr>
                         <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdCompeticao" type="text" value="${competicao.idCompeticao}"></td>
+                        <td align="right"><input name="txtIdCompeticao" type="text" value="${competicao.idCompeticao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Nome: </td>
-                        <td align="right"><input name="txtNome" type="text" value="${competicao.nome}"></td>
+                        <td align="right"><input name="txtNome" type="text" value="${competicao.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Data: </td>
-                        <td align="right"><input name="txtData" type="text" value="${competicao.data}"></td>
+                        <td align="right"><input name="txtData" type="text" value="${competicao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Hora: </td>
-                        <td align="right"><input name="txtHora" type="text" value="${competicao.hora}"></td>
+                        <td align="right"><input name="txtHora" type="text" value="${competicao.hora}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Local: </td>
-                        <td align="right"><input name="txtLocal" type="text" value="${competicao.local}"></td>
+                        <td align="right"><input name="txtLocal" type="text" value="${competicao.local}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
 
                     <tr>

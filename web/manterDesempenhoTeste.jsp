@@ -37,36 +37,36 @@
                                         </tr>  -->
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"> <input name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" type="text"></td>
+                        <td align="right"> <input name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" type="text" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Nome: </td>
-                        <td align="right"> <input name="txtNome" value="${desempenhoTeste.nome}" type="text"></td>
+                        <td align="right"> <input name="txtNome" value="${desempenhoTeste.nome}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Data: </td>
-                        <td align="right"> <input name="txtData" value="${desempenhoTeste.data}" type="text"></td>
+                        <td align="right"> <input name="txtData" value="${desempenhoTeste.data}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Hora: </td>
-                        <td align="right"> <input name="txtHora" value="${desempenhoTeste.hora}" type="text"></td>
+                        <td align="right"> <input name="txtHora" value="${desempenhoTeste.hora}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr></td>
                     </tr>
                     <tr>
                         <td align="left">Aceleração Média: </td>
-                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}" type="text"></td>
+                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Velocidade Média: </td>
-                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}" type="text"></td>
+                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Tempo de Pista: </td>
-                        <td align="right"> <input name="txtTempoPista" value="${desempenhoTeste.tempoPista}" type="text"></td>
+                        <td align="right"> <input name="txtTempoPista" value="${desempenhoTeste.tempoPista}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Frenagem: </td>
-                        <td align="right"><input name="txtFrenagem" value="${desempenhoTeste.frenagem}" type="text"></td>
+                        <td align="right"><input name="txtFrenagem" value="${desempenhoTeste.frenagem}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <!--                    <tr>
                                             <td align="left">Quesitos: </td>
@@ -80,7 +80,7 @@
                                             </td>
                                         </tr>-->
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" value="Cadastrar Quesitos"> <input type="submit" value="Cadastrar tipos de pista"> <input type="submit" value="Confirmar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>

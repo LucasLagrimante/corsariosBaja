@@ -37,36 +37,36 @@
                                         </tr>  -->
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"> <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text"></td>
+                        <td align="right"> <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Nome: </td>
-                        <td align="right"> <input name="txtNome" value="${desempenho.nome}" type="text"></td>
+                        <td align="right"> <input name="txtNome" value="${desempenho.nome}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Data: </td>
-                        <td align="right"> <input name="txtData" value="${desempenho.data}" type="text"></td>
+                        <td align="right"> <input name="txtData" value="${desempenho.data}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Hora: </td>
-                        <td align="right"> <input name="txtHora" value="${desempenho.hora}" type="text"></td>
+                        <td align="right"> <input name="txtHora" value="${desempenho.hora}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr></td>
                     </tr>
                     <tr>
                         <td align="left">Aceleração Média: </td>
-                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenho.aceleracaoMedia}" type="text"></td>
+                        <td align="right"> <input name="txtAceleracaoMedia" value="${desempenho.aceleracaoMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Velocidade Média: </td>
-                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenho.velocidadeMedia}" type="text"></td>
+                        <td align="right"> <input name="txtVelocidadeMedia" value="${desempenho.velocidadeMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Tempo de Pista: </td>
-                        <td align="right"> <input name="txtTempoPista" value="${desempenho.tempoPista}" type="text"></td>
+                        <td align="right"> <input name="txtTempoPista" value="${desempenho.tempoPista}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
                         <td align="left">Frenagem: </td>
-                        <td align="right"><input name="txtFrenagem" value="${desempenho.frenagem}" type="text"></td>
+                        <td align="right"><input name="txtFrenagem" value="${desempenho.frenagem}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <!--                    <tr>
                                             <td align="left">Quesitos: </td>
@@ -80,7 +80,7 @@
                                             </td>
                                         </tr>-->
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" value="Cadastrar Quesitos"> <input type="submit" value="Cadastrar tipos de pista"> <input type="submit" value="Confirmar"></td>
+                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>
