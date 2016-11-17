@@ -16,7 +16,8 @@
                 <th>Código do doador</th>
                 <th>Valor doado</th>
                 <th>Pessoa</th>
-                              
+                 
+                
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${investidores}" var="investidor">
