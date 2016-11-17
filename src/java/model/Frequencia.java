@@ -8,11 +8,24 @@ public class Frequencia {
 
     private int idFrequencia;
     private String data, estado;
+    private final int matricula;
+    private Integrante integrante;
+    
 
-    public Frequencia(int idFrequencia, String data, String estado) {
+    public Frequencia(int idFrequencia, String data, String estado, int matricula) {
         this.idFrequencia = idFrequencia;
         this.data = data;
         this.estado = estado;
+        this.matricula = matricula;
+
+    }
+
+    public Integrante getIntegrante() {
+        return integrante;
+    }
+
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
 
     public int getIdFrequencia() {
@@ -39,6 +52,9 @@ public class Frequencia {
         this.estado = estado;
     }
 
+    public int getMatricula() {
+        return matricula;
+    }
     public void gravar() throws SQLException, ClassNotFoundException {
         FrequenciaDAO.gravar(this);
     }

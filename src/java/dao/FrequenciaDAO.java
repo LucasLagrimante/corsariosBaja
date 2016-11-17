@@ -16,7 +16,7 @@ import model.Frequencia;
 
 public class FrequenciaDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
+     public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -28,16 +28,18 @@ public class FrequenciaDAO {
         } catch (SQLException e) {
         }
     }
-
+    
     public static void gravar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO frequencia (idFrequencia, data, estado) VALUES (?, ?, ?) ";
+            String sql = "INSERT INTO frequencia (idFrequencia, data, estado,FK_integrante) VALUES (?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, frequencia.getIdFrequencia());
             comando.setString(2, frequencia.getData());
             comando.setString(3, frequencia.getEstado());
+            comando.setInt(4, frequencia.getMatricula());
+            
             comando.execute();
             comando.close();
             conexao.close();
@@ -46,11 +48,10 @@ public class FrequenciaDAO {
         }
     }
 
-    // problema
     public static List<Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Frequencia> automoveis = new ArrayList<Frequencia>();
+        List<Frequencia> frequencias = new ArrayList<Frequencia>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -59,16 +60,19 @@ public class FrequenciaDAO {
                 Frequencia frequencia = new Frequencia(
                         rs.getInt("idFrequencia"),
                         rs.getString("data"),
-                        rs.getString("estado")
+                        rs.getString("estado"),
+                        rs.getInt("FK_integrante")
+                        
                 );
-                automoveis.add(frequencia);
+                
+                frequencias.add(frequencia);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return automoveis;
+        return frequencias;
     }
 
     public static Frequencia obterFrequencia(int idFrequencia) throws ClassNotFoundException {
@@ -81,12 +85,12 @@ public class FrequenciaDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM frequencia where idFrequencia = " + idFrequencia);
             rs.first();
             frequencia = new Frequencia(
-                        rs.getInt("idFrequencia"),
-                        rs.getString("data"),
-                        rs.getString("estado")
-            //null
+                    rs.getInt("idFrequencia"),
+                    rs.getString("data"),
+                    rs.getString("estado"),
+                    rs.getInt("FK_integrante")
             );
-            //frequencia.setFK_integrante(rs.getInt("FK_integrante"));
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -95,18 +99,21 @@ public class FrequenciaDAO {
         return frequencia;
     }
     
-     public static void alterar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
+    public static void alterar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
             String sql = "UPDATE frequencia SET data = ?, "
-                    + "estado = ? "
+                    + "estado = ?, FK_integrante = ? "
                     + "WHERE IdFrequencia = ?";
+            
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setString(1, frequencia.getData());
             comando.setString(2, frequencia.getEstado());
-            comando.setInt(3, frequencia.getIdFrequencia());
+            comando.setInt(3, frequencia.getMatricula());
+            comando.setInt(4, frequencia.getIdFrequencia());
+            
             comando.execute();
             comando.close();
             conexao.close();
@@ -115,6 +122,7 @@ public class FrequenciaDAO {
         }
     }
 
+    
     public static void excluir(Frequencia frequencia) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
@@ -126,5 +134,4 @@ public class FrequenciaDAO {
             
         }
     }
-
 }

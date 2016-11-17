@@ -21,6 +21,7 @@
                         <li><a href="ManterAutomovelController?acao=prepararIncluir">Automovel</a></li>
                         <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
                         <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
+                         <li><a href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
                         <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
                         <li><a href="ManterTipoPecaController?acao=prepararIncluir">TipoPeca</a></li>
                         <li><a href="ManterTipoPistaController?acao=prepararIncluir">TipoPista</a></li>
@@ -37,6 +38,7 @@
                 <li><a href="#">Pesquisar</a>
                     <ul>
                         <li><a href="PesquisaAutomovelController">Automovel</a></li>
+                        <li><a href="PesquisaInvestidorController">Investidor</a></li>
                         <li><a href="PesquisaPecaController">Peça</a></li>
                         <li><a href="PesquisaPessoaController">Pessoa</a></li>
                         <li><a href="PesquisaIntegranteController">Integrante</a></li>

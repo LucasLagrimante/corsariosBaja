@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Frequencia;
+import model.Integrante;
 
 /**
  *
@@ -23,31 +23,29 @@ import model.Frequencia;
  */
 public class ManterFrequenciaController extends HttpServlet {
 
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
+        } else if (acao.equals("confirmarIncluir")) {
+            confirmarIncluir(request, response);
+        } else if (acao.equals("prepararEditar")) {
+            prepararEditar(request, response);
+        } else if (acao.equals("confirmarEditar")) {
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
         }
-         else if (acao.equals("confirmarIncluir")) {
-         confirmarIncluir(request, response);        
-         } else if (acao.equals("prepararEditar")) {
-         prepararEditar(request, response);
-         }  else if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         
-    }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    }
+ 
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("frequencias", Frequencia.obterFrequencias());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -56,16 +54,18 @@ public class ManterFrequenciaController extends HttpServlet {
         }
     }
 
-    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response){
+    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+
         try {
-            /*Frequencia frequencia = null;
-            if (coordenador != 0) {
-                frequencia = Professor.obterProfessor(coordenador);
-            }*/
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, matricula);
             frequencia.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -75,9 +75,11 @@ public class ManterFrequenciaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
+
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
@@ -92,25 +94,36 @@ public class ManterFrequenciaController extends HttpServlet {
         }
     }
 
-    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
+    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, matricula);
             frequencia.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
         } catch (ServletException ex) {
+            throw ex;
         } catch (IOException ex) {
+            throw ex;
         } catch (ClassNotFoundException ex) {
+            throw ex;
         } catch (SQLException ex) {
+            throw ex;
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
@@ -129,8 +142,14 @@ public class ManterFrequenciaController extends HttpServlet {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
         String estado = request.getParameter("txtEstado");
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+
         try {
-            Frequencia frequencia = new Frequencia(idFrequencia, data, estado);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Frequencia frequencia = new Frequencia(idFrequencia, data, estado, matricula);
             frequencia.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFrequenciaController");
             view.forward(request, response);
@@ -157,6 +176,8 @@ public class ManterFrequenciaController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -174,6 +195,8 @@ public class ManterFrequenciaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

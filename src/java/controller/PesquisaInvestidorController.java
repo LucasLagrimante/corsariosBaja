@@ -34,7 +34,7 @@ public class PesquisaInvestidorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException, SQLException {
         try {
-            request.setAttribute("invesidores", Investidor.obterInvestidores());
+            request.setAttribute("investidores", Investidor.obterInvestidores());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaInvestidor.jsp");
             view.forward(request, response);
 
