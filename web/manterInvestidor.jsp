@@ -10,27 +10,27 @@
     </head>
     <body>
         <div align="center">
-             <h2 align="center">Manter Investimentos- ${operacao}</h2>
+            <h2 align="center">Manter Investimentos- ${operacao}</h2>
             <form action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" >
                 <table>
-                 <tr>
+                    <tr>
                         <td align="left">Pessoa: </td>
-                        <td align="right">
-                            <select name="selectPessoa"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>> 
-                                <option value="0" <c:if test="${pessoa.idPessoa == null}"> selected</c:if>> </option>
+                        <td align="right">                              
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${investidor.pessoa.idPessoa }"></c:if>
+                            <select name="selectPessoa" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${pessoas}" var="pessoa">
-                                    <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
+                                    <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa  == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
                                 </c:forEach>
-                            </select>
+                            </select>   
                         </td>				
                     </tr>
                     <tr>
                         <td align="left">ID: </td>
                         <td align="right"> <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Valor doado: </td>
-                        <td align="right"> <input type="text" name="txtValorDoado" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Valor doado: </td>
+                            <td align="right"> <input type="text" name="txtValorDoado" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     </tr>
                     <tr>
