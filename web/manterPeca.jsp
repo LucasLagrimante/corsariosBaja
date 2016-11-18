@@ -36,8 +36,9 @@
                         <tr>
                             <td align="left">Tipo Peça: </td>
                             <td align="right">
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPeca" value="${peca.tipopeca.idTipoPeca}"></c:if>
                                 <select name="selectTipoPeca" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
-                                <option value="0" <c:if test="${tipopeca.idTipoPeca == null}"> selected</c:if>> </option>
+                                
                                 <c:forEach items="${tipopecas}" var="tipopeca">
                                     <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
                                 </c:forEach>

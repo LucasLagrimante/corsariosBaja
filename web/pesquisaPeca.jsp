@@ -36,8 +36,8 @@
                     <td><c:out value="${peca.precoCompra}" /></td>                   
                     <td><c:out value="${peca.idTipoPeca}" /></td>
                    
-                    <td><a href="ManterPecaController?acao=prepararEditar&idPeca=<c:out value="${peca.idPeca}" />">Editar</a></td>
-                    <td><a href="ManterPecaController?acao=prepararExcluir&idPeca=<c:out value="${peca.idPeca}" />">Excluir</a></td>
+                    <td><a href="ManterPecaController?acao=prepararEditar&txtIdPeca=<c:out value="${peca.idPeca}" />">Editar</a></td>
+                    <td><a href="ManterPecaController?acao=prepararExcluir&txtIdPeca=<c:out value="${peca.idPeca}" />">Excluir</a></td>
                 </tr>
             </c:forEach>
             <tr> 

@@ -82,7 +82,7 @@ public class ManterPecaController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
-            int idPeca = Integer.parseInt(request.getParameter("idPeca"));
+            int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);
             RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
@@ -128,7 +128,7 @@ public class ManterPecaController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
-            int idPeca = Integer.parseInt(request.getParameter("idPeca"));
+            int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
             Peca peca = Peca.obterPeca(idPeca);
             request.setAttribute("peca", peca);
             RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");

@@ -21,7 +21,10 @@ public class Peca {
         this.idTipoPeca = idTipoPeca;
     }
 
-    public TipoPeca getTipopeca() {
+    public TipoPeca getTipopeca() throws ClassNotFoundException {
+        if ((tipopeca == null) && (idTipoPeca != 0)) {
+            tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+        }
         return tipopeca;
     }
 
