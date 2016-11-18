@@ -33,7 +33,11 @@ public class Integrante {
         this.cargaHorariaDisponivel = cargaHorariaDisponivel;
     }
 
-    public Pessoa getPessoa() {
+    public Pessoa getPessoa() throws ClassNotFoundException {
+        if ((pessoa == null) && (idPessoa != 0)) {
+            pessoa = Pessoa.obterPessoa(idPessoa);
+        }
+        
         return pessoa;
     }
 
