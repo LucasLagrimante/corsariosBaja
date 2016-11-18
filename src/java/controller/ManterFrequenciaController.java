@@ -80,7 +80,7 @@ public class ManterFrequenciaController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
-            int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
+            int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
             RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
@@ -124,7 +124,7 @@ public class ManterFrequenciaController extends HttpServlet {
         try {
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
-            int idFrequencia = Integer.parseInt(request.getParameter("idFrequencia"));
+            int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
             Frequencia frequencia = Frequencia.obterFrequencia(idFrequencia);
             request.setAttribute("frequencia", frequencia);
             RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
