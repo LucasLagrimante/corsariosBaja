@@ -16,8 +16,8 @@
                     <tr>
                         <td align="left">Automóvel: </td>
                         <td align="right">
-                            <select name="selectAutomovel"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>> 
-                                <option value="0" <c:if test="${automovel.idAutomovel == null}"> selected</c:if>> </option>
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${design.automovel.idAutomovel}"></c:if>
+                            <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${automoveis}" var="automovel">
                                     <option value="${automovel.idAutomovel}" <c:if test="${design.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
                                 </c:forEach>
@@ -27,12 +27,12 @@
                     <tr>
                         <td align="left">ID:</td>
                         <td align="right"><input name="txtIdDesign" type="text" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                    </tr>
-                    <tr>
-                        <td align="left">Imagem:</td>
-                        <td align="right"><input name="txtCaminhoImagem" type="text" value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td align="left">Imagem:</td>
+                            <td align="right"><input name="txtCaminhoImagem" type="text" value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
 
                     <tr>

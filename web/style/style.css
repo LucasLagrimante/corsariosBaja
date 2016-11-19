@@ -57,14 +57,14 @@ body{
 
 #divCentro{
     position:  absolute;
-    top: 73%;
+    top: 85%;
     left: 12%;
-    border: 10px solid #73AD21;
+    border: 5px solid #73AD21;
 }
 
 #h1Center{
     color: #73AD21;
-    font-size: 45px;
+    font-size: 30px;
     font-family: Courier New, Courier, monospace;
 }
 

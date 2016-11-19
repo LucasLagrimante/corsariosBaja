@@ -112,7 +112,7 @@ public class PecaDAO {
             String sql = "UPDATE peca SET quantidade = ?, "
                     + "nome = ?, modelo = ?, precoCompra = ?, "
                     + "FK_tipopeca = ? "
-                    + "WHERE IdPeca = ?";
+                    + "WHERE idPeca = ?";
             
             PreparedStatement comando = conexao.prepareStatement(sql);
 

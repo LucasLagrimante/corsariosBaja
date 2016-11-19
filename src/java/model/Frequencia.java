@@ -20,7 +20,10 @@ public class Frequencia {
 
     }
 
-    public Integrante getIntegrante() {
+    public Integrante getIntegrante() throws ClassNotFoundException {
+        if ((integrante == null) && (matricula != 0)) {
+            integrante = Integrante.obterIntegrante(matricula);
+        }
         return integrante;
     }
 

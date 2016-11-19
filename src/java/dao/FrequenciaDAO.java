@@ -33,7 +33,7 @@ public class FrequenciaDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO frequencia (idFrequencia, data, estado,FK_integrante) VALUES (?, ?, ?, ?) ";
+            String sql = "INSERT INTO frequencia (idFrequencia, data, estado, FK_integrante) VALUES (?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, frequencia.getIdFrequencia());
             comando.setString(2, frequencia.getData());

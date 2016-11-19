@@ -15,9 +15,9 @@
                 <table>
                     <tr>
                         <td align="left">Automóvel: </td>
-                        <td align="right">
-                            <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> 
-                                <option value="0" <c:if test="${automovel.idAutomovel == null}"> selected</c:if>> </option>
+                                 <td align="right">
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${arquitetura.automovel.idAutomovel}"></c:if>
+                                <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${automoveis}" var="automovel">
                                     <option value="${automovel.idAutomovel}" <c:if test="${arquitetura.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
                                 </c:forEach>

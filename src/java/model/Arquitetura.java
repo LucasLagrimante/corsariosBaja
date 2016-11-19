@@ -18,7 +18,10 @@ public class Arquitetura {
 
     }
 
-    public Automovel getAutomovel() {
+    public Automovel getAutomovel() throws ClassNotFoundException {
+        if ((automovel == null) && (idAutomovel != 0)) {
+            automovel = Automovel.obterAutomovel(idAutomovel);
+        }
         return automovel;
     }
 
