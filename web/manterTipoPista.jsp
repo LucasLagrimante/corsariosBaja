@@ -10,7 +10,7 @@
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar Tipo de Pista- ${operacao}</h2>
+            <h2 align="center">Cadastrar Tipo de Pista ${operacao}</h2>
             <form action="ManterTipoPistaController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>

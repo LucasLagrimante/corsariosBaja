@@ -24,7 +24,9 @@
                 <th>Data da Competição</th>
                 <th>Hora da Competição</th>
                 <th>Local da Competição</th>
-                
+                <th>Tipo Pista</th>
+
+
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${competicoes}" var="competicao">
@@ -34,6 +36,7 @@
                     <td><c:out value="${competicao.data}" /></td>
                     <td><c:out value="${competicao.hora}" /></td>
                     <td><c:out value="${competicao.local}" /></td>
+                    <td><c:out value="${competicao.idTipoPista}" /></td>
                     <td><a href="ManterCompeticaoController?acao=prepararEditar&idCompeticao=<c:out value="${competicao.idCompeticao}" />">Editar</a></td>
                     <td><a href="ManterCompeticaoController?acao=prepararExcluir&idCompeticao=<c:out value="${competicao.idCompeticao}" />">Excluir</a></td>
                 </tr>

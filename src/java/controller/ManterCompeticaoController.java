@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Competicao;
+import model.TipoPista;
 
 /**
  *
@@ -39,7 +40,7 @@ public class ManterCompeticaoController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("competicoes", Competicao.obterCompeticoes());
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
             RequestDispatcher view = request.getRequestDispatcher("/manterCompeticao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -54,10 +55,14 @@ public class ManterCompeticaoController extends HttpServlet {
         String data = request.getParameter("txtData");
         String hora = request.getParameter("txtHora");
         String local = request.getParameter("txtLocal");
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
 
         try {
-          
-            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local);
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local, idTipoPista);
             competicao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
             view.forward(request, response);
@@ -71,6 +76,7 @@ public class ManterCompeticaoController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
             int idCompeticao = Integer.parseInt(request.getParameter("idCompeticao"));
             Competicao competicao = Competicao.obterCompeticao(idCompeticao);
             request.setAttribute("competicao", competicao);
@@ -91,8 +97,14 @@ public class ManterCompeticaoController extends HttpServlet {
         String data = request.getParameter("txtData");
         String hora = request.getParameter("txtHora");
         String local = request.getParameter("txtLocal");
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+
         try {
-            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local);
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local, idTipoPista);
             competicao.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
             view.forward(request, response);
@@ -103,9 +115,10 @@ public class ManterCompeticaoController extends HttpServlet {
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
             int idCompeticao = Integer.parseInt(request.getParameter("idCompeticao"));
             Competicao competicao = Competicao.obterCompeticao(idCompeticao);
             request.setAttribute("competicao", competicao);
@@ -126,9 +139,14 @@ public class ManterCompeticaoController extends HttpServlet {
         String data = request.getParameter("txtData");
         String hora = request.getParameter("txtHora");
         String local = request.getParameter("txtLocal");
-        
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+
         try {
-            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local);
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local, idTipoPista);
             competicao.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCompeticaoController");
             view.forward(request, response);

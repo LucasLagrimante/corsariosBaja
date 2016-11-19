@@ -33,13 +33,15 @@ public class CompeticaoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO competicao (idCompeticao , nome, data, hora, local) VALUES (?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO competicao (idCompeticao , nome, data, hora, local, FK_tipopista) VALUES (?, ?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, competicao.getIdCompeticao());
             comando.setString(2, competicao.getNome());
             comando.setString(3, competicao.getData());
             comando.setString(4, competicao.getHora());
             comando.setString(5, competicao.getLocal());
+            comando.setInt(6, competicao.getIdTipoPista());
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -62,7 +64,8 @@ public class CompeticaoDAO {
                         rs.getString("nome"),
                         rs.getString("data"),
                         rs.getString("hora"),
-                        rs.getString("local")
+                        rs.getString("local"),
+                        rs.getInt("FK_tipopista")
                 );
                 competicoes.add(competicao);
             }
@@ -88,7 +91,8 @@ public class CompeticaoDAO {
                     rs.getString("nome"),
                     rs.getString("data"),
                     rs.getString("hora"),
-                    rs.getString("local")
+                    rs.getString("local"),
+                    rs.getInt("FK_tipopista")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,7 +107,7 @@ public class CompeticaoDAO {
         try {
             conexao = BD.getConexao();
             String sql = "UPDATE competicao SET nome = ?, "
-                    + "data = ?, hora = ?, local = ? "
+                    + "data = ?, hora = ?, local = ?, FK_tipopista = ? "
                     + "WHERE IdCompeticao = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
@@ -111,7 +115,8 @@ public class CompeticaoDAO {
             comando.setString(2, competicao.getData());
             comando.setString(3, competicao.getHora());
             comando.setString(4, competicao.getLocal());
-            comando.setInt(5, competicao.getIdCompeticao());
+            comando.setInt(5, competicao.getIdTipoPista());
+            comando.setInt(6, competicao.getIdCompeticao());
             comando.execute();
             comando.close();
             conexao.close();
@@ -128,7 +133,7 @@ public class CompeticaoDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 
