@@ -33,7 +33,7 @@ public class DesempenhoTesteDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO desempenhoTeste (idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem) VALUES (?, ?, ?, ?, ?, ?, ?,?) ";
+            String sql = "INSERT INTO desempenhoTeste (idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, FK_automovel, FK_tipopista, FK_motorista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, desempenhoTeste.getIdDesempenhoTeste());
             comando.setString(2, desempenhoTeste.getNome());
@@ -43,6 +43,10 @@ public class DesempenhoTesteDAO {
             comando.setFloat(6, desempenhoTeste.getAceleracaoMedia());
             comando.setString(7, desempenhoTeste.getTempoPista());
             comando.setFloat(8, desempenhoTeste.getFrenagem());
+            comando.setInt(9, desempenhoTeste.getIdAutomovel());
+            comando.setInt(10, desempenhoTeste.getIdTipoPista());
+            comando.setInt(11, desempenhoTeste.getIdPessoa());
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -68,7 +72,10 @@ public class DesempenhoTesteDAO {
                         rs.getFloat("velocidadeMedia"),
                         rs.getFloat("aceleracaoMedia"),
                         rs.getString("tempoPista"),
-                        rs.getFloat("frenagem")
+                        rs.getFloat("frenagem"),
+                        rs.getInt("FK_automovel"),
+                        rs.getInt("FK_tipopista"),
+                        rs.getInt("FK_motorista")
                 );
                 desempenhosTeste.add(desempenhoTeste);
             }
@@ -97,7 +104,10 @@ public class DesempenhoTesteDAO {
                     rs.getFloat("velocidadeMedia"),
                     rs.getFloat("aceleracaoMedia"),
                     rs.getString("tempoPista"),
-                    rs.getFloat("frenagem")
+                    rs.getFloat("frenagem"),
+                    rs.getInt("FK_automovel"),
+                    rs.getInt("FK_tipopista"),
+                    rs.getInt("FK_motorista")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -114,10 +124,9 @@ public class DesempenhoTesteDAO {
             String sql = "UPDATE desempenhoTeste SET nome = ?, "
                     + "data = ?, hora = ?, velocidadeMedia = ?, "
                     + "aceleracaoMedia = ?, tempoPista = ?, "
-                    + "frenagem = ? "
+                    + "frenagem = ?, FK_automovel = ?, FK_tipopista = ?, FK_motorista = ? "
                     + "WHERE IdDesempenhoTeste = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
-
 
             comando.setString(1, desempenhoTeste.getNome());
             comando.setString(2, desempenhoTeste.getData());
@@ -126,8 +135,11 @@ public class DesempenhoTesteDAO {
             comando.setFloat(5, desempenhoTeste.getAceleracaoMedia());
             comando.setString(6, desempenhoTeste.getTempoPista());
             comando.setFloat(7, desempenhoTeste.getFrenagem());
-            comando.setInt(8, desempenhoTeste.getIdDesempenhoTeste());
-            
+            comando.setInt(8, desempenhoTeste.getIdAutomovel());
+            comando.setInt(9, desempenhoTeste.getIdTipoPista());
+            comando.setInt(10, desempenhoTeste.getIdPessoa());
+            comando.setInt(11, desempenhoTeste.getIdDesempenhoTeste());
+
             comando.execute();
             comando.close();
             conexao.close();

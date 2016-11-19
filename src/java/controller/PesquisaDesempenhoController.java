@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +22,7 @@ import model.Desempenho;
  */
 public class PesquisaDesempenhoController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("desempenhos", Desempenho.obterDesempenhos());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaDesempenho.jsp");

@@ -22,8 +22,7 @@ import model.DesempenhoTeste;
  */
 public class PesquisaDesempenhoTesteController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("desempenhosTeste", DesempenhoTeste.obterDesempenhosTeste());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaDesempenhoTeste.jsp");

@@ -14,7 +14,7 @@
             <form action="ManterAutomovelController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Id:</td>
+                        <td align="left">ID:</td>
                         <td align="right"><input name="txtIdAutomovel" type="text" value="${automovel.idAutomovel}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>

@@ -10,7 +10,16 @@ public class DesempenhoTeste {
     private String nome, data, hora, tempoPista;
     private float aceleracaoMedia, velocidadeMedia, frenagem;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem) {
+    private final int idAutomovel;
+    private Automovel automovel;
+
+    private final int idTipoPista;
+    private TipoPista tipopista;
+
+    private final int idPessoa;
+    private Pessoa pessoa;
+
+    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int idPessoa) {
         this.idDesempenhoTeste = idDesempenhoTeste;
         this.nome = nome;
         this.data = data;
@@ -19,6 +28,54 @@ public class DesempenhoTeste {
         this.velocidadeMedia = velocidadeMedia;
         this.tempoPista = tempoPista;
         this.frenagem = frenagem;
+        this.idAutomovel = idAutomovel;
+        this.idTipoPista = idTipoPista;
+        this.idPessoa = idPessoa;
+    }
+
+    public Automovel getAutomovel() throws ClassNotFoundException {
+        if ((automovel == null) && (idAutomovel != 0)) {
+            automovel = Automovel.obterAutomovel(idAutomovel);
+        }
+        return automovel;
+    }
+
+    public int getIdAutomovel() {
+        return idAutomovel;
+    }
+
+    public int getIdTipoPista() {
+        return idTipoPista;
+    }
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
+    }
+
+    public TipoPista getTipopista() throws ClassNotFoundException {
+        if ((tipopista == null) && (idTipoPista != 0)) {
+            tipopista = TipoPista.obterTipoPista(idTipoPista);
+        }
+        return tipopista;
+    }
+
+    public void setTipopista(TipoPista tipopista) {
+        this.tipopista = tipopista;
+    }
+
+    public Pessoa getPessoa() throws ClassNotFoundException {
+        if ((pessoa == null) && (idPessoa != 0)) {
+            pessoa = Pessoa.obterPessoa(idPessoa);
+        }
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public int getIdDesempenhoTeste() {

@@ -14,11 +14,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Automovel;
 import model.Desempenho;
+import model.Pessoa;
+import model.TipoPista;
 
 /**
  *
- * @author Pablo
+ * @author Lucas
  */
 public class ManterDesempenhoController extends HttpServlet {
 
@@ -41,11 +44,12 @@ public class ManterDesempenhoController extends HttpServlet {
 
     }
 
-    public void prepararIncluir(HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("desempenhos", Desempenho.obterDesempenhos());
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenho.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -63,8 +67,23 @@ public class ManterDesempenhoController extends HttpServlet {
         float aceleracaoMedia = Float.parseFloat(request.getParameter("txtAceleracaoMedia"));
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
             desempenho.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);
@@ -78,6 +97,9 @@ public class ManterDesempenhoController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
             int idDesempenho = Integer.parseInt(request.getParameter("idDesempenho"));
             Desempenho desempenho = Desempenho.obterDesempenho(idDesempenho);
             request.setAttribute("desempenho", desempenho);
@@ -101,8 +123,23 @@ public class ManterDesempenhoController extends HttpServlet {
         float aceleracaoMedia = Float.parseFloat(request.getParameter("txtAceleracaoMedia"));
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
             desempenho.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);
@@ -113,9 +150,12 @@ public class ManterDesempenhoController extends HttpServlet {
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            request.setAttribute("tipospista", TipoPista.obterTiposPista());
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
             int idDesempenho = Integer.parseInt(request.getParameter("idDesempenho"));
             Desempenho desempenho = Desempenho.obterDesempenho(idDesempenho);
             request.setAttribute("desempenho", desempenho);
@@ -136,8 +176,23 @@ public class ManterDesempenhoController extends HttpServlet {
         float aceleracaoMedia = Float.parseFloat(request.getParameter("txtAceleracaoMedia"));
         String tempoPista = request.getParameter("txtTempoPista");
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
+        int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+        int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem);
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = Automovel.obterAutomovel(idAutomovel);
+            }
+            TipoPista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipoPista.obterTipoPista(idTipoPista);
+            }
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = Pessoa.obterPessoa(idPessoa);
+            }
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
             desempenho.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);

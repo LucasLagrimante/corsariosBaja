@@ -20,6 +20,9 @@
         <table border align="center">
             <tr>
                 <th>Código Desempenho Teste</th>
+                <th>Automovel</th>
+                <th>Tipo Pista</th>
+                <th>Motorista</th>
                 <th>Nome Desempenho Teste</th>
                 <th>Data</th>
                 <th>Hora</th>
@@ -32,6 +35,9 @@
             <c:forEach items="${desempenhosTeste}" var="desempenhoTeste">
                 <tr>
                     <td><c:out value="${desempenhoTeste.idDesempenhoTeste}" /></td>
+                    <td><c:out value="${desempenhoTeste.idAutomovel}" /></td>
+                    <td><c:out value="${desempenhoTeste.idTipoPista}" /></td>
+                    <td><c:out value="${desempenhoTeste.idPessoa}" /></td>
                     <td><c:out value="${desempenhoTeste.nome}" /></td>
                     <td><c:out value="${desempenhoTeste.data}" /></td>
                     <td><c:out value="${desempenhoTeste.hora}" /></td>
@@ -44,7 +50,7 @@
                 </tr>
             </c:forEach>
             <tr> 
-                <td  align="center" colspan="10"> 
+                <td  align="center" colspan="13"> 
                     <button onclick="window.location.href = 'index.jsp'">Voltar</button>
                 </td>
             </tr>
