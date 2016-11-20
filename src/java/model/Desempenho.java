@@ -16,30 +16,10 @@ public class Desempenho {
     private final int idTipoPista;
     private TipoPista tipopista;
 
-    public int getIdAutomovel() {
-        return idAutomovel;
-    }
+    private final int matricula;
+    private Integrante integrante;
 
-    public int getIdTipoPista() {
-        return idTipoPista;
-    }
-
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setAceleracaoMedia(float aceleracaoMedia) {
-        this.aceleracaoMedia = aceleracaoMedia;
-    }
-
-    public void setVelocidadeMedia(float velocidadeMedia) {
-        this.velocidadeMedia = velocidadeMedia;
-    }
-
-    private final int idPessoa;
-    private Pessoa pessoa;
-
-    public Desempenho(int idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int idPessoa) {
+    public Desempenho(int idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int matricula) {
         this.idDesempenho = idDesempenho;
         this.nome = nome;
         this.data = data;
@@ -50,7 +30,27 @@ public class Desempenho {
         this.frenagem = frenagem;
         this.idAutomovel = idAutomovel;
         this.idTipoPista = idTipoPista;
-        this.idPessoa = idPessoa;
+        this.matricula = matricula;
+    }
+
+    public int getIdAutomovel() {
+        return idAutomovel;
+    }
+
+    public int getIdTipoPista() {
+        return idTipoPista;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setAceleracaoMedia(float aceleracaoMedia) {
+        this.aceleracaoMedia = aceleracaoMedia;
+    }
+
+    public void setVelocidadeMedia(float velocidadeMedia) {
+        this.velocidadeMedia = velocidadeMedia;
     }
 
     public Automovel getAutomovel() throws ClassNotFoundException {
@@ -75,15 +75,15 @@ public class Desempenho {
         this.tipopista = tipopista;
     }
 
-    public Pessoa getPessoa() throws ClassNotFoundException {
-        if ((pessoa == null) && (idPessoa != 0)) {
-            pessoa = Pessoa.obterPessoa(idPessoa);
+    public Integrante getIntegrante() throws ClassNotFoundException {
+        if ((integrante == null) && (matricula != 0)) {
+            integrante = Integrante.obterIntegrante(matricula);
         }
-        return pessoa;
+        return integrante;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
 
     public int getIdDesempenho() {

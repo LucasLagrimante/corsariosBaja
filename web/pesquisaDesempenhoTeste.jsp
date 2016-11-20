@@ -37,7 +37,7 @@
                     <td><c:out value="${desempenhoTeste.idDesempenhoTeste}" /></td>
                     <td><c:out value="${desempenhoTeste.idAutomovel}" /></td>
                     <td><c:out value="${desempenhoTeste.idTipoPista}" /></td>
-                    <td><c:out value="${desempenhoTeste.idPessoa}" /></td>
+                    <td><c:out value="${desempenhoTeste.matricula}" /></td>
                     <td><c:out value="${desempenhoTeste.nome}" /></td>
                     <td><c:out value="${desempenhoTeste.data}" /></td>
                     <td><c:out value="${desempenhoTeste.hora}" /></td>

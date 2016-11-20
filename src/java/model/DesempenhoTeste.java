@@ -16,10 +16,10 @@ public class DesempenhoTeste {
     private final int idTipoPista;
     private TipoPista tipopista;
 
-    private final int idPessoa;
-    private Pessoa pessoa;
+    private final int matricula;
+    private Integrante integrante;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int idPessoa) {
+    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int matricula) {
         this.idDesempenhoTeste = idDesempenhoTeste;
         this.nome = nome;
         this.data = data;
@@ -30,7 +30,7 @@ public class DesempenhoTeste {
         this.frenagem = frenagem;
         this.idAutomovel = idAutomovel;
         this.idTipoPista = idTipoPista;
-        this.idPessoa = idPessoa;
+        this.matricula = matricula;
     }
 
     public Automovel getAutomovel() throws ClassNotFoundException {
@@ -48,8 +48,8 @@ public class DesempenhoTeste {
         return idTipoPista;
     }
 
-    public int getIdPessoa() {
-        return idPessoa;
+    public int getMatricula() {
+        return matricula;
     }
 
     public void setAutomovel(Automovel automovel) {
@@ -67,15 +67,15 @@ public class DesempenhoTeste {
         this.tipopista = tipopista;
     }
 
-    public Pessoa getPessoa() throws ClassNotFoundException {
-        if ((pessoa == null) && (idPessoa != 0)) {
-            pessoa = Pessoa.obterPessoa(idPessoa);
+    public Integrante getIntegrante() throws ClassNotFoundException {
+        if ((integrante == null) && (matricula != 0)) {
+            integrante = Integrante.obterIntegrante(matricula);
         }
-        return pessoa;
+        return integrante;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
 
     public int getIdDesempenhoTeste() {

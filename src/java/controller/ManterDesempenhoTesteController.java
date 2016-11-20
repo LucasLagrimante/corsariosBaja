@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Automovel;
 import model.DesempenhoTeste;
+import model.Integrante;
 import model.Pessoa;
 import model.TipoPista;
 
@@ -49,7 +50,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenhoTeste.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -69,7 +70,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -79,11 +80,11 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenhoTeste.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
             view.forward(request, response);
@@ -99,7 +100,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idDesempenhoTeste = Integer.parseInt(request.getParameter("idDesempenhoTeste"));
             DesempenhoTeste desempenhoTeste = DesempenhoTeste.obterDesempenhoTeste(idDesempenhoTeste);
             request.setAttribute("desempenhoTeste", desempenhoTeste);
@@ -122,7 +123,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -132,11 +133,11 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenhoTeste.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
             view.forward(request, response);
@@ -152,7 +153,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idDesempenhoTeste = Integer.parseInt(request.getParameter("idDesempenhoTeste"));
             DesempenhoTeste desempenhoTeste = DesempenhoTeste.obterDesempenhoTeste(idDesempenhoTeste);
             request.setAttribute("desempenhoTeste", desempenhoTeste);
@@ -175,7 +176,7 @@ public class ManterDesempenhoTesteController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -185,11 +186,11 @@ public class ManterDesempenhoTesteController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            DesempenhoTeste desempenhoTeste = new DesempenhoTeste(idDesempenhoTeste, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenhoTeste.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoTesteController");
             view.forward(request, response);

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Automovel;
 import model.Desempenho;
+import model.Integrante;
 import model.Pessoa;
 import model.TipoPista;
 
@@ -49,7 +50,7 @@ public class ManterDesempenhoController extends HttpServlet {
             request.setAttribute("operacao", "Incluir");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenho.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -69,7 +70,7 @@ public class ManterDesempenhoController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -79,11 +80,11 @@ public class ManterDesempenhoController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenho.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);
@@ -99,7 +100,7 @@ public class ManterDesempenhoController extends HttpServlet {
             request.setAttribute("operacao", "Editar");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idDesempenho = Integer.parseInt(request.getParameter("idDesempenho"));
             Desempenho desempenho = Desempenho.obterDesempenho(idDesempenho);
             request.setAttribute("desempenho", desempenho);
@@ -125,7 +126,7 @@ public class ManterDesempenhoController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -135,11 +136,11 @@ public class ManterDesempenhoController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenho.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);
@@ -155,7 +156,7 @@ public class ManterDesempenhoController extends HttpServlet {
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("tipospista", TipoPista.obterTiposPista());
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idDesempenho = Integer.parseInt(request.getParameter("idDesempenho"));
             Desempenho desempenho = Desempenho.obterDesempenho(idDesempenho);
             request.setAttribute("desempenho", desempenho);
@@ -178,7 +179,7 @@ public class ManterDesempenhoController extends HttpServlet {
         float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
         int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
         int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
-        int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
         try {
             Automovel automovel = null;
             if (idAutomovel != 0) {
@@ -188,11 +189,11 @@ public class ManterDesempenhoController extends HttpServlet {
             if (idTipoPista != 0) {
                 tipopista = TipoPista.obterTipoPista(idTipoPista);
             }
-            Pessoa pessoa = null;
-            if (idPessoa != 0) {
-                pessoa = Pessoa.obterPessoa(idPessoa);
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
             }
-            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, idPessoa);
+            Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, idAutomovel, idTipoPista, matricula);
             desempenho.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDesempenhoController");
             view.forward(request, response);

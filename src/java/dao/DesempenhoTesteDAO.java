@@ -45,7 +45,7 @@ public class DesempenhoTesteDAO {
             comando.setFloat(8, desempenhoTeste.getFrenagem());
             comando.setInt(9, desempenhoTeste.getIdAutomovel());
             comando.setInt(10, desempenhoTeste.getIdTipoPista());
-            comando.setInt(11, desempenhoTeste.getIdPessoa());
+            comando.setInt(11, desempenhoTeste.getMatricula());
 
             comando.execute();
             comando.close();
@@ -137,8 +137,8 @@ public class DesempenhoTesteDAO {
             comando.setFloat(7, desempenhoTeste.getFrenagem());
             comando.setInt(8, desempenhoTeste.getIdAutomovel());
             comando.setInt(9, desempenhoTeste.getIdTipoPista());
-            comando.setInt(10, desempenhoTeste.getIdPessoa());
-            comando.setInt(11, desempenhoTeste.getIdDesempenhoTeste());
+            comando.setInt(10, desempenhoTeste.getMatricula());
+            comando.setInt(11, desempenhoTeste.getMatricula());
 
             comando.execute();
             comando.close();

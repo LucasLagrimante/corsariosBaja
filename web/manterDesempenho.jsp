@@ -36,16 +36,16 @@
                         </td>				
                     </tr>
                     <tr>
-                        <td align="left">Motorista: </td>
+                        <td align="left">Motorista: </td>                            
                         <td align="right">
-                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${desempenho.pessoa.idPessoa}"></c:if>
-                            <select name="selectPessoa" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                                <c:forEach items="${pessoas}" var="pessoa">
-                                    <option value="${pessoa.idPessoa}" <c:if test="${desempenho.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${desempenho.integrante.matricula}"></c:if>
+                            <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                                <c:forEach items="${integrantes}" var="integrante">
+                                    <option value="${integrante.matricula}" <c:if test="${desempenho.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
                                 </c:forEach>
                             </select>
-                        </td>				
-                    </tr>
+                        </td>
+                    </tr> 
                     <tr>
                         <td align="left">ID: </td>
                         <td align="right"> <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>

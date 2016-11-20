@@ -76,7 +76,7 @@
                                 </li>-->
                 <li><a href="javascript:void()" onclick="window.close()">Sair</a></li>
             </ul>
-<!--            <img align="center" src="images/tiobarnabe.jpg"/> -->
+            <img align="center" src="images/tiobarnabe.jpg"/> 
 
             <div id="divCentro">
                 <h1 id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
