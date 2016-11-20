@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Avaliacao;
-import model.Avaliacao;
 import model.Integrante;
 
 /**
@@ -25,7 +24,7 @@ import model.Integrante;
 public class ManterAvaliacaoController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararIncluir")) {
             prepararIncluir(request, response);
@@ -44,10 +43,10 @@ public class ManterAvaliacaoController extends HttpServlet {
 
     }
 
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException {
         try {
             request.setAttribute("operacao", "Incluir");
-            //request.setAttribute("avaliacoes", Avaliacao.obterAvaliacoes());
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             RequestDispatcher view = request.getRequestDispatcher("/manterAvaliacao.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -61,8 +60,13 @@ public class ManterAvaliacaoController extends HttpServlet {
         int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
-        try {
-            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+             try {
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, matricula);
             avaliacao.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
             view.forward(request, response);
@@ -76,6 +80,7 @@ public class ManterAvaliacaoController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
             Avaliacao avaliacao = Avaliacao.obterAvaliacao(idAvaliacao);
             request.setAttribute("avaliacao", avaliacao);
@@ -95,8 +100,13 @@ public class ManterAvaliacaoController extends HttpServlet {
         int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
-        try {
-            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+             try {
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, matricula);
             avaliacao.alterar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
             view.forward(request, response);
@@ -107,9 +117,10 @@ public class ManterAvaliacaoController extends HttpServlet {
         }
     }
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
+    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Excluir");
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
             Avaliacao avaliacao = Avaliacao.obterAvaliacao(idAvaliacao);
             request.setAttribute("avaliacao", avaliacao);
@@ -129,8 +140,13 @@ public class ManterAvaliacaoController extends HttpServlet {
         int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
-        try {
-            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data);
+        int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+             try {
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = Integrante.obterIntegrante(matricula);
+            }
+            Avaliacao avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, matricula);
             avaliacao.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaAvaliacaoController");
             view.forward(request, response);
@@ -157,6 +173,8 @@ public class ManterAvaliacaoController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -174,6 +192,8 @@ public class ManterAvaliacaoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManterAvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

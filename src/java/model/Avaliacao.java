@@ -8,12 +8,30 @@ public class Avaliacao {
 
     private int idAvaliacao, frequencia;
     private String comparecimento, data;
+     private final int matricula;
+    private Integrante integrante;
 
-    public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data) {
+    public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data, int matricula) {
         this.idAvaliacao = idAvaliacao;
         this.frequencia = frequencia;
         this.comparecimento = comparecimento;
         this.data = data;
+        this.matricula = matricula;
+    }
+    
+     public int getMatricula() {
+        return matricula;
+    }
+    
+    public Integrante getIntegrante() throws ClassNotFoundException {
+        if ((integrante == null) && (matricula != 0)) {
+            integrante = Integrante.obterIntegrante(matricula);
+        }
+        return integrante;
+    }
+
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
 
     public int getIdAvaliacao() {

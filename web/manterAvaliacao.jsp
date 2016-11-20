@@ -32,13 +32,13 @@
                         <tr>
                             <td align="left">Integrante: </td>                            
                             <td align="right">
-                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${frequencia.integrante.matricula}"></c:if>
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${avaliacao.integrante.matricula}"></c:if>
                             <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${integrantes}" var="integrante">
-                                    <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
+                                    <option value="${integrante.matricula}" <c:if test="${avaliacao.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.nome} </option>
                                 </c:forEach>
                             </select>
-                        </td>
+                           
                     </tr>
                     <tr>               
                         <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>

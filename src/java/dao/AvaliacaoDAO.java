@@ -33,12 +33,13 @@ public class AvaliacaoDAO {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
-            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data) VALUES (?, ?, ?, ?) ";
+            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data, FK_integrante) VALUES (?, ?, ?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, avaliacao.getIdAvaliacao());
             comando.setInt(2, avaliacao.getFrequencia());
             comando.setString(3, avaliacao.getComparecimento());
             comando.setString(4, avaliacao.getData());
+            comando.setInt(5, avaliacao.getMatricula());
             comando.execute();
             comando.close();
             conexao.close();
@@ -60,7 +61,8 @@ public class AvaliacaoDAO {
                         rs.getInt("idAvaliacao"),
                         rs.getInt("frequencia"),
                         rs.getString("comparecimento"),
-                        rs.getString("data")
+                        rs.getString("data"),
+                        rs.getInt("FK_integrante")
                 );
                 avaliacoes.add(avaliacao);
             }
@@ -82,10 +84,11 @@ public class AvaliacaoDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao = " + idAvaliacao);
             rs.first();
             avaliacao = new Avaliacao(
-                    rs.getInt("idAvaliacao"),
-                    rs.getInt("frequencia"),
-                    rs.getString("comparecimento"),
-                    rs.getString("data")
+                        rs.getInt("idAvaliacao"),
+                        rs.getInt("frequencia"),
+                        rs.getString("comparecimento"),
+                        rs.getString("data"),
+                        rs.getInt("FK_integrante")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,14 +103,15 @@ public class AvaliacaoDAO {
         try {
             conexao = BD.getConexao();
             String sql = "UPDATE avaliacao SET frequencia = ?, "
-                    + "comparecimento = ?, data = ? "
-                    + "WHERE IdAvaliacao = ?";
+                    + "comparecimento = ?, data = ?, FK_integrante = ? "
+                    + "WHERE idAvaliacao = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setInt(1, avaliacao.getFrequencia());
             comando.setString(2, avaliacao.getComparecimento());
             comando.setString(3, avaliacao.getData());
-            comando.setInt(4, avaliacao.getIdAvaliacao());
+            comando.setInt(4, avaliacao.getMatricula());
+            comando.setInt(5, avaliacao.getIdAvaliacao());
             comando.execute();
             comando.close();
             conexao.close();
