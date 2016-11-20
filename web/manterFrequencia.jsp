@@ -26,12 +26,12 @@
                             <td align="right"><input name="txtEstado" type="text" value="${frequencia.estado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td align="left">Frequencia: </td>                            
-                                 <td align="right">
+                            <td align="left">Integrante: </td>                            
+                            <td align="right">
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${frequencia.integrante.matricula}"></c:if>
-                                <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${integrantes}" var="integrante">
-                                    <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.nome} </option>
+                                    <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
                                 </c:forEach>
                             </select>
                         </td>
@@ -39,7 +39,6 @@
                     <tr>
                         <td colspan = "2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
-
                 </table>
             </form>
         </div>

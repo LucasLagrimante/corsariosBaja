@@ -20,6 +20,7 @@
         <table border align="center">
             <tr>
                 <th>Código Frequencia</th>
+                <th>Matricula Integrante</th>
                 <th>Data</th>
                 <th>Estado</th>
                 <th colspan="2">Ação</th>
@@ -27,6 +28,7 @@
             <c:forEach items="${frequencias}" var="frequencia">
                 <tr>
                     <td><c:out value="${frequencia.idFrequencia}" /></td>
+                    <td><c:out value="${frequencia.matricula}" /></td>
                     <td><c:out value="${frequencia.data}" /></td>
                     <td><c:out value="${frequencia.estado}" /></td>
                     <td><a href="ManterFrequenciaController?acao=prepararEditar&txtIdFrequencia=<c:out value="${frequencia.idFrequencia}" />">Editar</a></td>

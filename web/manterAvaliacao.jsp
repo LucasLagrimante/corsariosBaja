@@ -16,18 +16,29 @@
                     <tr>
                         <td align="left">ID: </td>
                         <td align="right"><input name="txtIdAvaliacao" type="text" value="${avaliacao.idAvaliacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Frequencia: </td>
-                        <td align="right"><input name="txtFrequencia" type="text" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Comparecimento: </td>
-                        <td align="right"><input name="txtComparecimento" type="text" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Data: </td>
-                        <td align="right"><input name="txtData" type="data" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Frequencia: </td>
+                            <td align="right"><input name="txtFrequencia" type="text" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Comparecimento: </td>
+                            <td align="right"><input name="txtComparecimento" type="text" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Data: </td>
+                            <td align="right"><input name="txtData" type="data" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Integrante: </td>                            
+                            <td align="right">
+                            <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${frequencia.integrante.matricula}"></c:if>
+                            <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                                <c:forEach items="${integrantes}" var="integrante">
+                                    <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
+                                </c:forEach>
+                            </select>
+                        </td>
                     </tr>
                     <tr>               
                         <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
