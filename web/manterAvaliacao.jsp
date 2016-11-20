@@ -35,17 +35,16 @@
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${avaliacao.integrante.matricula}"></c:if>
                             <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${integrantes}" var="integrante">
-                                    <option value="${integrante.matricula}" <c:if test="${avaliacao.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.nome} </option>
+                                    <option value="${integrante.matricula}" <c:if test="${avaliacao.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
                                 </c:forEach>
                             </select>
-                           
-                    </tr>
-                    <tr>               
-                        <td colspan="2" align="center"><input type="submit" value="Confirmar"></td>
+                        </td>
+                    </tr>     
+                    <tr>
+                        <td colspan = "2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>
         </div>
-
     </body>
 </html>
