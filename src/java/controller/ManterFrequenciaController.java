@@ -57,7 +57,7 @@ public class ManterFrequenciaController extends HttpServlet {
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("txtEstado");
+        String estado = request.getParameter("radioEstado");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
 
         try {
@@ -97,7 +97,7 @@ public class ManterFrequenciaController extends HttpServlet {
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("txtEstado");
+        String estado = request.getParameter("radioEstado");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
 
         try {
@@ -141,7 +141,7 @@ public class ManterFrequenciaController extends HttpServlet {
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
         int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
         String data = request.getParameter("txtData");
-        String estado = request.getParameter("txtEstado");
+        String estado = request.getParameter("radioEstado");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
 
         try {

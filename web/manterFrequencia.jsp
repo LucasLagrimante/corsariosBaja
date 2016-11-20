@@ -23,7 +23,10 @@
                         </tr>
                         <tr>
                             <td align="left">Estado: </td>
-                            <td align="right"><input name="txtEstado" type="text" value="${frequencia.estado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right">
+                                <input type="radio" name="radioEstado" value="presente" <c:if test="${frequencia.estado == 'presente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> Presente
+                            <input type="radio" name="radioEstado" value="ausente" <c:if test="${frequencia.estado == 'ausente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> Ausente
+                            </td>
                         </tr>
                         <tr>
                             <td align="left">Integrante: </td>                            
