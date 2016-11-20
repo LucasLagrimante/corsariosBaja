@@ -119,6 +119,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
+            
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
