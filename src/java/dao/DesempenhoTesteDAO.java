@@ -124,7 +124,7 @@ public class DesempenhoTesteDAO {
             String sql = "UPDATE desempenhoTeste SET nome = ?, "
                     + "data = ?, hora = ?, velocidadeMedia = ?, "
                     + "aceleracaoMedia = ?, tempoPista = ?, "
-                    + "frenagem = ?, FK_automovel = ?, FK_tipopista = ?, FK_motorista = ? "
+                    + "frenagem = ?, FK_automovel = ?, FK_tipopista = ?,FK_motorista = ? "
                     + "WHERE IdDesempenhoTeste = ?";
             PreparedStatement comando = conexao.prepareStatement(sql);
 
@@ -138,7 +138,7 @@ public class DesempenhoTesteDAO {
             comando.setInt(8, desempenhoTeste.getIdAutomovel());
             comando.setInt(9, desempenhoTeste.getIdTipoPista());
             comando.setInt(10, desempenhoTeste.getMatricula());
-            comando.setInt(11, desempenhoTeste.getMatricula());
+            comando.setInt(11, desempenhoTeste.getIdDesempenhoTeste());
 
             comando.execute();
             comando.close();

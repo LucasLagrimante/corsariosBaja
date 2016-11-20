@@ -137,7 +137,7 @@ public class DesempenhoDAO {
             comando.setInt(8, desempenho.getIdAutomovel());
             comando.setInt(9, desempenho.getIdTipoPista());
             comando.setInt(10, desempenho.getMatricula());
-            comando.setInt(11, desempenho.getMatricula());
+            comando.setInt(11, desempenho.getIdDesempenho());
 
             comando.execute();
             comando.close();

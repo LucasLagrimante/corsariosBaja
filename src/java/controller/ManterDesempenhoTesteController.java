@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Automovel;
 import model.DesempenhoTeste;
 import model.Integrante;
-import model.Pessoa;
 import model.TipoPista;
 
 /**
