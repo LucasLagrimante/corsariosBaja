@@ -64,7 +64,6 @@
                 }
                 return ehNumero;
             }
-
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
