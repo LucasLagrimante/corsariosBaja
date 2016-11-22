@@ -1,10 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastrar Automóvel</title>
+        <title>Cadastrar AutomÃ³vel</title>
         <link rel="stylesheet" type="text/css"  href="estilo.css" />
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
@@ -26,7 +28,7 @@
                         <td align="right"><input name="txtCor" type="text" value="${automovel.cor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td align="left">Data Término Projeto:</td>
+                        <td align="left">Data TÃ©rmino Projeto:</td>
                         <td align="right"><input name="txtDataTerminoProjeto" type="data" value="${automovel.dataTerminoProjeto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>

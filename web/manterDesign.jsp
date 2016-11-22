@@ -1,4 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +16,7 @@
             <form action="ManterDesignController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Automóvel: </td>
+                        <td align="left">AutomÃ³vel: </td>
                         <td align="right">
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${design.automovel.idAutomovel}"></c:if>
                             <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   

@@ -1,4 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +16,7 @@
             <form action="ManterDesempenhoTesteController?acao=confirmar${operacao}" method="POST" >
                 <table>
                     <tr>
-                        <td align="left">Automóvel: </td>
+                        <td align="left">AutomÃ³vel: </td>
                         <td align="right">
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${desempenhoTeste.automovel.idAutomovel}"></c:if>
                             <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
@@ -64,11 +66,11 @@
                         </tr></td>
                         </tr>
                         <tr>
-                            <td align="left">Aceleração Média: </td>
+                            <td align="left">AceleraÃ§Ã£o MÃ©dia: </td>
                             <td align="right"> <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td align="left">Velocidade Média: </td>
+                            <td align="left">Velocidade MÃ©dia: </td>
                             <td align="right"> <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>

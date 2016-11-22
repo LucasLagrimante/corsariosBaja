@@ -1,17 +1,18 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastrar Competi��o</title>
+        <title>Cadastrar Competição</title>
         <link rel="stylesheet" type="text/css"  href="estilo.css" />
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
         <div align="center">
-            <h2 align="center">Cadastrar Competi��o - ${operacao}</h2>
-            <form action="ManterCompeticaoController?acao=confirmar${operacao}" method="POST" >
+            <h2 align="center">Cadastrar Competição - ${operacao}</h2>
+            <form action="ManterCompeticaoController?acao=confirmar${operacao}" method="post" name="frmManterCompeticao" onsubmit="return validarFormulario(this)">
                 <table>
 
                     <tr>
@@ -50,6 +51,51 @@
                     </tr>
                 </table>
             </form>
+                                 <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtIdCompeticao.value == ""){
+                    mensagem = mensagem + "Informe o Id\n";
+                }                             
+                if (form.txtData.value == ""){
+                    mensagem = mensagem + "Informe a Data/n";
+                }             
+                if (form.txtHora.value == ""){
+                    mensagem = mensagem + "Informe a Hora\n";
+                }                  
+                if (form.txtLocal.value == ""){
+                    mensagem = mensagem + "Informe o Local\n";
+                }
+                if (!campoNumerico(form.txtIdCompeticao.value)){
+                    mensagem = mensagem + "Código da competição deve ser numérico\n";
+                } 
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>        
             <button onclick="window.location.href = 'http://localhost:8080/corsariosBaja/ManterTipoPistaController?acao=prepararIncluir'">Cadastrar Tipos de Pista</button>
         </div>
 
