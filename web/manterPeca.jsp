@@ -13,7 +13,7 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Peça ${operacao}</h2>
-            <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" name="frmManterPeca" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td align="left">ID:</td>
@@ -52,6 +52,59 @@
 
                 </table>
             </form>
+         <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtIdPeca.value == ""){
+                    mensagem = mensagem + "Informe o ID\n";
+                }
+                if (!campoNumerico(form.txtIdPeca.value)){
+                    mensagem = mensagem + "O campo ID deve ser numerico\n";
+                }
+                if (form.txtQuantidade.value == ""){
+                    mensagem = mensagem + "Informe a Quantidade\n";
+                }
+                if (!campoNumerico(form.txtQuantidade.value)){
+                    mensagem = mensagem + "O campo Quantidade deve ser numerico\n";
+                }
+                if (form.txtNome.value == ""){
+                    mensagem = mensagem + "Informe o Nome\n";
+                }
+                if (form.txtModelo.value == ""){
+                    mensagem = mensagem + "Informe o Modelo\n";
+                }
+                if (form.txtPrecoCompra.value == ""){
+                    mensagem = mensagem + "Informe o Preco\n";
+                }
+                if (!campoNumerico(form.txtPrecoCompra.value)){
+                    mensagem = mensagem + "O campo Preco deve ser numerico\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>
         </div>
     </body>
 </html>

@@ -71,7 +71,7 @@
                     mensagem = mensagem + "Informe o Id\n";
                 }                             
                 if (form.txtFrequencia.value == ""){
-                    mensagem = mensagem + "Informe a Frquencia/n";
+                    mensagem = mensagem + "Informe a Frquencia\n";
                 }             
                 if (form.txtComparecimento.value == ""){
                     mensagem = mensagem + "Informe o Comparecimento\n";

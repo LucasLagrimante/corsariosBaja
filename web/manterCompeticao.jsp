@@ -74,7 +74,7 @@
                     mensagem = mensagem + "Informe o Id\n";
                 }                             
                 if (form.txtNome.value == ""){
-                    mensagem = mensagem + "Informe o Nome/n";
+                    mensagem = mensagem + "Informe o Nome\n";
                 }             
                 if (form.txtData.value == ""){
                     mensagem = mensagem + "Informe o Comparecimento\n";

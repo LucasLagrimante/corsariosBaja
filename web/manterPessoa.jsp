@@ -14,7 +14,7 @@
         
         <div align="center">
             <h2 align="center">Manter Pessoa - ${operacao}</h2>
-            <form action="ManterPessoaController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td align="left">ID:</td>
@@ -57,6 +57,65 @@
                     </tr>
                 </table>
             </form>
+         <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtIdPessoa.value == ""){
+                    mensagem = mensagem + "Informe o ID\n";
+                }
+                if (!campoNumerico(form.txtIdPessoa.value)){
+                    mensagem = mensagem + "O campo ID deve ser numerico\n";
+                }
+                if (form.txtNome.value == ""){
+                    mensagem = mensagem + "Informe o Nome\n";
+                }
+                if (form.txtCpf.value == ""){
+                    mensagem = mensagem + "Informe o CPF\n";
+                }
+                if (form.txtLogradouro.value == ""){
+                    mensagem = mensagem + "Informe o Logradouro\n";
+                }
+                if (form.txtCep.value == ""){
+                    mensagem = mensagem + "Informe o CEP\n";
+                }
+                if (form.txtBairro.value == ""){
+                    mensagem = mensagem + "Informe o Bairro\n";
+                }
+                if (form.txtUf.value == ""){
+                    mensagem = mensagem + "Informe o UF\n";
+                }
+                if (form.txtNumero.value == ""){
+                    mensagem = mensagem + "Informe o Numero\n";
+                }
+                if (form.txtTelefone.value == ""){
+                    mensagem = mensagem + "Informe o Telefone\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>
         </div>
 
     </body>

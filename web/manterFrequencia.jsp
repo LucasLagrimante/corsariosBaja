@@ -13,7 +13,7 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Frequencia ${operacao}</h2>
-            <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" name="frmManterFrequencia" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td align="left">ID:</td>
@@ -46,6 +46,44 @@
                     </tr>
                 </table>
             </form>
+         <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtIdFrequencia.value == ""){
+                    mensagem = mensagem + "Informe o ID\n";
+                }
+                if (!campoNumerico(form.txtIdFrequencia.value)){
+                    mensagem = mensagem + "O campo ID deve ser numerico\n";
+                }
+                if (form.txtData.value == ""){
+                    mensagem = mensagem + "Informe a Data\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>
         </div>
     </body>
 </html>

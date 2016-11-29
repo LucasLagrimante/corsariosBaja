@@ -13,7 +13,7 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Integrante- ${operacao}</h2>
-            <form action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" name="frmManterIntegrante" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td align="left">Pessoa: </td>
@@ -39,6 +39,44 @@
                     </tr>
                 </table>
             </form>
+         <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtMatricula.value == ""){
+                    mensagem = mensagem + "Informe a Matricula\n";
+                }
+                if (!campoNumerico(form.txtMatricula.value)){
+                    mensagem = mensagem + "O campo Matricula deve ser numerico\n";
+                }
+                if (form.txtCargaHorariaDisponivel.value == ""){
+                    mensagem = mensagem + "Informe a Carga Horaria Disponivel\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>
         </div>
 
     </body>

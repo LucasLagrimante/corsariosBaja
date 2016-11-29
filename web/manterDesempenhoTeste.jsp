@@ -13,7 +13,7 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Desempenho Teste - ${operacao}</h2>
-            <form action="ManterDesempenhoTesteController?acao=confirmar${operacao}" method="POST" >
+            <form action="ManterDesempenhoTesteController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenhoTeste" onsubmit="return validarFormulario(this)">
                 <table>
                     <tr>
                         <td align="left">Automóvel: </td>
@@ -81,22 +81,76 @@
                             <td align="left">Frenagem: </td>
                             <td align="right"><input name="txtFrenagem" value="${desempenhoTeste.frenagem}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
-                    <!--                    <tr>
-                                            <td align="left">Quesitos: </td>
-                                            <td align="right">
-                                                <select>
-                                                    <option value="volvo">...</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
-                                                </select>
-                                            </td>
-                                        </tr>-->
                     <tr>
                         <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
             </form>
+         <SCRIPT language="JavaScript">
+            
+            function campoNumerico(valor)
+            {
+                var caracteresValidos = "0123456789";
+                var ehNumero = true;
+                var umCaracter;
+                for (i = 0; i < valor.length && ehNumero == true; i++) 
+                { 
+                    umCaracter = valor.charAt(i); 
+                    if (caracteresValidos.indexOf(umCaracter) == -1) 
+                    {
+                        ehNumero = false;
+                    }
+                }
+                return ehNumero;
+            }
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.txtIdDesempenhoTeste.value == ""){
+                    mensagem = mensagem + "Informe o ID\n";
+                }
+                if (!campoNumerico(form.txtIdDesempenhoTeste.value)){
+                    mensagem = mensagem + "O campo ID deve ser numerico\n";
+                }
+                if (form.txtNome.value == ""){
+                    mensagem = mensagem + "Informe o Nome\n";
+                }
+                if (form.txtData.value == ""){
+                    mensagem = mensagem + "Informe a Data\n";
+                }
+                if (form.txtHora.value == ""){
+                    mensagem = mensagem + "Informe a Hora\n";
+                }
+                if (form.txtAceleracaoMedia.value == ""){
+                    mensagem = mensagem + "Informe a Aceleracao Media\n";
+                }
+                if (!campoNumerico(form.txtAceleracaoMedia.value)){
+                    mensagem = mensagem + "O campo Aceleracao Media deve ser numerico\n";
+                }
+                if (form.txtVelocidadeMedia.value == ""){
+                    mensagem = mensagem + "Informe a Velocidade Media\n";
+                }
+                if (!campoNumerico(form.txtVelocidadeMedia.value)){
+                    mensagem = mensagem + "O campo Velocidade Media deve ser numerico\n";
+                }
+                if (form.txtTempoPista.value == ""){
+                    mensagem = mensagem + "Informe o Tempo de Pista\n";
+                }
+                if (form.txtFrenagem.value == ""){
+                    mensagem = mensagem + "Informe a Frenagem\n";
+                }
+                if (!campoNumerico(form.txtFrenagem.value)){
+                    mensagem = mensagem + "O campo Frenagem deve ser numerico\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+            
+        </SCRIPT>
         </div>
 
     </body>
