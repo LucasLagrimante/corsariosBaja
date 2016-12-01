@@ -7,11 +7,11 @@ import java.util.List;
 public class Investidor {
 
     private int idInvestidor;
-    private float valorDoado;
+    private int valorDoado;
     private final int idPessoa;
     private Pessoa pessoa;
 
-    public Investidor(int idInvestidor, float valorDoado, int idPessoa) {
+    public Investidor(int idInvestidor, int valorDoado, int idPessoa) {
         this.idInvestidor = idInvestidor;
         this.valorDoado = valorDoado;
         this.idPessoa = idPessoa;
@@ -41,11 +41,11 @@ public class Investidor {
         return idPessoa;
     }
    
-    public float getValorDoado() {
+    public int getValorDoado() {
         return valorDoado;
     }
 
-    public void setValorDoado(float valorDoado) {
+    public void setValorDoado(int valorDoado) {
         this.valorDoado += valorDoado;
     }
     

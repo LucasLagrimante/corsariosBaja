@@ -53,7 +53,7 @@
                         <td align="right"> <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td align="left">Nome: </td>
+                            <td align="left">Desempenho: </td>
                             <td align="right"> <input name="txtNome" value="${desempenho.nome}" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>

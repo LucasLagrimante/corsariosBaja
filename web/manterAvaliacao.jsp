@@ -24,7 +24,7 @@
                             <td align="right"><input name="txtFrequencia" type="text" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td align="left">Comparecimento: </td>
+                            <td align="left">Desempenho na avaliação: </td>
                             <td align="right"><input name="txtComparecimento" type="text" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>

@@ -23,7 +23,7 @@
                 <th>Automovel</th>
                 <th>Tipo Pista</th>
                 <th>Motorista</th>
-                <th>Nome Desempenho</th>
+                <th>Desempenho</th>
                 <th>Data</th>
                 <th>Hora</th>
                 <th>Aceleração Média</th>

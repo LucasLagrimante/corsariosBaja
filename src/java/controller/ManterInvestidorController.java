@@ -59,7 +59,7 @@ public class ManterInvestidorController extends HttpServlet {
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idInvestidor = Integer.parseInt(request.getParameter("txtIdInvestidor"));
-        float valorDoado = Float.parseFloat(request.getParameter("txtValorDoado"));
+        int valorDoado = Integer.parseInt(request.getParameter("txtValorDoado"));
         int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
             Pessoa pessoa = null;
@@ -101,7 +101,7 @@ public class ManterInvestidorController extends HttpServlet {
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
        int idInvestidor = Integer.parseInt(request.getParameter("txtIdInvestidor"));
-        float valorDoado = Float.parseFloat(request.getParameter("txtValorDoado"));
+        int valorDoado = Integer.parseInt(request.getParameter("txtValorDoado"));
         int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
             Pessoa pessoa = null;
@@ -143,7 +143,7 @@ public class ManterInvestidorController extends HttpServlet {
 
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idInvestidor = Integer.parseInt(request.getParameter("txtIdInvestidor"));
-        float valorDoado = Float.parseFloat(request.getParameter("txtValorDoado"));
+        int valorDoado = Integer.parseInt(request.getParameter("txtValorDoado"));
         int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
         try {
             Pessoa pessoa = null;

@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastrar Automóvel</title>
+        <title>Cadastrar Automovel</title>
         <link rel="stylesheet" type="text/css"  href="estilo.css" />
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
@@ -26,7 +26,7 @@
                         <td align="right"><input name="txtCor" type="text" value="${automovel.cor}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
-                        <td align="left">Data Término Projeto:</td>
+                        <td align="left">Data Termino Projeto:</td>
                         <td align="right"><input name="txtDataTerminoProjeto" type="data" value="${automovel.dataTerminoProjeto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr>
@@ -69,9 +69,6 @@
                 if (form.txtIdAutomovel.value == ""){
                     mensagem = mensagem + "Informe o ID\n";
                 }
-                if (!campoNumerico(form.txtIdAutomovel.value)){
-                    mensagem = mensagem + "O campo ID deve ser numérico\n";
-                }
                 if (form.txtNome.value == ""){
                     mensagem = mensagem + "Informe o Nome\n";
                 }             
@@ -79,25 +76,29 @@
                     mensagem = mensagem + "Informe a Cor\n";
                 }                  
                 if (form.txtDataTerminoProjeto.value == ""){
-                    mensagem = mensagem + "Informe a Data do Término do Projeto\n";
+                    mensagem = mensagem + "Informe a Data do Termino do Projeto\n";
                 }
                 if (form.txtPesoCarro.value == ""){
                     mensagem = mensagem + "Informe o Peso do Carro\n";
                 }
-                if (!campoNumerico(form.txtPesoCarro.value)){
-                    mensagem = mensagem + "O campo Peso do Carro deve ser numérico\n";
-                }
+               
                 if (form.txtPesoChassi.value == ""){
                     mensagem = mensagem + "Informe o Peso do Chassi\n";
                 }
-                if (!campoNumerico(form.txtPesoChassi.value)){
-                    mensagem = mensagem + "O campo Peso do Chassi deve ser numérico\n";
-                }
-                if (form.txtCustoTotal.value == ""){
+                  if (form.txtCustoTotal.value == ""){
                     mensagem = mensagem + "Informe o Custo Total\n";
                 }
+                if (!campoNumerico(form.txtPesoChassi.value)){
+                    mensagem = mensagem + "O campo Peso do Chassi deve ser numerico\n";
+                }
+                if (!campoNumerico(form.txtIdAutomovel.value)){
+                    mensagem = mensagem + "O campo ID deve ser numerico\n";
+                }
+                if (!campoNumerico(form.txtPesoCarro.value)){
+                    mensagem = mensagem + "O campo Peso do Carro deve ser numerico\n";
+                }
                 if (!campoNumerico(form.txtCustoTotal.value)){
-                    mensagem = mensagem + "O campo Custo total deve ser numérico\n";
+                    mensagem = mensagem + "O campo Custo total deve ser numerico\n";
                 }
                 if (mensagem == ""){
                     return true;

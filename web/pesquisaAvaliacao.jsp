@@ -22,7 +22,7 @@
                 <th>Código Avaliação</th>
                 <th>Matricula Integante</th>
                 <th>Frequencia Avaliação</th>
-                <th>Comparecimento Avaliação</th>
+                <th>Desempenho Avaliação</th>
                 <th>Data Avaliação</th>
                 <th colspan="2">Ação</th>
             </tr>

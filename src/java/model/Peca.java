@@ -8,11 +8,11 @@ public class Peca {
 
     private int idPeca, quantidade;
     private String nome, modelo;
-    private float precoCompra;
+    private int precoCompra;
     private final int idTipoPeca;
     private TipoPeca tipopeca;
 
-    public Peca(int idPeca,int quantidade, String nome, String modelo,float precoCompra,int idTipoPeca) {
+    public Peca(int idPeca,int quantidade, String nome, String modelo,int precoCompra,int idTipoPeca) {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
@@ -67,11 +67,11 @@ public class Peca {
         this.modelo = modelo;
     }
 
-    public float getPrecoCompra() {
+    public int getPrecoCompra() {
         return precoCompra;
     }
 
-    public void setPrecoCompra(float precoCompra) {
+    public void setPrecoCompra(int precoCompra) {
         this.precoCompra = precoCompra;
     }
     
