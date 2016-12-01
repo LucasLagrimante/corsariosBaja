@@ -286,7 +286,7 @@
         </location>
     </error-page>
     <error-page>
-        <error-page>
+      
             <exception-type>
                 java.lang.Exception
             </exception-type>

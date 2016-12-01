@@ -44,7 +44,7 @@ public class TratamentoExcecao extends HttpServlet {
       String tipoDocto = 
               "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n";
       out.println(tipoDocto + "<html>\n <head><title>"+titulo+"<title></head>\n<body>");
-      out.println("<h2>Informação sobre a exceçãp</h2>");
+      out.println("<h2>Informação sobre a exceção</h2>");
       out.println("Código do status: "+codigoStatus+"</br></br>");
       out.println("Nome do servlet: "+nomeServlet+"</br></br>");
       out.println("Tipo de exceção: "+excecao.getClass().getName()+"</br></br>");
