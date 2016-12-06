@@ -13,13 +13,13 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Arquitetura - ${operacao}</h2>
-            <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" name="frmManterArquitetura" onsubmit="return validarFormulario(this)">
+            <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" name="frmManterArquitetura">
                 <table>
                     <tr>
                         <td align="left">Automóvel: </td>
-                                 <td align="right">
+                        <td align="right">
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${arquitetura.automovel.idAutomovel}"></c:if>
-                                <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${automoveis}" var="automovel">
                                     <option value="${automovel.idAutomovel}" <c:if test="${arquitetura.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
                                 </c:forEach>
@@ -28,57 +28,18 @@
                     </tr>
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"><input name="txtIdArquitetura" type="text" value="${arquitetura.idArquitetura}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td align="right"><input name="txtIdArquitetura" type="text" required="required" pattern="[0-9]+$" value="${arquitetura.idArquitetura}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
-                            <td align="left">Imagem: </td>
-                                <td align="right"><input name="txtCaminhoImagem" type="text" value="${arquitetura.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Confirmar" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="left">Caminho imagem: </td>
+                            <td align="right"><input name="txtCaminhoImagem" type="text" required="required" value="${arquitetura.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center"> <input type="submit" value="Confirmar" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                 </table>
             </form>
-         <SCRIPT language="JavaScript">
-            
-            function campoNumerico(valor)
-            {
-                var caracteresValidos = "0123456789";
-                var ehNumero = true;
-                var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
-                    {
-                        ehNumero = false;
-                    }
-                }
-                return ehNumero;
-            }
-            function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
-                if (form.txtIdArquitetura.value == ""){
-                    mensagem = mensagem + "Informe o Id\n";
-                }
-                if (!campoNumerico(form.txtIdArquitetura.value)){
-                    mensagem = mensagem + "O ID deve ser numerico\n";
-                }
-                if (form.txtCaminhoImagem.value == ""){
-                    mensagem = mensagem + "Informe o caminho da imagem\n";
-                }                   
-                if (mensagem == ""){
-                    return true;
-                }else{
-                    alert(mensagem);
-                    return false;
-                }                
-            } 
-            
-        </SCRIPT>
         </div>
-
     </body>
 </html>

@@ -59,7 +59,7 @@ public class ManterPecaController extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
-        int precoCompra = Integer.parseInt(request.getParameter("txtPrecoCompra"));
+        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
 
         try {
@@ -101,7 +101,7 @@ public class ManterPecaController extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
-        int precoCompra = Integer.parseInt(request.getParameter("txtPrecoCompra"));
+        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
 
         try {
@@ -147,7 +147,7 @@ public class ManterPecaController extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
         String nome = request.getParameter("txtNome");
         String modelo = request.getParameter("txtModelo");
-        int precoCompra = Integer.parseInt(request.getParameter("txtPrecoCompra"));
+        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
         int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
 
         try {

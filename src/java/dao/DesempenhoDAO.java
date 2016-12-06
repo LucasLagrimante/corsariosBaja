@@ -39,10 +39,10 @@ public class DesempenhoDAO {
             comando.setString(2, desempenho.getNome());
             comando.setString(3, desempenho.getData());
             comando.setString(4, desempenho.getHora());
-            comando.setInt(5, desempenho.getAceleracaoMedia());
-            comando.setInt(7, desempenho.getVelocidadeMedia());
-            comando.setString(6, desempenho.getTempoPista());
-            comando.setInt(8, desempenho.getFrenagem());
+            comando.setFloat(5, desempenho.getVelocidadeMedia());
+            comando.setFloat(6, desempenho.getAceleracaoMedia());
+            comando.setString(7, desempenho.getTempoPista());
+            comando.setFloat(8, desempenho.getFrenagem());
             comando.setInt(9, desempenho.getIdAutomovel());
             comando.setInt(10, desempenho.getIdTipoPista());
             comando.setInt(11, desempenho.getMatricula());
@@ -68,10 +68,10 @@ public class DesempenhoDAO {
                         rs.getString("nome"),
                         rs.getString("data"),
                         rs.getString("hora"),
-                        rs.getInt("velocidadeMedia"),
-                        rs.getInt("aceleracaoMedia"),
+                        rs.getFloat("velocidadeMedia"),
+                        rs.getFloat("aceleracaoMedia"),
                         rs.getString("tempoPista"),
-                        rs.getInt("frenagem"),
+                        rs.getFloat("frenagem"),
                         rs.getInt("FK_automovel"),
                         rs.getInt("FK_tipopista"),
                         rs.getInt("FK_motorista")
@@ -100,10 +100,10 @@ public class DesempenhoDAO {
                     rs.getString("nome"),
                     rs.getString("data"),
                     rs.getString("hora"),
-                    rs.getInt("velocidadeMedia"),
-                    rs.getInt("aceleracaoMedia"),
+                    rs.getFloat("velocidadeMedia"),
+                    rs.getFloat("aceleracaoMedia"),
                     rs.getString("tempoPista"),
-                    rs.getInt("frenagem"),
+                    rs.getFloat("frenagem"),
                     rs.getInt("FK_automovel"),
                     rs.getInt("FK_tipopista"),
                     rs.getInt("FK_motorista")
@@ -130,10 +130,10 @@ public class DesempenhoDAO {
             comando.setString(1, desempenho.getNome());
             comando.setString(2, desempenho.getData());
             comando.setString(3, desempenho.getHora());
-            comando.setInt(4, desempenho.getVelocidadeMedia());
-            comando.setInt(5, desempenho.getAceleracaoMedia());
+            comando.setFloat(4, desempenho.getVelocidadeMedia());
+            comando.setFloat(5, desempenho.getAceleracaoMedia());
             comando.setString(6, desempenho.getTempoPista());
-            comando.setInt(7, desempenho.getFrenagem());
+            comando.setFloat(7, desempenho.getFrenagem());
             comando.setInt(8, desempenho.getIdAutomovel());
             comando.setInt(9, desempenho.getIdTipoPista());
             comando.setInt(10, desempenho.getMatricula());

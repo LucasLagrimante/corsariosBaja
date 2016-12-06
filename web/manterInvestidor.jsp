@@ -13,13 +13,13 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Investimentos- ${operacao}</h2>
-            <form action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor" onsubmit="return validarFormulario(this)">
+            <form action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor">
                 <table>
                     <tr>
                         <td align="left">Pessoa: </td>
                         <td align="right">                              
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${investidor.pessoa.idPessoa }"></c:if>
-                            <select name="selectPessoa" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <select name="selectPessoa" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${pessoas}" var="pessoa">
                                     <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa  == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
                                 </c:forEach>
@@ -28,11 +28,11 @@
                     </tr>
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"> <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td align="right"> <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Valor Doado: </td>
-                            <td align="right"> <input type="text" name="txtValorDoado" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"> <input type="text" name="txtValorDoado" required="required" pattern="(?:\d*\.)?\d+" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     </tr>
                     <tr>
@@ -40,48 +40,6 @@
                     </tr>
                 </table>
             </form>
-         <SCRIPT language="JavaScript">
-            
-            function campoNumerico(valor)
-            {
-                var caracteresValidos = "0123456789";
-                var ehNumero = true;
-                var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
-                    {
-                        ehNumero = false;
-                    }
-                }
-                return ehNumero;
-            }
-            function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
-                if (form.txtIdInvestidor.value == ""){
-                    mensagem = mensagem + "Informe o ID\n";
-                }
-                if (!campoNumerico(form.txtIdInvestidor.value)){
-                    mensagem = mensagem + "O campo ID deve ser numerico\n";
-                }
-                if (form.txtValorDoado.value == ""){
-                    mensagem = mensagem + "Informe o Valor Doado\n";
-                }
-                if (!campoNumerico(form.txtValorDoado.value)){
-                    mensagem = mensagem + "O campo Valor Doado deve ser numerico\n";
-                }
-                if (mensagem == ""){
-                    return true;
-                }else{
-                    alert(mensagem);
-                    return false;
-                }                
-            } 
-            
-        </SCRIPT>
         </div>
-
     </body>
 </html>

@@ -11,34 +11,34 @@
     <body>
         <div align="center">
             <h2 align="center">Cadastrar Competição - ${operacao}</h2>
-           <form action="ManterCompeticaoController?acao=confirmar${operacao}" method="POST" name="frmManterCompeticao" onsubmit="return validarFormulario(this)">
+            <form action="ManterCompeticaoController?acao=confirmar${operacao}" method="POST" name="frmManterCompeticao">
                 <table>
 
                     <tr>
                         <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdCompeticao" type="text" value="${competicao.idCompeticao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td align="right"><input name="txtIdCompeticao" type="text" required="required" pattern="[0-9]+$"  value="${competicao.idCompeticao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Nome: </td>
-                            <td align="right"><input name="txtNome" type="text" value="${competicao.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtNome" type="text" value="${competicao.nome}" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Data: </td>
-                            <td align="right"><input name="txtData" type="text" value="${competicao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtData" type="date" value="${competicao.data}" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Hora: </td>
-                            <td align="right"><input name="txtHora" type="text" value="${competicao.hora}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtHora" value="${competicao.hora}" required="required" type="time" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Local: </td>
-                            <td align="right"><input name="txtLocal" type="text" value="${competicao.local}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtLocal" required="required" type="text" value="${competicao.local}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Tipo Pista: </td>
                             <td align="right">
                             <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPista" value="${competicao.tipopista.idTipoPista}"></c:if>
-                            <select name="selectTipoPista" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <select name="selectTipoPista" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
                                 <c:forEach items="${tipospista}" var="tipopista">
                                     <option value="${tipopista.idTipoPista}" <c:if test="${competicao.tipopista.idTipoPista == tipopista.idTipoPista}"> selected</c:if>> ${tipopista.nome} </option>
                                 </c:forEach>
@@ -50,55 +50,7 @@
                     </tr>
                 </table>
             </form>
-                   <SCRIPT language="JavaScript">
-            
-            function campoNumerico(valor)
-            {
-                var caracteresValidos = "0123456789";
-                var ehNumero = true;
-                var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
-                    {
-                        ehNumero = false;
-                    }
-                }
-                return ehNumero;
-            }
-            function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
-                if (form.txtIdCompeticao.value == ""){
-                    mensagem = mensagem + "Informe o Id\n";
-                }                             
-                if (form.txtNome.value == ""){
-                    mensagem = mensagem + "Informe o Nome\n";
-                }             
-                if (form.txtData.value == ""){
-                    mensagem = mensagem + "Informe o Comparecimento\n";
-                }                  
-                if (form.txtHora.value == ""){
-                    mensagem = mensagem + "Informe a Hora\n";
-                }
-                if (form.txtLocal.value == ""){
-                    mensagem = mensagem + "Informe o Local\n";
-                }
-                if (!campoNumerico(form.txtIdCompeticao.value)){
-                    mensagem = mensagem + "Código da competição deve ser numérico\n";
-                }                   
-                if (mensagem == ""){
-                    return true;
-                }else{
-                    alert(mensagem);
-                    return false;
-                }                
-            } 
-            
-        </SCRIPT>   
             <button onclick="window.location.href = 'http://localhost:8080/corsariosBaja/ManterTipoPistaController?acao=prepararIncluir'">Cadastrar Tipos de Pista</button>
         </div>
-
     </body>
 </html>

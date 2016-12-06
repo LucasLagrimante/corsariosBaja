@@ -8,7 +8,7 @@ public class Desempenho {
 
     private int idDesempenho;
     private String nome, data, hora, tempoPista;
-    private int aceleracaoMedia, velocidadeMedia, frenagem;
+    private float aceleracaoMedia, velocidadeMedia, frenagem;
 
     private final int idAutomovel;
     private Automovel automovel;
@@ -19,7 +19,7 @@ public class Desempenho {
     private final int matricula;
     private Integrante integrante;
 
-    public Desempenho(int idDesempenho, String nome, String data, String hora, int aceleracaoMedia, int velocidadeMedia, String tempoPista, int frenagem, int idAutomovel, int idTipoPista, int matricula) {
+    public Desempenho(int idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int matricula) {
         this.idDesempenho = idDesempenho;
         this.nome = nome;
         this.data = data;
@@ -45,11 +45,11 @@ public class Desempenho {
         return matricula;
     }
 
-    public void setAceleracaoMedia(int aceleracaoMedia) {
+    public void setAceleracaoMedia(float aceleracaoMedia) {
         this.aceleracaoMedia = aceleracaoMedia;
     }
 
-    public void setVelocidadeMedia(int velocidadeMedia) {
+    public void setVelocidadeMedia(float velocidadeMedia) {
         this.velocidadeMedia = velocidadeMedia;
     }
 
@@ -94,10 +94,11 @@ public class Desempenho {
         this.idDesempenho = idDesempenho;
     }
 
-    public int getVelocidadeMedia() {
+    public float getVelocidadeMedia() {
         return velocidadeMedia;
     }
-    public int getAceleracaoMedia() {
+
+    public float getAceleracaoMedia() {
         return aceleracaoMedia;
     }
 
@@ -133,11 +134,11 @@ public class Desempenho {
         this.tempoPista = tempoPista;
     }
 
-    public int getFrenagem() {
+    public float getFrenagem() {
         return frenagem;
     }
 
-    public void setFrenagem(int frenagem) {
+    public void setFrenagem(float frenagem) {
         this.frenagem = frenagem;
     }
 

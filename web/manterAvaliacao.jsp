@@ -13,23 +13,30 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Avaliacao - ${operacao}</h2>
-            <form action="ManterAvaliacaoController?acao=confirmar${operacao}" method="POST" name="frmManterAvaliacao" onsubmit="return validarFormulario(this)">
+            <form action="ManterAvaliacaoController?acao=confirmar${operacao}" method="POST" name="frmManterAvaliacao">
                 <table>
                     <tr>
                         <td align="left">ID: </td>
-                        <td align="right"><input name="txtIdAvaliacao" type="text" value="${avaliacao.idAvaliacao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td align="right"><input name="txtIdAvaliacao" type="text" value="${avaliacao.idAvaliacao}" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Frequencia: </td>
-                            <td align="right"><input name="txtFrequencia" type="text" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtFrequencia" type="text" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Desempenho na avaliação: </td>
-                            <td align="right"><input name="txtComparecimento" type="text" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right">
+                                <select name="txtComparecimento" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                                  <option value="otimo" <c:if test="${avaliacao.comparecimento == 'otimo'}"> selected</c:if>>Ótimo</option>
+                                  <option value="bom" <c:if test="${avaliacao.comparecimento == 'bom'}"> selected</c:if>>Bom</option>
+                                  <option value="medio" <c:if test="${avaliacao.comparecimento == 'medio'}"> selected</c:if>>Médio</option>
+                                  <option value="ruim" <c:if test="${avaliacao.comparecimento == 'ruim'}"> selected</c:if>>Ruim</option>
+                                  <option value="pessimo" <c:if test="${avaliacao.comparecimento == 'pessimo'}"> selected</c:if>>Péssimo</option>
+                                </select> 
                         </tr>
                         <tr>
                             <td align="left">Data: </td>
-                            <td align="right"><input name="txtData" type="data" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="right"><input name="txtData" type="date" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                             <td align="left">Integrante: </td>                            
@@ -46,54 +53,7 @@
                         <td colspan = "2" align="center"><input type="submit" value="Confirmar"></td>
                     </tr>
                 </table>
-                 </form>
-        <SCRIPT language="JavaScript">
-            
-            function campoNumerico(valor)
-            {
-                var caracteresValidos = "0123456789";
-                var ehNumero = true;
-                var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
-                    {
-                        ehNumero = false;
-                    }
-                }
-                return ehNumero;
-            }
-            function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
-                if (form.txtIdAvaliacao.value == ""){
-                    mensagem = mensagem + "Informe o Id\n";
-                }                             
-                if (form.txtFrequencia.value == ""){
-                    mensagem = mensagem + "Informe a Frquencia\n";
-                }             
-                if (form.txtComparecimento.value == ""){
-                    mensagem = mensagem + "Informe o Comparecimento\n";
-                }                  
-                if (form.txtData.value == ""){
-                    mensagem = mensagem + "Informe a Data\n";
-                }
-                if (!campoNumerico(form.txtIdAvaliacao.value)){
-                    mensagem = mensagem + "Código da avaliacao deve ser numérico\n";
-                } 
-                if (!campoNumerico(form.txtFrequencia.value)){
-                    mensagem = mensagem + "Frequencia deve ser numérica\n";
-                }                  
-                if (mensagem == ""){
-                    return true;
-                }else{
-                    alert(mensagem);
-                    return false;
-                }                
-            } 
-            
-        </SCRIPT>        
+            </form>
         </div>
     </body>
 </html>

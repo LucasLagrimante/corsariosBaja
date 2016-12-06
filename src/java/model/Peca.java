@@ -8,11 +8,11 @@ public class Peca {
 
     private int idPeca, quantidade;
     private String nome, modelo;
-    private int precoCompra;
+    private float precoCompra ;
     private final int idTipoPeca;
     private TipoPeca tipopeca;
 
-    public Peca(int idPeca,int quantidade, String nome, String modelo,int precoCompra,int idTipoPeca) {
+    public Peca(int idPeca, int quantidade, String nome, String modelo, float precoCompra, int idTipoPeca) {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
@@ -31,10 +31,11 @@ public class Peca {
     public void setTipopeca(TipoPeca tipopeca) {
         this.tipopeca = tipopeca;
     }
-    
+
     public int getIdTipoPeca() {
         return idTipoPeca;
     }
+
     public int getIdPeca() {
         return idPeca;
     }
@@ -67,20 +68,19 @@ public class Peca {
         this.modelo = modelo;
     }
 
-    public int getPrecoCompra() {
+    public float getPrecoCompra() {
         return precoCompra;
     }
 
-    public void setPrecoCompra(int precoCompra) {
+    public void setPrecoCompra(float precoCompra) {
         this.precoCompra = precoCompra;
     }
-    
-    
+
     public void gravar() throws SQLException, ClassNotFoundException {
         PecaDAO.gravar(this);
     }
-    
-     public void alterar() throws SQLException, ClassNotFoundException {
+
+    public void alterar() throws SQLException, ClassNotFoundException {
         PecaDAO.alterar(this);
     }
 

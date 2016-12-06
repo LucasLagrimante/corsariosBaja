@@ -39,9 +39,9 @@ public class AutomovelDAO {
             comando.setString(2, automovel.getCor());
             comando.setString(3, automovel.getNome());
             comando.setString(4, automovel.getDataTerminoProjeto());
-            comando.setInt(5, automovel.getPesoCarro());
-            comando.setInt(6, automovel.getPesoChassi());
-            comando.setInt(7, automovel.getCustoTotal());
+            comando.setFloat(5, automovel.getPesoCarro());
+            comando.setFloat(6, automovel.getPesoChassi());
+            comando.setFloat(7, automovel.getCustoTotal());
             comando.execute();
             comando.close();
             conexao.close();
@@ -64,9 +64,9 @@ public class AutomovelDAO {
                         rs.getString("cor"),
                         rs.getString("nome"),
                         rs.getString("dataTerminoProjeto"),
-                        rs.getInt("pesoCarro"),
-                        rs.getInt("pesoChassi"),
-                        rs.getInt("custoTotal")
+                        rs.getFloat("pesoCarro"),
+                        rs.getFloat("pesoChassi"),
+                        rs.getFloat("custoTotal")
                 );
                 automoveis.add(automovel);
             }
@@ -92,9 +92,9 @@ public class AutomovelDAO {
                     rs.getString("cor"),
                     rs.getString("nome"),
                     rs.getString("DataTerminoProjeto"),
-                    rs.getInt("PesoCarro"),
-                    rs.getInt("PesoChassi"),
-                    rs.getInt("custoTotal")
+                    rs.getFloat("PesoCarro"),
+                    rs.getFloat("PesoChassi"),
+                    rs.getFloat("custoTotal")
             //null
             );
             //automovel.setCodigoPessoa(rs.getString("pessoa"));
@@ -119,9 +119,9 @@ public class AutomovelDAO {
             comando.setString(1, automovel.getCor());
             comando.setString(2, automovel.getNome());
             comando.setString(3, automovel.getDataTerminoProjeto());
-            comando.setInt(4, automovel.getPesoCarro());
-            comando.setInt(5, automovel.getPesoChassi());
-            comando.setInt(6, automovel.getCustoTotal());
+            comando.setFloat(4, automovel.getPesoCarro());
+            comando.setFloat(5, automovel.getPesoChassi());
+            comando.setFloat(6, automovel.getCustoTotal());
             comando.setInt(7, automovel.getIdAutomovel());
             comando.execute();
             comando.close();
@@ -139,7 +139,7 @@ public class AutomovelDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 

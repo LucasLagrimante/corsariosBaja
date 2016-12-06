@@ -13,7 +13,7 @@
     <body>
         <div align="center">
             <h2 align="center">Manter Design - ${operacao}</h2>
-            <form action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign" onsubmit="return validarFormulario(this)">
+            <form action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign">
                 <table>
                     <tr>
                         <td align="left">Automóvel: </td>
@@ -28,13 +28,13 @@
                     </tr>
                     <tr>
                         <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdDesign" type="text" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <td align="right"><input name="txtIdDesign" type="text" required="required" pattern="[0-9]+$" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td align="left">Imagem:</td>
-                            <td align="right"><input name="txtCaminhoImagem" type="text" value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <td align="left">Caminho imagem:</td>
+                            <td align="right"><input name="txtCaminhoImagem" type="text" required="required value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
 
                     <tr>
@@ -42,45 +42,6 @@
                     </tr>
                 </table>
             </form>
-         <SCRIPT language="JavaScript">
-            
-            function campoNumerico(valor)
-            {
-                var caracteresValidos = "0123456789";
-                var ehNumero = true;
-                var umCaracter;
-                for (i = 0; i < valor.length && ehNumero == true; i++) 
-                { 
-                    umCaracter = valor.charAt(i); 
-                    if (caracteresValidos.indexOf(umCaracter) == -1) 
-                    {
-                        ehNumero = false;
-                    }
-                }
-                return ehNumero;
-            }
-            function validarFormulario(form) { 
-                var mensagem;
-                mensagem = "";
-                if (form.txtIdDesign.value == ""){
-                    mensagem = mensagem + "Informe o ID\n";
-                }
-                if (!campoNumerico(form.txtIdDesign.value)){
-                    mensagem = mensagem + "O campo ID deve ser numerico\n";
-                }
-                if (form.txtCaminhoImagem.value == ""){
-                    mensagem = mensagem + "Informe o caminho da imagem\n";
-                }                   
-                if (mensagem == ""){
-                    return true;
-                }else{
-                    alert(mensagem);
-                    return false;
-                }                
-            } 
-            
-        </SCRIPT>
         </div>
-
     </body>
 </html>
