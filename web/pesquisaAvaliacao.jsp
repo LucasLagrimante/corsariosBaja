@@ -20,8 +20,8 @@
         <table border align="center">
             <tr>
                 <th>Código Avaliação</th>
-                <th>Matricula Integante</th>
-                <th>Frequencia Avaliação</th>
+                <th>Matrícula Integante</th>
+                <th>Frequência Avaliação</th>
                 <th>Desempenho Avaliação</th>
                 <th>Data Avaliação</th>
                 <th colspan="2">Ação</th>

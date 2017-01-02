@@ -36,7 +36,7 @@ public class InvestidorDAO {
             String sql = "INSERT INTO investidor (idInvestidor, valorDoado,FK_idPessoa) VALUES (?, ?, ?) ";
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setInt(1, investidor.getIdInvestidor());
-            comando.setFloat(2, investidor.getValorDoado());
+            comando.setInt(2, investidor.getValorDoado());
             comando.setInt(3, investidor.getIdPessoa());
             
             comando.execute();
@@ -58,7 +58,7 @@ public class InvestidorDAO {
             while (rs.next()) {
                 Investidor investidor = new Investidor(
                         rs.getInt("idInvestidor"),
-                        rs.getFloat("valorDoado"),
+                        rs.getInt("valorDoado"),
                         rs.getInt("FK_idPessoa")
                         
                 );
@@ -84,7 +84,7 @@ public class InvestidorDAO {
             rs.first();
             investidor = new Investidor(
                         rs.getInt("idInvestidor"),
-                        rs.getFloat("valorDoado"),
+                        rs.getInt("valorDoado"),
                         rs.getInt("FK_idPessoa")
             );
             
@@ -105,7 +105,7 @@ public class InvestidorDAO {
                     + "WHERE IdInvestidor = ?";
             
             PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setFloat(1, investidor.getValorDoado());
+            comando.setInt(1, investidor.getValorDoado());
             comando.setInt(2, investidor.getIdPessoa());
             comando.setInt(3, investidor.getIdInvestidor());
             

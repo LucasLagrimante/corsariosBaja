@@ -12,15 +12,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisa de Automovel</title>
+        <title>Pesquisa de Automóvel</title>
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1 align="center">Pesquisa de Automovel</h1>
+        <h1 align="center">Pesquisa de Automóvel</h1>
         <table border align="center">
             <tr>
-                <th>Código Automovel</th>
-                <th>Nome Automovel</th>
+                <th>Código Automóvel</th>
+                <th>Nome Automóvel</th>
                 <th>Cor</th>
                 <th>Data de término do projeto</th>
                 <th>Peso Carro</th>

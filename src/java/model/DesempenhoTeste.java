@@ -8,7 +8,7 @@ public class DesempenhoTeste {
 
     private int idDesempenhoTeste;
     private String nome, data, hora, tempoPista;
-    private float aceleracaoMedia, velocidadeMedia, frenagem;
+    private int aceleracaoMedia, velocidadeMedia, frenagem;
 
     private final int idAutomovel;
     private Automovel automovel;
@@ -19,7 +19,7 @@ public class DesempenhoTeste {
     private final int matricula;
     private Integrante integrante;
 
-    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, int idAutomovel, int idTipoPista, int matricula) {
+    public DesempenhoTeste(int idDesempenhoTeste, String nome, String data, String hora, int aceleracaoMedia, int velocidadeMedia, String tempoPista, int frenagem, int idAutomovel, int idTipoPista, int matricula) {
         this.idDesempenhoTeste = idDesempenhoTeste;
         this.nome = nome;
         this.data = data;
@@ -86,19 +86,19 @@ public class DesempenhoTeste {
         this.idDesempenhoTeste = idDesempenhoTeste;
     }
 
-    public float getVelocidadeMedia() {
+    public int getVelocidadeMedia() {
         return velocidadeMedia;
     }
 
-    public void setVelocidadeMedia(float velocidadeMedia) {
+    public void setVelocidadeMedia(int velocidadeMedia) {
         this.velocidadeMedia = velocidadeMedia;
     }
 
-    public float getAceleracaoMedia() {
+    public int getAceleracaoMedia() {
         return aceleracaoMedia;
     }
 
-    public void setaceleracaoMedia(float aceleracaoMedia) {
+    public void setaceleracaoMedia(int aceleracaoMedia) {
         this.aceleracaoMedia = aceleracaoMedia;
     }
 
@@ -134,11 +134,11 @@ public class DesempenhoTeste {
         this.tempoPista = tempoPista;
     }
 
-    public float getFrenagem() {
+    public int getFrenagem() {
         return frenagem;
     }
 
-    public void setFrenagem(float frenagem) {
+    public void setFrenagem(int frenagem) {
         this.frenagem = frenagem;
     }
 

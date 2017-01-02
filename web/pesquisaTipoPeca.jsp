@@ -16,11 +16,11 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1 align="center">Pesquisa de Tipo de Peca</h1>
+        <h1 align="center">Pesquisa de Tipo de Peça</h1>
         <table border align="center">
             <tr>
-                <th>Código Tipo Peca</th>
-                <th>Nome TipoPeca</th>
+                <th>Código Tipo Peça</th>
+                <th>Nome Tipo Peça</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${tiposPeca}" var="tipoPeca">

@@ -19,8 +19,8 @@
         <h1 align="center">Pesquisa de Integrante</h1>
         <table border align="center">
             <tr>
-                <th>Matricula</th>
-                <th>Carga Horaria Disponivel</th>
+                <th>Matrícula</th>
+                <th>Carga Horária Disponível</th>
                 <th>Pessoa</th>
                 <th colspan="2">Ação</th>
             </tr>

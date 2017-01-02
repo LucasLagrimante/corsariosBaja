@@ -21,7 +21,7 @@
             <tr>
                 <th>Código Arquitetura</th>
                 <th>Caminho</th>
-                <th>Automovel</th>
+                <th>Automóvel</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${arquiteturas}" var="arquitetura">

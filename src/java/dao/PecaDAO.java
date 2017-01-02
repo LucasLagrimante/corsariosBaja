@@ -39,7 +39,7 @@ public class PecaDAO {
             comando.setInt(2, peca.getQuantidade());
             comando.setString(3, peca.getNome());
             comando.setString(4, peca.getModelo());
-            comando.setFloat(5, peca.getPrecoCompra());
+            comando.setInt(5, peca.getPrecoCompra());
             comando.setInt(6, peca.getIdTipoPeca());
             
             comando.execute();
@@ -64,7 +64,7 @@ public class PecaDAO {
                         rs.getInt("quantidade"),
                         rs.getString("nome"),
                         rs.getString("modelo"),
-                        rs.getFloat("precoCompra"),
+                        rs.getInt("precoCompra"),
                         rs.getInt("FK_tipopeca")
                         
                 );
@@ -93,7 +93,7 @@ public class PecaDAO {
                     rs.getInt("quantidade"),
                     rs.getString("nome"),
                     rs.getString("modelo"),
-                    rs.getFloat("precoCompra"),
+                    rs.getInt("precoCompra"),
                     rs.getInt("FK_tipopeca")
             );
             
@@ -119,7 +119,7 @@ public class PecaDAO {
             comando.setInt(1, peca.getQuantidade());
             comando.setString(2, peca.getNome());
             comando.setString(3, peca.getModelo());
-            comando.setFloat(4, peca.getPrecoCompra());
+            comando.setInt(4, peca.getPrecoCompra());
             comando.setInt(5, peca.getIdTipoPeca());
             comando.setInt(6, peca.getIdPeca());
        

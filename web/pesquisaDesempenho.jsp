@@ -20,7 +20,7 @@
         <table border align="center">
             <tr>
                 <th>Código Desempenho</th>
-                <th>Automovel</th>
+                <th>Automóvel</th>
                 <th>Tipo Pista</th>
                 <th>Motorista</th>
                 <th>Desempenho</th>

@@ -8,9 +8,9 @@ public class Automovel {
 
     private int idAutomovel;
     private String cor, nome, dataTerminoProjeto;
-    private float pesoCarro, pesoChassi, custoTotal;
+    private int pesoCarro, pesoChassi, custoTotal;
 
-    public Automovel(int idAutomovel, String cor, String nome, String dataTerminoProjeto, float pesoCarro, float pesoChassi, float custoTotal) {
+    public Automovel(int idAutomovel, String cor, String nome, String dataTerminoProjeto, int pesoCarro, int pesoChassi, int custoTotal) {
         this.idAutomovel = idAutomovel;
         this.cor = cor;
         this.nome = nome;
@@ -52,27 +52,27 @@ public class Automovel {
         this.dataTerminoProjeto = dataTerminoProjeto;
     }
 
-    public float getPesoCarro() {
+    public int getPesoCarro() {
         return pesoCarro;
     }
 
-    public void setPesoCarro(float pesoCarro) {
+    public void setPesoCarro(int pesoCarro) {
         this.pesoCarro = pesoCarro;
     }
 
-    public float getPesoChassi() {
+    public int getPesoChassi() {
         return pesoChassi;
     }
 
-    public void setPesoChassi(float pesoChassi) {
+    public void setPesoChassi(int pesoChassi) {
         this.pesoChassi = pesoChassi;
     }
 
-    public float getCustoTotal() {
+    public int getCustoTotal() {
         return custoTotal;
     }
 
-    public void setCustoTotal(float custoTotal) {
+    public void setCustoTotal(int custoTotal) {
         this.custoTotal = custoTotal;
     }
 

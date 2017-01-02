@@ -16,11 +16,11 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
     <body>
-        <h1 align="center">Pesquisa de Frequencia</h1>
+        <h1 align="center">Pesquisa de Frequência</h1>
         <table border align="center">
             <tr>
-                <th>Código Frequencia</th>
-                <th>Matricula Integrante</th>
+                <th>Código Frequência</th>
+                <th>Matrícula Integrante</th>
                 <th>Data</th>
                 <th>Estado</th>
                 <th colspan="2">Ação</th>

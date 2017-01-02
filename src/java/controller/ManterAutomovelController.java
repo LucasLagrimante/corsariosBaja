@@ -57,9 +57,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+       int pesoCarro = Integer.parseInt(request.getParameter("txtPesoCarro"));
+       int pesoChassi = Integer.parseInt(request.getParameter("txtPesoChassi"));
+       int custoTotal = Integer.parseInt(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.gravar();
@@ -94,9 +94,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+       int pesoCarro = Integer.parseInt(request.getParameter("txtPesoCarro"));
+       int pesoChassi = Integer.parseInt(request.getParameter("txtPesoChassi"));
+       int custoTotal = Integer.parseInt(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.alterar();
@@ -131,9 +131,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        int pesoCarro = Integer.parseInt(request.getParameter("txtPesoCarro"));
+        int pesoChassi = Integer.parseInt(request.getParameter("txtPesoChassi"));
+        int custoTotal = Integer.parseInt(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.excluir();
