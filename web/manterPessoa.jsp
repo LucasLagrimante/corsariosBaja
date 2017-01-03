@@ -3,112 +3,437 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cadastrar Pessoa</title>
-        <link rel="stylesheet" type="text/css"  href="estilo.css" />
-        <link rel="shortcut icon" href="images/favicon.ico">
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastrar Pessoa</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+</head>
+<body>
 
-        <div align="center">
-            <h2 align="center">Manter Pessoa - ${operacao}</h2>
-            <form action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
-                <table>
-                    <tr>
-                        <td align="left">ID:</td>
-                        <td align="right"><input name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Nome:</td>
-                            <td align="right"><input name="txtNome" required="required" type="text" value="${pessoa.nome}" pattern="[a-z\s]+$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">CPF:</td>
-                            <td align="right"><input name="txtCpf" onkeypress="mascara(this, cpf)" maxlength="14" required="required" type="text" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" value="${pessoa.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Logradouro:</td>
-                            <td align="right"><input name="txtLogradouro" required="required" type="text" value="${pessoa.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">CEP:</td>
-                            <td align="right"><input name="txtCep" required="required"  type="text" pattern= "\d{5}-?\d{3}" maxlength="9" value="${pessoa.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Bairro:</td>
-                            <td align="right"><input name="txtBairro" required="required" type="text"  value="${pessoa.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">UF:</td>
-                            <td align="right"><input name="txtUf" type="text" required="required" pattern="[a-z\s]+$"  maxlength="2"  value="${pessoa.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Número:</td>
-                            <td align="right"><input type="text" name="txtNumero" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!"  value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Telefone:</td>
-                            <td align="right"><input type="text" name="txtTelefone" type="tel" required="required" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="Formato: (99) 9999-9999"  value="${pessoa.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"> <input type="submit" value="Confirmar"></td>
-                    </tr>
-                </table>
-            </form>
-            <script>
-<script language="javascript">
-                function mascara(o,f){
+    <div align="center" class="login">
+        <h1 align="center">${operacao}<br>Pessoa</h1>
+        <form class="form"  action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
+
+          <br>
+          <abbr>ID</abbr>
+          <p  class="field">
+            <input name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" required="required" placeholder="Digite apenas números!"  pattern="[0-9]+$" placeholder="Digite apenas números!" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+        <abbr>Nome</abbr>
+        <p  class="field">
+            <input name="txtNome" required="required" type="text" value="${pessoa.nome}" pattern="[a-z\s]+$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>CPF</abbr>
+        <p  class="field">
+            <input name="txtCpf" onkeypress="mascara(this, cpf)" maxlength="14" required="required" type="text" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" value="${pessoa.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>Logradouro</abbr>
+        <p  class="field">
+            <input name="txtLogradouro" required="required" type="text" value="${pessoa.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>CEP</abbr>
+        <p  class="field">
+            <input name="txtCep" required="required"  type="text" pattern= "\d{5}-?\d{3}" maxlength="9" value="${pessoa.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>Bairro</abbr>
+        <p  class="field">
+            <input name="txtBairro" required="required" type="text"  value="${pessoa.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>UF</abbr>
+        <p  class="field">
+            <input name="txtUf" type="text" required="required" pattern="[a-z\s]+$"  maxlength="2"  value="${pessoa.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>Número</abbr>
+        <p  class="field">
+            <input type="text" name="txtNumero" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!"  value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <abbr>Telefone</abbr>
+        <p  class="field">
+            <input type="text" name="txtTelefone" type="tel" required="required" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="Formato: (99) 9999-9999"  value="${pessoa.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+            <i class="fa fa-circle"></i>
+        </p>
+
+        <input type="submit" value="Confirmar">
+    </form>
+    <script>
+        <script language="javascript">
+            function mascara(o,f){
 
 
 
-              
-                    v_obj = o
-                        v_
-                        fun = f
-                        setTimeout("execmascara()", 1)
-        }
-        function 
-       
-                
-                execmascara(){
 
-                        v_obj.va l
-                    u
-                        e = v_fun(v_obj.
-                                value)
-        }
-        
-        
-           
-                function leech(
-            v){
-                       
-                    v = v.replace(/o/gi, "0")
+                v_obj = o
+                v_
+                fun = f
+                setTimeout("execmascara()", 1)
+            }
+            function 
 
-                        v = v.replace(/i/gi, "1")
-                        v = v.replace(/z/gi, "2")
-                        v = v.replace(/e/gi, "3")
-                        v = v.replace(/a/gi, "4")
-                        v = v.replace(/s/gi, "5")
-                        v = v.replace(/t/gi, "7")
-                        return v
-                        }
-           
-                function cpf(v){
-             
+
+            execmascara(){
+
+                v_obj.va l
+                u
+                e = v_fun(v_obj.
+                    value)
+            }
+
+
+
+            function leech(
+                v){
+
+                v = v.replace(/o/gi, "0")
+
+                v = v.replace(/i/gi, "1")
+                v = v.replace(/z/gi, "2")
+                v = v.replace(/e/gi, "3")
+                v = v.replace(/a/gi, "4")
+                v = v.replace(/s/gi, "5")
+                v = v.replace(/t/gi, "7")
+                return v
+            }
+
+            function cpf(v){
+
                     v = v.replace(/D/g, "") //Remove tudo o que não é dígito
                         v = v.replace(/(d{3})(d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
                         v = v.replace(/(d{3})(d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
 //de novo (para o segundo bloco de números)
-                        v = v.repl
-                ace(/(d{3})(d{1,2} )
+v = v.repl
+ace(/(d{3})(d{1,2} )
                     $/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
-                        return v
-                            }
-                        </script>
+return v
+}
+</script>
 
-        </div>
-    </body>
+</div>
+</body>
+<style>
+  /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+  /*still in the works :P*/
+  /*variables*/
+  /*general style*/
+  /*google font*/
+  @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
+  body {
+      font: 13px/20px "Open Sans", Tahoma, Verdana, sans-serif;
+      color: #a7a599;
+      background: #31302b;
+  }
+
+  /*Login form style*/
+  /* === Logo === */
+  .logo {
+      background-position: center;
+      height: 60px;
+      width: 140px;
+      margin: 100px auto 30px auto;
+  }
+
+  /* === Form === */
+  .form {
+      width: 100%;
+  }
+  .form .field {
+      position: relative;
+      margin: 0 50px;
+  }
+  .form .field i {
+      font-size: 18px;
+      left: 0px;
+      top: 0px;
+      position: absolute;
+      height: 44px;
+      width: 44px;
+      color: #f7f3eb;
+      background: #676056;
+      text-align: center;
+      line-height: 44px;
+      transition: all 0.3s ease-out;
+      pointer-events: none;
+  }
+
+  /* === Login styles === */
+  .login {
+      position: relative;
+      margin: 100px auto;
+      width: 370px;
+      height: 930px;
+      background: white;
+      border-radius: 3px;
+  }
+  .login:before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      bottom: -8px;
+      left: -8px;
+      z-index: -1;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+  }
+  .login h1 {
+      line-height: 55px;
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      color: #fff;
+      text-align: center;
+      background: #1abc9c;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+  }
+  .login .submit {
+      text-align: center;
+  }
+  .login.button {
+      text-align: center;
+  }
+  .login p:first-child {
+      margin-top: 30px;
+  }
+  .login p .remember {
+      float: left;
+  }
+  .login p .remember label {
+      color: #a7a599;
+      font-size: 12px;
+      cursor: pointer;
+  }
+  .login p .forgot {
+      float: right;
+      margin-right: 50px;
+  }
+  .login p .forgot a {
+      color: #a7a599;
+      font-size: 12px;
+      text-decoration: none;
+      font-style: italic;
+      transition: all 0.3s ease-out;
+  }
+  .login p .forgot a:hover {
+      color: #f2672e;
+  }
+
+  /*input style*/
+  /* === Input Form === */
+  ::-webkit-input-placeholder {
+      color: #ded9cf;
+      font-family: 'Open Sans';
+  }
+
+  :-moz-placeholder {
+      color: #ded9cf !important;
+      font-family: 'Open Sans';
+  }
+
+  .form input[type=text], input[type=password] {
+      font-family: 'Open Sans', Calibri, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 10px 15px 10px 55px;
+      position: relative;
+      width: 200px;
+      height: 24px;
+      color: #676056;
+      border: none;
+      background: #f7f3eb;
+      color: #777;
+      transition: color 0.3s ease-out;
+  }
+
+  .form input[type=text] {
+      margin-bottom: 15px;
+  }
+
+  .form input[type=text]:hover ~ i,
+  .form input[type=password]:hover ~ i {
+      color: #27ae60;
+  }
+
+  .form input[type=text]:focus ~ i,
+  .form input[type=password]:focus ~ i {
+      color: #27ae60;
+  }
+
+  .form input[type=text]:focus,
+  .form input[type=password]:focus,
+  .form button[type=submit]:focus {
+      outline: none;
+  }
+
+  .form input[type=submit] {
+      margin-top: 15px;
+      width: 270px;
+      text-align: center;
+      font-size: 14px;
+      font-family: 'Open Sans',sans-serif;
+      font-weight: bold;
+      padding: 12px 0;
+      letter-spacing: 0;
+      box-shadow: inset 0px 0px 0px 0px #1abc9c;
+      color: #fff;
+      background-color: #16a085;
+      text-shadow: none;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 20px;
+      -webkit-animation: shadowFadeOut 0.4s;
+      -moz-animation: shadowFadeOut 0.4s;
+  }
+  .form button[type=button]:focus {
+      outline: none;
+  }
+
+  .form input[type=button] {
+      margin-top: 15px;
+      width: 270px;
+      text-align: center;
+      font-size: 14px;
+      font-family: 'Open Sans',sans-serif;
+      font-weight: bold;
+      padding: 12px 0;
+      letter-spacing: 0;
+      box-shadow: inset 0px 0px 0px 0px #1abc9c;
+      color: #fff;
+      background-color: #16a085;
+      text-shadow: none;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 20px;
+      -webkit-animation: shadowFadeOut 0.4s;
+      -moz-animation: shadowFadeOut 0.4s;
+  }
+
+  .form input[type=submit]:hover, input[type=submit]:focus {
+      color: #fff;
+      box-shadow: inset 0px 46px 0px 0px #1abc9c;
+      -webkit-animation: shadowFade 0.4s;
+      -moz-animation: shadowFade 0.4s;
+  }
+  .form input[type=button]:hover, input[type=button]:focus {
+      color: #fff;
+      box-shadow: inset 0px 46px 0px 0px #1abc9c;
+      -webkit-animation: shadowFade 0.4s;
+      -moz-animation: shadowFade 0.4s;
+  }
+
+  /*keyframes for input animation*/
+  @keyframes shadowFade {
+      0% {
+        box-shadow: inset 0px 0px 0px 0px #1abc9c;
+        color: #fff;
+    }
+    100% {
+        box-shadow: inset 0px 46px 0px 0px #1abc9c;
+        color: #fff;
+    }
+}
+@keyframes shadowFadeOut {
+  0% {
+    box-shadow: inset 0px 46px 0px 0px #1abc9c;
+    color: #fff;
+}
+100% {
+    box-shadow: inset 0px 0px 0px 0px #1abc9c;
+    color: #fff;
+}
+}
+@-webkit-keyframes shadowFade {
+  0% {
+    box-shadow: inset 0px 0px 0px 0px #1abc9c;
+    color: #fff;
+}
+100% {
+    box-shadow: inset 0px 46px 0px 0px #1abc9c;
+    color: #fff;
+}
+}
+@-webkit-keyframes shadowFadeOut {
+  0% {
+    box-shadow: inset 0px 46px 0px 0px #1abc9c;
+    color: #fff;
+}
+100% {
+    box-shadow: inset 0px 0px 0px 0px #1abc9c;
+    color: #fff;
+}
+}
+@-moz-keyframes shadowFade {
+  0% {
+    box-shadow: inset 0px 0px 0px 0px #1abc9c;
+    color: #fff;
+}
+100% {
+    box-shadow: inset 0px 46px 0px 0px #1abc9c;
+    color: #fff;
+}
+}
+@-moz-keyframes shadowFadeOut {
+  0% {
+    box-shadow: inset 0px 44px 0px 0px #1abc9c;
+    color: #fff;
+}
+100% {
+    box-shadow: inset 0px 0px 0px 0px #1abc9c;
+    color: #fff;
+}
+}
+/*continued styling for input */
+.form input[type="checkbox"] {
+  display: none;
+}
+
+.form input[type="checkbox"] + label span {
+    display:inline-block;
+    width:16px;
+    height:16px;
+    margin: -2px 4px 0 50px;
+    vertical-align:middle;
+    background:url("../img/checkbox.png") left top no-repeat;
+    cursor:pointer;
+}
+.form input[type="checkbox"]:checked + label span {
+    background:url("../img/checkbox.png") -16px top no-repeat;
+}
+/* === Copyright === */
+.copyright {
+  margin-top: 30px;
+  text-align: center;
+}
+.copyright p, .copyright a {
+  color: #828078;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+.copyright p a:hover, .copyright a a:hover {
+  color: #f2672e;
+}
+</style>
 </html>
