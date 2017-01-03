@@ -4,54 +4,52 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Principal</title>
-  <link rel="stylesheet" type="text/css"  href="style/style.css" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body>
   <nav>
     <ul class="menu">
-      <li><a href="#">Cadastrar</a>
+      <li><a href="#">CADASTRAR</a>
         <ul>
-          <li><a href="ManterAutomovelController?acao=prepararIncluir">Automovel</a></li>
-          <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
-          <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-          <li><a href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
-          <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
-          <li><a href="ManterTipoPecaController?acao=prepararIncluir">TipoPeca</a></li>
-          <li><a href="ManterTipoPistaController?acao=prepararIncluir">TipoPista</a></li>
-          <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequencia</a></li>
-          <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliacao</a></li>
+          <li><a href="ManterAutomovelController?acao=prepararIncluir">Automóvel</a></li>
+          <li><a href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
+          <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
           <li><a href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
           <li><a href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
           <li><a href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
-          <li><a href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
           <li><a href="ManterDesignController?acao=prepararIncluir">Design</a></li>
+          <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
+          <li><a href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
+          <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
+          <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
+          <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
+          <li><a href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+          <li><a href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
 
         </ul>
       </li>
-      <li><a href="#">Pesquisar</a>
+      <li><a href="#">PESQUISAR</a>
         <ul>
-          <li><a href="PesquisaAutomovelController">Automovel</a></li>
-          <li><a href="PesquisaInvestidorController">Investidor</a></li>
-          <li><a href="PesquisaPecaController">Peça</a></li>
-          <li><a href="PesquisaPessoaController">Pessoa</a></li>
-          <li><a href="PesquisaIntegranteController">Integrante</a></li>
-          <li><a href="PesquisaTipoPecaController">TipoPeca</a></li>
-          <li><a href="PesquisaTipoPistaController">TipoPista</a></li>
-          <li><a href="PesquisaFrequenciaController">Frequencia</a></li>
-          <li><a href="PesquisaAvaliacaoController">Avaliacao</a></li>
+          <li><a href="PesquisaAutomovelController">Automóvel</a></li>
+          <li><a href="PesquisaArquiteturaController">Arquitetura</a></li>
+          <li><a href="PesquisaAvaliacaoController">Avaliação</a></li>
           <li><a href="PesquisaCompeticaoController">Competição</a></li>
           <li><a href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
           <li><a href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-          <li><a href="PesquisaArquiteturaController">Arquitetura</a></li>
           <li><a href="PesquisaDesignController">Design</a></li>
+          <li><a href="PesquisaFrequenciaController">Frequência</a></li>
+          <li><a href="PesquisaInvestidorController">Investidor</a></li>
+          <li><a href="PesquisaIntegranteController">Integrante</a></li>
+          <li><a href="PesquisaPecaController">Peça</a></li>
+          <li><a href="PesquisaPessoaController">Pessoa</a></li>
+          <li><a href="PesquisaTipoPecaController">Tipo de Peça</a></li>
+          <li><a href="PesquisaTipoPistaController">Tipo de Pista</a></li>
         </ul>
       </li>
-
-      <li><a href="javascript:void()" onclick="window.close()">Sair</a></li>
     </ul>
     <div>
-      <h1 style="font-size: 50px; position: absolute; left: 250px;top: 270px;" id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
+      <h1 style="font-size: 50px; position: absolute; left: 280px;top: 280px;" id="h1Center">Carro de Corrida Baja - Equipe Corsários</h1></div>
     </body>
     <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
@@ -59,7 +57,25 @@
       /*variables*/
       /*general style*/
       /*google font*/
+      a:link{
+        color:#f7f3eb;
+        text-decoration: none;
+        font-family: "Open Sans", Tahoma, Verdana, sans-serif;
+      }
 
+      a:visited{
+        font-family: "Open Sans", Tahoma, Verdana, sans-serif;
+        color:#f7f3eb;
+      }
+      a:hover {
+        font-size:220%; 
+        font-family: "Open Sans", Tahoma, Verdana, sans-serif;
+        color:#f7f3eb;
+      }
+      a:active{
+        font-family: "Open Sans", Tahoma, Verdana, sans-serif;
+        color:#f7f3eb;
+      }
 
       @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
       body {
