@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportDesempenhoTeste" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2614c7c4-8e69-4fae-a788-a4b4be4965a5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     desempenhoteste.`idDesempenhoTeste` AS desempenhoteste_idDesempenhoTeste,
+     desempenhoteste.`nome` AS desempenhoteste_nome,
+     desempenhoteste.`data` AS desempenhoteste_data,
+     desempenhoteste.`hora` AS desempenhoteste_hora,
+     desempenhoteste.`velocidadeMedia` AS desempenhoteste_velocidadeMedia,
+     desempenhoteste.`aceleracaoMedia` AS desempenhoteste_aceleracaoMedia,
+     desempenhoteste.`tempoPista` AS desempenhoteste_tempoPista,
+     desempenhoteste.`frenagem` AS desempenhoteste_frenagem,
+     desempenhoteste.`FK_automovel` AS desempenhoteste_FK_automovel,
+     desempenhoteste.`FK_tipopista` AS desempenhoteste_FK_tipopista,
+     desempenhoteste.`FK_motorista` AS desempenhoteste_FK_motorista
+FROM
+     `desempenhoteste` desempenhoteste]]>
+	</queryString>
+	<field name="desempenhoteste_idDesempenhoTeste" class="java.lang.Integer"/>
+	<field name="desempenhoteste_nome" class="java.lang.String"/>
+	<field name="desempenhoteste_data" class="java.lang.String"/>
+	<field name="desempenhoteste_hora" class="java.lang.String"/>
+	<field name="desempenhoteste_velocidadeMedia" class="java.lang.Float"/>
+	<field name="desempenhoteste_aceleracaoMedia" class="java.lang.Float"/>
+	<field name="desempenhoteste_tempoPista" class="java.lang.String"/>
+	<field name="desempenhoteste_frenagem" class="java.lang.Float"/>
+	<field name="desempenhoteste_FK_automovel" class="java.lang.Integer"/>
+	<field name="desempenhoteste_FK_tipopista" class="java.lang.Integer"/>
+	<field name="desempenhoteste_FK_motorista" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="9f96028b-4ff3-4b47-83c7-c0f7fd23f397"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="4e2c0629-2b9d-42af-8515-6ea7d2445bdc"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Desempenho Teste]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="723a4a6d-44a2-40b6-978b-31cd2b6f1179"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Corsários Baja]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="86ea720f-7d47-46e8-b8de-c587ca5cfdb9"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ddc8880e-af42-4724-922e-4cf25daff2ec"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_idDesempenhoTeste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0c9dcee6-aa29-4e04-8953-0ba03f420e74"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d424060f-b16a-4e5a-a58d-45e99b7ce9ce"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="150" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5bf7d592-9ec8-43aa-919b-e2c2eb6c5266"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9312021a-9c5a-4cd0-bfc3-9ca8809219fe"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_velocidadeMedia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="250" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="369a5d58-cef4-44a4-a96e-1026449da07a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_aceleracaoMedia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="300" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0302b430-4944-4b2c-9618-023f4e754c73"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_tempoPista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2a35908a-eba3-4727-844b-69ebc10ec05a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_frenagem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1b615fc8-f14f-4b0c-afde-7e3bf1cbbb78"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_FK_automovel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="68c1d0a9-c848-4c07-9af3-21f7fda1cd72"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_FK_tipopista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="500" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="463c7b71-78bf-4fb1-8c2f-95d9f9cfcc21"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[desempenhoteste_FK_motorista]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="58e407dd-1b24-43ef-9a08-ff4e87eafe71"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="50" height="20" uuid="af1821d0-13c7-4a05-b07c-e2a342c19c22"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_idDesempenhoTeste}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="50" y="0" width="50" height="20" uuid="729a09d5-6bd7-4f1d-87a0-9315431f4bde"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="100" y="0" width="50" height="20" uuid="bcf838e8-4250-4104-ba00-e9fc01151f08"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_data}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="150" y="0" width="50" height="20" uuid="bb7f4154-3a8c-4d77-9837-6a259b00fcfb"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_hora}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="200" y="0" width="50" height="20" uuid="e2ef04ab-a74f-47f4-8501-16488908e380"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_velocidadeMedia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="250" y="0" width="50" height="20" uuid="eb6f5a0a-2e67-40fd-9e62-729948bdb710"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_aceleracaoMedia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="300" y="0" width="50" height="20" uuid="a84317de-bfbe-462c-bdc2-1f9efcf74eb2"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_tempoPista}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="350" y="0" width="50" height="20" uuid="f6c3b596-6f7e-4548-935c-e305844e8031"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_frenagem}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="400" y="0" width="50" height="20" uuid="3794f9b7-5b17-4192-8b78-d5cf6edc78da"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_FK_automovel}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="0" width="50" height="20" uuid="0abcb653-a523-4770-8363-7efcd8acb5b3"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_FK_tipopista}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="500" y="0" width="50" height="20" uuid="12fa1c6a-0529-42ac-bedf-f631f71168b5"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desempenhoteste_FK_motorista}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="2a03bd6c-31d6-457d-ba4f-05f02b7c8130"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="72ba4018-cb34-4a97-9972-f2d82e089302"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="673642b7-2f7d-4c87-801c-f9605de5efac"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
