@@ -77,7 +77,7 @@
         color:#f7f3eb;
       }
 
-      @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
+ @import "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
       body {
         font: 13px/20px "Open Sans", Tahoma, Verdana, sans-serif;
         color: #a7a599;

@@ -136,6 +136,10 @@
         <servlet-name>TratamentoExcecao</servlet-name>
         <servlet-class>exception.TratamentoExcecao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RelatorioArquiteturaController</servlet-name>
+        <servlet-class>relatorio.RelatorioArquiteturaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
         <url-pattern>/PesquisaArquiteturaController</url-pattern>
@@ -272,6 +276,10 @@
         <servlet-name>TratamentoExcecao</servlet-name>
         <url-pattern>/TratamentoExcecao</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RelatorioArquiteturaController</servlet-name>
+        <url-pattern>/RelatorioArquiteturaController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -286,11 +294,10 @@
         </location>
     </error-page>
     <error-page>
-      
-            <exception-type>
+        <exception-type>
                 java.lang.Exception
             </exception-type>
-            <location>
+        <location>
                 /TratamentoExcecao
             </location>
     </error-page>
