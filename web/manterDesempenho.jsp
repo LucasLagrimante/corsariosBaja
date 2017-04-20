@@ -15,7 +15,7 @@
 <body>
   <div align="center"  class="login">
     <h1 align="center">${operacao}<br>Desempenho de Competição</h1>
-    <form class="form" action="ManterDesempenhoController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenho">
+    <form class="form" action="ManterDesempenhoController?acao=confirmar${operacao}?" method="POST" name="frmManterDesempenho">
       <br>
       <abbr>Automóvel</abbr>
       <p class="field">

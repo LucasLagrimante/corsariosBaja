@@ -58,7 +58,7 @@
                                 <option value="${automovel.cor}"></option>
                             </c:forEach>
                         </select>
-                        <input type="button" value="Imprimir" onclick="window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'">
+                        <input type="button" value="Imprimir" name="imprimir">
                         <input type="button" value="Voltar" onclick="window.location.href = 'index.jsp'">
                     </td>
                 </tr>
@@ -419,5 +419,12 @@
                 $("[name='selectCor']").show();
             }
         });
+    });
+    $("[name='imprimir']").click(function () {
+        if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+            window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
+        } else {
+            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper' + "&cor=" + $("[name='selectCor'] option:selected").val();
+        }
     });
 </script>
