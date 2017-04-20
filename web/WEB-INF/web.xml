@@ -137,12 +137,8 @@
         <servlet-class>exception.TratamentoExcecao</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RelatorioArquiteturaController</servlet-name>
+        <servlet-name>RelatorioController</servlet-name>
         <servlet-class>relatorio.RelatorioController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RelatorioAutomovelPorCorController</servlet-name>
-        <servlet-class>relatorio.RelatorioAutomovelPorCorController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaArquiteturaController</servlet-name>
@@ -281,12 +277,8 @@
         <url-pattern>/TratamentoExcecao</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RelatorioArquiteturaController</servlet-name>
-        <url-pattern>/RelatorioArquiteturaController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RelatorioAutomovelPorCorController</servlet-name>
-        <url-pattern>/RelatorioAutomovelPorCorController</url-pattern>
+        <servlet-name>RelatorioController</servlet-name>
+        <url-pattern>/RelatorioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

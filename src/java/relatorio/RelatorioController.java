@@ -1,11 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package relatorio;
 
 import dao.BD;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -20,17 +22,27 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
- * @author
+ * @author Lucas
  */
 public class RelatorioController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
             String relatorioNome = request.getParameter("relatorioNome");
-            String relatorio = getServletContext().getRealPath("WEB-INF/classes/reports/UmaTabela") + relatorioNome;
+            String relatorio = getServletContext().getRealPath("/WEB-INF/classes/reports/") + relatorioNome;
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setHeader("Content-Disposition", "attachment;filename=reportCorsarioBaja.pdf");
@@ -92,4 +104,5 @@ public class RelatorioController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
