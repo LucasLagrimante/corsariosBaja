@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="p_cor" class="java.lang.String"/>
+	<parameter name="P_codigo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      automovel.`idAutomovel` AS automovel_idAutomovel,
@@ -12,7 +12,7 @@
      automovel.`pesoCarro` AS automovel_pesoCarro
 FROM
      `automovel` automovel
-WHERE $P{p_cor} = cor]]>
+WHERE $P{P_codigo} = cor]]>
 	</queryString>
 	<field name="automovel_idAutomovel" class="java.lang.Integer"/>
 	<field name="automovel_cor" class="java.lang.String"/>

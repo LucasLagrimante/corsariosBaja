@@ -41,7 +41,10 @@ public class RelatorioController extends HttpServlet {
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            //parametros.put("PAR_codCurso", Integer.parseInt(request.getParameter("aosidj")));
+            if (request.getParameter("parametro").equals("")) {
+            } else {
+                parametros.put("P_codigo", request.getParameter("parametro"));
+            }
             String relatorioNome = request.getParameter("relatorioNome");
             String relatorio = getServletContext().getRealPath("/WEB-INF/classes/reports/") + relatorioNome;
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);

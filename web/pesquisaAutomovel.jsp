@@ -424,7 +424,7 @@
         if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
             window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
         } else {
-            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper' + "&cor=" + $("[name='selectCor'] option:selected").val();
+            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper' + "&parametro=" + $("[name='selectCor'] option:selected").val();
         }
     });
 </script>
