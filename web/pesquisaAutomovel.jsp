@@ -15,6 +15,7 @@
         <title>Pesquisa de Automóvel</title>
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/favicon.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     </head>
     <body>
         <form class="form">
@@ -46,6 +47,17 @@
                 </c:forEach>
                 <tr> 
                     <td  align="center" colspan="9">
+                        <select name="selectTipoRelatorio" required="required">   
+                            <option value="completo">Relatório Completo</option>
+                            <option value="filtroCor">Filtro Por Cor</option>
+                        </select>
+
+                        <input type="hidden" name="selectCor" value="${automovel.cor}">
+                        <select name="selectCor" hidden="hidden" required="required">   
+                            <c:forEach items="${cor}" var="cor">
+                                <option value="${automovel.cor}"></option>
+                            </c:forEach>
+                        </select>
                         <input type="button" value="Imprimir" onclick="window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'">
                         <input type="button" value="Voltar" onclick="window.location.href = 'index.jsp'">
                     </td>
@@ -397,3 +409,15 @@
     }
 </style>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[name='selectTipoRelatorio']").change(function () {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                $("[name='selectCor']").hide();
+            } else {
+                $("[name='selectCor']").show();
+            }
+        });
+    });
+</script>
