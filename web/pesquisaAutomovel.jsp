@@ -54,8 +54,8 @@
 
                         <input type="hidden" name="selectCor" value="${automovel.cor}">
                         <select name="selectCor" hidden="hidden" required="required">   
-                            <c:forEach items="${cores}" var="automovel">
-                                <option value="${automovel.cor}"> ${automovel.cor}</option>
+                            <c:forEach items="${cores}" var="cor">
+                                <option value="${cor.cor}"> ${cor.cor}</option>
                             </c:forEach>
                         </select>
                         <input type="button" value="Imprimir" name="imprimir">
