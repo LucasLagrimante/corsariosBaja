@@ -20,6 +20,10 @@ public class Automovel {
         this.custoTotal = custoTotal;
     }
 
+    public Automovel(String cor) {
+        this.cor = cor;
+    }
+
     public int getIdAutomovel() {
         return idAutomovel;
     }
@@ -79,7 +83,7 @@ public class Automovel {
     public void gravar() throws SQLException, ClassNotFoundException {
         AutomovelDAO.gravar(this);
     }
-    
+
     public void alterar() throws SQLException, ClassNotFoundException {
         AutomovelDAO.alterar(this);
     }
@@ -92,8 +96,12 @@ public class Automovel {
         return AutomovelDAO.obterAutomoveis();
     }
 
+    public static List<Automovel> obterCores() throws ClassNotFoundException, SQLException {
+        return AutomovelDAO.obterCores();
+    }
+
     public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
         return AutomovelDAO.obterAutomovel(idAutomovel);
     }
-    
+
 }

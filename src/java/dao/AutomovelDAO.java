@@ -77,6 +77,28 @@ public class AutomovelDAO {
         }
         return automoveis;
     }
+    
+        public static List<Automovel> obterCores() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Automovel> automoveis = new ArrayList<Automovel>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT cor FROM automovel");
+            while (rs.next()) {
+                Automovel automovel = new Automovel(
+                        rs.getString("cor")
+                );
+                automoveis.add(automovel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return automoveis;
+    }
 
     public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
         Connection conexao = null;

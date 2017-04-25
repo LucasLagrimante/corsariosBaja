@@ -25,6 +25,7 @@ public class PesquisaAutomovelController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
+            request.setAttribute("cores", Automovel.obterCores());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaAutomovel.jsp");
             view.forward(request, response);
 

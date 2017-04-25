@@ -7,7 +7,6 @@ package relatorio;
 
 import dao.BD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -41,12 +40,11 @@ public class RelatorioController extends HttpServlet {
         try {
             conexao = BD.getConexao();
             HashMap parametros = new HashMap();
-            if (request.getParameter("parametro").equals("")) {
-            } else {
+            if (!(request.getParameter("parametro") == null)) {
                 parametros.put("P_codigo", request.getParameter("parametro"));
             }
             String relatorioNome = request.getParameter("relatorioNome");
-            String relatorio = getServletContext().getRealPath("/WEB-INF/classes/reports/") + relatorioNome;
+            String relatorio = getServletContext().getRealPath("/WEB-INF/classes/reports") + "/" + relatorioNome;
             JasperPrint jp = JasperFillManager.fillReport(relatorio, parametros, conexao);
             byte[] relat = JasperExportManager.exportReportToPdf(jp);
             response.setHeader("Content-Disposition", "attachment;filename=reportCorsarioBaja.pdf");

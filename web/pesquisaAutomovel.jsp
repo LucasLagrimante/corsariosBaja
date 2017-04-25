@@ -54,8 +54,8 @@
 
                         <input type="hidden" name="selectCor" value="${automovel.cor}">
                         <select name="selectCor" hidden="hidden" required="required">   
-                            <c:forEach items="${cor}" var="cor">
-                                <option value="${automovel.cor}"></option>
+                            <c:forEach items="${cores}" var="automovel">
+                                <option value="${automovel.cor}"> ${automovel.cor}</option>
                             </c:forEach>
                         </select>
                         <input type="button" value="Imprimir" name="imprimir">
@@ -411,8 +411,8 @@
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("[name='selectTipoRelatorio']").change(function () {
+    $(document).ready(function() {
+        $("[name='selectTipoRelatorio']").change(function() {
             if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
                 $("[name='selectCor']").hide();
             } else {
@@ -420,7 +420,7 @@
             }
         });
     });
-    $("[name='imprimir']").click(function () {
+    $("[name='imprimir']").click(function() {
         if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
             window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
         } else {
