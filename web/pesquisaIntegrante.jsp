@@ -38,7 +38,7 @@
                     </c:forEach>
                     <tr> 
                         <td  align="center" colspan="9">
-                            <input type="button" value="Imprimir" onclick="window.location.href = 'RelatorioController?relatorioNome=Integrante.jasper'">
+                            <input type="button" value="Imprimir" onclick="window.location.href = 'RelatorioController?relatorioNome=reportIntegrante.jasper'">
                             <input type="button" value="Voltar" onclick="window.location.href = 'index.jsp'">
                         </td>
                     </tr>
