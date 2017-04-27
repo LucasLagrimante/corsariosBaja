@@ -20,14 +20,6 @@ public class Automovel {
         this.custoTotal = custoTotal;
     }
 
-    public Automovel(String cor) {
-        this.cor = cor;
-    }
-    
-    public Automovel(float pesoCarro) {
-        this.pesoCarro = pesoCarro;
-    }
-
     public int getIdAutomovel() {
         return idAutomovel;
     }
@@ -100,7 +92,7 @@ public class Automovel {
         return AutomovelDAO.obterAutomoveis();
     }
 
-    public static List<Automovel> obterCores() throws ClassNotFoundException, SQLException {
+    public static List<String> obterCores() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterCores();
     }
     
