@@ -95,8 +95,8 @@ public class Automovel {
     public static List<String> obterCores() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterCores();
     }
-    
-        public static List<Automovel> obterPesos() throws ClassNotFoundException, SQLException {
+
+    public static List<String> obterPesos() throws ClassNotFoundException, SQLException {
         return AutomovelDAO.obterPesos();
     }
 

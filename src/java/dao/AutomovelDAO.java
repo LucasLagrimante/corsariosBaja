@@ -81,42 +81,39 @@ public class AutomovelDAO {
     public static List<String> obterCores() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<String> automoveis = new ArrayList<String>();
+        List<String> cores = new ArrayList<String>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("SELECT DISTINCT cor FROM automovel");
             while (rs.next()) {
-                automoveis.add(rs.getString("cor"));
+                cores.add(rs.getString("cor"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return automoveis;
+        return cores;
     }
 
-    public static List<Automovel> obterPesos() throws ClassNotFoundException, SQLException {
+    public static List<String> obterPesos() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Automovel> automoveis = new ArrayList<Automovel>();
+        List<String> pesos = new ArrayList<String>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("SELECT DISTINCT pesoCarro FROM automovel");
             while (rs.next()) {
-                Automovel automovel = new Automovel(
-                        rs.getFloat("pesoCarro")
-                );
-                automoveis.add(automovel);
+                pesos.add(rs.getString("pesoCarro"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             fecharConexao(conexao, comando);
         }
-        return automoveis;
+        return pesos;
     }
 
     public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {

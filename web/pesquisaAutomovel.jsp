@@ -56,13 +56,13 @@
 
                         <select name="selectCor" hidden="hidden" required="required">   
                             <c:forEach items="${cores}" var="cor">
-                                <option value="${cor.cor}"> ${cor.cor}</option>
+                                <option value="${cor}"> ${cor}</option>
                             </c:forEach>
                         </select>
 
                         <select name="selectPeso" hidden="hidden" required="required">   
                             <c:forEach items="${pesos}" var="peso">
-                                <option value="${peso.pesoCarro}"> ${peso.pesoCarro}</option>
+                                <option value="${peso}"> ${peso}</option>
                             </c:forEach>
                         </select>
 
@@ -76,31 +76,34 @@
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("[name='selectTipoRelatorio']").change(function() {
+    $(document).ready(function () {
+        $("[name='selectCor']").hide();
+        $("[name='selectPeso']").hide();
+
+        $("[name='selectTipoRelatorio']").change(function () {
             if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
                 $("[name='selectCor']").hide();
-            } else {
-                if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso") {
-                    $("[name='selectPeso']").show();
-                    $("[name='selectCor']").hide();
-                } else {
-
-                    $("[name='selectCor']").show();
-                    $("[name='selectPeso']").hide();
-                }
+                $("[name='selectPeso']").hide();
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroCor") {
+                $("[name='selectCor']").show();
+                $("[name='selectPeso']").hide();
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso") {
+                $("[name='selectCor']").hide();
+                $("[name='selectPeso']").show();
             }
         });
-    });
-    $("[name='imprimir']").click(function() {
-        if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
-            window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
-        }
-        if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso") {
-            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorPeso.jasper' + "&parametro=" + $("[name='selectPeso'] option:selected").val();
-        }
-        if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroCor") {
-            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper' + "&parametro=" + $("[name='selectCor'] option:selected").val();
-        }
+        $("[name='imprimir']").click(function () {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso") {
+                window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorPeso.jasper&parametro=' + $("[name='selectPeso'] option:selected").val();
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroCor") {
+                window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper&parametro=' + $("[name='selectCor'] option:selected").val();
+            }
+        });
     });
 </script>
