@@ -26,6 +26,7 @@ public class PesquisaAutomovelController extends HttpServlet {
         try {
             request.setAttribute("automoveis", Automovel.obterAutomoveis());
             request.setAttribute("cores", Automovel.obterCores());
+            request.setAttribute("pesos", Automovel.obterPesos());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaAutomovel.jsp");
             view.forward(request, response);
 

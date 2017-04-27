@@ -50,6 +50,7 @@
                         <select name="selectTipoRelatorio" required="required">   
                             <option value="completo">Relatório Completo</option>
                             <option value="filtroCor">Filtro Por Cor</option>
+                            <option value="filtroPeso">Filtro Por Peso</option>
                         </select>
 
                         <input type="hidden" name="selectCor" value="${automovel.cor}">
@@ -58,6 +59,13 @@
                                 <option value="${cor.cor}"> ${cor.cor}</option>
                             </c:forEach>
                         </select>
+                        
+                        <select name="selectPeso" hidden="hidden" required="required">   
+                            <c:forEach items="${pesos}" var="peso">
+                                <option value="${peso.pesoCarro}"> ${peso.pesoCarro}</option>
+                            </c:forEach>
+                        </select>
+                        
                         <input type="button" value="Imprimir" name="imprimir">
                         <input type="button" value="Voltar" onclick="window.location.href = 'index.jsp'">
                     </td>
@@ -416,15 +424,27 @@
             if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
                 $("[name='selectCor']").hide();
             } else {
+                if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso"){
+                    $("[name='selectPeso']").show();
+                    $("[name='selectCor']").hide();
+                }else{
+                
                 $("[name='selectCor']").show();
+                $("[name='selectPeso']").hide();
             }
+        }
         });
     });
     $("[name='imprimir']").click(function() {
         if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
             window.location.href = 'RelatorioController?relatorioNome=reportAutomovel.jasper'
         } else {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPeso") {
+            window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorPeso.jasper'+ "&parametro=" + $("[name='selectPeso'] option:selected").val();
+        }else{
             window.location.href = 'RelatorioController?relatorioNome=reportAutomovelPorCor.jasper' + "&parametro=" + $("[name='selectCor'] option:selected").val();
+        }
+        
         }
     });
 </script>
