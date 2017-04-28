@@ -63,46 +63,63 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Avaliação</h1>
+            <h3 align="center">${operacao} Avaliação</h3>
             <form class="form"  action="ManterAvaliacaoController?acao=confirmar${operacao}" method="POST" name="frmManterAvaliacao">
-                <br>
-                <abbr>ID</abbr>
-                <p class="field">
-                    <input name="txtIdAvaliacao" type="text" value="${avaliacao.idAvaliacao}" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>          <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Frequencia</abbr>
-                    <p class="field">
-                        <input name="txtFrequencia" type="text" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>    </select>           <i class="fa fa-circle"></i>
-                    </p>
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdAvaliacao" type="text" class="validate" value="${avaliacao.idAvaliacao}" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
 
-                    <abbr>Desempenho na Avaliação</abbr>
-                    <p class="field">
-                        <select name="txtComparecimento" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
-                          <option value="otimo" <c:if test="${avaliacao.comparecimento == 'otimo'}"> selected</c:if>>Ótimo</option>
-                          <option value="bom" <c:if test="${avaliacao.comparecimento == 'bom'}"> selected</c:if>>Bom</option>
-                          <option value="medio" <c:if test="${avaliacao.comparecimento == 'medio'}"> selected</c:if>>Médio</option>
-                          <option value="ruim" <c:if test="${avaliacao.comparecimento == 'ruim'}"> selected</c:if>>Ruim</option>
-                          <option value="pessimo" <c:if test="${avaliacao.comparecimento == 'pessimo'}"> selected</c:if>>Péssimo</option>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <p class="range-field">
+                                <input type="range" id="frequencia" name="txtFrequencia" required="required"  min="0" max="100" value="${avaliacao.frequencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>
+                            </p>   
+                            <label for="frequencia">Frequência</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <select id="desempenhoNaAvaliacao" name="txtComparecimento" value="${avaliacao.comparecimento}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                              <option value="otimo" <c:if test="${avaliacao.comparecimento == 'otimo'}"> selected</c:if>>Ótimo</option>
+                              <option value="bom" <c:if test="${avaliacao.comparecimento == 'bom'}"> selected</c:if>>Bom</option>
+                              <option value="medio" <c:if test="${avaliacao.comparecimento == 'medio'}"> selected</c:if>>Médio</option>
+                              <option value="ruim" <c:if test="${avaliacao.comparecimento == 'ruim'}"> selected</c:if>>Ruim</option>
+                              <option value="pessimo" <c:if test="${avaliacao.comparecimento == 'pessimo'}"> selected</c:if>>Péssimo</option>
+                            </select>
+                            <label for="desempenhoNaAvaliacao">Desempenho na Avaliação</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="data" name="txtData" type="text" required="required" class="datepicker" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <label for="data">Data</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${avaliacao.integrante.matricula}"></c:if>
+                        <select id="integrante" name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${integrantes}" var="integrante">
+                                <option value="${integrante.matricula}" <c:if test="${avaliacao.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
+                            </c:forEach>
                         </select>
-                    </p>
-                    <br>
-                    <abbr>Data</abbr>
-                    <p class="field">
-                        <input name="txtData" type="text" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18" value="${avaliacao.data}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>          <i class="fa fa-circle"></i>
-                    </p>
+                        <label for="integrante">Integrante</label>
+                    </div>
+                </div>
 
-
-                    <abbr>Integrante</abbr>
-                    <p class="field">
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${avaliacao.integrante.matricula}"></c:if>
-                    <select name="selectIntegrante" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${integrantes}" var="integrante">
-                            <option value="${integrante.matricula}" <c:if test="${avaliacao.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <input type="submit" value="Confirmar">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </body>
@@ -114,5 +131,11 @@
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
         });
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+        s
     });
 </script>

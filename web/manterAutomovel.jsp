@@ -86,7 +86,7 @@
 
                     <div class="row">
                         <div class="input-field col s6 offset-m3">
-                            <input id="dataTermino" name="txtDataTerminoProjeto" class="datepicker" type="date" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18" value="${automovel.dataTerminoProjeto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <input id="dataTermino" name="txtDataTerminoProjeto" class="datepicker" type="text" required="required" value="${automovel.dataTerminoProjeto}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <label for="dataTermino">Data Término Projeto</label>
                         </div>
                     </div>
@@ -114,8 +114,8 @@
 
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button class="btn waves-effect waves-light" type="submit" value="Confirmar">Confirmar
-                            <i class="material-icons right">send</i>
+                        <button class="btn waves-effect waves-light" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
                         </button>
                     </div>
                 </div>

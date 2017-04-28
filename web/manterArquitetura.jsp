@@ -82,23 +82,22 @@
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="id"name="txtIdArquitetura" class="validate"  type="text" required="required" pattern="[0-9]+$" value="${arquitetura.idArquitetura}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <input id="id"name="txtIdArquitetura" class="validate"  type="text" required="required" pattern="[0-9]+$" value="${arquitetura.idArquitetura}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="id">ID</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6 offset-m3">
-                            <input id="imagem" name="txtCaminhoImagem" type="text" required="required" value="${arquitetura.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                            <label for="imagem">Imagem</label>
-                        </div>
+                            <input id="imagem" name="txtCaminhoImagem" type="text" required="required" value="${arquitetura.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label for="imagem">Imagem</label>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <button class="btn waves-effect waves-light" type="submit" <c:if test="${operacao == 'Excluir'}"> readonly</c:if> value="Confirmar">
-                            Confirmar
-                            <i class="material-icons right">send</i>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
                         </button>
                     </div>
                 </div>
@@ -109,6 +108,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('select').material_select();
+
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
