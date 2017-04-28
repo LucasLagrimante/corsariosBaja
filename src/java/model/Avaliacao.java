@@ -8,7 +8,7 @@ public class Avaliacao {
 
     private int idAvaliacao, frequencia;
     private String comparecimento, data;
-     private final int matricula;
+    private final int matricula;
     private Integrante integrante;
 
     public Avaliacao(int idAvaliacao, int frequencia, String comparecimento, String data, int matricula) {
@@ -18,11 +18,11 @@ public class Avaliacao {
         this.data = data;
         this.matricula = matricula;
     }
-    
-     public int getMatricula() {
+
+    public int getMatricula() {
         return matricula;
     }
-    
+
     public Integrante getIntegrante() throws ClassNotFoundException {
         if ((integrante == null) && (matricula != 0)) {
             integrante = Integrante.obterIntegrante(matricula);

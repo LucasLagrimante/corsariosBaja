@@ -149,7 +149,7 @@ public class PessoaDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 }

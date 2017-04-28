@@ -24,7 +24,7 @@ import model.Frequencia;
 public class PesquisaFrequenciaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("frequencias", Frequencia.obterFrequencias());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaFrequencia.jsp");

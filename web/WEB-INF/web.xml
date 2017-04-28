@@ -125,10 +125,6 @@
         <servlet-class>controller.PesquisaTipoPecaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ManterQuesitoController</servlet-name>
-        <servlet-class>controller.ManterQuesitoController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManterInvestidorController</servlet-name>
         <servlet-class>controller.ManterInvestidorController</servlet-class>
     </servlet>
@@ -265,10 +261,6 @@
         <url-pattern>/PesquisaTipoPecaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManterQuesitoController</servlet-name>
-        <url-pattern>/ManterQuesitoController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ManterInvestidorController</servlet-name>
         <url-pattern>/ManterInvestidorController</url-pattern>
     </servlet-mapping>
@@ -295,10 +287,10 @@
     </error-page>
     <error-page>
         <exception-type>
-                java.lang.Exception
-            </exception-type>
+            java.lang.Exception
+        </exception-type>
         <location>
-                /TratamentoExcecao
-            </location>
+            /TratamentoExcecao
+        </location>
     </error-page>
 </web-app>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.TipoPista;
+
 /**
  *
  * @author Lucas
@@ -103,7 +104,7 @@ public class ManterTipoPistaController extends HttpServlet {
 
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.setAttribute("operacao", "Excluir");           
+            request.setAttribute("operacao", "Excluir");
             int idTipoPista = Integer.parseInt(request.getParameter("idTipoPista"));
             TipoPista tipoPista = TipoPista.obterTipoPista(idTipoPista);
             request.setAttribute("tipoPista", tipoPista);

@@ -48,7 +48,6 @@ public class Design {
         return idAutomovel;
     }
 
-
     public void gravar() throws SQLException, ClassNotFoundException {
         DesignDAO.gravar(this);
     }

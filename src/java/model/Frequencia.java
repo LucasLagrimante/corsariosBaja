@@ -10,7 +10,6 @@ public class Frequencia {
     private String data, estado;
     private final int matricula;
     private Integrante integrante;
-    
 
     public Frequencia(int idFrequencia, String data, String estado, int matricula) {
         this.idFrequencia = idFrequencia;
@@ -58,6 +57,7 @@ public class Frequencia {
     public int getMatricula() {
         return matricula;
     }
+
     public void gravar() throws SQLException, ClassNotFoundException {
         FrequenciaDAO.gravar(this);
     }

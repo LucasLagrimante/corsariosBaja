@@ -97,16 +97,16 @@ public class AutomovelDAO {
         return cores;
     }
 
-    public static List<String> obterPesos() throws ClassNotFoundException, SQLException {
+    public static List<Float> obterPesos() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<String> pesos = new ArrayList<String>();
+        List<Float> pesos = new ArrayList<Float>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("SELECT DISTINCT pesoCarro FROM automovel");
             while (rs.next()) {
-                pesos.add(rs.getString("pesoCarro"));
+                pesos.add(rs.getFloat("pesoCarro"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

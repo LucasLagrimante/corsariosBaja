@@ -84,11 +84,11 @@ public class AvaliacaoDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao = " + idAvaliacao);
             rs.first();
             avaliacao = new Avaliacao(
-                        rs.getInt("idAvaliacao"),
-                        rs.getInt("frequencia"),
-                        rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
+                    rs.getInt("idAvaliacao"),
+                    rs.getInt("frequencia"),
+                    rs.getString("comparecimento"),
+                    rs.getString("data"),
+                    rs.getInt("FK_integrante")
             );
         } catch (SQLException e) {
             e.printStackTrace();

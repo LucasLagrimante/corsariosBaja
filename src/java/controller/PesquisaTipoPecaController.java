@@ -23,7 +23,7 @@ import model.TipoPeca;
 public class PesquisaTipoPecaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-       throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("tiposPeca", TipoPeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaTipoPeca.jsp");
@@ -33,6 +33,7 @@ public class PesquisaTipoPecaController extends HttpServlet {
 
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

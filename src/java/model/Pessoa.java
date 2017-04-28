@@ -116,6 +116,5 @@ public class Pessoa {
     public static Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
         return PessoaDAO.obterPessoa(idPessoa);
     }
-    
 
 }

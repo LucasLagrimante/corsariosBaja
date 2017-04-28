@@ -33,13 +33,12 @@ public class ManterAvaliacaoController extends HttpServlet {
         } else if (acao.equals("prepararEditar")) {
             prepararEditar(request, response);
         } else if (acao.equals("confirmarEditar")) {
-         confirmarEditar(request, response);
-         } else if (acao.equals("prepararExcluir")) {
-         prepararExcluir(request, response);
-         } else if (acao.equals("confirmarExcluir")) {
-         confirmarExcluir(request, response);
-         }
-         
+            confirmarEditar(request, response);
+        } else if (acao.equals("prepararExcluir")) {
+            prepararExcluir(request, response);
+        } else if (acao.equals("confirmarExcluir")) {
+            confirmarExcluir(request, response);
+        }
 
     }
 
@@ -51,7 +50,7 @@ public class ManterAvaliacaoController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        //} catch (ClassNotFoundException ex) {
+            //} catch (ClassNotFoundException ex) {
         }
     }
 
@@ -61,7 +60,7 @@ public class ManterAvaliacaoController extends HttpServlet {
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
-             try {
+        try {
             Integrante integrante = null;
             if (matricula != 0) {
                 integrante = Integrante.obterIntegrante(matricula);
@@ -94,14 +93,14 @@ public class ManterAvaliacaoController extends HttpServlet {
 
         }
     }
-    
+
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
         int idAvaliacao = Integer.parseInt(request.getParameter("txtIdAvaliacao"));
         int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
-             try {
+        try {
             Integrante integrante = null;
             if (matricula != 0) {
                 integrante = Integrante.obterIntegrante(matricula);
@@ -119,7 +118,7 @@ public class ManterAvaliacaoController extends HttpServlet {
 
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
-            
+
             request.setAttribute("operacao", "Excluir");
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
             int idAvaliacao = Integer.parseInt(request.getParameter("idAvaliacao"));
@@ -142,7 +141,7 @@ public class ManterAvaliacaoController extends HttpServlet {
         String comparecimento = request.getParameter("txtComparecimento");
         String data = request.getParameter("txtData");
         int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
-             try {
+        try {
             Integrante integrante = null;
             if (matricula != 0) {
                 integrante = Integrante.obterIntegrante(matricula);

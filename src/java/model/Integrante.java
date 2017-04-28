@@ -37,18 +37,18 @@ public class Integrante {
         if ((pessoa == null) && (idPessoa != 0)) {
             pessoa = Pessoa.obterPessoa(idPessoa);
         }
-        
+
         return pessoa;
     }
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
+
     public int getIdPessoa() {
         return idPessoa;
     }
-   
+
     public void gravar() throws SQLException, ClassNotFoundException {
         IntegranteDAO.gravar(this);
     }

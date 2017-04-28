@@ -33,7 +33,7 @@ public class PesquisaIntegranteController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-       throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaIntegrante.jsp");

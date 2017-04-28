@@ -48,7 +48,7 @@ public class ManterAutomovelController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
-        //} catch (ClassNotFoundException ex) {
+            //} catch (ClassNotFoundException ex) {
         }
     }
 
@@ -57,9 +57,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.gravar();
@@ -94,9 +94,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.alterar();
@@ -131,9 +131,9 @@ public class ManterAutomovelController extends HttpServlet {
         String cor = request.getParameter("txtCor");
         String nome = request.getParameter("txtNome");
         String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
-       float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
-       float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
-       float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
+        float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+        float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+        float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
         try {
             Automovel automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
             automovel.excluir();

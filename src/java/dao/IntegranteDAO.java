@@ -111,8 +111,8 @@ public class IntegranteDAO {
             throw e;
         }
     }
-    
-   public static void excluir(Integrante integrante) throws SQLException, ClassNotFoundException {
+
+    public static void excluir(Integrante integrante) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
             PreparedStatement st = db.prepareStatement("delete from integrante where matricula = ?");
@@ -120,7 +120,7 @@ public class IntegranteDAO {
             st.execute();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 

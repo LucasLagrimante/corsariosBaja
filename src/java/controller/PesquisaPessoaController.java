@@ -32,7 +32,7 @@ public class PesquisaPessoaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("pessoas", Pessoa.obterPessoas());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaPessoa.jsp");

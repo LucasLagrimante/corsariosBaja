@@ -16,7 +16,7 @@ import model.Peca;
 
 public class PecaDAO {
 
-     public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -28,7 +28,7 @@ public class PecaDAO {
         } catch (SQLException e) {
         }
     }
-    
+
     public static void gravar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -41,7 +41,7 @@ public class PecaDAO {
             comando.setString(4, peca.getModelo());
             comando.setFloat(5, peca.getPrecoCompra());
             comando.setInt(6, peca.getIdTipoPeca());
-            
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -66,9 +66,8 @@ public class PecaDAO {
                         rs.getString("modelo"),
                         rs.getFloat("precoCompra"),
                         rs.getInt("FK_tipopeca")
-                        
                 );
-                
+
                 pecas.add(peca);
             }
         } catch (SQLException e) {
@@ -96,7 +95,7 @@ public class PecaDAO {
                     rs.getFloat("precoCompra"),
                     rs.getInt("FK_tipopeca")
             );
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -104,7 +103,7 @@ public class PecaDAO {
         }
         return peca;
     }
-    
+
     public static void alterar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -113,7 +112,7 @@ public class PecaDAO {
                     + "nome = ?, modelo = ?, precoCompra = ?, "
                     + "FK_tipopeca = ? "
                     + "WHERE idPeca = ?";
-            
+
             PreparedStatement comando = conexao.prepareStatement(sql);
 
             comando.setInt(1, peca.getQuantidade());
@@ -122,7 +121,7 @@ public class PecaDAO {
             comando.setFloat(4, peca.getPrecoCompra());
             comando.setInt(5, peca.getIdTipoPeca());
             comando.setInt(6, peca.getIdPeca());
-       
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -131,7 +130,6 @@ public class PecaDAO {
         }
     }
 
-    
     public static void excluir(Peca peca) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
@@ -140,7 +138,7 @@ public class PecaDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 }

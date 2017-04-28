@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.TipoPeca;
+
 /**
  *
  * @author Lucas
@@ -103,7 +104,7 @@ public class ManterTipoPecaController extends HttpServlet {
 
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.setAttribute("operacao", "Excluir");           
+            request.setAttribute("operacao", "Excluir");
             int idTipoPeca = Integer.parseInt(request.getParameter("idTipoPeca"));
             TipoPeca tipoPeca = TipoPeca.obterTipoPeca(idTipoPeca);
             request.setAttribute("tipoPeca", tipoPeca);
@@ -133,7 +134,6 @@ public class ManterTipoPecaController extends HttpServlet {
         } catch (SQLException ex) {
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

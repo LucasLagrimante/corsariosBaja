@@ -6,6 +6,7 @@
         <title>Login</title>
         <link rel="stylesheet" href="">
         <link rel="shortcut icon" href="images/favicon.ico">
+        <script src="js/jquery-3.2.1.js"></script>
     </head>
     <body>
         <div align="center">
@@ -25,7 +26,6 @@
                     </tr>
                 </table>
                 <br><br><br>
-                
             </form>
         </div>
     </body>

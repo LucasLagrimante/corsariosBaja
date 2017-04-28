@@ -24,7 +24,7 @@ import model.Peca;
 public class PesquisaPecaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("pecas", Peca.obterPecas());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaPeca.jsp");

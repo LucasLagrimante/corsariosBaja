@@ -8,7 +8,7 @@ public class Peca {
 
     private int idPeca, quantidade;
     private String nome, modelo;
-    private float precoCompra ;
+    private float precoCompra;
     private final int idTipoPeca;
     private TipoPeca tipopeca;
 

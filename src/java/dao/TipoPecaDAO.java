@@ -16,7 +16,7 @@ import model.TipoPeca;
 
 public class TipoPecaDAO {
 
-      public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -66,7 +66,7 @@ public class TipoPecaDAO {
             fecharConexao(conexao, comando);
         }
         return tiposPeca;
-        
+
     }
 
     public static TipoPeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
@@ -89,8 +89,8 @@ public class TipoPecaDAO {
         }
         return tipoPeca;
     }
-    
-     public static void alterar(TipoPeca tipoPeca) throws SQLException, ClassNotFoundException {
+
+    public static void alterar(TipoPeca tipoPeca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
@@ -116,7 +116,7 @@ public class TipoPecaDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 

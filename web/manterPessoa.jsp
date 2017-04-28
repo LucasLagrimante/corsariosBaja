@@ -7,14 +7,62 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Cadastrar Pessoa</title>
-        <link rel="shortcut icon" href="images/favicon.ico">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-
-        <div align="center" class="login">
+        <!--Import jQuery before materialize.js-->
+        <script src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <!-- Dropdown Structure -->
+        <ul id="menuCadastro" class="dropdown-content">
+            <li><a href="ManterAutomovelController?acao=prepararIncluir">Automóvel</a></li>
+            <li><a href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
+            <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
+            <li><a href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
+            <li><a href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
+            <li><a href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a href="ManterDesignController?acao=prepararIncluir">Design</a></li>
+            <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
+            <li><a href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
+            <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
+            <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
+            <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
+            <li><a href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+        </ul>
+        <ul id="menuPesquisa" class="dropdown-content">
+            <li><a href="PesquisaAutomovelController">Automóvel</a></li>
+            <li><a href="PesquisaArquiteturaController">Arquitetura</a></li>
+            <li><a href="PesquisaAvaliacaoController">Avaliação</a></li>
+            <li><a href="PesquisaCompeticaoController">Competição</a></li>
+            <li><a href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
+            <li><a href="PesquisaDesignController">Design</a></li>
+            <li><a href="PesquisaFrequenciaController">Frequência</a></li>
+            <li><a href="PesquisaInvestidorController">Investidor</a></li>
+            <li><a href="PesquisaIntegranteController">Integrante</a></li>
+            <li><a href="PesquisaPecaController">Peça</a></li>
+            <li><a href="PesquisaPessoaController">Pessoa</a></li>
+            <li><a href="PesquisaTipoPecaController">Tipo de Peça</a></li>
+            <li><a href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper blue-text teal darken-3">
+                <a href="#!" class="brand-logo"><i class="material-icons">high_quality</i>Corrida Baja - Equipe Corsários</a>
+                <ul class="right hide-on-med-and-down">
+                    <!-- Dropdown Trigger -->
+                    <li><a href="index.jsp">Início</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="menuCadastro">Cadastro<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="menuPesquisa">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
             <h1 align="center">${operacao}<br>Pessoa</h1>
             <form class="form"  action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
 
@@ -74,65 +122,16 @@
 
                 <input type="submit" value="Confirmar">
             </form>
-            <script>
-<script language="javascript">
-                function mascara(o,f){
-
-
-
-
-                        v_ob j  =
-                    o
-                        v_
-                        fun = f
-                        setTimeout("execmascara()", 1)
-        }
-        function 
-        
-        
-        ex
-                ecmascara(){
-
-                        v_obj.va l
-                    
-                    u
-                        e = v_fun(v_obj.
-                                value)
-        }
-        
-        
-        
-        function leech(
-        v){
-                
-
-                        v = v.replace(/o/gi, "0")
-
-                
-                    v = v.replace(/i/gi, "1")
-                        v = v.replace(/z/gi, "2")
-                        v = v.replace(/e/gi, "3")
-                        v = v.replace(/a/gi, "4")
-                        v = v.replace(/s/gi, "5")
-                        v = v.replace(/t/gi, "7")
-                        return v
-            }
-            
-            function cpf(v){
-
-                        v = v.r
-                eplace(/D/g, "") //Remove tudo o que n ã
-                    o é dígito
-                        v = v.replace(/(d{3})(d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
-                        v = v.replace(/(d{3})(d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
-                        //de novo (para o segundo bloco de números)
-                        v = v.repl
-                        ace(/(d{3})(d{1,2} )
-                                $ / , "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
-                        return v
-                        }
-         </script>
-
         </div>
     </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select').material_select();
+
+        $('.dropdown-button').dropdown({
+            constrainWidth: false, // Does not change width of dropdown to that of the activator
+            hover: true // Activate on hover
+        });
+    });
+</script>

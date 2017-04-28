@@ -16,7 +16,7 @@ import model.TipoPista;
 
 public class TipoPistaDAO {
 
-      public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -66,7 +66,7 @@ public class TipoPistaDAO {
             fecharConexao(conexao, comando);
         }
         return tiposPista;
-        
+
     }
 
     public static TipoPista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
@@ -89,8 +89,8 @@ public class TipoPistaDAO {
         }
         return tipoPista;
     }
-    
-     public static void alterar(TipoPista tipoPista) throws SQLException, ClassNotFoundException {
+
+    public static void alterar(TipoPista tipoPista) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
             conexao = BD.getConexao();
@@ -116,7 +116,7 @@ public class TipoPistaDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 

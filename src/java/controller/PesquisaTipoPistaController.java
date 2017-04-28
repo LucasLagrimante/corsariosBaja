@@ -23,7 +23,7 @@ import model.TipoPista;
 public class PesquisaTipoPistaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-       throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("tiposPista", TipoPista.obterTiposPista());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaTipoPista.jsp");

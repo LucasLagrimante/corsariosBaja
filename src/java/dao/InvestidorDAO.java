@@ -16,7 +16,7 @@ import model.Investidor;
 
 public class InvestidorDAO {
 
-   public static void fecharConexao(Connection conexao, Statement comando) {
+    public static void fecharConexao(Connection conexao, Statement comando) {
         try {
             if (comando != null) {
                 comando.close();
@@ -28,7 +28,7 @@ public class InvestidorDAO {
         } catch (SQLException e) {
         }
     }
-    
+
     public static void gravar(Investidor investidor) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -38,7 +38,7 @@ public class InvestidorDAO {
             comando.setInt(1, investidor.getIdInvestidor());
             comando.setFloat(2, investidor.getValorDoado());
             comando.setInt(3, investidor.getIdPessoa());
-            
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -60,9 +60,8 @@ public class InvestidorDAO {
                         rs.getInt("idInvestidor"),
                         rs.getFloat("valorDoado"),
                         rs.getInt("FK_idPessoa")
-                        
                 );
-                
+
                 investidores.add(investidor);
             }
         } catch (SQLException e) {
@@ -83,11 +82,11 @@ public class InvestidorDAO {
             ResultSet rs = comando.executeQuery("SELECT * FROM investidor where idInvestidor = " + idInvestidor);
             rs.first();
             investidor = new Investidor(
-                        rs.getInt("idInvestidor"),
-                        rs.getFloat("valorDoado"),
-                        rs.getInt("FK_idPessoa")
+                    rs.getInt("idInvestidor"),
+                    rs.getFloat("valorDoado"),
+                    rs.getInt("FK_idPessoa")
             );
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -95,7 +94,7 @@ public class InvestidorDAO {
         }
         return investidor;
     }
-    
+
     public static void alterar(Investidor investidor) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -103,12 +102,12 @@ public class InvestidorDAO {
             String sql = "UPDATE investidor SET valorDoado = ?, "
                     + "FK_idPessoa = ? "
                     + "WHERE IdInvestidor = ?";
-            
+
             PreparedStatement comando = conexao.prepareStatement(sql);
             comando.setFloat(1, investidor.getValorDoado());
             comando.setInt(2, investidor.getIdPessoa());
             comando.setInt(3, investidor.getIdInvestidor());
-            
+
             comando.execute();
             comando.close();
             conexao.close();
@@ -117,7 +116,6 @@ public class InvestidorDAO {
         }
     }
 
-    
     public static void excluir(Investidor investidor) throws SQLException, ClassNotFoundException {
         try {
             Connection db = BD.getConexao();
@@ -126,7 +124,7 @@ public class InvestidorDAO {
             st.executeUpdate();
             st.close();
         } catch (SQLException ex) {
-            
+
         }
     }
 

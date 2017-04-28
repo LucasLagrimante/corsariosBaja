@@ -23,7 +23,6 @@ import model.Pessoa;
  */
 public class ManterIntegranteController extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
