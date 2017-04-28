@@ -27,39 +27,39 @@
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <!-- Dropdown Structure -->
         <ul id="menuCadastro" class="dropdown-content">
-            <li><a href="ManterAutomovelController?acao=prepararIncluir">Automóvel</a></li>
-            <li><a href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
-            <li><a href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
-            <li><a href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
-            <li><a href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
-            <li><a href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
-            <li><a href="ManterDesignController?acao=prepararIncluir">Design</a></li>
-            <li><a href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
-            <li><a href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
-            <li><a href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
-            <li><a href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
-            <li><a href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-            <li><a href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
-            <li><a href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterAutomovelController?acao=prepararIncluir">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterArquiteturaController?acao=prepararIncluir">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararIncluir">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
-            <li><a href="PesquisaAutomovelController">Automóvel</a></li>
-            <li><a href="PesquisaArquiteturaController">Arquitetura</a></li>
-            <li><a href="PesquisaAvaliacaoController">Avaliação</a></li>
-            <li><a href="PesquisaCompeticaoController">Competição</a></li>
-            <li><a href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-            <li><a href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-            <li><a href="PesquisaDesignController">Design</a></li>
-            <li><a href="PesquisaFrequenciaController">Frequência</a></li>
-            <li><a href="PesquisaInvestidorController">Investidor</a></li>
-            <li><a href="PesquisaIntegranteController">Integrante</a></li>
-            <li><a href="PesquisaPecaController">Peça</a></li>
-            <li><a href="PesquisaPessoaController">Pessoa</a></li>
-            <li><a href="PesquisaTipoPecaController">Tipo de Peça</a></li>
-            <li><a href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaAutomovelController">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaArquiteturaController">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaAvaliacaoController">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaCompeticaoController">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaDesignController">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaFrequenciaController">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaInvestidorController">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaIntegranteController">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaPecaController">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaPessoaController">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaTipoPecaController">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisaTipoPistaController">Tipo de Pista</a></li>
         </ul>
         <nav>
-            <div class="nav-wrapper blue-text teal darken-3">
+            <div class="nav-wrapper brown darken-4">
                 <a href="#!" class="brand-logo"><i class="material-icons">high_quality</i>Corrida Baja - Equipe Corsários</a>
                 <ul class="right hide-on-med-and-down">
                     <!-- Dropdown Trigger -->
@@ -94,8 +94,8 @@
                             <td><c:out value="${automovel.pesoCarro}" /></td>
                             <td><c:out value="${automovel.pesoChassi}" /></td>
                             <td><c:out value="${automovel.custoTotal}" /></td>
-                            <td><a href="ManterAutomovelController?acao=prepararEditar&idAutomovel=<c:out value="${automovel.idAutomovel}" />">Editar</a></td>
-                            <td><a href="ManterAutomovelController?acao=prepararExcluir&idAutomovel=<c:out value="${automovel.idAutomovel}" />">Excluir</a></td>
+                            <td><a class="brown-text text-darken-4" href="ManterAutomovelController?acao=prepararEditar&idAutomovel=<c:out value="${automovel.idAutomovel}" />">Editar</a></td>
+                            <td><a class="brown-text text-darken-4" href="ManterAutomovelController?acao=prepararExcluir&idAutomovel=<c:out value="${automovel.idAutomovel}" />">Excluir</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="input-field col s4 center-align">
-                    <a class="waves-effect waves-light btn-large" id="imprimir">Imprimir</a>
+                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir</a>
                 </div>
             </div>
         </div>
@@ -138,6 +138,8 @@
         $("[name='selectTipoRelatorio']").material_select();
         $("[name='selectCor']").material_select('destroy');
         $("[name='selectPeso']").material_select('destroy');
+
+        $('body').css('background-image', "url('images/b19.png')");
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
