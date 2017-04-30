@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Investimentos</h1>
-            <form class="form"  action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor">
+            <form   action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor">
                 <br>
                 <abbr>Pessoa</abbr>
                 <p  class="field">

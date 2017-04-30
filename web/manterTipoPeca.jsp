@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Tipo de Peça</h1>
-            <form class="form" action="ManterTipoPecaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPeca">
+            <form  action="ManterTipoPecaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPeca">
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">

@@ -67,7 +67,7 @@
 
         <div class="container">
             <h3 align="center">${operacao} Arquitetura</h3>
-            <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" name="frmManterArquitetura" class="form">
+            <form action="ManterArquiteturaController?acao=confirmar${operacao}" method="POST" name="frmManterArquitetura" >
                 <div class="row">
                     <div class="input-field col s6 offset-m3 offset-m3" >
                         <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${arquitetura.automovel.idAutomovel}"></c:if>

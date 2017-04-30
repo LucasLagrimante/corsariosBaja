@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Design </h1>
-            <form class="form" action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign">
+            <form  action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign">
                 <br>
                 <abbr>Automóvel</abbr>
                 <p>

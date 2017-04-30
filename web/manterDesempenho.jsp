@@ -64,9 +64,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Desempenho de Competição</h3>
-
-            <form class="form" action="ManterDesempenhoController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenho">
-
+            <form action="ManterDesempenhoController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenho">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
                         <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${desempenho.automovel.idAutomovel}"></c:if>

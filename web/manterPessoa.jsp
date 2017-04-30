@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Pessoa</h1>
-            <form class="form"  action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
+            <form   action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
 
                 <br>
                 <abbr>ID</abbr>

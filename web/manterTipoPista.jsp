@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Tipo de Pista</h1>
-            <form class="form" action="ManterTipoPistaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPista">
+            <form  action="ManterTipoPistaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPista">
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">

@@ -64,7 +64,7 @@
         </nav>
         <div class="container">
             <h1 align="center">${operacao}<br>Frequência</h1>
-            <form class="form"  action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" name="frmManterFrequencia">
+            <form   action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" name="frmManterFrequencia">
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">
