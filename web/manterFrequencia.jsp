@@ -63,37 +63,50 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Frequência</h1>
-            <form   action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" name="frmManterFrequencia">
-                <br>
-                <abbr>ID</abbr>
-                <p  class="field">
-                    <input name="txtIdFrequencia"  type="text" required="required"   pattern="[0-9]+$" value="${frequencia.idFrequencia}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Data</abbr>
-                    <p  class="field">
-                        <input name="txtData" type="text" value="${frequencia.data}" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+            <h3 align="center">${operacao} Frequência</h3>
+            <form action="ManterFrequenciaController?acao=confirmar${operacao}" method="POST" name="frmManterFrequencia">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdFrequencia" class="validate" type="text" required="required"  pattern="[0-9]+$" value="${frequencia.idFrequencia}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="data" name="txtData" type="text" value="${frequencia.data}" class="datepicker" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <label for="data">Data</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="presente" required type="radio" name="radioEstado" value="presente" <c:if test="${frequencia.estado == 'presente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <label for="presente">Presente</label>
+                                <input id="ausente" type="radio" name="radioEstado" value="ausente" <c:if test="${frequencia.estado == 'ausente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <label for="ausente">Ausente</label>
+                        </div>
+                    </div>
                     <br>
-                    <abbr>Estado</abbr>
-                    <p  class="field">
-                        <input required type="radio" name="radioEstado" value="presente" <c:if test="${frequencia.estado == 'presente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> Presente
-                    <input type="radio" name="radioEstado" value="ausente" <c:if test="${frequencia.estado == 'ausente'}"> checked</c:if> <c:if test="${operacao == 'Excluir'}"> disabled</c:if>> Ausente
-                    </p>
-                    <br>
-                    <abbr>Integrante</abbr>
-                    <p >
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${frequencia.integrante.matricula}"></c:if>
-                    <select name="selectIntegrante" required <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${integrantes}" var="integrante">
-                            <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <input type="submit" value="Confirmar">
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${frequencia.integrante.matricula}"></c:if>
+                        <select id="integrante" name="selectIntegrante" required <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${integrantes}" var="integrante">
+                                <option value="${integrante.matricula}" <c:if test="${frequencia.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label for="integrante">Integrante</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div> 
             </form>
         </div>
     </body>
@@ -103,6 +116,25 @@
         $('select').material_select();
 
         $('body').css('background-image', "url('images/b19.png')");
+
+        $('.datepicker').pickadate({
+            closeOnClear: true,
+            closeOnSelect: true,
+            today: 'Hoje',
+            clear: 'Limpar',
+            close: 'Fechar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecionar um mês',
+            labelYearSelect: 'Selecionar um ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator

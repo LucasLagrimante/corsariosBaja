@@ -79,7 +79,7 @@
 
                     <div class="row">
                         <div class="input-field col s6 offset-m3">
-                            <input id="data" name="txtData" type="text" class="datepicker" value="${competicao.data}" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <input id="data" name="txtData" type="text" class="datepicker" value="${competicao.data}" required="required" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <label for="data">Data</label>
                         </div>
                     </div>
