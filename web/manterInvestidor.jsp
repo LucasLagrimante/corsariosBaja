@@ -63,32 +63,42 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Investimentos</h1>
+            <h3 align="center">${operacao} Investimentos</h3>
             <form   action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor">
-                <br>
-                <abbr>Pessoa</abbr>
-                <p  class="field">
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${investidor.pessoa.idPessoa }"></c:if>
-                    <select name="selectPessoa" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${pessoas}" var="pessoa">
-                            <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa  == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <abbr>ID</abbr>
-                <p  class="field">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${investidor.pessoa.idPessoa }"></c:if>
+                        <select id="pessoa" name="selectPessoa" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${pessoas}" var="pessoa">
+                                <option value="${pessoa.idPessoa}" <c:if test="${investidor.pessoa.idPessoa  == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label for="pessoa">Pessoa</label>
+                    </div>
+                </div>
 
-                    <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}"   required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Valor Doado</abbr>
-                    <p  class="field">
-                        <input type="text" name="txtValorDoado" required="required"   pattern="(?:\d*\.)?\d+" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    
-                </p>
-                <input type="submit" value="Confirmar">
-                </table>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" type="text" name="txtIdInvestidor" class="validate" value="${investidor.idInvestidor}" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="valor" type="text" name="txtValorDoado" required="required" class="validate" pattern="(?:\d*\.)?\d+" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label data-error="errado" data-success="certo" for="valor">Valor Doado</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </body>
