@@ -60,15 +60,43 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
-            <div class="carousel carousel-slider">
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel1.jpg"></a>
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel2.jpg"></a>
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel3.jpg"></a>
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel4.jpg"></a>
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel5.jpg"></a>
-                <a class="carousel-item"><img class="materialboxed" width="960" height="550" src="images/carousel6.jpg"></a>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/carousel1.jpg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">Baja SAE Brasil - Etapa Sudeste 2015</h2>
             </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/carousel2.jpg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">Equipe Corsários Baja participa do II SIMEPE do Instituto Federal do Sudeste de Minas Gerais</h2>
+                <p class="grey-text text-darken-3 lighten-3">Nossa equipe apresenta trabalho intitulado "Desenvolvimento de um mini veículo off road".
+                    Nossos membros ficaram desde cedo tirando as dúvidas de quem passa pelo estande.</p>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/carousel4.jpg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">Luís Paulo Vasconcelos</h2>
+                <p class="grey-text text-darken-3 lighten-3">#cristine — com Corsários Baja.</p>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/carousel5.jpg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h3 class="header">Equipe Corsários Baja - Outubro 2016</h3>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/carousel6.jpg"></div>
         </div>
     </body>
 </html>
@@ -86,5 +114,9 @@
         });
 
         $('.materialboxed').materialbox();
+
+        $(document).ready(function () {
+            $('.parallax').parallax();
+        });
     });
 </script>
