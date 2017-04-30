@@ -109,7 +109,7 @@
                         </c:forEach>
                         <tr> 
                             <td  align="center" colspan="13">
-                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir</a>
+                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
                             </td>
                         </tr>
                     </tbody>

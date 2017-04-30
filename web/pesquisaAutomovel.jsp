@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="input-field col s4 center-align">
-                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir</a>
+                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
                 </div>
             </div>
         </div>

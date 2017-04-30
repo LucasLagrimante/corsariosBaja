@@ -92,7 +92,7 @@
                             </tr>
                         </c:forEach>
                     <td align="center" colspan="9">
-                        <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir</a>
+                        <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
                     </td>
                     </tbody>
                 </table>
