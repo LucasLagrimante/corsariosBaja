@@ -68,13 +68,13 @@
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">
-                    <input name="txtIdTipoPeca" type="text" value="${tipoPeca.idTipoPeca}"  placeholder="Digite apenas números!"  required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input name="txtIdTipoPeca" type="text" value="${tipoPeca.idTipoPeca}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Tipo/Nome da Peca</abbr>
                     <p  class="field">
                         <input name="txtNome" type="text" value="${tipoPeca.nome}" required="required" pattern="[a-z\s]+$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                    
                 </p>
                 <input type="submit" value="Confirmar">
             </form>

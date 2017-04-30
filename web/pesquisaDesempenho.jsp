@@ -75,7 +75,7 @@
                 <table class="striped centered">
                     <thead>
                         <tr>
-                            <th>Código Desempenho</th>
+                            <th>Código</th>
                             <th>Automóvel</th>
                             <th>Tipo Pista</th>
                             <th>Motorista</th>

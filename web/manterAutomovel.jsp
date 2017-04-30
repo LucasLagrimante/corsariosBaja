@@ -135,6 +135,20 @@
         });
 
         $('.datepicker').pickadate({
+            closeOnClear: true,
+            closeOnSelect: true,
+            today: 'Hoje',
+            clear: 'Limpar',
+            close: 'Fechar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecionar um mês',
+            labelYearSelect: 'Selecionar um ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15 // Creates a dropdown of 15 years to control year
         });

@@ -69,55 +69,55 @@
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">
-                    <input name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" required="required" placeholder="Digite apenas números!"  pattern="[0-9]+$" placeholder="Digite apenas números!" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" required="required"   pattern="[0-9]+$"  <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Nome</abbr>
                     <p  class="field">
                         <input name="txtNome" required="required" type="text" value="${pessoa.nome}" pattern="[a-z\s]+$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>CPF</abbr>
                     <p  class="field">
                         <input name="txtCpf" onkeypress="mascara(this, cpf)" maxlength="14" required="required" type="text" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" value="${pessoa.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>Logradouro</abbr>
                     <p  class="field">
                         <input name="txtLogradouro" required="required" type="text" value="${pessoa.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>CEP</abbr>
                     <p  class="field">
                         <input name="txtCep" required="required"  type="text" pattern= "\d{5}-?\d{3}" maxlength="9" value="${pessoa.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>Bairro</abbr>
                     <p  class="field">
                         <input name="txtBairro" required="required" type="text"  value="${pessoa.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>UF</abbr>
                     <p  class="field">
                         <input name="txtUf" type="text" required="required" pattern="[a-z\s]+$"  maxlength="2"  value="${pessoa.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>Número</abbr>
                     <p  class="field">
-                        <input type="text" name="txtNumero" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!"  value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        <input type="text" name="txtNumero" required="required" pattern="[0-9]+$"   value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        
                     </p>
 
                     <abbr>Telefone</abbr>
                     <p  class="field">
                         <input type="text" name="txtTelefone" type="tel" required="required" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="Formato: (99) 9999-9999"  value="${pessoa.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                    
                 </p>
 
                 <input type="submit" value="Confirmar">

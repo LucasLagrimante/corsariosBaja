@@ -68,13 +68,13 @@
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">
-                    <input name="txtIdFrequencia"  type="text" required="required" placeholder="Digite apenas números!"  pattern="[0-9]+$" value="${frequencia.idFrequencia}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input name="txtIdFrequencia"  type="text" required="required"   pattern="[0-9]+$" value="${frequencia.idFrequencia}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Data</abbr>
                     <p  class="field">
                         <input name="txtData" type="text" value="${frequencia.data}" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
                     <br>
                     <abbr>Estado</abbr>

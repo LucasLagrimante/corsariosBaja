@@ -79,12 +79,12 @@
                 <abbr>Matricula</abbr>
                 <p  class="field">
                     <input type="text" name="txtMatricula" required="required" pattern="[0-9]+$" maxlength="6" value="${integrante.matricula}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
                     <abbr>Carga Horaria Disponivel</abbr>
                     <p  class="field">
                         <input name="txtCargaHorariaDisponivel" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" value="${integrante.cargaHorariaDisponivel}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                    
                 </p>
                 <br>
                 <input type="submit" value="Confirmar">

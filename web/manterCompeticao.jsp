@@ -61,52 +61,64 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao} <br>Competição</h1>
+            <h3 align="center">${operacao} Competição</h3>
             <form class="form" action="ManterCompeticaoController?acao=confirmar${operacao}" method="POST" name="frmManterCompeticao">
-                <br><br>
-                <abbr>ID</abbr>
-                <p  class="field">
-                    <input name="txtIdCompeticao" type="text" required="required" pattern="[0-9]+$"  value="${competicao.idCompeticao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
-                    </p>
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input name="txtIdCompeticao" type="text" required="required" pattern="[0-9]+$" class="validate" value="${competicao.idCompeticao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
 
-                    <abbr>Nome</abbr>
-                    <p  class="field">
-                        <input name="txtNome" type="text" value="${competicao.nome}" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>      <i class="fa fa-circle"></i>
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="nome" name="txtNome" type="text" value="${competicao.nome}" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>      
+                            <label for="nome">Nome</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="data" name="txtData" type="text" class="datepicker" value="${competicao.data}" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label for="data">Data</label>
+                        </div>
+                    </div>
 
 
-                    <abbr>Data</abbr>
-                    <p  class="field">
-                        <input name="txtData" type="text" value="${competicao.data}" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="hora" name="txtHora" value="${competicao.hora}" class="validate" required="required" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="hora">Hora</label>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="local" name="txtLocal" required="required" type="text" value="${competicao.local}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>      
+                            <label for="local">Local</label>
+                        </div>
+                    </div>
 
-                    <abbr>Hora</abbr>
-                    <p  class="field">
-                        <input name="txtHora" value="${competicao.hora}" required="required" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPista" value="${competicao.tipopista.idTipoPista}"></c:if>
+                        <select id="tipoPista" name="selectTipoPista" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${tipospista}" var="tipopista">
+                                <option value="${tipopista.idTipoPista}" <c:if test="${competicao.tipopista.idTipoPista == tipopista.idTipoPista}"> selected</c:if>> ${tipopista.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label for="tipoPista">Tipo Pista</label>
+                    </div>
+                </div>
 
-                    <abbr>Local</abbr>
-                    <p  class="field">
-                        <input name="txtLocal" required="required" type="text" value="${competicao.local}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>      <i class="fa fa-circle"></i>
-                    </p>
-
-                    <abbr>Tipo Pista</abbr>
-                    <p>
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPista" value="${competicao.tipopista.idTipoPista}"></c:if>
-                    <select name="selectTipoPista" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${tipospista}" var="tipopista">
-                            <option value="${tipopista.idTipoPista}" <c:if test="${competicao.tipopista.idTipoPista == tipopista.idTipoPista}"> selected</c:if>> ${tipopista.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br><br>
-
-                <input type="submit" value="Confirmar">
-                <input type="button" value="Cadastrar Tipos de Pista" onclick="window.location.href = 'http://localhost:8080/corsariosBaja/ManterTipoPistaController?acao=prepararIncluir'">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a class="waves-effect waves-light btn brown darken-4" id="cadastrarTipoPista">Cadastrar Tipos de Pista</a>
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </body>
@@ -120,6 +132,29 @@
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
+        });
+
+        $('.datepicker').pickadate({
+            closeOnClear: true,
+            closeOnSelect: true,
+            today: 'Hoje',
+            clear: 'Limpar',
+            close: 'Fechar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecionar um mês',
+            labelYearSelect: 'Selecionar um ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+
+        $("#cadastrarTipoPista").click(function () {
+            window.location.href = 'http://localhost:8084/corsariosBaja/ManterTipoPistaController?acao=prepararIncluir';
         });
     });
 </script>

@@ -79,13 +79,13 @@
                 <abbr>ID</abbr>
                 <p  class="field">
 
-                    <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}" placeholder="Digite apenas números!"  required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input type="text" name="txtIdInvestidor" value="${investidor.idInvestidor}"   required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Valor Doado</abbr>
                     <p  class="field">
-                        <input type="text" name="txtValorDoado" required="required" placeholder="Digite apenas números!"  pattern="(?:\d*\.)?\d+" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                        <input type="text" name="txtValorDoado" required="required"   pattern="(?:\d*\.)?\d+" value="${investidor.valorDoado}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    
                 </p>
                 <input type="submit" value="Confirmar">
                 </table>

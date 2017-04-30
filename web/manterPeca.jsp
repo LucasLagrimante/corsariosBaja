@@ -68,25 +68,25 @@
                 <br>
                 <abbr>ID</abbr>
                 <p  class="field">
-                    <input name="txtIdPeca"  type="text" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!" value="${peca.idPeca}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>><i class="fa fa-circle"></i>
+                    <input name="txtIdPeca"  type="text" required="required" pattern="[0-9]+$"  value="${peca.idPeca}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </p>
                     <abbr>Quantidade</abbr>
                     <p  class="field">
-                        <input name="txtQuantidade" type="text" required="required" pattern="[0-9]+$" placeholder="Digite apenas números!" value="${peca.quantidade}"  min="1" size="4" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>><i class="fa fa-circle"></i>
+                        <input name="txtQuantidade" type="text" required="required" pattern="[0-9]+$"  value="${peca.quantidade}"  min="1" size="4" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </p>
                     <abbr>Nome</abbr>
                     <p  class="field">
                         <input name="txtNome" type="text" required="required" value="${peca.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
                     <abbr>Modelo</abbr>
                     <p  class="field">
-                        <input name="txtModelo" type="text" required="required" value="${peca.modelo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>><i class="fa fa-circle"></i>
+                        <input name="txtModelo" type="text" required="required" value="${peca.modelo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </p>
                     <abbr>Preço</abbr>
                     <p class="field">
-                        <input name="txtPrecoCompra" type="text" required="required" pattern="(?:\d*\.)?\d+" placeholder="Digite apenas números!" value="${peca.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        <input name="txtPrecoCompra" type="text" required="required" pattern="(?:\d*\.)?\d+"  value="${peca.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Tipo Peça</abbr>
                     <p>

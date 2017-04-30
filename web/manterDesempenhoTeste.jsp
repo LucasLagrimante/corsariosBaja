@@ -97,42 +97,42 @@
                 <br>
                 <abbr>ID</abbr>
                 <p class="field">
-                    <input name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" placeholder="Digite apenas números!"  type="text" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}"   type="text" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Nome desempenho</abbr>
                     <p class="field">
-                        <input name="txtNome" value="${desempenhoTeste.nome}" type="text" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>        <i class="fa fa-circle"></i>
+                        <input name="txtNome" value="${desempenhoTeste.nome}" type="text" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>        
                     </p>
                     <abbr>Data</abbr>
                     <p class="field">
-                        <input name="txtData" value="${desempenhoTeste.data}" type="text" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>><i class="fa fa-circle"></i>
+                        <input name="txtData" value="${desempenhoTeste.data}" type="text" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </p>
                     <abbr>Hora</abbr>
                     <p class="field">
                         <input name="txtHora" value="${desempenhoTeste.hora}" type="text" required="required"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        
                     </p>
 
                     <abbr>Aceleração Média</abbr>
                     <p class="field">
-                        <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}" placeholder="Digite apenas números!" type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        <input name="txtAceleracaoMedia" value="${desempenhoTeste.aceleracaoMedia}"  type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Velocidade Média</abbr>
                     <p class="field">
-                        <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}" placeholder="Digite apenas números!"  type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        <input name="txtVelocidadeMedia" value="${desempenhoTeste.velocidadeMedia}"   type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Tempo de Pista</abbr>
                     <p class="field">
-                        <input name="txtTempoPista" value="${desempenhoTeste.tempoPista}" placeholder="Digite apenas números!"  required="required" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                        <input name="txtTempoPista" value="${desempenhoTeste.tempoPista}"   required="required" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Frenagem</abbr>
                     <p class="field">
-                        <input name="txtFrenagem" value="${desempenhoTeste.frenagem}" placeholder="Digite apenas números!"  type="text" required="required" pattern="(?:\d*\.)?\d+" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                        <input name="txtFrenagem" value="${desempenhoTeste.frenagem}"   type="text" required="required" pattern="(?:\d*\.)?\d+" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                    
                 </p>
                 <input type="submit" value="Confirmar">
             </form>

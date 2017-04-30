@@ -78,13 +78,13 @@
                 <br>
                 <abbr>ID</abbr>
                 <p class="field">
-                    <input name="txtIdDesign" type="text" required="required" placeholder="Digite apenas números!"  pattern="[0-9]+$" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
+                    <input name="txtIdDesign" type="text" required="required"   pattern="[0-9]+$" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        
                     </p>
                     <abbr>Caminho Imagem</abbr>
                     <p class="field">
                         <input name="txtCaminhoImagem" type="text" required="required value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
+                    
                 </p>
                 <input type="submit" value="Confirmar">
             </form>

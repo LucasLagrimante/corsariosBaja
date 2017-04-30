@@ -63,74 +63,110 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Desempenho de Competição</h1>
-            <form class="form" action="ManterDesempenhoController?acao=confirmar${operacao}?" method="POST" name="frmManterDesempenho">
-                <br>
-                <abbr>Automóvel</abbr>
-                <p class="field">
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${desempenho.automovel.idAutomovel}"></c:if>
-                    <select name="selectAutomovel" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${automoveis}" var="automovel">
-                            <option value="${automovel.idAutomovel}" <c:if test="${desempenho.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <abbr>Tipo Pista</abbr>
-                <p class="field">
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPista" value="${desempenho.tipopista.idTipoPista}"></c:if>
-                    <select name="selectTipoPista" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${tipospista}" var="tipopista">
-                            <option value="${tipopista.idTipoPista}" <c:if test="${desempenho.tipopista.idTipoPista == tipopista.idTipoPista}"> selected</c:if>> ${tipopista.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <abbr>Motorista</abbr>
-                <p class="field">
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${desempenho.integrante.matricula}"></c:if>
-                    <select name="selectIntegrante" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${integrantes}" var="integrante">
-                            <option value="${integrante.matricula}" <c:if test="${desempenho.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <abbr>ID</abbr>
-                <p class="field">
-                    <input name="txtIdDesempenho" value="${desempenho.idDesempenho}" type="text"  required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Nome desempenho</abbr>
-                    <p class="field">
-                        <input name="txtNome" value="${desempenho.nome}" type="text" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Data</abbr>
-                    <p class="field">
-                        <input name="txtData" value="${desempenho.data}" type="text" required="required" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2010-01-01" max="2018-02-18"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Hora</abbr>
-                    <p class="field">
-                        <input name="txtHora" value="${desempenho.hora}" type="text" required="required"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Aceleração Média</abbr>
-                    <p class="field">
+            <h3 align="center">${operacao} Desempenho de Competição</h3>
 
-                        <input name="txtAceleracaoMedia" value="${desempenho.aceleracaoMedia}"  placeholder="Digite apenas números!" type="text" required="required" pattern="(?:\d*\.)?\d+" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Velocidade Média: Automóvel</abbr>
-                    <p class="field">
+            <form class="form" action="ManterDesempenhoController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenho">
 
-                        <input name="txtVelocidadeMedia" value="${desempenho.velocidadeMedia}"  placeholder="Digite apenas números!" type="text"  required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Tempo de Pista</abbr>
-                    <p class="field">
-                        <input name="txtTempoPista" value="${desempenho.tempoPista}" placeholder="Digite apenas números!"  required="required" type="text" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <i class="fa fa-circle"></i>
-                    </p>
-                    <abbr>Frenagem</abbr>
-                    <p class="field">
-                        <input name="txtFrenagem" value="${desempenho.frenagem}"  placeholder="Digite apenas números!" type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    <i class="fa fa-circle"></i>
-                </p>
-                <input type="submit" value="Confirmar">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${desempenho.automovel.idAutomovel}"></c:if>
+                        <select id="automovel" name="selectAutomovel" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${automoveis}" var="automovel">
+                                <option value="${automovel.idAutomovel}" <c:if test="${desempenho.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label data-error="errado" data-success="certo" for="automovel">Automóvel</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPista" value="${desempenho.tipopista.idTipoPista}"></c:if>
+                        <select name="selectTipoPista" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${tipospista}" var="tipopista">
+                                <option value="${tipopista.idTipoPista}" <c:if test="${desempenho.tipopista.idTipoPista == tipopista.idTipoPista}"> selected</c:if>> ${tipopista.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label data-error="errado" data-success="certo" for="tipoPista">Tipo Pista</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectIntegrante" value="${desempenho.integrante.matricula}"></c:if>
+                        <select id="motorista" name="selectIntegrante" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${integrantes}" var="integrante">
+                                <option value="${integrante.matricula}" <c:if test="${desempenho.integrante.matricula == integrante.matricula}"> selected</c:if>> ${integrante.pessoa.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label data-error="errado" data-success="certo" for="motorista">Motorista</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdDesempenho" value="${desempenho.idDesempenho}" class="validate" type="text"  required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>       
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="desempenhoNome"name="txtNome" value="${desempenho.nome}" type="text" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       
+                            <label data-error="errado" data-success="certo" for="desempenhoNome">Nome Desempenho</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="data" name="txtData" class="datepicker" value="${desempenho.data}" type="text" required="required" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       
+                            <label for="data">Data</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="hora" name="txtHora" value="${desempenho.hora}" class="validate" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       
+                            <label data-error="errado" data-success="certo" for="hora">Hora</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="aceleracaoMedia" name="txtAceleracaoMedia" class="validate" value="${desempenho.aceleracaoMedia}" type="text" required="required" pattern="(?:\d*\.)?\d+" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       
+                            <label data-error="errado" data-success="certo" for="aceleracaoMedia">Aceleração Média</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="velocidadeMedia" name="txtVelocidadeMedia" class="validate" value="${desempenho.velocidadeMedia}" class="validate" type="text"  required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>       
+                            <label data-error="errado" data-success="certo" for="velocidadeMedia">Velocidade Média</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="tempoPista" name="txtTempoPista" class="validate" value="${desempenho.tempoPista}" required="required" type="text" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="tempoPista">Tempo de Pista</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="frenagem" name="txtFrenagem" value="${desempenho.frenagem}" class="validate" type="text" required="required" pattern="(?:\d*\.)?\d+"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label data-error="errado" data-success="certo" for="frenagem">Frenagem</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </body>
@@ -140,6 +176,25 @@
         $('select').material_select();
 
         $('body').css('background-image', "url('images/b19.png')");
+
+        $('.datepicker').pickadate({
+            closeOnClear: true,
+            closeOnSelect: true,
+            today: 'Hoje',
+            clear: 'Limpar',
+            close: 'Fechar',
+            labelMonthNext: 'Próximo mês',
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecionar um mês',
+            labelYearSelect: 'Selecionar um ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
