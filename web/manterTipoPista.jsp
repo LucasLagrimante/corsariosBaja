@@ -63,21 +63,29 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Tipo de Pista</h1>
+            <h3 align="center">${operacao} Tipo de Pista</h3>
             <form  action="ManterTipoPistaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPista">
-                <br>
-                <abbr>ID</abbr>
-                <p  class="field">
-                    <input name="txtIdTipoPista" type="text" value="${tipoPista.idTipoPista}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p> 
-                    <abbr>Tipo/Nome da Pista</abbr>
-                    <p  class="field">
-                        <input name="txtNome" type="text" value="${tipoPista.nome}" required="required" pattern="[a-z\s]+$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    
-                </p>
-                <input type="submit" value="Confirmar">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdTipoPista" class="validate" type="text" value="${tipoPista.idTipoPista}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="nome" name="txtNome" class="validate" type="text" value="${tipoPista.nome}" required="required" pattern="[a-zA-Z\s]+$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label  data-error="errado" data-success="certo" for="nome">Nome da Pista</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div> 
             </form>
         </div>
     </body>
