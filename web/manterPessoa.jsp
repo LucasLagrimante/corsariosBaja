@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="images/favicon.ico">
         <title>Cadastrar Pessoa</title>
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -63,64 +63,107 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Pessoa</h1>
-            <form   action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa" >
+            <h3 align="center">${operacao} Pessoa</h3>
+            <form action="ManterPessoaController?acao=confirmar${operacao}" method="POST" name="frmManterPessoa">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" class="validate" required="required"   pattern="[0-9]+$"  <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
 
-                <br>
-                <abbr>ID</abbr>
-                <p  class="field">
-                    <input name="txtIdPessoa" type="text" value="${pessoa.idPessoa}" required="required"   pattern="[0-9]+$"  <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Nome</abbr>
-                    <p  class="field">
-                        <input name="txtNome" required="required" type="text" value="${pessoa.nome}" pattern="[a-z\s]+$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="nome" name="txtNome" required="required" type="text" value="${pessoa.nome}" pattern="[a-z\s]+$" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label for="nome">Nome</label>
+                        </div>
+                    </div>
 
-                    <abbr>CPF</abbr>
-                    <p  class="field">
-                        <input name="txtCpf" onkeypress="mascara(this, cpf)" maxlength="14" required="required" type="text" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" value="${pessoa.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="cpf" name="txtCpf" class="validate" maxlength="14" required="required" type="text" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" value="${pessoa.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="cpf">CPF</label>
+                        </div>
+                    </div>
 
-                    <abbr>Logradouro</abbr>
-                    <p  class="field">
-                        <input name="txtLogradouro" required="required" type="text" value="${pessoa.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="logradouro" name="txtLogradouro" required="required" type="text" value="${pessoa.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label for="logradouro">Logradouro</label>
+                        </div>
+                    </div>
 
-                    <abbr>CEP</abbr>
-                    <p  class="field">
-                        <input name="txtCep" required="required"  type="text" pattern= "\d{5}-?\d{3}" maxlength="9" value="${pessoa.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="cep" name="txtCep" required="required" class="validate" type="text" pattern= "\d{5}-?\d{3}" maxlength="9" value="${pessoa.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="cep">CEP</label>
+                        </div>
+                    </div>
 
-                    <abbr>Bairro</abbr>
-                    <p  class="field">
-                        <input name="txtBairro" required="required" type="text"  value="${pessoa.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="bairro" name="txtBairro" required="required" type="text" value="${pessoa.bairro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label for="bairro">Bairro</label>
+                        </div>
+                    </div>
 
-                    <abbr>UF</abbr>
-                    <p  class="field">
-                        <input name="txtUf" type="text" required="required" pattern="[a-z\s]+$"  maxlength="2"  value="${pessoa.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <select id="uf" name="txtUf" value="${pessoa.uf}" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                                <option value="" disabled selected>Escolha</option>
+                                <option value="AC" <c:if test="${pessoa.uf == 'AC'}"> selected</c:if>>Acre</option>
+                            <option value="AL" <c:if test="${pessoa.uf == 'AL'}"> selected</c:if>>Alagoas</option>
+                            <option value="AP" <c:if test="${pessoa.uf == 'AP'}"> selected</c:if>>Amapá</option>
+                            <option value="AM" <c:if test="${pessoa.uf == 'AM'}"> selected</c:if>>Amazonas</option>
+                            <option value="BA" <c:if test="${pessoa.uf == 'BA'}"> selected</c:if>>Bahia</option>
+                            <option value="CE" <c:if test="${pessoa.uf == 'CE'}"> selected</c:if>>Ceará</option>
+                            <option value="DF" <c:if test="${pessoa.uf == 'DF'}"> selected</c:if>>Distrito Federal</option>
+                            <option value="ES" <c:if test="${pessoa.uf == 'ES'}"> selected</c:if>>Espirito Santo</option>
+                            <option value="GO" <c:if test="${pessoa.uf == 'GO'}"> selected</c:if>>Goiás</option>
+                            <option value="MA" <c:if test="${pessoa.uf == 'MA'}"> selected</c:if>>Maranhão</option>
+                            <option value="MS" <c:if test="${pessoa.uf == 'MS'}"> selected</c:if>>Mato Grosso do Sul</option>
+                            <option value="MT" <c:if test="${pessoa.uf == 'MT'}"> selected</c:if>>Mato Grosso</option>
+                            <option value="MG" <c:if test="${pessoa.uf == 'MG'}"> selected</c:if>>Minas Gerais</option>
+                            <option value="PA" <c:if test="${pessoa.uf == 'PA'}"> selected</c:if>>Pará</option>
+                            <option value="PB" <c:if test="${pessoa.uf == 'PB'}"> selected</c:if>>Paraíba</option>
+                            <option value="PR" <c:if test="${pessoa.uf == 'PR'}"> selected</c:if>>Paraná</option>
+                            <option value="PE" <c:if test="${pessoa.uf == 'PE'}"> selected</c:if>>Pernambuco</option>
+                            <option value="PI" <c:if test="${pessoa.uf == 'PI'}"> selected</c:if>>Piauí</option>
+                            <option value="RJ" <c:if test="${pessoa.uf == 'RJ'}"> selected</c:if>>Rio de Janeiro</option>
+                            <option value="RN" <c:if test="${pessoa.uf == 'RN'}"> selected</c:if>>Rio Grande do Norte</option>
+                            <option value="RS" <c:if test="${pessoa.uf == 'RS'}"> selected</c:if>>Rio Grande do Sul</option>
+                            <option value="RO" <c:if test="${pessoa.uf == 'RO'}"> selected</c:if>>Rondônia</option>
+                            <option value="RR" <c:if test="${pessoa.uf == 'RR'}"> selected</c:if>>Roraima</option>
+                            <option value="SC" <c:if test="${pessoa.uf == 'SC'}"> selected</c:if>>Santa Catarina</option>
+                            <option value="SP" <c:if test="${pessoa.uf == 'SP'}"> selected</c:if>>São Paulo</option>
+                            <option value="SE" <c:if test="${pessoa.uf == 'SE'}"> selected</c:if>>Sergipe</option>
+                            <option value="TO" <c:if test="${pessoa.uf == 'TO'}"> selected</c:if>>Tocantins</option>
+                            </select>
+                            <label for="uf">UF</label>
+                        </div>
+                    </div>
 
-                    <abbr>Número</abbr>
-                    <p  class="field">
-                        <input type="text" name="txtNumero" required="required" pattern="[0-9]+$"   value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="numero" type="text" name="txtNumero" class="validate" required="required" pattern="[0-9]+$" value="${pessoa.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="numero">Número</label>
+                        </div>
+                    </div>
 
-                    <abbr>Telefone</abbr>
-                    <p  class="field">
-                        <input type="text" name="txtTelefone" type="tel" required="required" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="Formato: (99) 9999-9999"  value="${pessoa.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    
-                </p>
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="telefone" type="text" class="validate"name="txtTelefone" type="tel" required="required" maxlength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" value="${pessoa.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label data-error="errado" data-success="certo" for="telefone">Telefone</label>
+                    </div>
+                </div>
 
-                <input type="submit" value="Confirmar">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div> 
             </form>
         </div>
     </body>
@@ -134,6 +177,46 @@
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
+        });
+
+        $("#cpf").keydown(function () {
+            var tamanho = $("#cpf").val().length;
+            if (tamanho === 3) {
+                var text = $("#cpf").val() + ".";
+                $("#cpf").val(text);
+            }
+            if (tamanho === 7) {
+                var text = $("#cpf").val() + ".";
+                $("#cpf").val(text);
+            }
+            if (tamanho === 11) {
+                var text = $("#cpf").val() + "-";
+                $("#cpf").val(text);
+            }
+        });
+
+        $("#cep").keydown(function () {
+            var tamanho = $("#cep").val().length;
+            if (tamanho === 5) {
+                var text = $("#cep").val() + "-";
+                $("#cep").val(text);
+            }
+        });
+
+        $("#telefone").keydown(function () {
+            var tamanho = $("#telefone").val().length;
+            if (tamanho === 0) {
+                var text = $("#telefone").val() + "(";
+                $("#telefone").val(text);
+            }
+            if (tamanho === 3) {
+                var text = $("#telefone").val() + ") ";
+                $("#telefone").val(text);
+            }
+            if (tamanho === 10) {
+                var text = $("#telefone").val() + "-";
+                $("#telefone").val(text);
+            }
         });
     });
 </script>
