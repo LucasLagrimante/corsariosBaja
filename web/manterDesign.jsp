@@ -63,30 +63,41 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Design </h1>
+            <h3 align="center">${operacao} Design </h3>
             <form  action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign">
-                <br>
-                <abbr>Automóvel</abbr>
-                <p>
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${design.automovel.idAutomovel}"></c:if>
-                    <select name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${automoveis}" var="automovel">
-                            <option value="${automovel.idAutomovel}" <c:if test="${design.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <abbr>ID</abbr>
-                <p class="field">
-                    <input name="txtIdDesign" type="text" required="required"   pattern="[0-9]+$" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Caminho Imagem</abbr>
-                    <p class="field">
-                        <input name="txtCaminhoImagem" type="text" required="required value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    
-                </p>
-                <input type="submit" value="Confirmar">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${design.automovel.idAutomovel}"></c:if>
+                        <select id="automovel" name="selectAutomovel" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${automoveis}" var="automovel">
+                                <option value="${automovel.idAutomovel}" <c:if test="${design.automovel.idAutomovel == automovel.idAutomovel}"> selected</c:if>> ${automovel.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label data-error="errado" data-success="certo" for="automovel">Automóvel</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdDesign" type="text" required="required" class="validate" pattern="[0-9]+$" value="${design.idDesign}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="caminhoImagem" name="txtCaminhoImagem" type="text" required="required" value="${design.caminhoImagem}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label data-error="errado" data-success="certo" for="caminhoImagem">Caminho Imagem</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>  
             </form>
         </div>
     </body>
