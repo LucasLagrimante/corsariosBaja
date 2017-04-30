@@ -106,7 +106,7 @@
     $(document).ready(function () {
         $('select').material_select();
 
-        $('body').css('background-image', "url('images/b19.png')");
+        $('body').css('background-image', "url('images/fundo.png')");
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator

@@ -63,7 +63,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/carousel1.jpg"></div>
         </div>
-        <div class="section white">
+        <div id="divParallax1" class="section white">
             <div class="row container">
                 <h2 class="header">Baja SAE Brasil - Etapa Sudeste 2015</h2>
             </div>
@@ -71,7 +71,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/carousel2.jpg"></div>
         </div>
-        <div class="section white">
+        <div id="divParallax2" class="section white">
             <div class="row container">
                 <h2 class="header">Equipe Corsários Baja participa do II SIMEPE do Instituto Federal do Sudeste de Minas Gerais</h2>
                 <p class="grey-text text-darken-3 lighten-3">Nossa equipe apresenta trabalho intitulado "Desenvolvimento de um mini veículo off road".
@@ -81,7 +81,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/carousel4.jpg"></div>
         </div>
-        <div class="section white">
+        <div id="divParallax3" class="section white">
             <div class="row container">
                 <h2 class="header">Luís Paulo Vasconcelos</h2>
                 <p class="grey-text text-darken-3 lighten-3">#cristine — com Corsários Baja.</p>
@@ -90,7 +90,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/carousel5.jpg"></div>
         </div>
-        <div class="section white">
+        <div id="divParallax4" class="section white">
             <div class="row container">
                 <h3 class="header">Equipe Corsários Baja - Outubro 2016</h3>
             </div>
@@ -102,7 +102,11 @@
 </html>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('body').css('background-image', "url('images/b19.png')");
+        $('body').css('background-image', "url('images/fundo.png')");
+        $('#divParallax1').css('background-image', "url('images/fundo.png')");
+        $('#divParallax2').css('background-image', "url('images/fundo.png')");
+        $('#divParallax3').css('background-image', "url('images/fundo.png')");
+        $('#divParallax4').css('background-image', "url('images/fundo.png')");
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
