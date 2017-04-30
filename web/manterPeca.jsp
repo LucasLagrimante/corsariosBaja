@@ -63,43 +63,67 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br>Peça</h1>
-            <form   action="ManterPecaController?acao=confirmar${operacao}" method="POST" name="frmManterPeca">
-                <br>
-                <abbr>ID</abbr>
-                <p  class="field">
-                    <input name="txtIdPeca"  type="text" required="required" pattern="[0-9]+$"  value="${peca.idPeca}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                    </p>
-                    <abbr>Quantidade</abbr>
-                    <p  class="field">
-                        <input name="txtQuantidade" type="text" required="required" pattern="[0-9]+$"  value="${peca.quantidade}"  min="1" size="4" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    </p>
-                    <abbr>Nome</abbr>
-                    <p  class="field">
-                        <input name="txtNome" type="text" required="required" value="${peca.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Modelo</abbr>
-                    <p  class="field">
-                        <input name="txtModelo" type="text" required="required" value="${peca.modelo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    </p>
-                    <abbr>Preço</abbr>
-                    <p class="field">
-                        <input name="txtPrecoCompra" type="text" required="required" pattern="(?:\d*\.)?\d+"  value="${peca.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Tipo Peça</abbr>
-                    <p>
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPeca" value="${peca.tipopeca.idTipoPeca}"></c:if>
-                    <select name="selectTipoPeca" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${tipopecas}" var="tipopeca">
-                            <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <input type="submit" value="Confirmar">
-                <input type="button" value="Cadastrar Tipo de Peca" onclick="window.location.href = 'http://localhost:8080/corsariosBaja/ManterTipoPecaController?acao=prepararIncluir'">
+            <h3 align="center">${operacao} Peça</h3>
+            <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" name="frmManterPeca">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="id" name="txtIdPeca" type="text" required="required" class="validate" pattern="[0-9]+$"  value="${peca.idPeca}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="id">ID</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <p class="range-field">
+                                <input type="range" id="quantidade" name="txtQuantidade" required="required"  min="1" max="100" value="${peca.quantidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>/>
+                            </p> 
+                            <label for="quantidade">Quantidade</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="nome" name="txtNome" type="text" required="required" value="${peca.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="nome">Nome</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="modelo" name="txtModelo" type="text" required="required" value="${peca.modelo}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="modelo">Modelo</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="preco" name="txtPrecoCompra" type="text" class="validate" required="required" pattern="(?:\d*\.)?\d+"  value="${peca.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="preco">Preço</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectTipoPeca" value="${peca.tipopeca.idTipoPeca}"></c:if>
+                        <select id="tipoPeca" name="selectTipoPeca" required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${tipopecas}" var="tipopeca">
+                                <option value="${tipopeca.idTipoPeca}" <c:if test="${peca.tipopeca.idTipoPeca == tipopeca.idTipoPeca}"> selected</c:if>> ${tipopeca.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label data-error="errado" data-success="certo" for="tipoPeca">Tipo Peça</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a class="waves-effect waves-light btn brown darken-4" id="cadastrarTipoPeca">Cadastrar Tipos de Peça</a>
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </body>
@@ -113,6 +137,10 @@
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
+        });
+
+        $("#cadastrarTipoPeca").click(function () {
+            window.location.href = 'http://localhost:8084/corsariosBaja/ManterTipoPecaController?acao=prepararIncluir';
         });
     });
 </script>
