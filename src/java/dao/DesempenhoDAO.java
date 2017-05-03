@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Desempenho;
+import model.TipoPista;
 
 public class DesempenhoDAO {
 
@@ -157,6 +158,29 @@ public class DesempenhoDAO {
         } catch (SQLException ex) {
 
         }
+    }
+
+    public static List<TipoPista> obterPistas() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<TipoPista> pistas = new ArrayList<TipoPista>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT idTipoPista, nome FROM tipoPista");
+            while (rs.next()) {
+                TipoPista pista = new TipoPista(
+                        rs.getInt("idTipoPista"),
+                        rs.getString("nome")
+                );
+                pistas.add(pista);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return pistas;
     }
 
 }

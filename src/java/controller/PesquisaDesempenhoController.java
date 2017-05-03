@@ -25,6 +25,7 @@ public class PesquisaDesempenhoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("desempenhos", Desempenho.obterDesempenhos());
+            request.setAttribute("pistas", Desempenho.obterPistas());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaDesempenho.jsp");
             view.forward(request, response);
 

@@ -27,6 +27,7 @@ public class PesquisaPecaController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("pecas", Peca.obterPecas());
+            request.setAttribute("precos", Peca.obterPrecos());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaPeca.jsp");
             view.forward(request, response);
 

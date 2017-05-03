@@ -97,6 +97,25 @@ public class FrequenciaDAO {
         }
         return frequencia;
     }
+    
+    public static List<String> obterEstados() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<String> estados = new ArrayList<String>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT estado FROM frequencia");
+            while (rs.next()) {
+                estados.add(rs.getString("estado"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return estados;
+    }
 
     public static void alterar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
         Connection conexao = null;

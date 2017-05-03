@@ -91,6 +91,10 @@ public class Peca {
     public static List<Peca> obterPecas() throws ClassNotFoundException, SQLException {
         return PecaDAO.obterPecas();
     }
+    
+    public static List<Float> obterPrecos() throws ClassNotFoundException, SQLException {
+        return PecaDAO.obterPrecos();
+    }
 
     public static Peca obterPeca(int idPeca) throws ClassNotFoundException {
         return PecaDAO.obterPeca(idPeca);

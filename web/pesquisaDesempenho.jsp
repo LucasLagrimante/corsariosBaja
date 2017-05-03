@@ -70,57 +70,76 @@
             </div>
         </nav>
         <div class="container">
-            <form>
-                <h3 align="center">Pesquisa de Desempenho</h3>
-                <table class="striped centered">
-                    <thead>
+
+            <h3 align="center">Pesquisa de Desempenho</h3>
+            <table class="striped centered">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Automóvel</th>
+                        <th>Tipo Pista</th>
+                        <th>Motorista</th>
+                        <th>Desempenho</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Aceleração Média</th>
+                        <th>Velocidade Média</th>
+                        <th>Tempo Corrida</th>
+                        <th>Frenagem</th>
+                        <th colspan="2">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${desempenhos}" var="desempenho">
                         <tr>
-                            <th>Código</th>
-                            <th>Automóvel</th>
-                            <th>Tipo Pista</th>
-                            <th>Motorista</th>
-                            <th>Desempenho</th>
-                            <th>Data</th>
-                            <th>Hora</th>
-                            <th>Aceleração Média</th>
-                            <th>Velocidade Média</th>
-                            <th>Tempo Corrida</th>
-                            <th>Frenagem</th>
-                            <th colspan="2">Ação</th>
+                            <td><c:out value="${desempenho.idDesempenho}" /></td>
+                            <td><c:out value="${desempenho.idAutomovel}" /></td>
+                            <td><c:out value="${desempenho.idTipoPista}" /></td>
+                            <td><c:out value="${desempenho.matricula}" /></td>
+                            <td><c:out value="${desempenho.nome}" /></td>
+                            <td><c:out value="${desempenho.data}" /></td>
+                            <td><c:out value="${desempenho.hora}" /></td>
+                            <td><c:out value="${desempenho.aceleracaoMedia}" /></td>
+                            <td><c:out value="${desempenho.velocidadeMedia}" /></td>
+                            <td><c:out value="${desempenho.tempoPista}" /></td>
+                            <td><c:out value="${desempenho.frenagem}" /></td>
+                            <td><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararEditar&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Editar</a></td>
+                            <td><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararExcluir&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Excluir</a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${desempenhos}" var="desempenho">
-                            <tr>
-                                <td><c:out value="${desempenho.idDesempenho}" /></td>
-                                <td><c:out value="${desempenho.idAutomovel}" /></td>
-                                <td><c:out value="${desempenho.idTipoPista}" /></td>
-                                <td><c:out value="${desempenho.matricula}" /></td>
-                                <td><c:out value="${desempenho.nome}" /></td>
-                                <td><c:out value="${desempenho.data}" /></td>
-                                <td><c:out value="${desempenho.hora}" /></td>
-                                <td><c:out value="${desempenho.aceleracaoMedia}" /></td>
-                                <td><c:out value="${desempenho.velocidadeMedia}" /></td>
-                                <td><c:out value="${desempenho.tempoPista}" /></td>
-                                <td><c:out value="${desempenho.frenagem}" /></td>
-                                <td><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararEditar&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Editar</a></td>
-                                <td><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararExcluir&idDesempenho=<c:out value="${desempenho.idDesempenho}" />">Excluir</a></td>
-                            </tr>
+                    </c:forEach>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="input-field col s4 center-align">
+                    <select name="selectTipoRelatorio" required="required">
+                        <option value="" disabled selected>Escolha...</option>
+                        <option value="completo">Relatório Completo</option>
+                        <option value="filtroPista">Filtro Por Pista</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s4 center-align">
+                    <select name="selectPista" required="required">
+                        <option value="" disabled selected>Escolha...</option>
+                        <c:forEach items="${pistas}" var="pista">
+                            <option value="${pista.idTipoPista}"> ${pista.nome}</option>
                         </c:forEach>
-                        <tr> 
-                            <td  align="center" colspan="13"> 
-                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                    </select>
+                </div>
+
+                <div class="input-field col s4 center-align">
+                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
+                </div>
+            </div>
         </div>
     </body>
 </html>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('select').material_select();
+        $("[name='selectTipoRelatorio']").material_select();
+        $("[name='selectPista']").material_select('destroy');
 
         $('body').css('background-image', "url('images/fundo.png')");
 
@@ -129,8 +148,28 @@
             hover: true // Activate on hover
         });
 
-        $("#imprimir").click(function () {
+        $("#imprimir").click(function() {
             window.location.href = 'RelatorioController?relatorioNome=reportDesempenho.jasper';
+        });
+
+        $("[name='selectTipoRelatorio']").change(function() {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                $("[name='selectTipoRelatorio']").material_select();
+                $("[name='selectPista']").material_select('destroy');
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPista") {
+                $("[name='selectTipoRelatorio']").material_select();
+                $("[name='selectPista']").material_select();
+            }
+        });
+        $("#imprimir").click(function() {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                window.location.href = 'RelatorioController?relatorioNome=reportDesempenho.jasper';
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPista") {
+                window.location.href = 'RelatorioController?relatorioNome=reportDesempenhoPorPista.jasper&parametro=' + $("[name='selectPista'] option:selected").val();
+            }
+
         });
     });
 </script>

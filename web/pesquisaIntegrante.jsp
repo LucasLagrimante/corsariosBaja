@@ -70,7 +70,6 @@
             </div>
         </nav>
         <div class="container">
-            <form>
                 <h3 align="center">Pesquisa de Integrante</h3>
                 <table class="striped centered">
                     <thead>
@@ -91,20 +90,38 @@
                                 <td><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararExcluir&txtMatricula=<c:out value="${integrante.matricula}" />">Excluir</a></td>
                             </tr>
                         </c:forEach>
-                        <tr> 
-                            <td  align="center" colspan="9">
-                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
-            </form>
+            <div class="row">
+                <div class="input-field col s4 center-align">
+                    <select name="selectTipoRelatorio" required="required">
+                        <option value="" disabled selected>Escolha...</option>
+                        <option value="completo">Relatório Completo</option>
+                        <option value="filtroPessoa">Filtro Por Pessoa</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s4 center-align">
+                    <select name="selectPessoa" required="required">
+                        <option value="" disabled selected>Escolha...</option>
+                        <c:forEach items="${pessoas}" var="pessoa">
+                            <option value="${pessoa}"> ${pessoa}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="input-field col s4 center-align">
+                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
+                </div>
+            </div>
         </div>
     </body>
 </html>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('select').material_select();
+        $("[name='selectTipoRelatorio']").material_select();
+        $("[name='selectPessoa']").material_select('destroy');
 
         $('body').css('background-image', "url('images/fundo.png')");
 
@@ -113,8 +130,28 @@
             hover: true // Activate on hover
         });
 
-        $("#imprimir").click(function () {
+        $("#imprimir").click(function() {
             window.location.href = 'RelatorioController?relatorioNome=reportIntegrante.jasper';
+        });
+
+        $("[name='selectTipoRelatorio']").change(function() {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                $("[name='selectTipoRelatorio']").material_select();
+                $("[name='selectPessoa']").material_select('destroy');
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPessoa") {
+                $("[name='selectTipoRelatorio']").material_select();
+                $("[name='selectPessoa']").material_select();
+            }
+        });
+        $("#imprimir").click(function() {
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
+                window.location.href = 'RelatorioController?relatorioNome=reportIntegrante.jasper';
+            }
+            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroPessoa") {
+                window.location.href = 'RelatorioController?relatorioNome=reportIntegrantePorPessoa.jasper&parametro=' + $("[name='selectPessoa'] option:selected").val();
+            }
+
         });
     });
 </script>

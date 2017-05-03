@@ -91,6 +91,25 @@ public class IntegranteDAO {
         }
         return integrante;
     }
+    
+    public static List<Integer> obterPessoas() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Integer> pessoas = new ArrayList<Integer>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT FK_idPessoa FROM integrante");
+            while (rs.next()) {
+                pessoas.add(rs.getInt("FK_idPessoa"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return pessoas;
+    }
 
     public static void alterar(Integrante integrante) throws SQLException, ClassNotFoundException {
         Connection conexao = null;

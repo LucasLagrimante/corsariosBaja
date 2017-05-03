@@ -27,6 +27,7 @@ public class PesquisaFrequenciaController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("frequencias", Frequencia.obterFrequencias());
+            request.setAttribute("estados", Frequencia.obterEstados());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaFrequencia.jsp");
             view.forward(request, response);
 

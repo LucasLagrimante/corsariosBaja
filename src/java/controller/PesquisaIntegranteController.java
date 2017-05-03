@@ -36,6 +36,7 @@ public class PesquisaIntegranteController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         try {
             request.setAttribute("integrantes", Integrante.obterIntegrantes());
+            request.setAttribute("pessoas", Integrante.obterPessoas());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisaIntegrante.jsp");
             view.forward(request, response);
 

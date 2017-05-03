@@ -73,7 +73,9 @@ public class Frequencia {
     public static List<Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
         return FrequenciaDAO.obterFrequencias();
     }
-
+    public static List<String> obterEstados() throws ClassNotFoundException, SQLException {
+        return FrequenciaDAO.obterEstados();
+    }
     public static Frequencia obterFrequencia(int idFrequencia) throws ClassNotFoundException {
         return FrequenciaDAO.obterFrequencia(idFrequencia);
     }

@@ -103,6 +103,25 @@ public class PecaDAO {
         }
         return peca;
     }
+    
+     public static List<Float> obterPrecos() throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        List<Float> precos = new ArrayList<Float>();
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT precoCompra FROM peca");
+            while (rs.next()) {
+                precos.add( rs.getFloat("precoCompra"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return precos;
+    }
 
     public static void alterar(Peca peca) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
