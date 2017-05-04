@@ -67,11 +67,16 @@
                 <select name="selectRelatorio" required="required">
                     <option value="" disabled selected>Escolha...</option>
                     <option value="arquiteturaAutomovel"> Arquitetura Automóvel</option>
-                    <option> Relatorio 2</option>
-                    <option> Relatorio 3</option>
+                    <option value="competicaoTipoPista"> Competição Tipo Pista</option>
+                    <option value="designAutomovel"> Design Automovel</option>
+                    <option value="integranteFrequencia"> Integrante Frequência</option>
+                    <option value="investidorPessoa"> Investidor Pessoa</option>
+                    <option value="groupAutomovelCor"> Group Automovel Cor</option>
+                    <option value="groupDesempenhoPista"> Group Desempenho Tipo Pista</option>
                 </select>
             </div>
         </div>
+        
         <div class="input-field col s4 center-align">
             <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
         </div>
@@ -86,8 +91,23 @@
             if ($("[name='selectRelatorio'] option:selected").val() === "arquiteturaAutomovel") {
                 window.location.href = 'RelatorioController?relatorioNome=reportArquiteturaAutomovel.jasper';
             }
-            if ($("[name='selectRelatorio'] option:selected").val() === "relatorio2") {
-                window.location.href = 'RelatorioController?relatorioNome=report2.jasper';
+            if ($("[name='selectRelatorio'] option:selected").val() === "competicaoTipoPista") {
+                window.location.href = 'RelatorioController?relatorioNome=reportCompeticaoTipoPista.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "designAutomovel") {
+                window.location.href = 'RelatorioController?relatorioNome=reportDesignAutomovel.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "integranteFrequencia") {
+                window.location.href = 'RelatorioController?relatorioNome=reportIntegranteFrequencia.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "investidorPessoa") {
+                window.location.href = 'RelatorioController?relatorioNome=reportInvestidorPessoa.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "groupAutomovelCor") {
+                window.location.href = 'RelatorioController?relatorioNome=reportGroupAutomovelCor.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "groupDesempenhoPista") {
+                window.location.href = 'RelatorioController?relatorioNome=reportGroupDesempenhoPorTipoPista.jasper';
             }
         });
 
