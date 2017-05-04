@@ -63,31 +63,41 @@
             </div>
         </nav>
         <div class="container">
-            <h1 align="center">${operacao}<br> Integrante</h1>
-            <form   action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" name="frmManterIntegrante">
-                <br>
-                <abbr>Pessoa</abbr>
-                <p>
-                    <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${integrante.pessoa.idPessoa}"></c:if>
-                    <select name="selectPessoa"  required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
-                        <c:forEach items="${pessoas}" var="pessoa">
-                            <option value="${pessoa.idPessoa}" <c:if test="${integrante.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
-                        </c:forEach>
-                    </select>
-                </p>
-                <br>
-                <abbr>Matricula</abbr>
-                <p  class="field">
-                    <input type="text" name="txtMatricula" required="required" pattern="[0-9]+$" maxlength="6" value="${integrante.matricula}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                        
-                    </p>
-                    <abbr>Carga Horaria Disponivel</abbr>
-                    <p  class="field">
-                        <input name="txtCargaHorariaDisponivel" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" value="${integrante.cargaHorariaDisponivel}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    
-                </p>
-                <br>
-                <input type="submit" value="Confirmar">
+            <h3 align="center">${operacao} Integrante</h3>
+            <form action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" name="frmManterIntegrante">
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${integrante.pessoa.idPessoa}"></c:if>
+                        <select id="pessoa" name="selectPessoa"  required="required"<c:if test="${operacao == 'Excluir'}"> disabled</c:if>>   
+                            <c:forEach items="${pessoas}" var="pessoa">
+                                <option value="${pessoa.idPessoa}" <c:if test="${integrante.pessoa.idPessoa == pessoa.idPessoa}"> selected</c:if>> ${pessoa.nome} </option>
+                            </c:forEach>
+                        </select>
+                        <label  for="pessoa">Pessoa</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 offset-m3">
+                        <input id="matricula" type="text" class="validate" name="txtMatricula" required="required" pattern="[0-9]+$" maxlength="6" value="${integrante.matricula}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                            <label data-error="errado" data-success="certo" for="matricula">Matricula</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6 offset-m3">
+                            <input id="cargaHoraria" class="validate" name="txtCargaHorariaDisponivel" type="text" required="required" maxlength="8" pattern="^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$" value="${integrante.cargaHorariaDisponivel}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label data-error="errado" data-success="certo" for="cargaHoraria">Carga Horaria Disponivel</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light brown darken-4" type="submit" value="Confirmar">
+                            Confirmar <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div> 
             </form>
         </div>
     </body>
