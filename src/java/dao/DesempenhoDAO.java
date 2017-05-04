@@ -167,7 +167,7 @@ public class DesempenhoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT DISTINCT nome FROM tipopista");
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT tp.nome FROM tipopista AS tp INNER JOIN desempenho AS d ON d.FK_tipopista = tp.idTipoPista");
             while (rs.next()) {
                 pistas.add(rs.getString("nome"));
             }

@@ -1,19 +1,10 @@
-<%-- 
-    Document   : pesquisaArquitetura
-    Created on : 20/09/2016, 09:17:12
-    Author     : Lucas
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisa de Arquitetura</title>
+        <title>Relatórios</title>
         <link rel="shortcut icon" href="images/favicon.ico">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
@@ -64,55 +55,51 @@
                 <ul class="right hide-on-med-and-down">
                     <!-- Dropdown Trigger -->
                     <li><a href="index.jsp">Início</a></li>
+                    <li><a href="relatorios.jsp">Relatórios</a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="menuCadastro">Cadastro<i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="menuPesquisa">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
             </div>
         </nav>
         <div class="container">
-            <form>
-                <h3 align="center">Pesquisa de Arquitetura</h3>
-                <table class="striped centered">
-                    <thead>
-                        <tr>
-                            <th>Código Arquitetura</th>
-                            <th>Caminho</th>
-                            <th>Automovel</th>
-                            <th colspan="2">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${arquiteturas}" var="arquitetura">
-                            <tr>
-                                <td><c:out value="${arquitetura.idArquitetura}" /></td>
-                                <td><c:out value="${arquitetura.caminhoImagem}" /></td>
-                                <td><c:out value="${arquitetura.idAutomovel}" /></td>
-                                <td><a class="brown-text text-darken-4" href="ManterArquiteturaController?acao=prepararEditar&idArquitetura=<c:out value="${arquitetura.idArquitetura}" />">Editar</a></td>
-                                <td><a class="brown-text text-darken-4" href="ManterArquiteturaController?acao=prepararExcluir&idArquitetura=<c:out value="${arquitetura.idArquitetura}" />">Excluir</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <div class="input-field col s4 center-align">
-                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
-                </div>
-            </form>
+            <h3  align="center">Relatórios</h3>
+            <div class="input-field col s6 center-align">
+                <select name="selectRelatorio" required="required">
+                    <option value="" disabled selected>Escolha...</option>
+                    <option value="arquiteturaAutomovel"> Arquitetura Automóvel</option>
+                    <option> Relatorio 2</option>
+                    <option> Relatorio 3</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-field col s4 center-align">
+            <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
         </div>
     </body>
 </html>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('select').material_select();
-
         $('body').css('background-image', "url('images/fundo.png')");
+        $("[name='selectRelatorio']").material_select();
+
+        $("#imprimir").click(function () {
+            if ($("[name='selectRelatorio'] option:selected").val() === "arquiteturaAutomovel") {
+                window.location.href = 'RelatorioController?relatorioNome=reportArquiteturaAutomovel.jasper';
+            }
+            if ($("[name='selectRelatorio'] option:selected").val() === "relatorio2") {
+                window.location.href = 'RelatorioController?relatorioNome=report2.jasper';
+            }
+        });
 
         $('.dropdown-button').dropdown({
             constrainWidth: false, // Does not change width of dropdown to that of the activator
             hover: true // Activate on hover
         });
 
-        $("#imprimir").click(function () {
-            window.location.href = 'RelatorioController?relatorioNome=reportArquitetura.jasper';
+        $('.materialboxed').materialbox();
+
+        $(document).ready(function () {
+            $('.parallax').parallax();
         });
     });
 </script>

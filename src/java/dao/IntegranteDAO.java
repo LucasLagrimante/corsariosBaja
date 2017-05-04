@@ -99,7 +99,7 @@ public class IntegranteDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT DISTINCT nome FROM pessoa");
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT p.nome FROM pessoa AS p INNER JOIN integrante AS i ON i.FK_idPessoa = p.idPessoa");
             while (rs.next()) {
                 pessoas.add(rs.getString("nome"));
             }
