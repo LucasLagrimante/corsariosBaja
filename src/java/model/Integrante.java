@@ -66,7 +66,7 @@ public class Integrante {
 
     }
     
-    public static List<Integer> obterPessoas() throws ClassNotFoundException, SQLException {
+    public static List<String> obterPessoas() throws ClassNotFoundException, SQLException {
         return IntegranteDAO.obterPessoas();
     }
 

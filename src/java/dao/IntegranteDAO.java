@@ -92,16 +92,16 @@ public class IntegranteDAO {
         return integrante;
     }
     
-    public static List<Integer> obterPessoas() throws ClassNotFoundException, SQLException {
+    public static List<String> obterPessoas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<Integer> pessoas = new ArrayList<Integer>();
+        List<String> pessoas = new ArrayList<String>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT FK_idPessoa FROM integrante");
+            ResultSet rs = comando.executeQuery("SELECT DISTINCT nome FROM pessoa");
             while (rs.next()) {
-                pessoas.add(rs.getInt("FK_idPessoa"));
+                pessoas.add(rs.getString("nome"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
