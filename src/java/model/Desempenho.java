@@ -161,8 +161,8 @@ public class Desempenho {
     public static Desempenho obterDesempenho(int idDesempenho) throws ClassNotFoundException {
         return DesempenhoDAO.obterDesempenho(idDesempenho);
     }
-    
-        public static List<TipoPista> obterPistas() throws ClassNotFoundException, SQLException {
+
+    public static List<String> obterPistas() throws ClassNotFoundException, SQLException {
         return DesempenhoDAO.obterPistas();
     }
 

@@ -160,20 +160,16 @@ public class DesempenhoDAO {
         }
     }
 
-    public static List<TipoPista> obterPistas() throws ClassNotFoundException, SQLException {
+    public static List<String> obterPistas() throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        List<TipoPista> pistas = new ArrayList<TipoPista>();
+        List<String> pistas = new ArrayList<String>();
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT idTipoPista, nome FROM tipoPista");
+            ResultSet rs = comando.executeQuery("SELECT DISTINC nome FROM tipoPista");
             while (rs.next()) {
-                TipoPista pista = new TipoPista(
-                        rs.getInt("idTipoPista"),
-                        rs.getString("nome")
-                );
-                pistas.add(pista);
+                pistas.add(rs.getString("nome"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
