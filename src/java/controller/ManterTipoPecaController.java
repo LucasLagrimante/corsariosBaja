@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.TipoPeca;
+import model.Tipopeca;
 
 /**
  *
@@ -44,7 +44,7 @@ public class ManterTipoPecaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("tiposPeca", TipoPeca.obterTiposPeca());
+            request.setAttribute("tiposPeca", Tipopeca.obterTiposPeca());
             RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
@@ -54,11 +54,11 @@ public class ManterTipoPecaController extends HttpServlet {
     }
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        int idTipopeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            Tipopeca tipoPeca = new Tipopeca(idTipopeca, nome);
             tipoPeca.gravar();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
             view.forward(request, response);
@@ -72,8 +72,8 @@ public class ManterTipoPecaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            int idTipoPeca = Integer.parseInt(request.getParameter("idTipoPeca"));
-            TipoPeca tipoPeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+            Tipopeca tipoPeca = Tipopeca.obterTipoPeca(idTipopeca);
             request.setAttribute("tipoPeca", tipoPeca);
             RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
             view.forward(request, response);
@@ -87,13 +87,13 @@ public class ManterTipoPecaController extends HttpServlet {
     }
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        int idTipopeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            Tipopeca tipoPeca = new Tipopeca(idTipopeca, nome);
             tipoPeca.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipopecaController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -105,8 +105,8 @@ public class ManterTipoPecaController extends HttpServlet {
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Excluir");
-            int idTipoPeca = Integer.parseInt(request.getParameter("idTipoPeca"));
-            TipoPeca tipoPeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+            Tipopeca tipoPeca = Tipopeca.obterTipopeca(idTipopeca);
             request.setAttribute("tipoPeca", tipoPeca);
             RequestDispatcher view = request.getRequestDispatcher("/manterTipoPeca.jsp");
             view.forward(request, response);
@@ -120,11 +120,11 @@ public class ManterTipoPecaController extends HttpServlet {
     }
 
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
+        int idTipopeca = Integer.parseInt(request.getParameter("txtIdTipoPeca"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPeca tipoPeca = new TipoPeca(idTipoPeca, nome);
+            Tipopeca tipoPeca = new Tipopeca(idTipopeca, nome);
             tipoPeca.excluir();
             RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPecaController");
             view.forward(request, response);

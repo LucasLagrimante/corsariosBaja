@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.TipoPista;
+import model.Tipopista;
 
 /**
  *
@@ -44,8 +44,8 @@ public class ManterTipoPistaController extends HttpServlet {
             HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Incluir");
-            request.setAttribute("tiposPista", TipoPista.obterTiposPista());
-            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPista.jsp");
+            request.setAttribute("tiposPista", Tipopista.obterTiposPista());
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipopista.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -54,13 +54,13 @@ public class ManterTipoPistaController extends HttpServlet {
     }
 
     public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPista = Integer.parseInt(request.getParameter("txtIdTipoPista"));
+        int idTipopista = Integer.parseInt(request.getParameter("txtIdTipopista"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPista tipoPista = new TipoPista(idTipoPista, nome);
+            Tipopista tipoPista = new Tipopista(idTipopista, nome);
             tipoPista.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPistaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipopistaController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -72,10 +72,10 @@ public class ManterTipoPistaController extends HttpServlet {
     public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         try {
             request.setAttribute("operacao", "Editar");
-            int idTipoPista = Integer.parseInt(request.getParameter("idTipoPista"));
-            TipoPista tipoPista = TipoPista.obterTipoPista(idTipoPista);
+            int idTipopista = Integer.parseInt(request.getParameter("idTipopista"));
+            Tipopista tipoPista = Tipopista.obterTipopista(idTipopista);
             request.setAttribute("tipoPista", tipoPista);
-            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPista.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipopista.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
 
@@ -87,13 +87,13 @@ public class ManterTipoPistaController extends HttpServlet {
     }
 
     public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPista = Integer.parseInt(request.getParameter("txtIdTipoPista"));
+        int idTipopista = Integer.parseInt(request.getParameter("txtIdTipopista"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPista tipoPista = new TipoPista(idTipoPista, nome);
+            Tipopista tipoPista = new Tipopista(idTipopista, nome);
             tipoPista.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPistaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipopistaController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -105,10 +105,10 @@ public class ManterTipoPistaController extends HttpServlet {
     public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setAttribute("operacao", "Excluir");
-            int idTipoPista = Integer.parseInt(request.getParameter("idTipoPista"));
-            TipoPista tipoPista = TipoPista.obterTipoPista(idTipoPista);
+            int idTipopista = Integer.parseInt(request.getParameter("idTipopista"));
+            Tipopista tipoPista = Tipopista.obterTipopista(idTipopista);
             request.setAttribute("tipoPista", tipoPista);
-            RequestDispatcher view = request.getRequestDispatcher("/manterTipoPista.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipopista.jsp");
             view.forward(request, response);
         } catch (ServletException ex) {
 
@@ -120,13 +120,13 @@ public class ManterTipoPistaController extends HttpServlet {
     }
 
     public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-        int idTipoPista = Integer.parseInt(request.getParameter("txtIdTipoPista"));
+        int idTipopista = Integer.parseInt(request.getParameter("txtIdTipopista"));
         String nome = request.getParameter("txtNome");
 
         try {
-            TipoPista tipoPista = new TipoPista(idTipoPista, nome);
+            Tipopista tipoPista = new Tipopista(idTipopista, nome);
             tipoPista.excluir();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipoPistaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaTipopistaController");
             view.forward(request, response);
         } catch (ServletException ex) {
         } catch (IOException ex) {
@@ -150,7 +150,7 @@ public class ManterTipoPistaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterTipoPistaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterTipopistaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -168,7 +168,7 @@ public class ManterTipoPistaController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterTipoPistaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterTipopistaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
