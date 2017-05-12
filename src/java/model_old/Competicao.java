@@ -1,4 +1,4 @@
-package model;
+package model_old;
 
 import dao.CompeticaoDAO;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package model;
+package model_old;
 
 import dao.FrequenciaDAO;
 import java.sql.SQLException;

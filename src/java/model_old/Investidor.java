@@ -1,4 +1,4 @@
-package model;
+package model_old;
 
 import dao.InvestidorDAO;
 import java.sql.SQLException;
