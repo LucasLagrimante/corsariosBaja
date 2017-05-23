@@ -214,7 +214,7 @@ public class Desempenhoteste implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Desempenhoteste[ idDesempenhoTeste=" + idDesempenhoTeste + " ]";
+        return "model.Desempenhoteste[ idDesempenhoTeste=" + idDesempenhoTeste + " ]";
     }
     
 }

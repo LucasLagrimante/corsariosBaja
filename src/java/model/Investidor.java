@@ -103,7 +103,7 @@ public class Investidor implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Investidor[ idInvestidor=" + idInvestidor + " ]";
+        return "model.Investidor[ idInvestidor=" + idInvestidor + " ]";
     }
     
 }

@@ -120,7 +120,7 @@ public class Frequencia implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Frequencia[ idFrequencia=" + idFrequencia + " ]";
+        return "model.Frequencia[ idFrequencia=" + idFrequencia + " ]";
     }
     
 }

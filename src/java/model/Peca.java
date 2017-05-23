@@ -148,7 +148,7 @@ public class Peca implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Peca[ idPeca=" + idPeca + " ]";
+        return "model.Peca[ idPeca=" + idPeca + " ]";
     }
     
 }

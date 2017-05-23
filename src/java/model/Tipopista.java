@@ -129,7 +129,7 @@ public class Tipopista implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Tipopista[ idTipopista=" + idTipopista + " ]";
+        return "model.Tipopista[ idTipopista=" + idTipopista + " ]";
     }
     
 }

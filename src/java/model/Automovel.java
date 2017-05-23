@@ -212,7 +212,7 @@ public class Automovel implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Automovel[ idAutomovel=" + idAutomovel + " ]";
+        return "model.Automovel[ idAutomovel=" + idAutomovel + " ]";
     }
     
 }

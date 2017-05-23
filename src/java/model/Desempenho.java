@@ -214,7 +214,7 @@ public class Desempenho implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Desempenho[ idDesempenho=" + idDesempenho + " ]";
+        return "model.Desempenho[ idDesempenho=" + idDesempenho + " ]";
     }
     
 }

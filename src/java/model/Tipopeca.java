@@ -107,7 +107,7 @@ public class Tipopeca implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Tipopeca[ idTipopeca=" + idTipopeca + " ]";
+        return "model.Tipopeca[ idTipopeca=" + idTipopeca + " ]";
     }
     
 }

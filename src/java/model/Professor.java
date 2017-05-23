@@ -87,7 +87,7 @@ public class Professor implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Professor[ registro=" + registro + " ]";
+        return "model.Professor[ registro=" + registro + " ]";
     }
     
 }

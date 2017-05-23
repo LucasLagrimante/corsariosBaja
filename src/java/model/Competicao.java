@@ -150,7 +150,7 @@ public class Competicao implements Serializable {
 
     @Override
     public String toString() {
-        return "newpackage.Competicao[ idCompeticao=" + idCompeticao + " ]";
+        return "model.Competicao[ idCompeticao=" + idCompeticao + " ]";
     }
     
 }
