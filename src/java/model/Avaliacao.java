@@ -134,7 +134,7 @@ public class Avaliacao implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Avaliacao[ idAvaliacao=" + idAvaliacao + " ]";
+        return "newpackage.Avaliacao[ idAvaliacao=" + idAvaliacao + " ]";
     }
     
 }

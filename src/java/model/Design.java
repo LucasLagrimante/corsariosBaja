@@ -105,7 +105,7 @@ public class Design implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Design[ idDesign=" + idDesign + " ]";
+        return "newpackage.Design[ idDesign=" + idDesign + " ]";
     }
     
 }

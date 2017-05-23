@@ -233,7 +233,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Pessoa[ idPessoa=" + idPessoa + " ]";
+        return "newpackage.Pessoa[ idPessoa=" + idPessoa + " ]";
     }
     
 }

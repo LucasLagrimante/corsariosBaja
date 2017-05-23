@@ -76,15 +76,15 @@ public class Desempenho implements Serializable {
     @NotNull
     @Column(name = "frenagem")
     private float frenagem;
+    @JoinColumn(name = "FK_automovel", referencedColumnName = "idAutomovel")
+    @ManyToOne(optional = false)
+    private Automovel fKautomovel;
     @JoinColumn(name = "FK_motorista", referencedColumnName = "matricula")
     @ManyToOne(optional = false)
     private Integrante fKmotorista;
     @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
     @ManyToOne(optional = false)
     private Tipopista fKtipopista;
-    @JoinColumn(name = "FK_automovel", referencedColumnName = "idAutomovel")
-    @ManyToOne(optional = false)
-    private Automovel fKautomovel;
 
     public Desempenho() {
     }
@@ -168,6 +168,14 @@ public class Desempenho implements Serializable {
         this.frenagem = frenagem;
     }
 
+    public Automovel getFKautomovel() {
+        return fKautomovel;
+    }
+
+    public void setFKautomovel(Automovel fKautomovel) {
+        this.fKautomovel = fKautomovel;
+    }
+
     public Integrante getFKmotorista() {
         return fKmotorista;
     }
@@ -182,14 +190,6 @@ public class Desempenho implements Serializable {
 
     public void setFKtipopista(Tipopista fKtipopista) {
         this.fKtipopista = fKtipopista;
-    }
-
-    public Automovel getFKautomovel() {
-        return fKautomovel;
-    }
-
-    public void setFKautomovel(Automovel fKautomovel) {
-        this.fKautomovel = fKautomovel;
     }
 
     @Override
@@ -214,7 +214,7 @@ public class Desempenho implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Desempenho[ idDesempenho=" + idDesempenho + " ]";
+        return "newpackage.Desempenho[ idDesempenho=" + idDesempenho + " ]";
     }
     
 }

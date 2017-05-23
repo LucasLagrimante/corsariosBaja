@@ -105,7 +105,7 @@ public class Arquitetura implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Arquitetura[ idArquitetura=" + idArquitetura + " ]";
+        return "newpackage.Arquitetura[ idArquitetura=" + idArquitetura + " ]";
     }
     
 }

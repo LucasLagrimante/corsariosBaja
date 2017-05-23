@@ -167,7 +167,7 @@ public class Integrante implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Integrante[ matricula=" + matricula + " ]";
+        return "newpackage.Integrante[ matricula=" + matricula + " ]";
     }
     
 }
