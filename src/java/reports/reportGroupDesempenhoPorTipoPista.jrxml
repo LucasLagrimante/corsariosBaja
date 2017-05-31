@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportGroupDesempenhoPorTipoPista" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92fb244f-5428-41a7-9be5-601262661983">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <queryString language="SQL">
+		<![CDATA[SELECT
+     desempenho.`idDesempenho` AS desempenho_idDesempenho,
+     desempenho.`nome` AS desempenho_nome,
+     desempenho.`data` AS desempenho_data,
+     desempenho.`hora` AS desempenho_hora,
+     desempenho.`aceleracaoMedia` AS desempenho_aceleracaoMedia,
+     desempenho.`velocidadeMedia` AS desempenho_velocidadeMedia,
+     desempenho.`tempoPista` AS desempenho_tempoPista,
+     desempenho.`frenagem` AS desempenho_frenagem,
+     desempenho.`FK_automovel` AS desempenho_FK_automovel,
+     desempenho.`FK_tipopista` AS desempenho_FK_tipopista,
+     desempenho.`FK_motorista` AS desempenho_FK_motorista,
+     tipopista.`idTipoPista` AS tipopista_idTipoPista,
+     tipopista.`nome` AS tipopista_nome
+FROM
+     `tipopista` tipopista INNER JOIN `desempenho` desempenho ON tipopista.`idTipoPista` = desempenho.`FK_tipopista`
+ORDER BY  desempenho_FK_tipopista]]>
+    </queryString>
+    <field name="desempenho_idDesempenho" class="java.lang.Integer"/>
+    <field name="desempenho_nome" class="java.lang.String"/>
+    <field name="desempenho_data" class="java.lang.String"/>
+    <field name="desempenho_hora" class="java.lang.String"/>
+    <field name="tipopista_nome" class="java.lang.String"/>
+    <group name="tipopista_nome">
+        <groupExpression><![CDATA[$F{tipopista_nome}]]></groupExpression>
+        <groupHeader>
+            <band height="33">
+                <staticText>
+                    <reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="4b921367-9dea-4923-9e53-40293f4acd80"/>
+                    <textElement>
+                        <font size="12"/>
+                    </textElement>
+                    <text><![CDATA[Nome]]></text>
+                </staticText>
+                <textField>
+                    <reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="f96edcd6-9f62-4a2d-9e36-1cbf598e5445"/>
+                    <textElement>
+                        <font size="24" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{tipopista_nome}]]></textFieldExpression>
+                </textField>
+                <line>
+                    <reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="5ab7e439-f4d9-40c6-8fdf-5bcdad9647b0"/>
+                </line>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="306da208-cf22-4c22-8a23-0ecda86f3977"/>
+                <staticText>
+                    <reportElement x="20" y="20" width="310" height="43" forecolor="#FFFFFF" uuid="d65cbdfd-4770-43da-a5be-1dadf04b323d"/>
+                    <textElement>
+                        <font size="21" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Desempenho Tipo Pista]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="742fcf68-39ba-4881-aea3-494095f24e2d"/>
+                    <textElement textAlignment="Right">
+                        <font size="14" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Corsários Baja]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="13"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="8f2d5018-dfc2-4567-beff-1e16261cd729"/>
+            </line>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="acd10956-d4db-43e6-8b10-fdaad4e064cc"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7f51295d-31e9-463c-be1d-120d1f8af1c4"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nome]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="84ee2ba2-b1a6-4f8f-837b-82f1d2ca566e"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Data]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b28e7de1-3af6-4534-8658-e09f7b9bd670"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Hora]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="27">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="5ffbb869-924a-40a6-972f-14be6180ab76"/>
+            </line>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="0" y="0" width="138" height="20" uuid="f8187d42-f7db-4fe7-956f-95bd4acbd5fb"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{desempenho_idDesempenho}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="138" y="0" width="138" height="20" uuid="02188927-e5a3-4e9a-bdd6-452eab5f92dd"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{desempenho_nome}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="414" y="0" width="138" height="20" uuid="d3e6190a-e3ea-4d00-88d8-68b7d9d50e80"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{desempenho_hora}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="276" y="1" width="138" height="19" uuid="c6857533-834a-4f90-b2e0-0ffecddb0b04"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{desempenho_data}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="11"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="31">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="f02a420b-90f0-4baa-963f-c856858b4a48"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="fe484d91-9640-4b85-bfa6-0dc5cae2c202"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="0" y="4" width="100" height="13" uuid="64a0b588-6dc7-4eb9-b9b6-5a6fa69f8bce"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="16"/>
+    </summary>
+</jasperReport>
