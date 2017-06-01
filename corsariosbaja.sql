@@ -496,39 +496,6 @@ INSERT INTO `peca` (`idPeca`, `quantidade`, `nome`, `modelo`, `precoCompra`, `FK
 (10, 6, 'Sexri', 'sdfsdf', 565, 10);
 
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `professor`
---
-
-DROP TABLE IF EXISTS `professor`;
-CREATE TABLE IF NOT EXISTS `professor` (
-  `registro` varchar(20) NOT NULL,
-  `FK_pessoa` int(11) NOT NULL,
-  PRIMARY KEY (`registro`),
-  KEY `FK_pessoa_professor` (`FK_pessoa`)
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-  ALTER TABLE `professor`
-  ADD CONSTRAINT `FK_pessoa_professor` FOREIGN KEY (`FK_pessoa`) REFERENCES `pessoa` (`idPessoa`) ON UPDATE CASCADE;
---
--- Extraindo dados da tabela `professor`
---
-
-INSERT INTO `professor` (`registro`, `FK_pessoa`) VALUES
-('1111', 1),
-('2222', 2),
-('3333', 3),
-('4444', 4),
-('5555', 5),
-('6666', 6),
-('7777', 7),
-('8888', 8),
-('9999', 9),
-('0000', 10);
-
 
 -- --------------------------------------------------------
 

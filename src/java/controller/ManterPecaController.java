@@ -1,181 +1,111 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import dao.PecaDAO;
+
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Peca;
-import model.TipoPeca;
 
 /**
  *
- * @author Aluno
+ * @author Marco
  */
 public class ManterPecaController extends HttpServlet {
 
+    private Peca peca;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
         String acao = request.getParameter("acao");
-        if (acao.equals("prepararIncluir")) {
-            prepararIncluir(request, response);
-        } else if (acao.equals("confirmarIncluir")) {
-            confirmarIncluir(request, response);
-        } else if (acao.equals("prepararEditar")) {
-            prepararEditar(request, response);
-        } else if (acao.equals("confirmarEditar")) {
-            confirmarEditar(request, response);
-        } else if (acao.equals("prepararExcluir")) {
-            prepararExcluir(request, response);
-        } else if (acao.equals("confirmarExcluir")) {
-            confirmarExcluir(request, response);
+        if (acao.equals("prepararOperacao")) {
+            prepararOperacao(request, response);
+        }
+        if (acao.equals("confirmarOperacao")) {
+            confirmarOperacao(request, response);
         }
 
     }
 
-    public void prepararIncluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
-            request.setAttribute("operacao", "Incluir");
-            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
+            String operacao = request.getParameter("operacao");
+            request.setAttribute("operacao", operacao);
+            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            if (!operacao.equals("incluir")) {
+                int codPeca = Integer.parseInt(request.getParameter("codPeca"));
+                peca = PecaDAO.getInstance().getPeca(codPeca);
+                request.setAttribute("peca", peca);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
             view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
+        } catch (ServletException e) {
+            throw e;
+        } catch (IOException e) {
+            throw new ServletException(e);
         }
+
     }
 
-    public void confirmarIncluir(HttpServletRequest request, HttpServletResponse response) {
-        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
-        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
-        String nome = request.getParameter("txtNome");
-        String modelo = request.getParameter("txtModelo");
-        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try {
-            TipoPeca tipopeca = null;
-            if (idTipoPeca != 0) {
-                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            String operacao = request.getParameter("operacao");
+            int codPeca = Integer.parseInt(request.getParameter("codPeca"));
+            String nome = request.getParameter("nomePeca");
+            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
+            String tipoPeca = request.getParameter("tipoPeca");
+            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
+            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
+            Professor coordenador = null;
+            if (codCoordenador != 0) {
+                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
             }
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
-            peca.gravar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
-            view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
-        } catch (SQLException ex) {
-        }
-    }
-
-    public void prepararEditar(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        try {
-            request.setAttribute("operacao", "Editar");
-            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
-            int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
-            Peca peca = Peca.obterPeca(idPeca);
-            request.setAttribute("peca", peca);
-            RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
-            view.forward(request, response);
-        } catch (ServletException ex) {
-
-        } catch (IOException ex) {
-
-        } catch (ClassNotFoundException ex) {
-
-        }
-    }
-
-    public void confirmarEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
-        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
-        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
-        String nome = request.getParameter("txtNome");
-        String modelo = request.getParameter("txtModelo");
-        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-
-        try {
-            TipoPeca tipopeca = null;
-            if (idTipoPeca != 0) {
-                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
+            if (operacao.equals("incluir")) {
+                peca = new Peca(codPeca, nome, cargaHoraria, tipoPeca, totalPeriodos, coordenador);
+                PecaDAO.getInstance().salvar(peca);
+            } else if (operacao.equals("editar")) {
+                peca.setNome(nome);
+                peca.setCargaHoraria(cargaHoraria);
+                peca.setTipoPeca(tipoPeca);
+                peca.setTotalPeriodos(totalPeriodos);
+                peca.setCoordenador(coordenador);
+                PecaDAO.getInstance().salvar(peca);
+            } else if (operacao.equals("excluir")) {
+                PecaDAO.getInstance().excluir(peca);
             }
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
-            peca.alterar();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarPecaController");
             view.forward(request, response);
-        } catch (ServletException ex) {
-            throw ex;
-        } catch (IOException ex) {
-            throw ex;
-        } catch (ClassNotFoundException ex) {
-            throw ex;
-        } catch (SQLException ex) {
-            throw ex;
+
+        } catch (ServletException e) {
+            throw e;
+        } catch (IOException e) {
+            throw new ServletException(e);
         }
     }
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    public void prepararExcluir(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        try {
-            request.setAttribute("operacao", "Excluir");
-            request.setAttribute("tipopecas", TipoPeca.obterTiposPeca());
-            int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
-            Peca peca = Peca.obterPeca(idPeca);
-            request.setAttribute("peca", peca);
-            RequestDispatcher view = request.getRequestDispatcher("/manterPeca.jsp");
-            view.forward(request, response);
-        } catch (ServletException ex) {
-
-        } catch (IOException ex) {
-
-        } catch (ClassNotFoundException ex) {
-
-        }
-    }
-
-    public void confirmarExcluir(HttpServletRequest request, HttpServletResponse response) {
-        int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
-        int quantidade = Integer.parseInt(request.getParameter("txtQuantidade"));
-        String nome = request.getParameter("txtNome");
-        String modelo = request.getParameter("txtModelo");
-        float precoCompra = Float.parseFloat(request.getParameter("txtPrecoCompra"));
-        int idTipoPeca = Integer.parseInt(request.getParameter("selectTipoPeca"));
-
-        try {
-            TipoPeca tipopeca = null;
-            if (idTipoPeca != 0) {
-                tipopeca = TipoPeca.obterTipoPeca(idTipoPeca);
-            }
-            Peca peca = new Peca(idPeca, quantidade, nome, modelo, precoCompra, idTipoPeca);
-            peca.excluir();
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaPecaController");
-            view.forward(request, response);
-        } catch (ServletException ex) {
-        } catch (IOException ex) {
-        } catch (ClassNotFoundException ex) {
-        } catch (SQLException ex) {
-        }
-    }
-
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        processRequest(request, response);
+
     }
 
     /**
@@ -189,13 +119,8 @@ public class ManterPecaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterPecaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
+
     }
 
     /**
@@ -203,4 +128,9 @@ public class ManterPecaController extends HttpServlet {
      *
      * @return a String containing servlet description
      */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

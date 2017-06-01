@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.TipopecaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import model.Tipopeca;
 
 /**
  *
@@ -30,10 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tipopeca")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipopeca.findAll", query = "SELECT t FROM Tipopeca t"),
-    @NamedQuery(name = "Tipopeca.findByIdTipopeca", query = "SELECT t FROM Tipopeca t WHERE t.idTipopeca = :idTipopeca"),
+    @NamedQuery(name = "Tipopeca.findAll", query = "SELECT t FROM Tipopeca t")
+    ,
+    @NamedQuery(name = "Tipopeca.findByIdTipopeca", query = "SELECT t FROM Tipopeca t WHERE t.idTipopeca = :idTipopeca")
+    ,
     @NamedQuery(name = "Tipopeca.findByNome", query = "SELECT t FROM Tipopeca t WHERE t.nome = :nome")})
 public class Tipopeca implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -85,6 +91,14 @@ public class Tipopeca implements Serializable {
         this.pecaCollection = pecaCollection;
     }
 
+    public static List<Tipopeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
+        return TipopecaDAO.obterTipospeca();
+    }
+
+    public static Tipopeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
+        return TipopecaDAO.getTipopeca(idTipoPeca);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -109,5 +123,5 @@ public class Tipopeca implements Serializable {
     public String toString() {
         return "model.Tipopeca[ idTipopeca=" + idTipopeca + " ]";
     }
-    
+
 }

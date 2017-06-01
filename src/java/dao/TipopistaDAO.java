@@ -13,29 +13,29 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import model.Peca;
+import model.Tipopista;
 
-public class PecaDAO {
+public class TipopistaDAO {
 
-    private static PecaDAO instance = new PecaDAO();
+    private static TipopistaDAO instance = new TipopistaDAO();
 
-    public static PecaDAO getInstance() {
+    public static TipopistaDAO getInstance() {
         return instance;
     }
 
-    private PecaDAO() {
+    private TipopistaDAO() {
     }
 
     //CLASSES PADRÃO
-    public void salvar(Peca peca) {
+    public void salvar(Tipopista tipopista) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            if (peca.getIdPeca() != null) {
-                em.merge(peca);
+            if (tipopista.getIdTipopista() != null) {
+                em.merge(tipopista);
             } else {
-                em.persist(peca);
+                em.persist(tipopista);
             }
             tx.commit();
         } catch (Exception e) {
@@ -48,13 +48,13 @@ public class PecaDAO {
         }
     }
 
-    public static Peca getPeca(int id) {
+    public static Tipopista getTipopista(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        Peca peca = null;
+        Tipopista tipopista = null;
         try {
             tx.begin();
-            peca = em.find(Peca.class, id);
+            tipopista = em.find(Tipopista.class, id);
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -64,15 +64,15 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return peca;
+        return tipopista;
     }
 
-    public void excluir(Peca peca) {
+    public void excluir(Tipopista tipopista) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.remove(em.getReference(Peca.class, peca.getIdPeca()));
+            em.remove(em.getReference(Tipopista.class, tipopista.getIdTipopista()));
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -85,14 +85,14 @@ public class PecaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Peca> obterPecas() {
+    public static List<Tipopista> obterTipospista() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
+        List<Tipopista> tiposPista = null;
         try {
             tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
+            TypedQuery<Tipopista> query = em.createQuery("select c from Tipopista c", Tipopista.class);
+            tiposPista = query.getResultList();
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -102,27 +102,7 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return pecas;
-    }
-
-    public static List<Peca> obterPrecos() {
-        EntityManager em = PersistenceUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
-        try {
-            tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            throw new RuntimeException(e);
-        } finally {
-            PersistenceUtil.close(em);
-        }
-        return pecas;
+        return tiposPista;
     }
 
 }

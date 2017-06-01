@@ -1,126 +1,108 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Arquitetura;
 
 public class ArquiteturaDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static ArquiteturaDAO instance = new ArquiteturaDAO();
 
-        } catch (SQLException e) {
-        }
+    public static ArquiteturaDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Arquitetura arquitetura) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO arquitetura (idArquitetura, caminhoImagem, FK_automovel) VALUES (?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, arquitetura.getIdArquitetura());
-            comando.setString(2, arquitetura.getCaminhoImagem());
-            comando.setInt(3, arquitetura.getIdAutomovel());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private ArquiteturaDAO() {
     }
 
-    public static List<Arquitetura> obterArquiteturas() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Arquitetura> arquiteturas = new ArrayList<Arquitetura>();
+    //CLASSES PADRÃO
+    public void salvar(Arquitetura arquitetura) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura");
-            while (rs.next()) {
-                Arquitetura arquitetura = new Arquitetura(
-                        rs.getInt("idArquitetura"),
-                        rs.getString("caminhoImagem"),
-                        rs.getInt("FK_automovel")
-                );
-                arquiteturas.add(arquitetura);
+            tx.begin();
+            if (arquitetura.getIdArquitetura() != null) {
+                em.merge(arquitetura);
+            } else {
+                em.persist(arquitetura);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return arquiteturas;
     }
 
-    public static Arquitetura obterArquitetura(int idArquitetura) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Arquitetura getArquitetura(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Arquitetura arquitetura = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM arquitetura where idArquitetura = " + idArquitetura);
-            rs.first();
-            arquitetura = new Arquitetura(
-                    rs.getInt("idArquitetura"),
-                    rs.getString("caminhoImagem"),
-                    rs.getInt("FK_automovel")
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.begin();
+            arquitetura = em.find(Arquitetura.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return arquitetura;
     }
 
-    public static void alterar(Arquitetura arquitetura) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void excluir(Arquitetura arquitetura) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE arquitetura SET caminhoImagem = ?, "
-                    + "FK_automovel = ? "
-                    + "WHERE IdArquitetura = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-
-            comando.setString(1, arquitetura.getCaminhoImagem());
-            comando.setInt(2, arquitetura.getIdAutomovel());
-            comando.setInt(3, arquitetura.getIdArquitetura());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            em.remove(em.getReference(Arquitetura.class, arquitetura.getIdArquitetura()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    public static void excluir(Arquitetura arquitetura) throws SQLException, ClassNotFoundException {
+    // OBTER PARA OS SELECTS
+    public static List<Arquitetura> obterArquiteturas() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Arquitetura> arquiteturas = null;
         try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from arquitetura where idArquitetura = ? ");
-            st.setInt(1, arquitetura.getIdArquitetura());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
+            tx.begin();
+            TypedQuery<Arquitetura> query = em.createQuery("select c from Arquitetura c", Arquitetura.class);
+            arquiteturas = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
+        return arquiteturas;
     }
+
 }

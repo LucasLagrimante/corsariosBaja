@@ -1,26 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package controller;
 
+import dao.DesempenhotesteDAO;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Pessoa;
 
 /**
  *
- * @author Gustavo
+ * @author Chorão
  */
-public class PesquisaPessoaController extends HttpServlet {
+public class PesquisarDesempenhotesteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +29,10 @@ public class PesquisaPessoaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        try {
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
-            RequestDispatcher view = request.getRequestDispatcher("/pesquisaPessoa.jsp");
-            view.forward(request, response);
-
-        } catch (ClassNotFoundException ex) {
-
-        }
+            throws ServletException, IOException {
+        request.setAttribute("desempenhosteste", DesempenhotesteDAO.getInstance().obterDesempenhosteste());
+        RequestDispatcher view = request.getRequestDispatcher("/pesquisarDesempenhoteste.jsp");
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,11 +47,7 @@ public class PesquisaPessoaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaPessoaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -73,11 +61,7 @@ public class PesquisaPessoaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaPessoaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -89,5 +73,4 @@ public class PesquisaPessoaController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

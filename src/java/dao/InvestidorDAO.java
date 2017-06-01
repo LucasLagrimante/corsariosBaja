@@ -1,131 +1,128 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Investidor;
 
 public class InvestidorDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static InvestidorDAO instance = new InvestidorDAO();
 
-        } catch (SQLException e) {
-        }
+    public static InvestidorDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Investidor investidor) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO investidor (idInvestidor, valorDoado,FK_idPessoa) VALUES (?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, investidor.getIdInvestidor());
-            comando.setFloat(2, investidor.getValorDoado());
-            comando.setInt(3, investidor.getIdPessoa());
-
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private InvestidorDAO() {
     }
 
-    public static List<Investidor> obterInvestidores() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Investidor> investidores = new ArrayList<Investidor>();
+    //CLASSES PADRÃO
+    public void salvar(Investidor integrante) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM investidor");
-            while (rs.next()) {
-                Investidor investidor = new Investidor(
-                        rs.getInt("idInvestidor"),
-                        rs.getFloat("valorDoado"),
-                        rs.getInt("FK_idPessoa")
-                );
-
-                investidores.add(investidor);
+            tx.begin();
+            if (integrante.getIdInvestidor() != null) {
+                em.merge(integrante);
+            } else {
+                em.persist(integrante);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
+        }
+    }
+
+    public static Investidor getInvestidor(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Investidor integrante = null;
+        try {
+            tx.begin();
+            integrante = em.find(Investidor.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return integrante;
+    }
+
+    public void excluir(Investidor integrante) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Investidor.class, integrante.getIdInvestidor()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+    }
+
+    // OBTER PARA OS SELECTS
+    public static List<Investidor> obterInvestidores() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Investidor> investidores = null;
+        try {
+            tx.begin();
+            TypedQuery<Investidor> query = em.createQuery("select c from Investidor c", Investidor.class);
+            investidores = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
         return investidores;
     }
 
-    public static Investidor obterInvestidor(int idInvestidor) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        Investidor investidor = null;
+    public static List<Investidor> obterPessoas() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Investidor> investidores = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM investidor where idInvestidor = " + idInvestidor);
-            rs.first();
-            investidor = new Investidor(
-                    rs.getInt("idInvestidor"),
-                    rs.getFloat("valorDoado"),
-                    rs.getInt("FK_idPessoa")
-            );
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.begin();
+            TypedQuery<Investidor> query = em.createQuery("select c from Investidor c", Investidor.class);
+            investidores = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return investidor;
-    }
-
-    public static void alterar(Investidor investidor) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE investidor SET valorDoado = ?, "
-                    + "FK_idPessoa = ? "
-                    + "WHERE IdInvestidor = ?";
-
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setFloat(1, investidor.getValorDoado());
-            comando.setInt(2, investidor.getIdPessoa());
-            comando.setInt(3, investidor.getIdInvestidor());
-
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
-    public static void excluir(Investidor investidor) throws SQLException, ClassNotFoundException {
-        try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from investidor where idInvestidor = ? ");
-            st.setInt(1, investidor.getIdInvestidor());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
-        }
+        return investidores;
     }
 
 }

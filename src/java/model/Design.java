@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.DesignDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,10 +30,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "design")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Design.findAll", query = "SELECT d FROM Design d"),
-    @NamedQuery(name = "Design.findByIdDesign", query = "SELECT d FROM Design d WHERE d.idDesign = :idDesign"),
+    @NamedQuery(name = "Design.findAll", query = "SELECT d FROM Design d")
+    ,
+    @NamedQuery(name = "Design.findByIdDesign", query = "SELECT d FROM Design d WHERE d.idDesign = :idDesign")
+    ,
     @NamedQuery(name = "Design.findByCaminhoImagem", query = "SELECT d FROM Design d WHERE d.caminhoImagem = :caminhoImagem")})
 public class Design implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -83,6 +88,14 @@ public class Design implements Serializable {
         this.fKautomovel = fKautomovel;
     }
 
+    public static List<model.Design> obterDesigns() throws ClassNotFoundException, SQLException {
+        return DesignDAO.obterDesigns();
+    }
+
+    public static model.Design obterDesign(int idDesign) throws ClassNotFoundException {
+        return DesignDAO.getDesign(idDesign);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -107,5 +120,5 @@ public class Design implements Serializable {
     public String toString() {
         return "model.Design[ idDesign=" + idDesign + " ]";
     }
-    
+
 }

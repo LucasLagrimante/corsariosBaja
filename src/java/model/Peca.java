@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.PecaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +30,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "peca")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Peca.findAll", query = "SELECT p FROM Peca p"),
-    @NamedQuery(name = "Peca.findByIdPeca", query = "SELECT p FROM Peca p WHERE p.idPeca = :idPeca"),
-    @NamedQuery(name = "Peca.findByQuantidade", query = "SELECT p FROM Peca p WHERE p.quantidade = :quantidade"),
-    @NamedQuery(name = "Peca.findByNome", query = "SELECT p FROM Peca p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Peca.findByModelo", query = "SELECT p FROM Peca p WHERE p.modelo = :modelo"),
+    @NamedQuery(name = "Peca.findAll", query = "SELECT p FROM Peca p")
+    ,
+    @NamedQuery(name = "Peca.findByIdPeca", query = "SELECT p FROM Peca p WHERE p.idPeca = :idPeca")
+    ,
+    @NamedQuery(name = "Peca.findByQuantidade", query = "SELECT p FROM Peca p WHERE p.quantidade = :quantidade")
+    ,
+    @NamedQuery(name = "Peca.findByNome", query = "SELECT p FROM Peca p WHERE p.nome = :nome")
+    ,
+    @NamedQuery(name = "Peca.findByModelo", query = "SELECT p FROM Peca p WHERE p.modelo = :modelo")
+    ,
     @NamedQuery(name = "Peca.findByPrecoCompra", query = "SELECT p FROM Peca p WHERE p.precoCompra = :precoCompra")})
 public class Peca implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -126,6 +134,18 @@ public class Peca implements Serializable {
         this.fKtipopeca = fKtipopeca;
     }
 
+    public static List<model.Peca> obterPecas() throws ClassNotFoundException, SQLException {
+        return PecaDAO.obterPecas();
+    }
+
+    public static List<Peca> obterPrecos() throws ClassNotFoundException, SQLException {
+        return PecaDAO.obterPrecos();
+    }
+
+    public static model.Peca obterPeca(int idPeca) throws ClassNotFoundException {
+        return PecaDAO.getPeca(idPeca);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -150,5 +170,5 @@ public class Peca implements Serializable {
     public String toString() {
         return "model.Peca[ idPeca=" + idPeca + " ]";
     }
-    
+
 }

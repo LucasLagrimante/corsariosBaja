@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.IntegranteDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,11 +34,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "integrante")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Integrante.findAll", query = "SELECT i FROM Integrante i"),
-    @NamedQuery(name = "Integrante.findByMatricula", query = "SELECT i FROM Integrante i WHERE i.matricula = :matricula"),
-    @NamedQuery(name = "Integrante.findByCargaHorariaDisponivel", query = "SELECT i FROM Integrante i WHERE i.cargaHorariaDisponivel = :cargaHorariaDisponivel"),
+    @NamedQuery(name = "Integrante.findAll", query = "SELECT i FROM Integrante i")
+    ,
+    @NamedQuery(name = "Integrante.findByMatricula", query = "SELECT i FROM Integrante i WHERE i.matricula = :matricula")
+    ,
+    @NamedQuery(name = "Integrante.findByCargaHorariaDisponivel", query = "SELECT i FROM Integrante i WHERE i.cargaHorariaDisponivel = :cargaHorariaDisponivel")
+    ,
     @NamedQuery(name = "Integrante.findByFKpessoa", query = "SELECT i FROM Integrante i WHERE i.fKpessoa = :fKpessoa")})
 public class Integrante implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -99,6 +105,18 @@ public class Integrante implements Serializable {
 
     public void setFKpessoa(int fKpessoa) {
         this.fKpessoa = fKpessoa;
+    }
+
+    public static List<model.Integrante> obterIntegrantes() throws ClassNotFoundException, SQLException {
+        return IntegranteDAO.obterIntegrantes();
+    }
+
+    public static List<Integrante> obterPessoas() throws ClassNotFoundException, SQLException {
+        return IntegranteDAO.obterPessoas();
+    }
+
+    public static model.Integrante obterIntegrante(int matricula) throws ClassNotFoundException {
+        return IntegranteDAO.getIntegrante(matricula);
     }
 
     @XmlTransient
@@ -169,5 +187,5 @@ public class Integrante implements Serializable {
     public String toString() {
         return "model.Integrante[ matricula=" + matricula + " ]";
     }
-    
+
 }

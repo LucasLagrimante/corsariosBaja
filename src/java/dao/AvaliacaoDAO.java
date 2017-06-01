@@ -1,135 +1,108 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Avaliacao;
 
 public class AvaliacaoDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static AvaliacaoDAO instance = new AvaliacaoDAO();
 
-        } catch (SQLException e) {
-        }
+    public static AvaliacaoDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO avaliacao (idAvaliacao, frequencia, comparecimento, data, FK_integrante) VALUES (?, ?, ?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, avaliacao.getIdAvaliacao());
-            comando.setInt(2, avaliacao.getFrequencia());
-            comando.setString(3, avaliacao.getComparecimento());
-            comando.setString(4, avaliacao.getData());
-            comando.setInt(5, avaliacao.getMatricula());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private AvaliacaoDAO() {
     }
 
-    public static List<Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
+    //CLASSES PADRÃO
+    public void salvar(Avaliacao avaliacao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao");
-            while (rs.next()) {
-                Avaliacao avaliacao = new Avaliacao(
-                        rs.getInt("idAvaliacao"),
-                        rs.getInt("frequencia"),
-                        rs.getString("comparecimento"),
-                        rs.getString("data"),
-                        rs.getInt("FK_integrante")
-                );
-                avaliacoes.add(avaliacao);
+            tx.begin();
+            if (avaliacao.getIdAvaliacao() != null) {
+                em.merge(avaliacao);
+            } else {
+                em.persist(avaliacao);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return avaliacoes;
     }
 
-    public static Avaliacao obterAvaliacao(int idAvaliacao) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Avaliacao getAvaliacao(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Avaliacao avaliacao = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM avaliacao where idAvaliacao = " + idAvaliacao);
-            rs.first();
-            avaliacao = new Avaliacao(
-                    rs.getInt("idAvaliacao"),
-                    rs.getInt("frequencia"),
-                    rs.getString("comparecimento"),
-                    rs.getString("data"),
-                    rs.getInt("FK_integrante")
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.begin();
+            avaliacao = em.find(Avaliacao.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return avaliacao;
     }
 
-    public static void alterar(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void excluir(Avaliacao avaliacao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE avaliacao SET frequencia = ?, "
-                    + "comparecimento = ?, data = ?, FK_integrante = ? "
-                    + "WHERE idAvaliacao = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-
-            comando.setInt(1, avaliacao.getFrequencia());
-            comando.setString(2, avaliacao.getComparecimento());
-            comando.setString(3, avaliacao.getData());
-            comando.setInt(4, avaliacao.getMatricula());
-            comando.setInt(5, avaliacao.getIdAvaliacao());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            em.remove(em.getReference(Avaliacao.class, avaliacao.getIdAvaliacao()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    public static void excluir(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
+    // OBTER PARA OS SELECTS
+    public static List<Avaliacao> obterAvaliacoes() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Avaliacao> avaliacoes = null;
         try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from avaliacao where idAvaliacao = ? ");
-            st.setInt(1, avaliacao.getIdAvaliacao());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
+            tx.begin();
+            TypedQuery<Avaliacao> query = em.createQuery("select c from Avaliacao c", Avaliacao.class);
+            avaliacoes = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
+        return avaliacoes;
     }
 
 }

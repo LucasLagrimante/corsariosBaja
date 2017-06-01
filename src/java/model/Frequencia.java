@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.FrequenciaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,11 +30,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "frequencia")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Frequencia.findAll", query = "SELECT f FROM Frequencia f"),
-    @NamedQuery(name = "Frequencia.findByIdFrequencia", query = "SELECT f FROM Frequencia f WHERE f.idFrequencia = :idFrequencia"),
-    @NamedQuery(name = "Frequencia.findByData", query = "SELECT f FROM Frequencia f WHERE f.data = :data"),
+    @NamedQuery(name = "Frequencia.findAll", query = "SELECT f FROM Frequencia f")
+    ,
+    @NamedQuery(name = "Frequencia.findByIdFrequencia", query = "SELECT f FROM Frequencia f WHERE f.idFrequencia = :idFrequencia")
+    ,
+    @NamedQuery(name = "Frequencia.findByData", query = "SELECT f FROM Frequencia f WHERE f.data = :data")
+    ,
     @NamedQuery(name = "Frequencia.findByEstado", query = "SELECT f FROM Frequencia f WHERE f.estado = :estado")})
 public class Frequencia implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -98,6 +104,18 @@ public class Frequencia implements Serializable {
         this.fKintegrante = fKintegrante;
     }
 
+    public static List<model.Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
+        return FrequenciaDAO.obterFrequencias();
+    }
+
+    public static List<Frequencia> obterEstados() throws ClassNotFoundException, SQLException {
+        return FrequenciaDAO.obterEstados();
+    }
+
+    public static model.Frequencia obterFrequencia(int idFrequencia) throws ClassNotFoundException {
+        return FrequenciaDAO.getFrequencia(idFrequencia);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -122,5 +140,5 @@ public class Frequencia implements Serializable {
     public String toString() {
         return "model.Frequencia[ idFrequencia=" + idFrequencia + " ]";
     }
-    
+
 }

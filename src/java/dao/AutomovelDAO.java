@@ -1,184 +1,147 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Automovel;
 
 public class AutomovelDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static AutomovelDAO instance = new AutomovelDAO();
 
-        } catch (SQLException e) {
-        }
+    public static AutomovelDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Automovel automovel) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO automovel (idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal) VALUES (?, ?, ?, ?, ?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, automovel.getIdAutomovel());
-            comando.setString(2, automovel.getCor());
-            comando.setString(3, automovel.getNome());
-            comando.setString(4, automovel.getDataTerminoProjeto());
-            comando.setFloat(5, automovel.getPesoCarro());
-            comando.setFloat(6, automovel.getPesoChassi());
-            comando.setFloat(7, automovel.getCustoTotal());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private AutomovelDAO() {
     }
 
-    public static List<Automovel> obterAutomoveis() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Automovel> automoveis = new ArrayList<Automovel>();
+    //CLASSES PADRÃO
+    public void salvar(Automovel automovel) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM automovel");
-            while (rs.next()) {
-                Automovel automovel = new Automovel(
-                        rs.getInt("idAutomovel"),
-                        rs.getString("cor"),
-                        rs.getString("nome"),
-                        rs.getString("dataTerminoProjeto"),
-                        rs.getFloat("pesoCarro"),
-                        rs.getFloat("pesoChassi"),
-                        rs.getFloat("custoTotal")
-                );
-                automoveis.add(automovel);
+            tx.begin();
+            if (automovel.getIdAutomovel() != null) {
+                em.merge(automovel);
+            } else {
+                em.persist(automovel);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return automoveis;
     }
 
-    public static List<String> obterCores() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<String> cores = new ArrayList<String>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT DISTINCT cor FROM automovel");
-            while (rs.next()) {
-                cores.add(rs.getString("cor"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return cores;
-    }
-
-    public static List<Float> obterPesos() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Float> pesos = new ArrayList<Float>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT DISTINCT pesoCarro FROM automovel");
-            while (rs.next()) {
-                pesos.add(rs.getFloat("pesoCarro"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return pesos;
-    }
-
-    public static Automovel obterAutomovel(int idAutomovel) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Automovel getAutomovel(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Automovel automovel = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM automovel where idAutomovel = " + idAutomovel);
-            rs.first();
-            automovel = new Automovel(
-                    rs.getInt("idAutomovel"),
-                    rs.getString("cor"),
-                    rs.getString("nome"),
-                    rs.getString("DataTerminoProjeto"),
-                    rs.getFloat("PesoCarro"),
-                    rs.getFloat("PesoChassi"),
-                    rs.getFloat("custoTotal")
-            //null
-            );
-            //automovel.setCodigoPessoa(rs.getString("pessoa"));
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.begin();
+            automovel = em.find(Automovel.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return automovel;
     }
 
-    public static void alterar(Automovel automovel) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void excluir(Automovel automovel) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE automovel SET cor = ?, "
-                    + "nome = ?, dataTerminoProjeto = ?, pesoCarro = ?, "
-                    + "pesoChassi = ?, custoTotal = ? "
-                    + "WHERE IdAutomovel = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-
-            comando.setString(1, automovel.getCor());
-            comando.setString(2, automovel.getNome());
-            comando.setString(3, automovel.getDataTerminoProjeto());
-            comando.setFloat(4, automovel.getPesoCarro());
-            comando.setFloat(5, automovel.getPesoChassi());
-            comando.setFloat(6, automovel.getCustoTotal());
-            comando.setInt(7, automovel.getIdAutomovel());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            em.remove(em.getReference(Automovel.class, automovel.getIdAutomovel()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    public static void excluir(Automovel automovel) throws SQLException, ClassNotFoundException {
+    // OBTER PARA OS SELECTS
+    public static List<Automovel> obterAutomoveis() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Automovel> automoveis = null;
         try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from automovel where idAutomovel = ? ");
-            st.setInt(1, automovel.getIdAutomovel());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
+            tx.begin();
+            TypedQuery<Automovel> query = em.createQuery("select c from Automovel c", Automovel.class);
+            automoveis = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
+        return automoveis;
     }
 
+    public static List<Automovel> obterCores() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Automovel> automoveis = null;
+        try {
+            tx.begin();
+            TypedQuery<Automovel> query = em.createQuery("select c from Automovel c", Automovel.class);
+            automoveis = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return automoveis;
+    }
+
+    public static List<Automovel> obterPesos() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Automovel> automoveis = null;
+        try {
+            tx.begin();
+            TypedQuery<Automovel> query = em.createQuery("select c from Automovel c", Automovel.class);
+            automoveis = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return automoveis;
+    }
 }

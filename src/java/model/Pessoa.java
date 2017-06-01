@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.PessoaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,17 +33,27 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "pessoa")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
-    @NamedQuery(name = "Pessoa.findByIdPessoa", query = "SELECT p FROM Pessoa p WHERE p.idPessoa = :idPessoa"),
-    @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Pessoa.findByCpf", query = "SELECT p FROM Pessoa p WHERE p.cpf = :cpf"),
-    @NamedQuery(name = "Pessoa.findByLogradouro", query = "SELECT p FROM Pessoa p WHERE p.logradouro = :logradouro"),
-    @NamedQuery(name = "Pessoa.findByCep", query = "SELECT p FROM Pessoa p WHERE p.cep = :cep"),
-    @NamedQuery(name = "Pessoa.findByBairro", query = "SELECT p FROM Pessoa p WHERE p.bairro = :bairro"),
-    @NamedQuery(name = "Pessoa.findByUf", query = "SELECT p FROM Pessoa p WHERE p.uf = :uf"),
-    @NamedQuery(name = "Pessoa.findByNumero", query = "SELECT p FROM Pessoa p WHERE p.numero = :numero"),
+    @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p")
+    ,
+    @NamedQuery(name = "Pessoa.findByIdPessoa", query = "SELECT p FROM Pessoa p WHERE p.idPessoa = :idPessoa")
+    ,
+    @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome")
+    ,
+    @NamedQuery(name = "Pessoa.findByCpf", query = "SELECT p FROM Pessoa p WHERE p.cpf = :cpf")
+    ,
+    @NamedQuery(name = "Pessoa.findByLogradouro", query = "SELECT p FROM Pessoa p WHERE p.logradouro = :logradouro")
+    ,
+    @NamedQuery(name = "Pessoa.findByCep", query = "SELECT p FROM Pessoa p WHERE p.cep = :cep")
+    ,
+    @NamedQuery(name = "Pessoa.findByBairro", query = "SELECT p FROM Pessoa p WHERE p.bairro = :bairro")
+    ,
+    @NamedQuery(name = "Pessoa.findByUf", query = "SELECT p FROM Pessoa p WHERE p.uf = :uf")
+    ,
+    @NamedQuery(name = "Pessoa.findByNumero", query = "SELECT p FROM Pessoa p WHERE p.numero = :numero")
+    ,
     @NamedQuery(name = "Pessoa.findByTelefone", query = "SELECT p FROM Pessoa p WHERE p.telefone = :telefone")})
 public class Pessoa implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -91,8 +103,6 @@ public class Pessoa implements Serializable {
     private Integrante integrante;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKpessoa")
     private Collection<Investidor> investidorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKpessoa")
-    private Collection<Professor> professorCollection;
 
     public Pessoa() {
     }
@@ -193,6 +203,14 @@ public class Pessoa implements Serializable {
         this.integrante = integrante;
     }
 
+    public static List<model.Pessoa> obterPessoas() throws ClassNotFoundException, SQLException {
+        return PessoaDAO.obterPessoas();
+    }
+
+    public static model.Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
+        return PessoaDAO.getPessoa(idPessoa);
+    }
+
     @XmlTransient
     public Collection<Investidor> getInvestidorCollection() {
         return investidorCollection;
@@ -200,15 +218,6 @@ public class Pessoa implements Serializable {
 
     public void setInvestidorCollection(Collection<Investidor> investidorCollection) {
         this.investidorCollection = investidorCollection;
-    }
-
-    @XmlTransient
-    public Collection<Professor> getProfessorCollection() {
-        return professorCollection;
-    }
-
-    public void setProfessorCollection(Collection<Professor> professorCollection) {
-        this.professorCollection = professorCollection;
     }
 
     @Override
@@ -235,5 +244,5 @@ public class Pessoa implements Serializable {
     public String toString() {
         return "model.Pessoa[ idPessoa=" + idPessoa + " ]";
     }
-    
+
 }

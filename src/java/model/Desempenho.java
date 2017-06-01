@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.DesempenhoDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,16 +30,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "desempenho")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Desempenho.findAll", query = "SELECT d FROM Desempenho d"),
-    @NamedQuery(name = "Desempenho.findByIdDesempenho", query = "SELECT d FROM Desempenho d WHERE d.idDesempenho = :idDesempenho"),
-    @NamedQuery(name = "Desempenho.findByNome", query = "SELECT d FROM Desempenho d WHERE d.nome = :nome"),
-    @NamedQuery(name = "Desempenho.findByData", query = "SELECT d FROM Desempenho d WHERE d.data = :data"),
-    @NamedQuery(name = "Desempenho.findByHora", query = "SELECT d FROM Desempenho d WHERE d.hora = :hora"),
-    @NamedQuery(name = "Desempenho.findByAceleracaoMedia", query = "SELECT d FROM Desempenho d WHERE d.aceleracaoMedia = :aceleracaoMedia"),
-    @NamedQuery(name = "Desempenho.findByVelocidadeMedia", query = "SELECT d FROM Desempenho d WHERE d.velocidadeMedia = :velocidadeMedia"),
-    @NamedQuery(name = "Desempenho.findByTempoPista", query = "SELECT d FROM Desempenho d WHERE d.tempoPista = :tempoPista"),
+    @NamedQuery(name = "Desempenho.findAll", query = "SELECT d FROM Desempenho d")
+    ,
+    @NamedQuery(name = "Desempenho.findByIdDesempenho", query = "SELECT d FROM Desempenho d WHERE d.idDesempenho = :idDesempenho")
+    ,
+    @NamedQuery(name = "Desempenho.findByNome", query = "SELECT d FROM Desempenho d WHERE d.nome = :nome")
+    ,
+    @NamedQuery(name = "Desempenho.findByData", query = "SELECT d FROM Desempenho d WHERE d.data = :data")
+    ,
+    @NamedQuery(name = "Desempenho.findByHora", query = "SELECT d FROM Desempenho d WHERE d.hora = :hora")
+    ,
+    @NamedQuery(name = "Desempenho.findByAceleracaoMedia", query = "SELECT d FROM Desempenho d WHERE d.aceleracaoMedia = :aceleracaoMedia")
+    ,
+    @NamedQuery(name = "Desempenho.findByVelocidadeMedia", query = "SELECT d FROM Desempenho d WHERE d.velocidadeMedia = :velocidadeMedia")
+    ,
+    @NamedQuery(name = "Desempenho.findByTempoPista", query = "SELECT d FROM Desempenho d WHERE d.tempoPista = :tempoPista")
+    ,
     @NamedQuery(name = "Desempenho.findByFrenagem", query = "SELECT d FROM Desempenho d WHERE d.frenagem = :frenagem")})
 public class Desempenho implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -192,6 +203,18 @@ public class Desempenho implements Serializable {
         this.fKtipopista = fKtipopista;
     }
 
+    public static List<model.Desempenho> obterDesempenhos() throws ClassNotFoundException, SQLException {
+        return DesempenhoDAO.obterDesempenhos();
+    }
+
+    public static model.Desempenho obterDesempenho(int idDesempenho) throws ClassNotFoundException {
+        return DesempenhoDAO.getDesempenho(idDesempenho);
+    }
+
+    public static List<Desempenho> obterPistas() throws ClassNotFoundException, SQLException {
+        return DesempenhoDAO.obterPistas();
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -216,5 +239,5 @@ public class Desempenho implements Serializable {
     public String toString() {
         return "model.Desempenho[ idDesempenho=" + idDesempenho + " ]";
     }
-    
+
 }

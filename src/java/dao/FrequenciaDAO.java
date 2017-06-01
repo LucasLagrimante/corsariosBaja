@@ -1,154 +1,128 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Frequencia;
 
 public class FrequenciaDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static FrequenciaDAO instance = new FrequenciaDAO();
 
-        } catch (SQLException e) {
-        }
+    public static FrequenciaDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO frequencia (idFrequencia, data, estado, FK_integrante) VALUES (?, ?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, frequencia.getIdFrequencia());
-            comando.setString(2, frequencia.getData());
-            comando.setString(3, frequencia.getEstado());
-            comando.setInt(4, frequencia.getMatricula());
-
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private FrequenciaDAO() {
     }
 
-    public static List<Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Frequencia> frequencias = new ArrayList<Frequencia>();
+    //CLASSES PADRÃO
+    public void salvar(Frequencia frequencia) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM frequencia");
-            while (rs.next()) {
-                Frequencia frequencia = new Frequencia(
-                        rs.getInt("idFrequencia"),
-                        rs.getString("data"),
-                        rs.getString("estado"),
-                        rs.getInt("FK_integrante")
-                );
-
-                frequencias.add(frequencia);
+            tx.begin();
+            if (frequencia.getIdFrequencia() != null) {
+                em.merge(frequencia);
+            } else {
+                em.persist(frequencia);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
+        }
+    }
+
+    public static Frequencia getFrequencia(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Frequencia frequencia = null;
+        try {
+            tx.begin();
+            frequencia = em.find(Frequencia.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+        return frequencia;
+    }
+
+    public void excluir(Frequencia frequencia) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.remove(em.getReference(Frequencia.class, frequencia.getIdFrequencia()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
+        }
+    }
+
+    // OBTER PARA OS SELECTS
+    public static List<Frequencia> obterFrequencias() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Frequencia> frequencias = null;
+        try {
+            tx.begin();
+            TypedQuery<Frequencia> query = em.createQuery("select c from Frequencia c", Frequencia.class);
+            frequencias = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
         return frequencias;
     }
 
-    public static Frequencia obterFrequencia(int idFrequencia) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
-        Frequencia frequencia = null;
+    public static List<Frequencia> obterEstados() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Frequencia> frequencias = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM frequencia where idFrequencia = " + idFrequencia);
-            rs.first();
-            frequencia = new Frequencia(
-                    rs.getInt("idFrequencia"),
-                    rs.getString("data"),
-                    rs.getString("estado"),
-                    rs.getInt("FK_integrante")
-            );
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            fecharConexao(conexao, comando);
-        }
-        return frequencia;
-    }
-    
-    public static List<String> obterEstados() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<String> estados = new ArrayList<String>();
-        try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT DISTINCT estado FROM frequencia");
-            while (rs.next()) {
-                estados.add(rs.getString("estado"));
+            tx.begin();
+            TypedQuery<Frequencia> query = em.createQuery("select c from Frequencia c", Frequencia.class);
+            frequencias = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return estados;
+        return frequencias;
     }
 
-    public static void alterar(Frequencia frequencia) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE frequencia SET data = ?, "
-                    + "estado = ?, FK_integrante = ? "
-                    + "WHERE IdFrequencia = ?";
-
-            PreparedStatement comando = conexao.prepareStatement(sql);
-
-            comando.setString(1, frequencia.getData());
-            comando.setString(2, frequencia.getEstado());
-            comando.setInt(3, frequencia.getMatricula());
-            comando.setInt(4, frequencia.getIdFrequencia());
-
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
-    public static void excluir(Frequencia frequencia) throws SQLException, ClassNotFoundException {
-        try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from frequencia where idFrequencia = ? ");
-            st.setInt(1, frequencia.getIdFrequencia());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
-        }
-    }
 }

@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.ArquiteturaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,10 +30,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "arquitetura")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a"),
-    @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura"),
+    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a")
+    ,
+    @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura")
+    ,
     @NamedQuery(name = "Arquitetura.findByCaminhoImagem", query = "SELECT a FROM Arquitetura a WHERE a.caminhoImagem = :caminhoImagem")})
 public class Arquitetura implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -83,6 +88,14 @@ public class Arquitetura implements Serializable {
         this.fKautomovel = fKautomovel;
     }
 
+    public static List<model.Arquitetura> obterArquiteturas() {
+        return ArquiteturaDAO.obterArquiteturas();
+    }
+
+    public static model.Arquitetura obterArquitetura(int idArquitetura) {
+        return ArquiteturaDAO.getArquitetura(idArquitetura);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -107,5 +120,5 @@ public class Arquitetura implements Serializable {
     public String toString() {
         return "model.Arquitetura[ idArquitetura=" + idArquitetura + " ]";
     }
-    
+
 }

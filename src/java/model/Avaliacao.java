@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.AvaliacaoDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,12 +30,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "avaliacao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Avaliacao.findAll", query = "SELECT a FROM Avaliacao a"),
-    @NamedQuery(name = "Avaliacao.findByIdAvaliacao", query = "SELECT a FROM Avaliacao a WHERE a.idAvaliacao = :idAvaliacao"),
-    @NamedQuery(name = "Avaliacao.findByFrequencia", query = "SELECT a FROM Avaliacao a WHERE a.frequencia = :frequencia"),
-    @NamedQuery(name = "Avaliacao.findByComparecimento", query = "SELECT a FROM Avaliacao a WHERE a.comparecimento = :comparecimento"),
+    @NamedQuery(name = "Avaliacao.findAll", query = "SELECT a FROM Avaliacao a")
+    ,
+    @NamedQuery(name = "Avaliacao.findByIdAvaliacao", query = "SELECT a FROM Avaliacao a WHERE a.idAvaliacao = :idAvaliacao")
+    ,
+    @NamedQuery(name = "Avaliacao.findByFrequencia", query = "SELECT a FROM Avaliacao a WHERE a.frequencia = :frequencia")
+    ,
+    @NamedQuery(name = "Avaliacao.findByComparecimento", query = "SELECT a FROM Avaliacao a WHERE a.comparecimento = :comparecimento")
+    ,
     @NamedQuery(name = "Avaliacao.findByData", query = "SELECT a FROM Avaliacao a WHERE a.data = :data")})
 public class Avaliacao implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -112,6 +119,14 @@ public class Avaliacao implements Serializable {
         this.fKintegrante = fKintegrante;
     }
 
+    public static List<model.Avaliacao> obterAvaliacoes() throws ClassNotFoundException, SQLException {
+        return AvaliacaoDAO.obterAvaliacoes();
+    }
+
+    public static model.Avaliacao obterAvaliacao(int idAvaliacao) throws ClassNotFoundException {
+        return AvaliacaoDAO.getAvaliacao(idAvaliacao);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -136,5 +151,5 @@ public class Avaliacao implements Serializable {
     public String toString() {
         return "model.Avaliacao[ idAvaliacao=" + idAvaliacao + " ]";
     }
-    
+
 }

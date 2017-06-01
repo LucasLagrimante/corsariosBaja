@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.CompeticaoDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +30,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "competicao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Competicao.findAll", query = "SELECT c FROM Competicao c"),
-    @NamedQuery(name = "Competicao.findByIdCompeticao", query = "SELECT c FROM Competicao c WHERE c.idCompeticao = :idCompeticao"),
-    @NamedQuery(name = "Competicao.findByNome", query = "SELECT c FROM Competicao c WHERE c.nome = :nome"),
-    @NamedQuery(name = "Competicao.findByData", query = "SELECT c FROM Competicao c WHERE c.data = :data"),
-    @NamedQuery(name = "Competicao.findByHora", query = "SELECT c FROM Competicao c WHERE c.hora = :hora"),
+    @NamedQuery(name = "Competicao.findAll", query = "SELECT c FROM Competicao c")
+    ,
+    @NamedQuery(name = "Competicao.findByIdCompeticao", query = "SELECT c FROM Competicao c WHERE c.idCompeticao = :idCompeticao")
+    ,
+    @NamedQuery(name = "Competicao.findByNome", query = "SELECT c FROM Competicao c WHERE c.nome = :nome")
+    ,
+    @NamedQuery(name = "Competicao.findByData", query = "SELECT c FROM Competicao c WHERE c.data = :data")
+    ,
+    @NamedQuery(name = "Competicao.findByHora", query = "SELECT c FROM Competicao c WHERE c.hora = :hora")
+    ,
     @NamedQuery(name = "Competicao.findByLocal", query = "SELECT c FROM Competicao c WHERE c.local = :local")})
 public class Competicao implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -128,6 +136,14 @@ public class Competicao implements Serializable {
         this.fKtipopista = fKtipopista;
     }
 
+    public static List<model.Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
+        return CompeticaoDAO.obterCompeticoes();
+    }
+
+    public static model.Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
+        return CompeticaoDAO.getCompeticao(idCompeticao);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -152,5 +168,5 @@ public class Competicao implements Serializable {
     public String toString() {
         return "model.Competicao[ idCompeticao=" + idCompeticao + " ]";
     }
-    
+
 }

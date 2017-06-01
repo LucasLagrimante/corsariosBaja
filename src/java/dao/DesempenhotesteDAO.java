@@ -13,29 +13,29 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import model.Peca;
+import model.Desempenhoteste;
 
-public class PecaDAO {
+public class DesempenhotesteDAO {
 
-    private static PecaDAO instance = new PecaDAO();
+    private static DesempenhotesteDAO instance = new DesempenhotesteDAO();
 
-    public static PecaDAO getInstance() {
+    public static DesempenhotesteDAO getInstance() {
         return instance;
     }
 
-    private PecaDAO() {
+    private DesempenhotesteDAO() {
     }
 
     //CLASSES PADRÃO
-    public void salvar(Peca peca) {
+    public void salvar(Desempenhoteste desempenhoTeste) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            if (peca.getIdPeca() != null) {
-                em.merge(peca);
+            if (desempenhoTeste.getIdDesempenhoTeste() != null) {
+                em.merge(desempenhoTeste);
             } else {
-                em.persist(peca);
+                em.persist(desempenhoTeste);
             }
             tx.commit();
         } catch (Exception e) {
@@ -48,13 +48,13 @@ public class PecaDAO {
         }
     }
 
-    public static Peca getPeca(int id) {
+    public static Desempenhoteste getDesempenhoteste(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        Peca peca = null;
+        Desempenhoteste desempenhoTeste = null;
         try {
             tx.begin();
-            peca = em.find(Peca.class, id);
+            desempenhoTeste = em.find(Desempenhoteste.class, id);
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -64,15 +64,15 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return peca;
+        return desempenhoTeste;
     }
 
-    public void excluir(Peca peca) {
+    public void excluir(Desempenhoteste desempenhoTeste) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.remove(em.getReference(Peca.class, peca.getIdPeca()));
+            em.remove(em.getReference(Desempenhoteste.class, desempenhoTeste.getIdDesempenhoTeste()));
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -85,14 +85,14 @@ public class PecaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Peca> obterPecas() {
+    public static List<Desempenhoteste> obterDesempenhosteste() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
+        List<Desempenhoteste> desempenhosTeste = null;
         try {
             tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
+            TypedQuery<Desempenhoteste> query = em.createQuery("select c from Desempenhoteste c", Desempenhoteste.class);
+            desempenhosTeste = query.getResultList();
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -102,27 +102,7 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return pecas;
-    }
-
-    public static List<Peca> obterPrecos() {
-        EntityManager em = PersistenceUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
-        try {
-            tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            throw new RuntimeException(e);
-        } finally {
-            PersistenceUtil.close(em);
-        }
-        return pecas;
+        return desempenhosTeste;
     }
 
 }

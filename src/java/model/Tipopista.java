@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.TipopistaDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import model.Tipopista;
 
 /**
  *
@@ -30,10 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tipopista")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipopista.findAll", query = "SELECT t FROM Tipopista t"),
-    @NamedQuery(name = "Tipopista.findByIdTipopista", query = "SELECT t FROM Tipopista t WHERE t.idTipopista = :idTipopista"),
+    @NamedQuery(name = "Tipopista.findAll", query = "SELECT t FROM Tipopista t")
+    ,
+    @NamedQuery(name = "Tipopista.findByIdTipopista", query = "SELECT t FROM Tipopista t WHERE t.idTipopista = :idTipopista")
+    ,
     @NamedQuery(name = "Tipopista.findByNome", query = "SELECT t FROM Tipopista t WHERE t.nome = :nome")})
 public class Tipopista implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -78,6 +84,14 @@ public class Tipopista implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public static List<Tipopista> obterTiposPista() throws ClassNotFoundException, SQLException {
+        return TipopistaDAO.obterTipospista();
+    }
+
+    public static Tipopista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
+        return TipopistaDAO.getTipopista(idTipoPista);
     }
 
     @XmlTransient
@@ -131,5 +145,5 @@ public class Tipopista implements Serializable {
     public String toString() {
         return "model.Tipopista[ idTipopista=" + idTipopista + " ]";
     }
-    
+
 }

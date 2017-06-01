@@ -1,140 +1,108 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import model.Competicao;
 
 public class CompeticaoDAO {
 
-    public static void fecharConexao(Connection conexao, Statement comando) {
-        try {
-            if (comando != null) {
-                comando.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+    private static CompeticaoDAO instance = new CompeticaoDAO();
 
-        } catch (SQLException e) {
-        }
+    public static CompeticaoDAO getInstance() {
+        return instance;
     }
 
-    public static void gravar(Competicao competicao) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
-        try {
-            conexao = BD.getConexao();
-            String sql = "INSERT INTO competicao (idCompeticao , nome, data, hora, local, FK_tipopista) VALUES (?, ?, ?, ?, ?, ?) ";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-            comando.setInt(1, competicao.getIdCompeticao());
-            comando.setString(2, competicao.getNome());
-            comando.setString(3, competicao.getData());
-            comando.setString(4, competicao.getHora());
-            comando.setString(5, competicao.getLocal());
-            comando.setInt(6, competicao.getIdTipoPista());
-
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
-        }
+    private CompeticaoDAO() {
     }
 
-    public static List<Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
-        Connection conexao = null;
-        Statement comando = null;
-        List<Competicao> competicoes = new ArrayList<Competicao>();
+    //CLASSES PADRÃO
+    public void salvar(Competicao competicao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM competicao");
-            while (rs.next()) {
-                Competicao competicao = new Competicao(
-                        rs.getInt("idCompeticao"),
-                        rs.getString("nome"),
-                        rs.getString("data"),
-                        rs.getString("hora"),
-                        rs.getString("local"),
-                        rs.getInt("FK_tipopista")
-                );
-                competicoes.add(competicao);
+            tx.begin();
+            if (competicao.getIdCompeticao() != null) {
+                em.merge(competicao);
+            } else {
+                em.persist(competicao);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
-        return competicoes;
     }
 
-    public static Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
-        Connection conexao = null;
-        Statement comando = null;
+    public static Competicao getCompeticao(int id) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         Competicao competicao = null;
         try {
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT * FROM competicao where idCompeticao = " + idCompeticao);
-            rs.first();
-            competicao = new Competicao(
-                    rs.getInt("idCompeticao"),
-                    rs.getString("nome"),
-                    rs.getString("data"),
-                    rs.getString("hora"),
-                    rs.getString("local"),
-                    rs.getInt("FK_tipopista")
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
+            tx.begin();
+            competicao = em.find(Competicao.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
-            fecharConexao(conexao, comando);
+            PersistenceUtil.close(em);
         }
         return competicao;
     }
 
-    public static void alterar(Competicao competicao) throws SQLException, ClassNotFoundException {
-        Connection conexao = null;
+    public void excluir(Competicao competicao) {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            conexao = BD.getConexao();
-            String sql = "UPDATE competicao SET nome = ?, "
-                    + "data = ?, hora = ?, local = ?, FK_tipopista = ? "
-                    + "WHERE idCompeticao = ?";
-            PreparedStatement comando = conexao.prepareStatement(sql);
-
-            comando.setString(1, competicao.getNome());
-            comando.setString(2, competicao.getData());
-            comando.setString(3, competicao.getHora());
-            comando.setString(4, competicao.getLocal());
-            comando.setInt(5, competicao.getIdTipoPista());
-            comando.setInt(6, competicao.getIdCompeticao());
-            comando.execute();
-            comando.close();
-            conexao.close();
-        } catch (SQLException e) {
-            throw e;
+            tx.begin();
+            em.remove(em.getReference(Competicao.class, competicao.getIdCompeticao()));
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
     }
 
-    public static void excluir(Competicao competicao) throws SQLException, ClassNotFoundException {
+    // OBTER PARA OS SELECTS
+    public static List<Competicao> obterCompeticoes() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Competicao> competicoes = null;
         try {
-            Connection db = BD.getConexao();
-            PreparedStatement st = db.prepareStatement("delete from competicao where idCompeticao = ? ");
-            st.setInt(1, competicao.getIdCompeticao());
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException ex) {
-
+            tx.begin();
+            TypedQuery<Competicao> query = em.createQuery("select c from Competicao c", Competicao.class);
+            competicoes = query.getResultList();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            throw new RuntimeException(e);
+        } finally {
+            PersistenceUtil.close(em);
         }
+        return competicoes;
     }
 
 }

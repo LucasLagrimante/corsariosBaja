@@ -13,29 +13,29 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import model.Peca;
+import model.Tipopeca;
 
-public class PecaDAO {
+public class TipopecaDAO {
 
-    private static PecaDAO instance = new PecaDAO();
+    private static TipopecaDAO instance = new TipopecaDAO();
 
-    public static PecaDAO getInstance() {
+    public static TipopecaDAO getInstance() {
         return instance;
     }
 
-    private PecaDAO() {
+    private TipopecaDAO() {
     }
 
     //CLASSES PADRÃO
-    public void salvar(Peca peca) {
+    public void salvar(Tipopeca tipopeca) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            if (peca.getIdPeca() != null) {
-                em.merge(peca);
+            if (tipopeca.getIdTipopeca() != null) {
+                em.merge(tipopeca);
             } else {
-                em.persist(peca);
+                em.persist(tipopeca);
             }
             tx.commit();
         } catch (Exception e) {
@@ -48,13 +48,13 @@ public class PecaDAO {
         }
     }
 
-    public static Peca getPeca(int id) {
+    public static Tipopeca getTipopeca(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        Peca peca = null;
+        Tipopeca tipopeca = null;
         try {
             tx.begin();
-            peca = em.find(Peca.class, id);
+            tipopeca = em.find(Tipopeca.class, id);
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -64,15 +64,15 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return peca;
+        return tipopeca;
     }
 
-    public void excluir(Peca peca) {
+    public void excluir(Tipopeca tipopeca) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.remove(em.getReference(Peca.class, peca.getIdPeca()));
+            em.remove(em.getReference(Tipopeca.class, tipopeca.getIdTipopeca()));
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -85,14 +85,14 @@ public class PecaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Peca> obterPecas() {
+    public static List<Tipopeca> obterTipospeca() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
+        List<Tipopeca> tipospeca = null;
         try {
             tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
+            TypedQuery<Tipopeca> query = em.createQuery("select c from Tipopeca c", Tipopeca.class);
+            tipospeca = query.getResultList();
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {
@@ -102,27 +102,7 @@ public class PecaDAO {
         } finally {
             PersistenceUtil.close(em);
         }
-        return pecas;
-    }
-
-    public static List<Peca> obterPrecos() {
-        EntityManager em = PersistenceUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        List<Peca> pecas = null;
-        try {
-            tx.begin();
-            TypedQuery<Peca> query = em.createQuery("select c from Peca c", Peca.class);
-            pecas = query.getResultList();
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            throw new RuntimeException(e);
-        } finally {
-            PersistenceUtil.close(em);
-        }
-        return pecas;
+        return tipospeca;
     }
 
 }

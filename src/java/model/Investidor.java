@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.InvestidorDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +29,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "investidor")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Investidor.findAll", query = "SELECT i FROM Investidor i"),
-    @NamedQuery(name = "Investidor.findByIdInvestidor", query = "SELECT i FROM Investidor i WHERE i.idInvestidor = :idInvestidor"),
+    @NamedQuery(name = "Investidor.findAll", query = "SELECT i FROM Investidor i")
+    ,
+    @NamedQuery(name = "Investidor.findByIdInvestidor", query = "SELECT i FROM Investidor i WHERE i.idInvestidor = :idInvestidor")
+    ,
     @NamedQuery(name = "Investidor.findByValorDoado", query = "SELECT i FROM Investidor i WHERE i.valorDoado = :valorDoado")})
 public class Investidor implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -81,6 +86,14 @@ public class Investidor implements Serializable {
         this.fKpessoa = fKpessoa;
     }
 
+    public static List<model.Investidor> obterInvestidores() throws ClassNotFoundException, SQLException {
+        return InvestidorDAO.obterInvestidores();
+    }
+
+    public static model.Investidor obterInvestidor(int idInvestidor) throws ClassNotFoundException {
+        return InvestidorDAO.getInvestidor(idInvestidor);
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -105,5 +118,5 @@ public class Investidor implements Serializable {
     public String toString() {
         return "model.Investidor[ idInvestidor=" + idInvestidor + " ]";
     }
-    
+
 }

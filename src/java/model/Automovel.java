@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
+import dao.AutomovelDAO;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,15 +31,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "automovel")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Automovel.findAll", query = "SELECT a FROM Automovel a"),
-    @NamedQuery(name = "Automovel.findByIdAutomovel", query = "SELECT a FROM Automovel a WHERE a.idAutomovel = :idAutomovel"),
-    @NamedQuery(name = "Automovel.findByCor", query = "SELECT a FROM Automovel a WHERE a.cor = :cor"),
-    @NamedQuery(name = "Automovel.findByNome", query = "SELECT a FROM Automovel a WHERE a.nome = :nome"),
-    @NamedQuery(name = "Automovel.findByDataTerminoProjeto", query = "SELECT a FROM Automovel a WHERE a.dataTerminoProjeto = :dataTerminoProjeto"),
-    @NamedQuery(name = "Automovel.findByPesoCarro", query = "SELECT a FROM Automovel a WHERE a.pesoCarro = :pesoCarro"),
-    @NamedQuery(name = "Automovel.findByPesoChassi", query = "SELECT a FROM Automovel a WHERE a.pesoChassi = :pesoChassi"),
+    @NamedQuery(name = "Automovel.findAll", query = "SELECT a FROM Automovel a")
+    ,
+    @NamedQuery(name = "Automovel.findByIdAutomovel", query = "SELECT a FROM Automovel a WHERE a.idAutomovel = :idAutomovel")
+    ,
+    @NamedQuery(name = "Automovel.findByCor", query = "SELECT a FROM Automovel a WHERE a.cor = :cor")
+    ,
+    @NamedQuery(name = "Automovel.findByNome", query = "SELECT a FROM Automovel a WHERE a.nome = :nome")
+    ,
+    @NamedQuery(name = "Automovel.findByDataTerminoProjeto", query = "SELECT a FROM Automovel a WHERE a.dataTerminoProjeto = :dataTerminoProjeto")
+    ,
+    @NamedQuery(name = "Automovel.findByPesoCarro", query = "SELECT a FROM Automovel a WHERE a.pesoCarro = :pesoCarro")
+    ,
+    @NamedQuery(name = "Automovel.findByPesoChassi", query = "SELECT a FROM Automovel a WHERE a.pesoChassi = :pesoChassi")
+    ,
     @NamedQuery(name = "Automovel.findByCustoTotal", query = "SELECT a FROM Automovel a WHERE a.custoTotal = :custoTotal")})
 public class Automovel implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -77,7 +86,7 @@ public class Automovel implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
     private Collection<Desempenhoteste> desempenhotesteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Arquitetura> arquiteturaCollection;
+    private Collection<Automovel> arquiteturaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
     private Collection<Design> designCollection;
 
@@ -154,6 +163,22 @@ public class Automovel implements Serializable {
         this.custoTotal = custoTotal;
     }
 
+    public static List<model.Automovel> obterAutomoveis() {
+        return AutomovelDAO.obterAutomoveis();
+    }
+
+    public static model.Automovel obterAutomovel(int idAutomovel) {
+        return AutomovelDAO.getAutomovel(idAutomovel);
+    }
+
+    public static List<Automovel> obterCores() {
+        return AutomovelDAO.obterCores();
+    }
+
+    public static List<Automovel> obterPesos() {
+        return AutomovelDAO.obterPesos();
+    }
+
     @XmlTransient
     public Collection<Desempenho> getDesempenhoCollection() {
         return desempenhoCollection;
@@ -173,11 +198,11 @@ public class Automovel implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Arquitetura> getArquiteturaCollection() {
+    public Collection<Automovel> getAutomovelCollection() {
         return arquiteturaCollection;
     }
 
-    public void setArquiteturaCollection(Collection<Arquitetura> arquiteturaCollection) {
+    public void setAutomovelCollection(Collection<Automovel> arquiteturaCollection) {
         this.arquiteturaCollection = arquiteturaCollection;
     }
 
@@ -214,5 +239,5 @@ public class Automovel implements Serializable {
     public String toString() {
         return "model.Automovel[ idAutomovel=" + idAutomovel + " ]";
     }
-    
+
 }

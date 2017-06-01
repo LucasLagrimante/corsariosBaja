@@ -4,7 +4,7 @@ package controller;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import dao.PessoaDAO;
+import dao.TipopecaDAO;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -12,15 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Pessoa;
+import model.Tipopeca;
 
 /**
  *
  * @author Marco
  */
-public class ManterPessoaController extends HttpServlet {
+public class ManterTipopecaController extends HttpServlet {
 
-    private Pessoa pessoa;
+    private Tipopeca tipopeca;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,11 +40,11 @@ public class ManterPessoaController extends HttpServlet {
             request.setAttribute("operacao", operacao);
             request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
             if (!operacao.equals("incluir")) {
-                int codPessoa = Integer.parseInt(request.getParameter("codPessoa"));
-                pessoa = PessoaDAO.getInstance().getPessoa(codPessoa);
-                request.setAttribute("pessoa", pessoa);
+                int codTipopeca = Integer.parseInt(request.getParameter("codTipopeca"));
+                tipopeca = TipopecaDAO.getInstance().getTipopeca(codTipopeca);
+                request.setAttribute("tipopeca", tipopeca);
             }
-            RequestDispatcher view = request.getRequestDispatcher("/manterPessoa.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/manterTipopeca.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
@@ -58,10 +58,10 @@ public class ManterPessoaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codPessoa = Integer.parseInt(request.getParameter("codPessoa"));
-            String nome = request.getParameter("nomePessoa");
+            int codTipopeca = Integer.parseInt(request.getParameter("codTipopeca"));
+            String nome = request.getParameter("nomeTipopeca");
             int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoPessoa = request.getParameter("tipoPessoa");
+            String tipoTipopeca = request.getParameter("tipoTipopeca");
             int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
             int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
             Professor coordenador = null;
@@ -69,19 +69,19 @@ public class ManterPessoaController extends HttpServlet {
                 coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
             }
             if (operacao.equals("incluir")) {
-                pessoa = new Pessoa(codPessoa, nome, cargaHoraria, tipoPessoa, totalPeriodos, coordenador);
-                PessoaDAO.getInstance().salvar(pessoa);
+                tipopeca = new Tipopeca(codTipopeca, nome, cargaHoraria, tipoTipopeca, totalPeriodos, coordenador);
+                TipopecaDAO.getInstance().salvar(tipopeca);
             } else if (operacao.equals("editar")) {
-                pessoa.setNome(nome);
-                pessoa.setCargaHoraria(cargaHoraria);
-                pessoa.setTipoPessoa(tipoPessoa);
-                pessoa.setTotalPeriodos(totalPeriodos);
-                pessoa.setCoordenador(coordenador);
-                PessoaDAO.getInstance().salvar(pessoa);
+                tipopeca.setNome(nome);
+                tipopeca.setCargaHoraria(cargaHoraria);
+                tipopeca.setTipoTipopeca(tipoTipopeca);
+                tipopeca.setTotalPeriodos(totalPeriodos);
+                tipopeca.setCoordenador(coordenador);
+                TipopecaDAO.getInstance().salvar(tipopeca);
             } else if (operacao.equals("excluir")) {
-                PessoaDAO.getInstance().excluir(pessoa);
+                TipopecaDAO.getInstance().excluir(tipopeca);
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisarPessoaController");
+            RequestDispatcher view = request.getRequestDispatcher("PesquisarTipopecaController");
             view.forward(request, response);
 
         } catch (ServletException e) {
