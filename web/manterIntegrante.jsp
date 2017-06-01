@@ -79,7 +79,7 @@
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="matricula" type="text" class="validate" name="txtMatricula" required="required" pattern="[0-9]+$" maxlength="6" value="${integrante.matricula}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="matricula" type="text" class="validate" name="txtMatricula" required="required" pattern="[0-9]+$" maxlength="6" value="${integrante.matricula}" <c:if test="${operacao != 'incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="matricula">Matricula</label>
                         </div>
                     </div>

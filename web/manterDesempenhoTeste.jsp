@@ -104,7 +104,7 @@
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="ida" name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" class="validate" type="text" required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="ida" name="txtIdDesempenhoTeste" value="${desempenhoTeste.idDesempenhoTeste}" class="validate" type="text" required="required" pattern="[0-9]+$"<c:if test="${operacao != 'incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="ida">ID</label>
                         </div>
                     </div>

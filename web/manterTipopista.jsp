@@ -67,7 +67,7 @@
             <form  action="ManterTipopistaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPista">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="id" name="txtIdTipoPista" class="validate" type="text" value="${tipoPista.idTipoPista}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="id" name="txtIdTipoPista" class="validate" type="text" value="${tipoPista.idTipoPista}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="id">ID</label>
                         </div>
                     </div>

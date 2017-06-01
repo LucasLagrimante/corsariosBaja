@@ -80,7 +80,7 @@
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="id" type="text" name="txtIdInvestidor" class="validate" value="${investidor.idInvestidor}" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="id" type="text" name="txtIdInvestidor" class="validate" value="${investidor.idInvestidor}" required="required" pattern="[0-9]+$" <c:if test="${operacao != 'incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="id">ID</label>
                         </div>
                     </div>

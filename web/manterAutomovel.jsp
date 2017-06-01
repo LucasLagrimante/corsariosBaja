@@ -62,10 +62,10 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Automóvel</h3>
-            <form action="ManterAutomovelController?acao=confirmar${operacao}" method="POST" name="frmManterAutomovel">
+            <form action="ManterAutomovelController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterAutomovel">
                 <div class="row">
                     <div class="input-field col s6 offset-m3" >
-                        <input id="id" name="txtIdAutomovel" class="validate" type="text" required="required"  pattern="[0-9]+$" value="${automovel.idAutomovel}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="id" name="txtIdAutomovel" class="validate" type="text" required="required"  pattern="[0-9]+$" value="${automovel.idAutomovel}" <c:if test="${operacao != 'incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="id">ID</label>
                         </div>
                     </div>
