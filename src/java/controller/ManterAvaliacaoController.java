@@ -5,6 +5,7 @@ package controller;
  * and open the template in the editor.
  */
 import dao.AvaliacaoDAO;
+import dao.IntegranteDAO;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Avaliacao;
+import model.Integrante;
 
 /**
  *
@@ -38,7 +40,9 @@ public class ManterAvaliacaoController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            //chave estrangeira
+            request.setAttribute("integrantes", IntegranteDAO.getInstance().obterIntegrantes());
+            //fim chave estrangeira
             if (!operacao.equals("incluir")) {
                 int codAvaliacao = Integer.parseInt(request.getParameter("codAvaliacao"));
                 avaliacao = AvaliacaoDAO.getInstance().getAvaliacao(codAvaliacao);
@@ -58,25 +62,25 @@ public class ManterAvaliacaoController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codAvaliacao = Integer.parseInt(request.getParameter("codAvaliacao"));
-            String nome = request.getParameter("nomeAvaliacao");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoAvaliacao = request.getParameter("tipoAvaliacao");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int idAvaliacao = Integer.parseInt(request.getParameter("txtIdAvaliacao"));
+            int frequencia = Integer.parseInt(request.getParameter("txtFrequencia"));
+            String comparecimento = request.getParameter("txtComparecimento");
+            String data = request.getParameter("txtData");
+            //chave estrangeira
+            int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = IntegranteDAO.getInstance().getIntegrante(matricula);
             }
+            //fim chave estrangeira
             if (operacao.equals("incluir")) {
-                avaliacao = new Avaliacao(codAvaliacao, nome, cargaHoraria, tipoAvaliacao, totalPeriodos, coordenador);
+                avaliacao = new Avaliacao(idAvaliacao, frequencia, comparecimento, data, integrante);
                 AvaliacaoDAO.getInstance().salvar(avaliacao);
             } else if (operacao.equals("editar")) {
-                avaliacao.setNome(nome);
-                avaliacao.setCargaHoraria(cargaHoraria);
-                avaliacao.setTipoAvaliacao(tipoAvaliacao);
-                avaliacao.setTotalPeriodos(totalPeriodos);
-                avaliacao.setCoordenador(coordenador);
+                avaliacao.setFrequencia(frequencia);
+                avaliacao.setComparecimento(comparecimento);
+                avaliacao.setData(data);
+                avaliacao.setFKintegrante(integrante);
                 AvaliacaoDAO.getInstance().salvar(avaliacao);
             } else if (operacao.equals("excluir")) {
                 AvaliacaoDAO.getInstance().excluir(avaliacao);

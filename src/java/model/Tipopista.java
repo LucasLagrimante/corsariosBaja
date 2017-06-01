@@ -51,23 +51,17 @@ public class Tipopista implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
-    private Collection<Desempenho> desempenhoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
-    private Collection<Desempenhoteste> desempenhotesteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
-    private Collection<Competicao> competicaoCollection;
+
+    public Tipopista(Integer idTipopista, String nome) {
+        this.idTipopista = idTipopista;
+        this.nome = nome;
+    }
 
     public Tipopista() {
     }
 
     public Tipopista(Integer idTipopista) {
         this.idTipopista = idTipopista;
-    }
-
-    public Tipopista(Integer idTipopista, String nome) {
-        this.idTipopista = idTipopista;
-        this.nome = nome;
     }
 
     public Integer getIdTipopista() {
@@ -92,33 +86,6 @@ public class Tipopista implements Serializable {
 
     public static Tipopista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
         return TipopistaDAO.getTipopista(idTipoPista);
-    }
-
-    @XmlTransient
-    public Collection<Desempenho> getDesempenhoCollection() {
-        return desempenhoCollection;
-    }
-
-    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
-        this.desempenhoCollection = desempenhoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
-        return desempenhotesteCollection;
-    }
-
-    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
-        this.desempenhotesteCollection = desempenhotesteCollection;
-    }
-
-    @XmlTransient
-    public Collection<Competicao> getCompeticaoCollection() {
-        return competicaoCollection;
-    }
-
-    public void setCompeticaoCollection(Collection<Competicao> competicaoCollection) {
-        this.competicaoCollection = competicaoCollection;
     }
 
     @Override

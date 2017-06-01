@@ -30,10 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "arquitetura")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a")
-    ,
-    @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura")
-    ,
+    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a"),
+    @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura"),
     @NamedQuery(name = "Arquitetura.findByCaminhoImagem", query = "SELECT a FROM Arquitetura a WHERE a.caminhoImagem = :caminhoImagem")})
 public class Arquitetura implements Serializable {
 
@@ -59,9 +57,10 @@ public class Arquitetura implements Serializable {
         this.idArquitetura = idArquitetura;
     }
 
-    public Arquitetura(Integer idArquitetura, String caminhoImagem) {
+    public Arquitetura(Integer idArquitetura, String caminhoImagem, Automovel automovel) {
         this.idArquitetura = idArquitetura;
         this.caminhoImagem = caminhoImagem;
+        this.fKautomovel = automovel;
     }
 
     public Integer getIdArquitetura() {

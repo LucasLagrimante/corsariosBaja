@@ -51,8 +51,6 @@ public class Tipopeca implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopeca")
-    private Collection<Peca> pecaCollection;
 
     public Tipopeca() {
     }
@@ -80,15 +78,6 @@ public class Tipopeca implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    @XmlTransient
-    public Collection<Peca> getPecaCollection() {
-        return pecaCollection;
-    }
-
-    public void setPecaCollection(Collection<Peca> pecaCollection) {
-        this.pecaCollection = pecaCollection;
     }
 
     public static List<Tipopeca> obterTiposPeca() throws ClassNotFoundException, SQLException {

@@ -72,11 +72,12 @@ public class Avaliacao implements Serializable {
         this.idAvaliacao = idAvaliacao;
     }
 
-    public Avaliacao(Integer idAvaliacao, int frequencia, String comparecimento, String data) {
+    public Avaliacao(Integer idAvaliacao, int frequencia, String comparecimento, String data, Integrante matricula) {
         this.idAvaliacao = idAvaliacao;
         this.frequencia = frequencia;
         this.comparecimento = comparecimento;
         this.data = data;
+        this.fKintegrante = matricula;
     }
 
     public Integer getIdAvaliacao() {

@@ -5,6 +5,7 @@ package controller;
  * and open the template in the editor.
  */
 import dao.ArquiteturaDAO;
+import dao.AutomovelDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Arquitetura;
+import model.Automovel;
 
 /**
  *
@@ -37,10 +39,12 @@ public class ManterArquiteturaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            //chave estrangeira
+            request.setAttribute("automoveis", AutomovelDAO.getInstance().obterAutomoveis());
+            //fim chave estrangeira
             if (!operacao.equals("incluir")) {
-                int codArquitetura = Integer.parseInt(request.getParameter("codArquitetura"));
-                arquitetura = ArquiteturaDAO.getInstance().getArquitetura(codArquitetura);
+                int idArquitetura = Integer.parseInt(request.getParameter("idArquitetura"));
+                arquitetura = ArquiteturaDAO.getInstance().getArquitetura(idArquitetura);
                 request.setAttribute("arquitetura", arquitetura);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterArquitetura.jsp");
@@ -57,25 +61,21 @@ public class ManterArquiteturaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codArquitetura = Integer.parseInt(request.getParameter("codArquitetura"));
-            String nome = request.getParameter("nomeArquitetura");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoArquitetura = request.getParameter("tipoArquitetura");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int idArquitetura = Integer.parseInt(request.getParameter("txtIdArquitetura"));
+            String caminhoImagem = request.getParameter("txtCaminhoImagem");
+            //chave estrangeira
+            int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = AutomovelDAO.getInstance().getAutomovel(idAutomovel);
             }
+            //fim chave estrangeira
             if (operacao.equals("incluir")) {
-                arquitetura = new Arquitetura(codArquitetura, nome, cargaHoraria, tipoArquitetura, totalPeriodos, coordenador);
+                arquitetura = new Arquitetura(idArquitetura, caminhoImagem, automovel);
                 ArquiteturaDAO.getInstance().salvar(arquitetura);
             } else if (operacao.equals("editar")) {
-                arquitetura.setNome(nome);
-                arquitetura.setCargaHoraria(cargaHoraria);
-                arquitetura.setTipoArquitetura(tipoArquitetura);
-                arquitetura.setTotalPeriodos(totalPeriodos);
-                arquitetura.setCoordenador(coordenador);
+                arquitetura.setCaminhoImagem(caminhoImagem);
+                arquitetura.setFKautomovel(automovel);
                 ArquiteturaDAO.getInstance().salvar(arquitetura);
             } else if (operacao.equals("excluir")) {
                 ArquiteturaDAO.getInstance().excluir(arquitetura);

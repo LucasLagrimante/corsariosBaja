@@ -38,10 +38,9 @@ public class ManterAutomovelController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
             if (!operacao.equals("incluir")) {
-                int codAutomovel = Integer.parseInt(request.getParameter("codAutomovel"));
-                Automovel = AutomovelDAO.getInstance().getAutomovel(codAutomovel);
+                int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
+                Automovel = AutomovelDAO.getInstance().getAutomovel(idAutomovel);
                 request.setAttribute("Automovel", Automovel);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterAutomovel.jsp");
@@ -58,25 +57,23 @@ public class ManterAutomovelController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codAutomovel = Integer.parseInt(request.getParameter("codAutomovel"));
-            String nome = request.getParameter("nomeAutomovel");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoAutomovel = request.getParameter("tipoAutomovel");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
-            }
+            int idAutomovel = Integer.parseInt(request.getParameter("txtIdAutomovel"));
+            String cor = request.getParameter("txtCor");
+            String nome = request.getParameter("txtNome");
+            String dataTerminoProjeto = request.getParameter("txtDataTerminoProjeto");
+            float pesoCarro = Float.parseFloat(request.getParameter("txtPesoCarro"));
+            float pesoChassi = Float.parseFloat(request.getParameter("txtPesoChassi"));
+            float custoTotal = Float.parseFloat(request.getParameter("txtCustoTotal"));
             if (operacao.equals("incluir")) {
-                Automovel = new Automovel(codAutomovel, nome, cargaHoraria, tipoAutomovel, totalPeriodos, coordenador);
+                Automovel = new Automovel(idAutomovel, cor, nome, dataTerminoProjeto, pesoCarro, pesoChassi, custoTotal);
                 AutomovelDAO.getInstance().salvar(Automovel);
             } else if (operacao.equals("editar")) {
+                Automovel.setCor(cor);
                 Automovel.setNome(nome);
-                Automovel.setCargaHoraria(cargaHoraria);
-                Automovel.setTipoAutomovel(tipoAutomovel);
-                Automovel.setTotalPeriodos(totalPeriodos);
-                Automovel.setCoordenador(coordenador);
+                Automovel.setDataTerminoProjeto(dataTerminoProjeto);
+                Automovel.setPesoCarro(pesoCarro);
+                Automovel.setPesoChassi(pesoChassi);
+                Automovel.setCustoTotal(custoTotal);
                 AutomovelDAO.getInstance().salvar(Automovel);
             } else if (operacao.equals("excluir")) {
                 AutomovelDAO.getInstance().excluir(Automovel);

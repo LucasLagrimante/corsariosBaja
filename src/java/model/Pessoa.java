@@ -99,17 +99,6 @@ public class Pessoa implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "telefone")
     private String telefone;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private Integrante integrante;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKpessoa")
-    private Collection<Investidor> investidorCollection;
-
-    public Pessoa() {
-    }
-
-    public Pessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
-    }
 
     public Pessoa(Integer idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, int numero, String telefone) {
         this.idPessoa = idPessoa;
@@ -121,6 +110,13 @@ public class Pessoa implements Serializable {
         this.uf = uf;
         this.numero = numero;
         this.telefone = telefone;
+    }
+
+    public Pessoa() {
+    }
+
+    public Pessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public Integer getIdPessoa() {
@@ -194,15 +190,6 @@ public class Pessoa implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public Integrante getIntegrante() {
-        return integrante;
-    }
-
-    public void setIntegrante(Integrante integrante) {
-        this.integrante = integrante;
-    }
-
     public static List<model.Pessoa> obterPessoas() throws ClassNotFoundException, SQLException {
         return PessoaDAO.obterPessoas();
     }
@@ -210,16 +197,6 @@ public class Pessoa implements Serializable {
     public static model.Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
         return PessoaDAO.getPessoa(idPessoa);
     }
-
-    @XmlTransient
-    public Collection<Investidor> getInvestidorCollection() {
-        return investidorCollection;
-    }
-
-    public void setInvestidorCollection(Collection<Investidor> investidorCollection) {
-        this.investidorCollection = investidorCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

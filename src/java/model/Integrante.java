@@ -58,18 +58,7 @@ public class Integrante implements Serializable {
     @NotNull
     @Column(name = "FK_pessoa")
     private int fKpessoa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKmotorista")
-    private Collection<Desempenho> desempenhoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKmotorista")
-    private Collection<Desempenhoteste> desempenhotesteCollection;
-    @JoinColumn(name = "matricula", referencedColumnName = "idPessoa", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Pessoa pessoa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKintegrante")
-    private Collection<Frequencia> frequenciaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKintegrante")
-    private Collection<Avaliacao> avaliacaoCollection;
-
+    
     public Integrante() {
     }
 
@@ -118,51 +107,7 @@ public class Integrante implements Serializable {
     public static model.Integrante obterIntegrante(int matricula) throws ClassNotFoundException {
         return IntegranteDAO.getIntegrante(matricula);
     }
-
-    @XmlTransient
-    public Collection<Desempenho> getDesempenhoCollection() {
-        return desempenhoCollection;
-    }
-
-    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
-        this.desempenhoCollection = desempenhoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
-        return desempenhotesteCollection;
-    }
-
-    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
-        this.desempenhotesteCollection = desempenhotesteCollection;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    @XmlTransient
-    public Collection<Frequencia> getFrequenciaCollection() {
-        return frequenciaCollection;
-    }
-
-    public void setFrequenciaCollection(Collection<Frequencia> frequenciaCollection) {
-        this.frequenciaCollection = frequenciaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Avaliacao> getAvaliacaoCollection() {
-        return avaliacaoCollection;
-    }
-
-    public void setAvaliacaoCollection(Collection<Avaliacao> avaliacaoCollection) {
-        this.avaliacaoCollection = avaliacaoCollection;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

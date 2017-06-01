@@ -81,14 +81,6 @@ public class Automovel implements Serializable {
     @NotNull
     @Column(name = "custoTotal")
     private float custoTotal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Desempenho> desempenhoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Desempenhoteste> desempenhotesteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Automovel> arquiteturaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Design> designCollection;
 
     public Automovel() {
     }
@@ -177,42 +169,6 @@ public class Automovel implements Serializable {
 
     public static List<Automovel> obterPesos() {
         return AutomovelDAO.obterPesos();
-    }
-
-    @XmlTransient
-    public Collection<Desempenho> getDesempenhoCollection() {
-        return desempenhoCollection;
-    }
-
-    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
-        this.desempenhoCollection = desempenhoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
-        return desempenhotesteCollection;
-    }
-
-    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
-        this.desempenhotesteCollection = desempenhotesteCollection;
-    }
-
-    @XmlTransient
-    public Collection<Automovel> getAutomovelCollection() {
-        return arquiteturaCollection;
-    }
-
-    public void setAutomovelCollection(Collection<Automovel> arquiteturaCollection) {
-        this.arquiteturaCollection = arquiteturaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Design> getDesignCollection() {
-        return designCollection;
-    }
-
-    public void setDesignCollection(Collection<Design> designCollection) {
-        this.designCollection = designCollection;
     }
 
     @Override
