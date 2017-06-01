@@ -5,7 +5,6 @@ package controller;
  * and open the template in the editor.
  */
 import dao.TipopistaDAO;
-
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,10 +37,9 @@ public class ManterTipopistaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
             if (!operacao.equals("incluir")) {
-                int codTipopista = Integer.parseInt(request.getParameter("codTipopista"));
-                tipopista = TipopistaDAO.getInstance().getTipopista(codTipopista);
+                int idTipopista = Integer.parseInt(request.getParameter("idTipopista"));
+                tipopista = TipopistaDAO.getInstance().getTipopista(idTipopista);
                 request.setAttribute("tipopista", tipopista);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterTipopista.jsp");
@@ -58,25 +56,13 @@ public class ManterTipopistaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codTipopista = Integer.parseInt(request.getParameter("codTipopista"));
-            String nome = request.getParameter("nomeTipopista");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoTipopista = request.getParameter("tipoTipopista");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
-            }
+            int idTipopista = Integer.parseInt(request.getParameter("idTipopista"));
+            String nome = request.getParameter("nome");
             if (operacao.equals("incluir")) {
-                tipopista = new Tipopista(codTipopista, nome, cargaHoraria, tipoTipopista, totalPeriodos, coordenador);
+                tipopista = new Tipopista(idTipopista, nome);
                 TipopistaDAO.getInstance().salvar(tipopista);
             } else if (operacao.equals("editar")) {
                 tipopista.setNome(nome);
-                tipopista.setCargaHoraria(cargaHoraria);
-                tipopista.setTipoTipopista(tipoTipopista);
-                tipopista.setTotalPeriodos(totalPeriodos);
-                tipopista.setCoordenador(coordenador);
                 TipopistaDAO.getInstance().salvar(tipopista);
             } else if (operacao.equals("excluir")) {
                 TipopistaDAO.getInstance().excluir(tipopista);

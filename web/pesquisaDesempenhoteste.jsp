@@ -1,5 +1,5 @@
 <%-- 
-    Document   : pesquisaFrequencia
+    Document   : pesquisaDesempenhoTeste
     Created on : 20/09/2016, 09:17:12
     Author     : Aluno
 --%>
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisa de Frequência</title>
+        <title>Pesquisa de DesempenhoTeste</title>
         <link rel="shortcut icon" href="images/favicon.ico">
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -70,63 +70,57 @@
             </div>
         </nav>
         <div class="container">
-            <br><br><br><br>
-            <h3 align="center">Pesquisa de Frequência</h3>
-            <table class="striped centered">
-                <thead>
-                    <tr>
-                        <th>Código Frequência</th>
-                        <th>Matricula Integrante</th>
-                        <th>Data</th>
-                        <th>Estado</th>
-                        <th colspan="2">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${frequencias}" var="frequencia">
+            <form>
+                <h3 align="center">Pesquisa de Desempenho Teste</h3>
+                <table class="striped centered">
+                    <thead>
                         <tr>
-                            <td><c:out value="${frequencia.idFrequencia}" /></td>
-                            <td><c:out value="${frequencia.matricula}" /></td>
-                            <td><c:out value="${frequencia.data}" /></td>
-                            <td><c:out value="${frequencia.estado}" /></td>
-                            <td><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararEditar&txtIdFrequencia=<c:out value="${frequencia.idFrequencia}" />">Editar</a></td>
-                            <td><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararExcluir&txtIdFrequencia=<c:out value="${frequencia.idFrequencia}" />">Excluir</a></td>
+                            <th>Código Desempenho Teste</th>
+                            <th>Automovel</th>
+                            <th>Tipo Pista</th>
+                            <th>Motorista</th>
+                            <th>Desempenho Teste</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Aceleração Média</th>
+                            <th>Velocidade Média</th>
+                            <th>Tempo Corrida</th>
+                            <th>Frenagem</th>
+                            <th colspan="2">Ação</th>
                         </tr>
-                    </c:forEach>
-
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="input-field col s4 center-align">
-                    <select name="selectTipoRelatorio" required="required">
-                        <option value="" disabled selected>Escolha...</option>
-                        <option value="completo">Relatório Completo</option>
-                        <option value="filtroEstado">Filtro Por Estado</option>
-                    </select>
-                </div>
-
-                <div class="input-field col s4 center-align">
-                    <select name="selectEstado" required="required">
-                        <option value="" disabled selected>Escolha...</option>
-                        <c:forEach items="${estados}" var="estado">
-                            <option value="${estado}"> ${estado}</option>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${desempenhosTeste}" var="desempenhoTeste">
+                            <tr>
+                                <td><c:out value="${desempenhoTeste.idDesempenhoTeste}" /></td>
+                                <td><c:out value="${desempenhoTeste.idAutomovel}" /></td>
+                                <td><c:out value="${desempenhoTeste.idTipoPista}" /></td>
+                                <td><c:out value="${desempenhoTeste.matricula}" /></td>
+                                <td><c:out value="${desempenhoTeste.nome}" /></td>
+                                <td><c:out value="${desempenhoTeste.data}" /></td>
+                                <td><c:out value="${desempenhoTeste.hora}" /></td>
+                                <td><c:out value="${desempenhoTeste.aceleracaoMedia}" /></td>
+                                <td><c:out value="${desempenhoTeste.velocidadeMedia}" /></td>
+                                <td><c:out value="${desempenhoTeste.tempoPista}" /></td>
+                                <td><c:out value="${desempenhoTeste.frenagem}" /></td>
+                                <td><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararEditar&idDesempenhoTeste=<c:out value="${desempenhoTeste.idDesempenhoTeste}" />">Editar</a></td>
+                                <td><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararExcluir&idDesempenhoTeste=<c:out value="${desempenhoTeste.idDesempenhoTeste}" />">Excluir</a></td>
+                            </tr>
                         </c:forEach>
-                    </select>
-                </div>
-
-                <div class="input-field col s4 center-align">
-                    <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
-                </div>
-            </div>
-
+                        <tr> 
+                            <td  align="center" colspan="13">
+                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </body>
 </html>
 <script type="text/javascript">
     $(document).ready(function () {
         $('select').material_select();
-        $("[name='selectTipoRelatorio']").material_select();
-        $("[name='selectEstado']").material_select('destroy');
 
         $('body').css('background-image', "url('images/fundo.png')");
 
@@ -136,27 +130,7 @@
         });
 
         $("#imprimir").click(function () {
-            window.location.href = 'RelatorioController?relatorioNome=reportFrequencia.jasper';
-        });
-
-        $("[name='selectTipoRelatorio']").change(function () {
-            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
-                $("[name='selectTipoRelatorio']").material_select();
-                $("[name='selectEstado']").material_select('destroy');
-            }
-            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroEstado") {
-                $("[name='selectTipoRelatorio']").material_select();
-                $("[name='selectEstado']").material_select();
-            }
-        });
-        $("#imprimir").click(function () {
-            if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
-                window.location.href = 'RelatorioController?relatorioNome=reportFrequencia.jasper';
-            }
-            if ($("[name='selectTipoRelatorio'] option:selected").val() === "filtroEstado") {
-                window.location.href = 'RelatorioController?relatorioNome=reportFrequenciaPorEstado.jasper&parametro=' + $("[name='selectEstado'] option:selected").val();
-            }
-
+            window.location.href = 'RelatorioController?relatorioNome=reportDesempenhoTeste.jasper';
         });
     });
 </script>

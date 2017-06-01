@@ -5,7 +5,6 @@ package controller;
  * and open the template in the editor.
  */
 import dao.TipopecaDAO;
-
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,10 +37,9 @@ public class ManterTipopecaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
             if (!operacao.equals("incluir")) {
-                int codTipopeca = Integer.parseInt(request.getParameter("codTipopeca"));
-                tipopeca = TipopecaDAO.getInstance().getTipopeca(codTipopeca);
+                int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+                tipopeca = TipopecaDAO.getInstance().getTipopeca(idTipopeca);
                 request.setAttribute("tipopeca", tipopeca);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterTipopeca.jsp");
@@ -58,25 +56,13 @@ public class ManterTipopecaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codTipopeca = Integer.parseInt(request.getParameter("codTipopeca"));
-            String nome = request.getParameter("nomeTipopeca");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoTipopeca = request.getParameter("tipoTipopeca");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
-            }
+            int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+            String nome = request.getParameter("nome");
             if (operacao.equals("incluir")) {
-                tipopeca = new Tipopeca(codTipopeca, nome, cargaHoraria, tipoTipopeca, totalPeriodos, coordenador);
+                tipopeca = new Tipopeca(idTipopeca, nome);
                 TipopecaDAO.getInstance().salvar(tipopeca);
             } else if (operacao.equals("editar")) {
                 tipopeca.setNome(nome);
-                tipopeca.setCargaHoraria(cargaHoraria);
-                tipopeca.setTipoTipopeca(tipoTipopeca);
-                tipopeca.setTotalPeriodos(totalPeriodos);
-                tipopeca.setCoordenador(coordenador);
                 TipopecaDAO.getInstance().salvar(tipopeca);
             } else if (operacao.equals("excluir")) {
                 TipopecaDAO.getInstance().excluir(tipopeca);

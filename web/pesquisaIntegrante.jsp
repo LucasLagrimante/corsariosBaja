@@ -32,31 +32,31 @@
             <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
             <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararIncluir">Design</a></li>
             <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
             <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararIncluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
-            <li><a class="brown-text text-darken-4" href="PesquisaAutomovelController">Automóvel</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaArquiteturaController">Arquitetura</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaAvaliacaoController">Avaliação</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaCompeticaoController">Competição</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesignController">Design</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaInvestidorController">Investidor</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaIntegranteController">Integrante</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPecaController">Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPessoaController">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPecaController">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAutomovelController">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarArquiteturaController">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAvaliacaoController">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarCompeticaoController">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopecaController">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopistaController">Tipo de Pista</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper brown darken-4">
@@ -70,28 +70,28 @@
             </div>
         </nav>
         <div class="container">
-                <h3 align="center">Pesquisa de Integrante</h3>
-                <table class="striped centered">
-                    <thead>
+            <h3 align="center">Pesquisa de Integrante</h3>
+            <table class="striped centered">
+                <thead>
+                    <tr>
+                        <th>Matricula</th>
+                        <th>Carga Horaria Disponivel</th>
+                        <th>Pessoa</th>
+                        <th colspan="2">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${integrantes}" var="integrante">
                         <tr>
-                            <th>Matricula</th>
-                            <th>Carga Horaria Disponivel</th>
-                            <th>Pessoa</th>
-                            <th colspan="2">Ação</th>
+                            <td><c:out value="${integrante.matricula}" /></td>
+                            <td><c:out value="${integrante.cargaHorariaDisponivel}" /></td>
+                            <td><c:out value="${integrante.idPessoa}" /></td>
+                            <td><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararEditar&txtMatricula=<c:out value="${integrante.matricula}" />">Editar</a></td>
+                            <td><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararExcluir&txtMatricula=<c:out value="${integrante.matricula}" />">Excluir</a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${integrantes}" var="integrante">
-                            <tr>
-                                <td><c:out value="${integrante.matricula}" /></td>
-                                <td><c:out value="${integrante.cargaHorariaDisponivel}" /></td>
-                                <td><c:out value="${integrante.idPessoa}" /></td>
-                                <td><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararEditar&txtMatricula=<c:out value="${integrante.matricula}" />">Editar</a></td>
-                                <td><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararExcluir&txtMatricula=<c:out value="${integrante.matricula}" />">Excluir</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                    </c:forEach>
+                </tbody>
+            </table>
             <div class="row">
                 <div class="input-field col s4 center-align">
                     <select name="selectTipoRelatorio" required="required">
@@ -118,7 +118,7 @@
     </body>
 </html>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select').material_select();
         $("[name='selectTipoRelatorio']").material_select();
         $("[name='selectPessoa']").material_select('destroy');
@@ -130,11 +130,11 @@
             hover: true // Activate on hover
         });
 
-        $("#imprimir").click(function() {
+        $("#imprimir").click(function () {
             window.location.href = 'RelatorioController?relatorioNome=reportIntegrante.jasper';
         });
 
-        $("[name='selectTipoRelatorio']").change(function() {
+        $("[name='selectTipoRelatorio']").change(function () {
             if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
                 $("[name='selectTipoRelatorio']").material_select();
                 $("[name='selectPessoa']").material_select('destroy');
@@ -144,7 +144,7 @@
                 $("[name='selectPessoa']").material_select();
             }
         });
-        $("#imprimir").click(function() {
+        $("#imprimir").click(function () {
             if ($("[name='selectTipoRelatorio'] option:selected").val() === "completo") {
                 window.location.href = 'RelatorioController?relatorioNome=reportIntegrante.jasper';
             }

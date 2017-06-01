@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Cadastrar Tipo de Pista</title>
+        <title>Cadastrar Tipo de Peca</title>
         <link rel="shortcut icon" href="images/favicon.ico">
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,31 +25,31 @@
             <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
             <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararIncluir">Design</a></li>
             <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
             <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararIncluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
-            <li><a class="brown-text text-darken-4" href="PesquisaAutomovelController">Automóvel</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaArquiteturaController">Arquitetura</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaAvaliacaoController">Avaliação</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaCompeticaoController">Competição</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesignController">Design</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaInvestidorController">Investidor</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaIntegranteController">Integrante</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPecaController">Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPessoaController">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPecaController">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAutomovelController">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarArquiteturaController">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAvaliacaoController">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarCompeticaoController">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopecaController">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopistaController">Tipo de Pista</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper brown darken-4">
@@ -63,19 +63,19 @@
             </div>
         </nav>
         <div class="container">
-            <h3 align="center">${operacao} Tipo de Pista</h3>
-            <form  action="ManterTipoPistaController?acao=confirmar${operacao}" method="POST" name="frmManterTipoPista">
+            <h3 align="center">${operacao} Tipo de Peça</h3>
+            <form  action="ManterTipopecaController?acao=confirmar${operacao}" method="POST" name="frmManterTipopeca">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
-                        <input id="id" name="txtIdTipoPista" class="validate" type="text" value="${tipoPista.idTipoPista}"    required="required" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input id="id" class="validate" name="idTipopeca" type="text" value="${tipoPeca.idTipopeca}" required class="validate" pattern="[0-9]+$"<c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                             <label data-error="errado" data-success="certo" for="id">ID</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6 offset-m3">
-                            <input id="nome" name="txtNome" class="validate" type="text" value="${tipoPista.nome}" required="required" pattern="[a-zA-Z\s]+$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                        <label  data-error="errado" data-success="certo" for="nome">Nome da Pista</label>
+                            <input id="nome" name="nome" class="validate" type="text" value="${tipoPeca.nome}" required="required" pattern="[a-zA-Z\s]+$"<c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <label adata-error="errado" data-success="certo" for="nome">Nome da Peca</label>
                     </div>
                 </div>
 

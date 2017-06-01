@@ -32,31 +32,31 @@
             <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
             <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararIncluir">Design</a></li>
             <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
             <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararIncluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
-            <li><a class="brown-text text-darken-4" href="PesquisaAutomovelController">Automóvel</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaArquiteturaController">Arquitetura</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaAvaliacaoController">Avaliação</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaCompeticaoController">Competição</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesignController">Design</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaInvestidorController">Investidor</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaIntegranteController">Integrante</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPecaController">Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPessoaController">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPecaController">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAutomovelController">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarArquiteturaController">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAvaliacaoController">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarCompeticaoController">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopecaController">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopistaController">Tipo de Pista</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper brown darken-4">

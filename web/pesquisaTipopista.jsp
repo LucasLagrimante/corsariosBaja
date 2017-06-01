@@ -1,5 +1,5 @@
 <%-- 
-    Document   : pesquisaTipoPeca
+    Document   : pesquisaTipoPista
     Created on : 20/09/2016, 09:17:12
     Author     : Aluno
 --%>
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pesquisa de Tipo de Peca</title>
+        <title>Pesquisa de Tipo de Pista</title>
         <link rel="shortcut icon" href="images/favicon.ico">
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,31 +32,31 @@
             <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararIncluir">Avaliação</a></li>
             <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararIncluir">Competição</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararIncluir">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararIncluir">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararIncluir">Design</a></li>
             <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararIncluir">Frequência</a></li>
             <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararIncluir">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararIncluir">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararIncluir">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararIncluir">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararIncluir">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararIncluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopecaController?acao=prepararIncluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararIncluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
-            <li><a class="brown-text text-darken-4" href="PesquisaAutomovelController">Automóvel</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaArquiteturaController">Arquitetura</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaAvaliacaoController">Avaliação</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaCompeticaoController">Competição</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoController">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesempenhoTesteController">Desempenho de Teste</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaDesignController">Design</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaInvestidorController">Investidor</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaIntegranteController">Integrante</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPecaController">Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaPessoaController">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPecaController">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisaTipoPistaController">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAutomovelController">Automóvel</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarArquiteturaController">Arquitetura</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarAvaliacaoController">Avaliação</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarCompeticaoController">Competição</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhoController">Desempenho de Competicão</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopecaController">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="PesquisarTipopistaController">Tipo de Pista</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper brown darken-4">
@@ -68,10 +68,10 @@
                     <li><a class="dropdown-button" href="#!" data-activates="menuPesquisa">Pesquisa<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
             </div>
-        </nav>
+        </nav>      
         <div class="container">
             <form>
-                <h3 align="center">Pesquisa de Tipo de Peca</h3>
+                <h3 align="center">Pesquisa de Tipo de Pista</h3>
                 <table class="striped centered">
                     <thead>
                         <tr>
@@ -81,17 +81,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${tiposPeca}" var="tipoPeca">
+                        <c:forEach items="${tiposPista}" var="tipoPista">
                             <tr>
-                                <td><c:out value="${tipoPeca.idTipoPeca}" /></td>
-                                <td><c:out value="${tipoPeca.nome}" /></td>
-                                <td><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararEditar&idTipoPeca=<c:out value="${tipoPeca.idTipoPeca}" />">Editar</a></td>
-                                <td><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararExcluir&idTipoPeca=<c:out value="${tipoPeca.idTipoPeca}" />">Excluir</a></td>
+                                <td><c:out value="${tipoPista.idTipoPista}" /></td>
+                                <td><c:out value="${tipoPista.nome}" /></td>
+                                <td><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararEditar&idTipoPista=<c:out value="${tipoPista.idTipoPista}" />">Editar</a></td>
+                                <td><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararExcluir&idTipoPista=<c:out value="${tipoPista.idTipoPista}" />">Excluir</a></td>
                             </tr>
                         </c:forEach>
                         <tr> 
                             <td  align="center" colspan="9">
-                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir">Imprimir <i class="material-icons right">print</i></a>
+                                <a class="waves-effect waves-light btn-large brown darken-4" id="imprimir"> Imprimir <i class="material-icons right">print</i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -112,7 +112,7 @@
         });
 
         $("#imprimir").click(function () {
-            window.location.href = 'RelatorioController?relatorioNome=reportTipoPeca.jasper';
+            window.location.href = 'RelatorioController?relatorioNome=reportTipoPista.jasper';
         });
     });
 </script>
