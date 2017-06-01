@@ -80,12 +80,13 @@ public class Competicao implements Serializable {
         this.idCompeticao = idCompeticao;
     }
 
-    public Competicao(Integer idCompeticao, String nome, String data, String hora, String local) {
+    public Competicao(Integer idCompeticao, String nome, String data, String hora, String local, Tipopista tipopista) {
         this.idCompeticao = idCompeticao;
         this.nome = nome;
         this.data = data;
         this.hora = hora;
         this.local = local;
+        this.fKtipopista = tipopista;
     }
 
     public Integer getIdCompeticao() {

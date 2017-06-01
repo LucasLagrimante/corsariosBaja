@@ -80,11 +80,11 @@ public class Tipopeca implements Serializable {
         this.nome = nome;
     }
 
-    public static List<Tipopeca> obterTiposPeca() throws ClassNotFoundException, SQLException {
+    public static List<Tipopeca> obterTipospeca() throws ClassNotFoundException, SQLException {
         return TipopecaDAO.obterTipospeca();
     }
 
-    public static Tipopeca obterTipoPeca(int idTipoPeca) throws ClassNotFoundException {
+    public static Tipopeca obterTipopeca(int idTipoPeca) throws ClassNotFoundException {
         return TipopecaDAO.getTipopeca(idTipoPeca);
     }
 

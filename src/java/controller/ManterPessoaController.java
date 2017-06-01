@@ -20,7 +20,7 @@ import model.Pessoa;
  */
 public class ManterPessoaController extends HttpServlet {
 
-    private Pessoa pessoa;
+    private Pessoa Pessoa;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,11 +38,10 @@ public class ManterPessoaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
             if (!operacao.equals("incluir")) {
-                int codPessoa = Integer.parseInt(request.getParameter("codPessoa"));
-                pessoa = PessoaDAO.getInstance().getPessoa(codPessoa);
-                request.setAttribute("pessoa", pessoa);
+                int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
+                Pessoa = PessoaDAO.getInstance().getPessoa(idPessoa);
+                request.setAttribute("Pessoa", Pessoa);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterPessoa.jsp");
             view.forward(request, response);
@@ -58,28 +57,32 @@ public class ManterPessoaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codPessoa = Integer.parseInt(request.getParameter("codPessoa"));
-            String nome = request.getParameter("nomePessoa");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoPessoa = request.getParameter("tipoPessoa");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
-            }
+            int idPessoa = Integer.parseInt(request.getParameter("txtIdPessoa"));
+            String nome = request.getParameter("txtNome");
+            String cpf = request.getParameter("txtCpf");
+            String logradouro = request.getParameter("txtLogradouro");
+            String cep = request.getParameter("txtCep");
+            String bairro = request.getParameter("txtBairro");
+            String uf = request.getParameter("txtUf");
+            String numero = request.getParameter("txtNumero");
+            String telefone = request.getParameter("txtTelefone");
             if (operacao.equals("incluir")) {
-                pessoa = new Pessoa(codPessoa, nome, cargaHoraria, tipoPessoa, totalPeriodos, coordenador);
-                PessoaDAO.getInstance().salvar(pessoa);
+            Pessoa pessoa = new Pessoa(idPessoa, nome, cpf, logradouro, cep, bairro, uf, numero, telefone);
+                PessoaDAO.getInstance().salvar(Pessoa);
             } else if (operacao.equals("editar")) {
-                pessoa.setNome(nome);
-                pessoa.setCargaHoraria(cargaHoraria);
-                pessoa.setTipoPessoa(tipoPessoa);
-                pessoa.setTotalPeriodos(totalPeriodos);
-                pessoa.setCoordenador(coordenador);
-                PessoaDAO.getInstance().salvar(pessoa);
+               
+                Pessoa.setNome(nome);
+                 Pessoa.setCpf(cpf);
+                Pessoa.setLogradouro(logradouro);
+                Pessoa.setCep(cep);
+                Pessoa.setBairro(bairro);
+                Pessoa.setUf(uf);
+                Pessoa.setNumero(numero);
+                Pessoa.setTelefone(telefone);
+                PessoaDAO.getInstance().salvar(Pessoa);
+                
             } else if (operacao.equals("excluir")) {
-                PessoaDAO.getInstance().excluir(pessoa);
+                PessoaDAO.getInstance().excluir(Pessoa);
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisarPessoaController");
             view.forward(request, response);

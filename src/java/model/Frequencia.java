@@ -66,10 +66,11 @@ public class Frequencia implements Serializable {
         this.idFrequencia = idFrequencia;
     }
 
-    public Frequencia(Integer idFrequencia, String data, String estado) {
+    public Frequencia(Integer idFrequencia, String data, String estado, Integrante integrante) {
         this.idFrequencia = idFrequencia;
         this.data = data;
         this.estado = estado;
+        this.fKintegrante = integrante;
     }
 
     public Integer getIdFrequencia() {

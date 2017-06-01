@@ -4,6 +4,7 @@ package controller;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import dao.AutomovelDAO;
 import dao.DesignDAO;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Automovel;
 import model.Design;
 
 /**
@@ -38,10 +40,12 @@ public class ManterDesignController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            //chave estrangeira
+            request.setAttribute("automoveis", AutomovelDAO.getInstance().obterAutomoveis());
+            //fim chave estrangeira
             if (!operacao.equals("incluir")) {
-                int codDesign = Integer.parseInt(request.getParameter("codDesign"));
-                design = DesignDAO.getInstance().getDesign(codDesign);
+                int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
+                design = DesignDAO.getInstance().getDesign(idDesign);
                 request.setAttribute("design", design);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterDesign.jsp");
@@ -58,25 +62,22 @@ public class ManterDesignController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codDesign = Integer.parseInt(request.getParameter("codDesign"));
-            String nome = request.getParameter("nomeDesign");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoDesign = request.getParameter("tipoDesign");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+             int idDesign = Integer.parseInt(request.getParameter("txtIdDesign"));
+             String caminhoImagem = request.getParameter("txtCaminhoImagem");
+             //cheve estrangeira
+             int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+             Automovel automovel = null;
+
+            if (idAutomovel != 0) {
+            automovel = AutomovelDAO.getInstance().getAutomovel(idAutomovel);
+
             }
             if (operacao.equals("incluir")) {
-                design = new Design(codDesign, nome, cargaHoraria, tipoDesign, totalPeriodos, coordenador);
+                Design design = new Design(idDesign, caminhoImagem, automovel);
                 DesignDAO.getInstance().salvar(design);
             } else if (operacao.equals("editar")) {
-                design.setNome(nome);
-                design.setCargaHoraria(cargaHoraria);
-                design.setTipoDesign(tipoDesign);
-                design.setTotalPeriodos(totalPeriodos);
-                design.setCoordenador(coordenador);
+                design.setCaminhoImagem(caminhoImagem);
+                design.setFKautomovel(automovel);
                 DesignDAO.getInstance().salvar(design);
             } else if (operacao.equals("excluir")) {
                 DesignDAO.getInstance().excluir(design);

@@ -59,9 +59,10 @@ public class Design implements Serializable {
         this.idDesign = idDesign;
     }
 
-    public Design(Integer idDesign, String caminhoImagem) {
+    public Design(Integer idDesign, String caminhoImagem, Automovel automovel) {
         this.idDesign = idDesign;
         this.caminhoImagem = caminhoImagem;
+        this.fKautomovel = automovel;
     }
 
     public Integer getIdDesign() {

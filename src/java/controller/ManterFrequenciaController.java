@@ -5,14 +5,19 @@ package controller;
  * and open the template in the editor.
  */
 import dao.FrequenciaDAO;
+import dao.IntegranteDAO;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Frequencia;
+import model.Integrante;
 
 /**
  *
@@ -23,7 +28,7 @@ public class ManterFrequenciaController extends HttpServlet {
     private Frequencia frequencia;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararOperacao")) {
             prepararOperacao(request, response);
@@ -34,14 +39,16 @@ public class ManterFrequenciaController extends HttpServlet {
 
     }
 
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            //chave estrangeira
+            request.setAttribute("integrantes", Integrante.obterIntegrantes());
+            //fim chave estrangeira
             if (!operacao.equals("incluir")) {
-                int codFrequencia = Integer.parseInt(request.getParameter("codFrequencia"));
-                frequencia = FrequenciaDAO.getInstance().getFrequencia(codFrequencia);
+                int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
+                frequencia = FrequenciaDAO.getInstance().getFrequencia(idFrequencia);
                 request.setAttribute("frequencia", frequencia);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterFrequencia.jsp");
@@ -58,25 +65,23 @@ public class ManterFrequenciaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codFrequencia = Integer.parseInt(request.getParameter("codFrequencia"));
-            String nome = request.getParameter("nomeFrequencia");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoFrequencia = request.getParameter("tipoFrequencia");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int idFrequencia = Integer.parseInt(request.getParameter("txtIdFrequencia"));
+            String data = request.getParameter("txtData");
+            String estado = request.getParameter("radioEstado");
+            //chave estrangeira
+            int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+            Integrante integrante = null;
+
+            if (matricula != 0) {
+            integrante = IntegranteDAO.getInstance().getIntegrante(matricula);
             }
             if (operacao.equals("incluir")) {
-                frequencia = new Frequencia(codFrequencia, nome, cargaHoraria, tipoFrequencia, totalPeriodos, coordenador);
+                Frequencia frequencia = new Frequencia(idFrequencia, data, estado, integrante);
                 FrequenciaDAO.getInstance().salvar(frequencia);
             } else if (operacao.equals("editar")) {
-                frequencia.setNome(nome);
-                frequencia.setCargaHoraria(cargaHoraria);
-                frequencia.setTipoFrequencia(tipoFrequencia);
-                frequencia.setTotalPeriodos(totalPeriodos);
-                frequencia.setCoordenador(coordenador);
+                frequencia.setData(data);
+                frequencia.setEstado(estado);
+                frequencia.setFKintegrante(integrante);
                 FrequenciaDAO.getInstance().salvar(frequencia);
             } else if (operacao.equals("excluir")) {
                 FrequenciaDAO.getInstance().excluir(frequencia);
@@ -103,8 +108,13 @@ public class ManterFrequenciaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -119,7 +129,13 @@ public class ManterFrequenciaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFrequenciaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

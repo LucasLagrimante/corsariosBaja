@@ -5,14 +5,17 @@ package controller;
  * and open the template in the editor.
  */
 import dao.IntegranteDAO;
+import dao.PessoaDAO;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Integrante;
+import model.Pessoa;
 
 /**
  *
@@ -23,7 +26,7 @@ public class ManterIntegranteController extends HttpServlet {
     private Integrante integrante;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararOperacao")) {
             prepararOperacao(request, response);
@@ -34,14 +37,14 @@ public class ManterIntegranteController extends HttpServlet {
 
     }
 
-    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            request.setAttribute("pessoas", Pessoa.obterPessoas());
             if (!operacao.equals("incluir")) {
-                int codIntegrante = Integer.parseInt(request.getParameter("codIntegrante"));
-                integrante = IntegranteDAO.getInstance().getIntegrante(codIntegrante);
+                int idIntegrante = Integer.parseInt(request.getParameter("txtIdIntegrante"));
+                integrante = IntegranteDAO.getInstance().getIntegrante(idIntegrante);
                 request.setAttribute("integrante", integrante);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterIntegrante.jsp");
@@ -58,25 +61,20 @@ public class ManterIntegranteController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codIntegrante = Integer.parseInt(request.getParameter("codIntegrante"));
-            String nome = request.getParameter("nomeIntegrante");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoIntegrante = request.getParameter("tipoIntegrante");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
+            String cargaHorariaDisponivel = request.getParameter("txtCargaHorariaDisponivel");
+            //chave estrangeira
+            int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
+            Pessoa pessoa = null;
+            if (idPessoa != 0) {
+                pessoa = PessoaDAO.getInstance().getProfessor(idPessoa);
             }
             if (operacao.equals("incluir")) {
-                integrante = new Integrante(codIntegrante, nome, cargaHoraria, tipoIntegrante, totalPeriodos, coordenador);
+                Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
                 IntegranteDAO.getInstance().salvar(integrante);
             } else if (operacao.equals("editar")) {
-                integrante.setNome(nome);
-                integrante.setCargaHoraria(cargaHoraria);
-                integrante.setTipoIntegrante(tipoIntegrante);
-                integrante.setTotalPeriodos(totalPeriodos);
-                integrante.setCoordenador(coordenador);
+                integrante.setCargaHorariaDisponivel(cargaHorariaDisponivel);
+                integrante.setFKpessoa(pessoa);
                 IntegranteDAO.getInstance().salvar(integrante);
             } else if (operacao.equals("excluir")) {
                 IntegranteDAO.getInstance().excluir(integrante);

@@ -5,6 +5,7 @@ package controller;
  * and open the template in the editor.
  */
 import dao.CompeticaoDAO;
+import dao.TipopistaDAO;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Competicao;
+import model.Tipopista;
 
 /**
  *
@@ -38,10 +40,10 @@ public class ManterCompeticaoController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            request.setAttribute("tipospista", TipopistaDAO.getInstance().obterTipospista());
             if (!operacao.equals("incluir")) {
-                int codCompeticao = Integer.parseInt(request.getParameter("codCompeticao"));
-                competicao = CompeticaoDAO.getInstance().getCompeticao(codCompeticao);
+                int idCompeticao = Integer.parseInt(request.getParameter("txtIdCompeticao"));
+                competicao = CompeticaoDAO.getInstance().getCompeticao(idCompeticao);
                 request.setAttribute("competicao", competicao);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterCompeticao.jsp");
@@ -58,25 +60,26 @@ public class ManterCompeticaoController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codCompeticao = Integer.parseInt(request.getParameter("codCompeticao"));
-            String nome = request.getParameter("nomeCompeticao");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoCompeticao = request.getParameter("tipoCompeticao");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int idCompeticao = Integer.parseInt(request.getParameter("txtIdCompeticao"));
+            String nome = request.getParameter("txtNome");
+            String data = request.getParameter("txtData");
+            String hora = request.getParameter("txtHora");
+            String local = request.getParameter("txtLocal");
+             //chave estrangeira
+            int idTipoPista = Integer.parseInt(request.getParameter("selectTipoPista"));
+            Tipopista tipopista = null;
+            if (idTipoPista != 0) {
+                tipopista = TipopistaDAO.getInstance().getTipopista(idTipoPista);
             }
             if (operacao.equals("incluir")) {
-                competicao = new Competicao(codCompeticao, nome, cargaHoraria, tipoCompeticao, totalPeriodos, coordenador);
+             Competicao competicao = new Competicao(idCompeticao, nome, data, hora, local, tipopista);
                 CompeticaoDAO.getInstance().salvar(competicao);
             } else if (operacao.equals("editar")) {
                 competicao.setNome(nome);
-                competicao.setCargaHoraria(cargaHoraria);
-                competicao.setTipoCompeticao(tipoCompeticao);
-                competicao.setTotalPeriodos(totalPeriodos);
-                competicao.setCoordenador(coordenador);
+                competicao.setData(data);
+                competicao.setHora(hora);
+                competicao.setLocal(local);
+                competicao.setFKtipopista(tipopista);
                 CompeticaoDAO.getInstance().salvar(competicao);
             } else if (operacao.equals("excluir")) {
                 CompeticaoDAO.getInstance().excluir(competicao);

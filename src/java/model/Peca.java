@@ -78,12 +78,14 @@ public class Peca implements Serializable {
         this.idPeca = idPeca;
     }
 
-    public Peca(Integer idPeca, int quantidade, String nome, String modelo, float precoCompra) {
+    public Peca(Integer idPeca, int quantidade, String nome, String modelo, float precoCompra, Tipopeca tipopeca) {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
         this.nome = nome;
         this.modelo = modelo;
         this.precoCompra = precoCompra;
+        this.fKtipopeca = tipopeca;
+
     }
 
     public Integer getIdPeca() {
