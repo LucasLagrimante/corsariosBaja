@@ -38,7 +38,7 @@ public class ManterTipopecaController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             if (!operacao.equals("incluir")) {
-                int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+                int idTipopeca = Integer.parseInt(request.getParameter("txtIdTipopeca"));
                 tipopeca = TipopecaDAO.getInstance().getTipopeca(idTipopeca);
                 request.setAttribute("tipopeca", tipopeca);
             }
@@ -56,7 +56,7 @@ public class ManterTipopecaController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int idTipopeca = Integer.parseInt(request.getParameter("idTipopeca"));
+            int idTipopeca = Integer.parseInt(request.getParameter("txtIdTipopeca"));
             String nome = request.getParameter("nome");
             if (operacao.equals("incluir")) {
                 tipopeca = new Tipopeca(idTipopeca, nome);

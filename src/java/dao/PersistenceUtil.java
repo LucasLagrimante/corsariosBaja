@@ -21,7 +21,7 @@ public class PersistenceUtil {
 
     public static EntityManager getEntityManager() {
         if (emf == null) {
-            emf = Persistence.createEntityManagerFactory("SCA_JPAPU");
+            emf = Persistence.createEntityManagerFactory("corsariosBajaPU");
         }
         return emf.createEntityManager();
     }
