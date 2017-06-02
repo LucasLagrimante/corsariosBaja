@@ -39,12 +39,12 @@ public class ManterDesempenhoController extends HttpServlet {
         }
 
     }
-
+ 
     public void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            //chave estrangeira
+            //chave estrangeira 
             request.setAttribute("automoveis", AutomovelDAO.getInstance().obterAutomoveis());
             request.setAttribute("tipospista", TipopistaDAO.getInstance().obterTipospista());
             request.setAttribute("integrantes", IntegranteDAO.getInstance().obterIntegrantes());
