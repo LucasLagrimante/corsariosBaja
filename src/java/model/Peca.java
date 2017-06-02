@@ -6,53 +6,31 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "peca")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Peca.findAll", query = "SELECT p FROM Peca p")
-    , @NamedQuery(name = "Peca.findByIdPeca", query = "SELECT p FROM Peca p WHERE p.idPeca = :idPeca")
-    , @NamedQuery(name = "Peca.findByQuantidade", query = "SELECT p FROM Peca p WHERE p.quantidade = :quantidade")
-    , @NamedQuery(name = "Peca.findByNome", query = "SELECT p FROM Peca p WHERE p.nome = :nome")
-    , @NamedQuery(name = "Peca.findByModelo", query = "SELECT p FROM Peca p WHERE p.modelo = :modelo")
-    , @NamedQuery(name = "Peca.findByPrecoCompra", query = "SELECT p FROM Peca p WHERE p.precoCompra = :precoCompra")})
 public class Peca implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "idPeca")
     private Integer idPeca;
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "quantidade")
     private int quantidade;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
+    
     @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
+    
     @Column(name = "modelo")
     private String modelo;
 
@@ -64,8 +42,7 @@ public class Peca implements Serializable {
         this.precoCompra = precoCompra;
         this.fKtipopeca = fKtipopeca;
     }
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "precoCompra")
     private float precoCompra;
     @JoinColumn(name = "FK_tipopeca", referencedColumnName = "idTipopeca")

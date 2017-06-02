@@ -6,47 +6,26 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "frequencia")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Frequencia.findAll", query = "SELECT f FROM Frequencia f")
-    , @NamedQuery(name = "Frequencia.findByIdFrequencia", query = "SELECT f FROM Frequencia f WHERE f.idFrequencia = :idFrequencia")
-    , @NamedQuery(name = "Frequencia.findByData", query = "SELECT f FROM Frequencia f WHERE f.data = :data")
-    , @NamedQuery(name = "Frequencia.findByEstado", query = "SELECT f FROM Frequencia f WHERE f.estado = :estado")})
+
 public class Frequencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idFrequencia")
     private Integer idFrequencia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "data")
     private String data;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
     @Column(name = "estado")
     private String estado;
     @JoinColumn(name = "FK_integrante", referencedColumnName = "matricula")

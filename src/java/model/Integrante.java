@@ -6,41 +6,25 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "integrante")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Integrante.findAll", query = "SELECT i FROM Integrante i")
-    , @NamedQuery(name = "Integrante.findByMatricula", query = "SELECT i FROM Integrante i WHERE i.matricula = :matricula")
-    , @NamedQuery(name = "Integrante.findByCargaHorariaDisponivel", query = "SELECT i FROM Integrante i WHERE i.cargaHorariaDisponivel = :cargaHorariaDisponivel")})
+
 public class Integrante implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "matricula")
     private Integer matricula;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
     @Column(name = "cargaHorariaDisponivel")
     private String cargaHorariaDisponivel;
     @JoinColumn(name = "FK_pessoa", referencedColumnName = "idPessoa")
