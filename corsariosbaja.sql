@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 01/06/2017 às 22:38
+-- Tempo de geração: 01/06/2017 às 22:57
 -- Versão do servidor: 5.7.18-0ubuntu0.16.04.1
 -- Versão do PHP: 7.0.18-0ubuntu0.16.04.1
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `arquitetura`
 --
 
+DROP TABLE IF EXISTS `arquitetura`;
 CREATE TABLE IF NOT EXISTS `arquitetura` (
   `idArquitetura` int(11) NOT NULL,
   `caminhoImagem` varchar(100) NOT NULL,
@@ -56,6 +57,7 @@ INSERT INTO `arquitetura` (`idArquitetura`, `caminhoImagem`, `FK_automovel`) VAL
 -- Estrutura para tabela `automovel`
 --
 
+DROP TABLE IF EXISTS `automovel`;
 CREATE TABLE IF NOT EXISTS `automovel` (
   `idAutomovel` int(11) NOT NULL,
   `cor` varchar(15) NOT NULL,
@@ -89,6 +91,7 @@ INSERT INTO `automovel` (`idAutomovel`, `cor`, `nome`, `dataTerminoProjeto`, `pe
 -- Estrutura para tabela `avaliacao`
 --
 
+DROP TABLE IF EXISTS `avaliacao`;
 CREATE TABLE IF NOT EXISTS `avaliacao` (
   `idAvaliacao` int(11) NOT NULL,
   `frequencia` int(11) NOT NULL,
@@ -121,6 +124,7 @@ INSERT INTO `avaliacao` (`idAvaliacao`, `frequencia`, `comparecimento`, `data`, 
 -- Estrutura para tabela `competicao`
 --
 
+DROP TABLE IF EXISTS `competicao`;
 CREATE TABLE IF NOT EXISTS `competicao` (
   `idCompeticao` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
@@ -154,6 +158,7 @@ INSERT INTO `competicao` (`idCompeticao`, `nome`, `data`, `hora`, `FK_tipopista`
 -- Estrutura para tabela `desempenho`
 --
 
+DROP TABLE IF EXISTS `desempenho`;
 CREATE TABLE IF NOT EXISTS `desempenho` (
   `idDesempenho` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
@@ -194,6 +199,7 @@ INSERT INTO `desempenho` (`idDesempenho`, `nome`, `data`, `hora`, `aceleracaoMed
 -- Estrutura para tabela `desempenhoteste`
 --
 
+DROP TABLE IF EXISTS `desempenhoteste`;
 CREATE TABLE IF NOT EXISTS `desempenhoteste` (
   `idDesempenhoTeste` int(11) NOT NULL,
   `nome` varchar(20) NOT NULL,
@@ -234,6 +240,7 @@ INSERT INTO `desempenhoteste` (`idDesempenhoTeste`, `nome`, `data`, `hora`, `vel
 -- Estrutura para tabela `design`
 --
 
+DROP TABLE IF EXISTS `design`;
 CREATE TABLE IF NOT EXISTS `design` (
   `idDesign` int(11) NOT NULL,
   `caminhoImagem` varchar(100) NOT NULL,
@@ -264,6 +271,7 @@ INSERT INTO `design` (`idDesign`, `caminhoImagem`, `FK_automovel`) VALUES
 -- Estrutura para tabela `frequencia`
 --
 
+DROP TABLE IF EXISTS `frequencia`;
 CREATE TABLE IF NOT EXISTS `frequencia` (
   `idFrequencia` int(11) NOT NULL,
   `data` varchar(30) NOT NULL,
@@ -295,6 +303,7 @@ INSERT INTO `frequencia` (`idFrequencia`, `data`, `estado`, `FK_integrante`) VAL
 -- Estrutura para tabela `integrante`
 --
 
+DROP TABLE IF EXISTS `integrante`;
 CREATE TABLE IF NOT EXISTS `integrante` (
   `matricula` int(6) NOT NULL,
   `cargaHorariaDisponivel` varchar(8) NOT NULL,
@@ -325,6 +334,7 @@ INSERT INTO `integrante` (`matricula`, `cargaHorariaDisponivel`, `FK_pessoa`) VA
 -- Estrutura para tabela `peca`
 --
 
+DROP TABLE IF EXISTS `peca`;
 CREATE TABLE IF NOT EXISTS `peca` (
   `idPeca` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
@@ -358,6 +368,7 @@ INSERT INTO `peca` (`idPeca`, `quantidade`, `nome`, `modelo`, `precoCompra`, `FK
 -- Estrutura para tabela `pessoa`
 --
 
+DROP TABLE IF EXISTS `pessoa`;
 CREATE TABLE IF NOT EXISTS `pessoa` (
   `idPessoa` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
@@ -393,6 +404,7 @@ INSERT INTO `pessoa` (`idPessoa`, `nome`, `cpf`, `logradouro`, `cep`, `bairro`, 
 -- Estrutura para tabela `tipopeca`
 --
 
+DROP TABLE IF EXISTS `tipopeca`;
 CREATE TABLE IF NOT EXISTS `tipopeca` (
   `idTipopeca` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
@@ -421,6 +433,7 @@ INSERT INTO `tipopeca` (`idTipopeca`, `nome`) VALUES
 -- Estrutura para tabela `tipopista`
 --
 
+DROP TABLE IF EXISTS `tipopista`;
 CREATE TABLE IF NOT EXISTS `tipopista` (
   `idTipopista` int(11) NOT NULL,
   `nome` varchar(40) NOT NULL,
@@ -497,7 +510,7 @@ ALTER TABLE `frequencia`
 -- Restrições para tabelas `integrante`
 --
 ALTER TABLE `integrante`
-  ADD CONSTRAINT `FK_pessoa_integrante` FOREIGN KEY (`matricula`) REFERENCES `pessoa` (`idPessoa`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_pessoa_integrante` FOREIGN KEY (`FK_pessoa`) REFERENCES `pessoa` (`idPessoa`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `peca`
