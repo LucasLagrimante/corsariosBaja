@@ -4,7 +4,10 @@ package controller;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import dao.AutomovelDAO;
 import dao.DesempenhotesteDAO;
+import dao.IntegranteDAO;
+import dao.TipopistaDAO;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -12,7 +15,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Automovel;
+import model.Desempenho;
 import model.Desempenhoteste;
+import model.Integrante;
+import model.Tipopista;
 
 /**
  *
@@ -38,10 +45,14 @@ public class ManterDesempenhotesteController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("professores", ProfessorDAO.getInstance().getAllProfessores());
+            //chave estrangeira
+            request.setAttribute("automoveis", AutomovelDAO.getInstance().obterAutomoveis());
+            request.setAttribute("tipospista", TipopistaDAO.getInstance().obterTipospista());
+            request.setAttribute("integrantes", IntegranteDAO.getInstance().obterIntegrantes());
+            //fim chave estrangeira
             if (!operacao.equals("incluir")) {
-                int codDesempenhoteste = Integer.parseInt(request.getParameter("codDesempenhoteste"));
-                desempenhoteste = DesempenhotesteDAO.getInstance().getDesempenhoteste(codDesempenhoteste);
+                int idDesempenhoteste = Integer.parseInt(request.getParameter("txtIdDesempenhoTeste"));
+                desempenhoteste = DesempenhotesteDAO.getInstance().getDesempenhoteste(idDesempenhoteste);
                 request.setAttribute("desempenhoteste", desempenhoteste);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterDesempenhoteste.jsp");
@@ -58,25 +69,48 @@ public class ManterDesempenhotesteController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String operacao = request.getParameter("operacao");
-            int codDesempenhoteste = Integer.parseInt(request.getParameter("codDesempenhoteste"));
-            String nome = request.getParameter("nomeDesempenhoteste");
-            int cargaHoraria = Integer.parseInt(request.getParameter("cargaHoraria"));
-            String tipoDesempenhoteste = request.getParameter("tipoDesempenhoteste");
-            int totalPeriodos = Integer.parseInt(request.getParameter("totalPeriodos"));
-            int codCoordenador = Integer.parseInt(request.getParameter("coordenador"));
-            Professor coordenador = null;
-            if (codCoordenador != 0) {
-                coordenador = ProfessorDAO.getInstance().getProfessor(codCoordenador);
+            int idDesempenho = Integer.parseInt(request.getParameter("txtIdDesempenho"));
+            String nome = request.getParameter("txtNome");
+            String data = request.getParameter("txtData");
+            String hora = request.getParameter("txtHora");
+            float velocidadeMedia = Float.parseFloat(request.getParameter("txtVelocidadeMedia"));
+            float aceleracaoMedia = Float.parseFloat(request.getParameter("txtAceleracaoMedia"));
+            String tempoPista = request.getParameter("txtTempoPista");
+            float frenagem = Float.parseFloat(request.getParameter("txtFrenagem"));
+            //chave estrangeira
+            int idAutomovel = Integer.parseInt(request.getParameter("selectAutomovel"));
+            int idTipopista = Integer.parseInt(request.getParameter("selectTipoPista"));
+            int matricula = Integer.parseInt(request.getParameter("selectIntegrante"));
+            Automovel automovel = null;
+            if (idAutomovel != 0) {
+                automovel = AutomovelDAO.getInstance().getAutomovel(idAutomovel);
             }
+            Tipopista tipopista = null;
+            if (idTipopista != 0) {
+                tipopista = TipopistaDAO.getInstance().getTipopista(idTipopista);
+
+            }
+            Integrante integrante = null;
+            if (matricula != 0) {
+                integrante = IntegranteDAO.getInstance().getIntegrante(matricula);
+            }
+            //fim chave estrangeira
             if (operacao.equals("incluir")) {
-                desempenhoteste = new Desempenhoteste(codDesempenhoteste, nome, cargaHoraria, tipoDesempenhoteste, totalPeriodos, coordenador);
+                Desempenho desempenho = new Desempenho(idDesempenho, nome, data, hora, velocidadeMedia, aceleracaoMedia, tempoPista, frenagem, automovel, integrante, tipopista);
+
                 DesempenhotesteDAO.getInstance().salvar(desempenhoteste);
             } else if (operacao.equals("editar")) {
                 desempenhoteste.setNome(nome);
-                desempenhoteste.setCargaHoraria(cargaHoraria);
-                desempenhoteste.setTipoDesempenhoteste(tipoDesempenhoteste);
-                desempenhoteste.setTotalPeriodos(totalPeriodos);
-                desempenhoteste.setCoordenador(coordenador);
+                desempenhoteste.setData(data);
+                desempenhoteste.setHora(hora);
+                desempenhoteste.setVelocidadeMedia(velocidadeMedia);
+                desempenhoteste.setAceleracaoMedia(aceleracaoMedia);
+                desempenhoteste.setTempoPista(tempoPista);
+                desempenhoteste.setFrenagem(frenagem);
+                desempenhoteste.setFKautomovel(automovel);
+                desempenhoteste.setFKtipopista(tipopista);
+                desempenhoteste.setFKmotorista(integrante);
+
                 DesempenhotesteDAO.getInstance().salvar(desempenhoteste);
             } else if (operacao.equals("excluir")) {
                 DesempenhotesteDAO.getInstance().excluir(desempenhoteste);
