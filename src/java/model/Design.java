@@ -6,41 +6,25 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "design")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Design.findAll", query = "SELECT d FROM Design d")
-    , @NamedQuery(name = "Design.findByIdDesign", query = "SELECT d FROM Design d WHERE d.idDesign = :idDesign")
-    , @NamedQuery(name = "Design.findByCaminhoImagem", query = "SELECT d FROM Design d WHERE d.caminhoImagem = :caminhoImagem")})
 public class Design implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "idDesign")
     private Integer idDesign;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    
     @Column(name = "caminhoImagem")
     private String caminhoImagem;
     @JoinColumn(name = "FK_automovel", referencedColumnName = "idAutomovel")
