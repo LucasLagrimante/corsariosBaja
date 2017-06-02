@@ -6,80 +6,27 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "automovel")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Automovel.findAll", query = "SELECT a FROM Automovel a")
-    , @NamedQuery(name = "Automovel.findByIdAutomovel", query = "SELECT a FROM Automovel a WHERE a.idAutomovel = :idAutomovel")
-    , @NamedQuery(name = "Automovel.findByCor", query = "SELECT a FROM Automovel a WHERE a.cor = :cor")
-    , @NamedQuery(name = "Automovel.findByNome", query = "SELECT a FROM Automovel a WHERE a.nome = :nome")
-    , @NamedQuery(name = "Automovel.findByDataTerminoProjeto", query = "SELECT a FROM Automovel a WHERE a.dataTerminoProjeto = :dataTerminoProjeto")
-    , @NamedQuery(name = "Automovel.findByPesoCarro", query = "SELECT a FROM Automovel a WHERE a.pesoCarro = :pesoCarro")
-    , @NamedQuery(name = "Automovel.findByPesoChassi", query = "SELECT a FROM Automovel a WHERE a.pesoChassi = :pesoChassi")
-    , @NamedQuery(name = "Automovel.findByCustoTotal", query = "SELECT a FROM Automovel a WHERE a.custoTotal = :custoTotal")})
 public class Automovel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idAutomovel")
     private Integer idAutomovel;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "cor")
     private String cor;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "dataTerminoProjeto")
     private String dataTerminoProjeto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "pesoCarro")
     private float pesoCarro;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "pesoChassi")
     private float pesoChassi;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "custoTotal")
     private float custoTotal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Desempenho> desempenhoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Desempenhoteste> desempenhotesteCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Arquitetura> arquiteturaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
-    private Collection<Design> designCollection;
 
     public Automovel() {
     }
@@ -154,42 +101,6 @@ public class Automovel implements Serializable {
         this.custoTotal = custoTotal;
     }
 
-    @XmlTransient
-    public Collection<Desempenho> getDesempenhoCollection() {
-        return desempenhoCollection;
-    }
-
-    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
-        this.desempenhoCollection = desempenhoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
-        return desempenhotesteCollection;
-    }
-
-    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
-        this.desempenhotesteCollection = desempenhotesteCollection;
-    }
-
-    @XmlTransient
-    public Collection<Arquitetura> getArquiteturaCollection() {
-        return arquiteturaCollection;
-    }
-
-    public void setArquiteturaCollection(Collection<Arquitetura> arquiteturaCollection) {
-        this.arquiteturaCollection = arquiteturaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Design> getDesignCollection() {
-        return designCollection;
-    }
-
-    public void setDesignCollection(Collection<Design> designCollection) {
-        this.designCollection = designCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -214,5 +125,5 @@ public class Automovel implements Serializable {
     public String toString() {
         return "model.Automovel[ idAutomovel=" + idAutomovel + " ]";
     }
-    
+
 }
