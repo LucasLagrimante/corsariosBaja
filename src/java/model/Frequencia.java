@@ -19,17 +19,13 @@ import javax.persistence.ManyToOne;
 @Entity
 
 public class Frequencia implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "idFrequencia")
     private Integer idFrequencia;
-    @Column(name = "data")
     private String data;
-    @Column(name = "estado")
     private String estado;
+    @ManyToOne
     @JoinColumn(name = "FK_integrante", referencedColumnName = "matricula")
-    @ManyToOne(optional = false)
     private Integrante fKintegrante;
 
     public Frequencia() {
@@ -108,5 +104,5 @@ public class Frequencia implements Serializable {
     public String toString() {
         return "model.Frequencia[ idFrequencia=" + idFrequencia + " ]";
     }
-    
+
 }

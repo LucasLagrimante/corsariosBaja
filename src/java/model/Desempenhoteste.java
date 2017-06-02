@@ -6,84 +6,36 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "desempenhoteste")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Desempenhoteste.findAll", query = "SELECT d FROM Desempenhoteste d")
-    , @NamedQuery(name = "Desempenhoteste.findByIdDesempenhoTeste", query = "SELECT d FROM Desempenhoteste d WHERE d.idDesempenhoTeste = :idDesempenhoTeste")
-    , @NamedQuery(name = "Desempenhoteste.findByNome", query = "SELECT d FROM Desempenhoteste d WHERE d.nome = :nome")
-    , @NamedQuery(name = "Desempenhoteste.findByData", query = "SELECT d FROM Desempenhoteste d WHERE d.data = :data")
-    , @NamedQuery(name = "Desempenhoteste.findByHora", query = "SELECT d FROM Desempenhoteste d WHERE d.hora = :hora")
-    , @NamedQuery(name = "Desempenhoteste.findByVelocidadeMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.velocidadeMedia = :velocidadeMedia")
-    , @NamedQuery(name = "Desempenhoteste.findByAceleracaoMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.aceleracaoMedia = :aceleracaoMedia")
-    , @NamedQuery(name = "Desempenhoteste.findByTempoPista", query = "SELECT d FROM Desempenhoteste d WHERE d.tempoPista = :tempoPista")
-    , @NamedQuery(name = "Desempenhoteste.findByFrenagem", query = "SELECT d FROM Desempenhoteste d WHERE d.frenagem = :frenagem")})
 public class Desempenhoteste implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idDesempenhoTeste")
     private Integer idDesempenhoTeste;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "data")
     private String data;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "hora")
     private String hora;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "velocidadeMedia")
     private float velocidadeMedia;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "aceleracaoMedia")
     private float aceleracaoMedia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "tempoPista")
     private String tempoPista;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "frenagem")
     private float frenagem;
+    @ManyToOne
     @JoinColumn(name = "FK_automovel", referencedColumnName = "idAutomovel")
-    @ManyToOne(optional = false)
     private Automovel fKautomovel;
+    @ManyToOne
     @JoinColumn(name = "FK_motorista", referencedColumnName = "matricula")
-    @ManyToOne(optional = false)
     private Integrante fKmotorista;
+    @ManyToOne
     @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
-    @ManyToOne(optional = false)
     private Tipopista fKtipopista;
 
     public Desempenhoteste(Integer idDesempenhoTeste, String nome, String data, String hora, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem, Automovel fKautomovel, Integrante fKmotorista, Tipopista fKtipopista) {
@@ -230,5 +182,5 @@ public class Desempenhoteste implements Serializable {
     public String toString() {
         return "model.Desempenhoteste[ idDesempenhoTeste=" + idDesempenhoTeste + " ]";
     }
-    
+
 }

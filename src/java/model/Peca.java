@@ -18,21 +18,16 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Peca implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    
     @Column(name = "idPeca")
     private Integer idPeca;
-    
-    @Column(name = "quantidade")
     private int quantidade;
-    
-    @Column(name = "nome")
     private String nome;
-    
-    @Column(name = "modelo")
     private String modelo;
+    private float precoCompra;
+    @ManyToOne
+    @JoinColumn(name = "FK_tipopeca", referencedColumnName = "idTipopeca")
+    private Tipopeca fKtipopeca;
 
     public Peca(Integer idPeca, int quantidade, String nome, String modelo, float precoCompra, Tipopeca fKtipopeca) {
         this.idPeca = idPeca;
@@ -42,12 +37,6 @@ public class Peca implements Serializable {
         this.precoCompra = precoCompra;
         this.fKtipopeca = fKtipopeca;
     }
-    
-    @Column(name = "precoCompra")
-    private float precoCompra;
-    @JoinColumn(name = "FK_tipopeca", referencedColumnName = "idTipopeca")
-    @ManyToOne(optional = false)
-    private Tipopeca fKtipopeca;
 
     public Peca() {
     }
@@ -136,5 +125,5 @@ public class Peca implements Serializable {
     public String toString() {
         return "model.Peca[ idPeca=" + idPeca + " ]";
     }
-    
+
 }

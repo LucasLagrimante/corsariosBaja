@@ -18,17 +18,12 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Design implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    
     @Column(name = "idDesign")
     private Integer idDesign;
-    
-    @Column(name = "caminhoImagem")
     private String caminhoImagem;
+    @ManyToOne
     @JoinColumn(name = "FK_automovel", referencedColumnName = "idAutomovel")
-    @ManyToOne(optional = false)
     private Automovel fKautomovel;
 
     public Design() {
@@ -97,5 +92,5 @@ public class Design implements Serializable {
     public String toString() {
         return "model.Design[ idDesign=" + idDesign + " ]";
     }
-    
+
 }

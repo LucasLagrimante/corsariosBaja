@@ -16,8 +16,6 @@ import javax.persistence.Id;
  */
 @Entity
 public class Tipopeca implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "idTipopeca")
     private Integer idTipopeca;

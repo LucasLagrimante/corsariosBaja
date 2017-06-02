@@ -19,16 +19,12 @@ import javax.persistence.ManyToOne;
 @Entity
 
 public class Integrante implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     @Id
-    
     @Column(name = "matricula")
     private Integer matricula;
-    @Column(name = "cargaHorariaDisponivel")
     private String cargaHorariaDisponivel;
+    @ManyToOne
     @JoinColumn(name = "FK_pessoa", referencedColumnName = "idPessoa")
-    @ManyToOne(optional = false)
     private Pessoa fKpessoa;
 
     public Integrante() {
@@ -97,5 +93,5 @@ public class Integrante implements Serializable {
     public String toString() {
         return "model.Integrante[ matricula=" + matricula + " ]";
     }
-    
+
 }
