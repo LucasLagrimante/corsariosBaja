@@ -5,47 +5,34 @@
  */
 package model;
 
-import dao.AutomovelDAO;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "automovel")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Automovel.findAll", query = "SELECT a FROM Automovel a")
-    ,
-    @NamedQuery(name = "Automovel.findByIdAutomovel", query = "SELECT a FROM Automovel a WHERE a.idAutomovel = :idAutomovel")
-    ,
-    @NamedQuery(name = "Automovel.findByCor", query = "SELECT a FROM Automovel a WHERE a.cor = :cor")
-    ,
-    @NamedQuery(name = "Automovel.findByNome", query = "SELECT a FROM Automovel a WHERE a.nome = :nome")
-    ,
-    @NamedQuery(name = "Automovel.findByDataTerminoProjeto", query = "SELECT a FROM Automovel a WHERE a.dataTerminoProjeto = :dataTerminoProjeto")
-    ,
-    @NamedQuery(name = "Automovel.findByPesoCarro", query = "SELECT a FROM Automovel a WHERE a.pesoCarro = :pesoCarro")
-    ,
-    @NamedQuery(name = "Automovel.findByPesoChassi", query = "SELECT a FROM Automovel a WHERE a.pesoChassi = :pesoChassi")
-    ,
-    @NamedQuery(name = "Automovel.findByCustoTotal", query = "SELECT a FROM Automovel a WHERE a.custoTotal = :custoTotal")})
+    , @NamedQuery(name = "Automovel.findByIdAutomovel", query = "SELECT a FROM Automovel a WHERE a.idAutomovel = :idAutomovel")
+    , @NamedQuery(name = "Automovel.findByCor", query = "SELECT a FROM Automovel a WHERE a.cor = :cor")
+    , @NamedQuery(name = "Automovel.findByNome", query = "SELECT a FROM Automovel a WHERE a.nome = :nome")
+    , @NamedQuery(name = "Automovel.findByDataTerminoProjeto", query = "SELECT a FROM Automovel a WHERE a.dataTerminoProjeto = :dataTerminoProjeto")
+    , @NamedQuery(name = "Automovel.findByPesoCarro", query = "SELECT a FROM Automovel a WHERE a.pesoCarro = :pesoCarro")
+    , @NamedQuery(name = "Automovel.findByPesoChassi", query = "SELECT a FROM Automovel a WHERE a.pesoChassi = :pesoChassi")
+    , @NamedQuery(name = "Automovel.findByCustoTotal", query = "SELECT a FROM Automovel a WHERE a.custoTotal = :custoTotal")})
 public class Automovel implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -155,22 +142,6 @@ public class Automovel implements Serializable {
         this.custoTotal = custoTotal;
     }
 
-    public static List<model.Automovel> obterAutomoveis() {
-        return AutomovelDAO.obterAutomoveis();
-    }
-
-    public static model.Automovel obterAutomovel(int idAutomovel) {
-        return AutomovelDAO.getAutomovel(idAutomovel);
-    }
-
-    public static List<Automovel> obterCores() {
-        return AutomovelDAO.obterCores();
-    }
-
-    public static List<Automovel> obterPesos() {
-        return AutomovelDAO.obterPesos();
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -195,5 +166,5 @@ public class Automovel implements Serializable {
     public String toString() {
         return "model.Automovel[ idAutomovel=" + idAutomovel + " ]";
     }
-
+    
 }
