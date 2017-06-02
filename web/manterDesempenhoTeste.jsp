@@ -63,7 +63,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Desempenho Teste</h3>
-            <form action="ManterDesempenhotesteController?acao=confirmar${operacao}" method="POST" name="frmManterDesempenhoTeste">
+            <form action="ManterDesempenhotesteController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterDesempenhoTeste">
 
                 <div class="row">
                     <div class="input-field col s6 offset-m3">

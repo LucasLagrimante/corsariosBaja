@@ -63,7 +63,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Integrante</h3>
-            <form action="ManterIntegranteController?acao=confirmar${operacao}" method="POST" name="frmManterIntegrante">
+            <form action="ManterIntegranteController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterIntegrante">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
                         <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${integrante.pessoa.idPessoa}"></c:if>

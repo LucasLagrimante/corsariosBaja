@@ -63,7 +63,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Investimentos</h3>
-            <form   action="ManterInvestidorController?acao=confirmar${operacao}" method="POST" name="frmManterInvestidor">
+            <form   action="ManterInvestidorController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterInvestidor">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
                         <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectPessoa" value="${investidor.pessoa.idPessoa }"></c:if>

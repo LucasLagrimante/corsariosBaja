@@ -63,7 +63,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Peça</h3>
-            <form action="ManterPecaController?acao=confirmar${operacao}" method="POST" name="frmManterPeca">
+            <form action="ManterPecaController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterPeca">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
                         <input id="id" name="txtIdPeca" type="text" required="required" class="validate" pattern="[0-9]+$"  value="${peca.idPeca}" <c:if test="${operacao != 'incluir'}"> readonly</c:if>>
