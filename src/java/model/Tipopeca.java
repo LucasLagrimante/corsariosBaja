@@ -6,53 +6,22 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "tipopeca")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Tipopeca.findAll", query = "SELECT t FROM Tipopeca t")
-    , @NamedQuery(name = "Tipopeca.findByIdTipopeca", query = "SELECT t FROM Tipopeca t WHERE t.idTipopeca = :idTipopeca")
-    , @NamedQuery(name = "Tipopeca.findByNome", query = "SELECT t FROM Tipopeca t WHERE t.nome = :nome")})
 public class Tipopeca implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idTipopeca")
     private Integer idTipopeca;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "nome")
     private String nome;
-
-    public Tipopeca(Integer idTipopeca, String nome, Collection<Peca> pecaCollection) {
-        this.idTipopeca = idTipopeca;
-        this.nome = nome;
-        this.pecaCollection = pecaCollection;
-    }
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopeca")
-    private Collection<Peca> pecaCollection;
 
     public Tipopeca() {
     }
@@ -82,15 +51,6 @@ public class Tipopeca implements Serializable {
         this.nome = nome;
     }
 
-    @XmlTransient
-    public Collection<Peca> getPecaCollection() {
-        return pecaCollection;
-    }
-
-    public void setPecaCollection(Collection<Peca> pecaCollection) {
-        this.pecaCollection = pecaCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -115,5 +75,5 @@ public class Tipopeca implements Serializable {
     public String toString() {
         return "model.Tipopeca[ idTipopeca=" + idTipopeca + " ]";
     }
-    
+
 }
