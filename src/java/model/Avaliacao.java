@@ -6,56 +6,27 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "avaliacao")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Avaliacao.findAll", query = "SELECT a FROM Avaliacao a")
-    , @NamedQuery(name = "Avaliacao.findByIdAvaliacao", query = "SELECT a FROM Avaliacao a WHERE a.idAvaliacao = :idAvaliacao")
-    , @NamedQuery(name = "Avaliacao.findByFrequencia", query = "SELECT a FROM Avaliacao a WHERE a.frequencia = :frequencia")
-    , @NamedQuery(name = "Avaliacao.findByComparecimento", query = "SELECT a FROM Avaliacao a WHERE a.comparecimento = :comparecimento")
-    , @NamedQuery(name = "Avaliacao.findByData", query = "SELECT a FROM Avaliacao a WHERE a.data = :data")})
 public class Avaliacao implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idAvaliacao")
     private Integer idAvaliacao;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "frequencia")
     private int frequencia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "comparecimento")
     private String comparecimento;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "data")
     private String data;
+    @ManyToOne
     @JoinColumn(name = "FK_integrante", referencedColumnName = "matricula")
-    @ManyToOne(optional = false)
     private Integrante fKintegrante;
 
     public Avaliacao() {
@@ -144,5 +115,5 @@ public class Avaliacao implements Serializable {
     public String toString() {
         return "model.Avaliacao[ idAvaliacao=" + idAvaliacao + " ]";
     }
-    
+
 }

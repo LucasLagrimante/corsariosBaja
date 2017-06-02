@@ -6,61 +6,30 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author lucas
  */
 @Entity
-@Table(name = "competicao")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Competicao.findAll", query = "SELECT c FROM Competicao c")
-    , @NamedQuery(name = "Competicao.findByIdCompeticao", query = "SELECT c FROM Competicao c WHERE c.idCompeticao = :idCompeticao")
-    , @NamedQuery(name = "Competicao.findByNome", query = "SELECT c FROM Competicao c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Competicao.findByData", query = "SELECT c FROM Competicao c WHERE c.data = :data")
-    , @NamedQuery(name = "Competicao.findByHora", query = "SELECT c FROM Competicao c WHERE c.hora = :hora")
-    , @NamedQuery(name = "Competicao.findByLocal", query = "SELECT c FROM Competicao c WHERE c.local = :local")})
 public class Competicao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "idCompeticao")
     private Integer idCompeticao;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "nome")
     private String nome;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "data")
     private String data;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 8)
-    @Column(name = "hora")
     private String hora;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "local")
     private String local;
+    @ManyToOne
+    @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
+    private Tipopista fKtipopista;
 
     public Competicao(Integer idCompeticao, String nome, String data, String hora, String local, Tipopista fKtipopista) {
         this.idCompeticao = idCompeticao;
@@ -70,9 +39,6 @@ public class Competicao implements Serializable {
         this.local = local;
         this.fKtipopista = fKtipopista;
     }
-    @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
-    @ManyToOne(optional = false)
-    private Tipopista fKtipopista;
 
     public Competicao() {
     }
@@ -161,5 +127,5 @@ public class Competicao implements Serializable {
     public String toString() {
         return "model.Competicao[ idCompeticao=" + idCompeticao + " ]";
     }
-    
+
 }
