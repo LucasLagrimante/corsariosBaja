@@ -48,7 +48,7 @@ public class TipopistaDAO {
         }
     }
 
-    public static Tipopista getTipopista(int id) {
+    public Tipopista getTipopista(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Tipopista tipopista = null;
@@ -85,7 +85,7 @@ public class TipopistaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Tipopista> obterTipospista() {
+    public List<Tipopista> obterTipospista() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Tipopista> tiposPista = null;

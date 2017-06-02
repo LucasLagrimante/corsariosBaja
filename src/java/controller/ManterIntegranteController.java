@@ -9,6 +9,8 @@ import dao.PessoaDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +43,7 @@ public class ManterIntegranteController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("pessoas", Pessoa.obterPessoas());
+            request.setAttribute("pessoas", PessoaDAO.getInstance().obterPessoas());
             if (!operacao.equals("incluir")) {
                 int idIntegrante = Integer.parseInt(request.getParameter("txtIdIntegrante"));
                 integrante = IntegranteDAO.getInstance().getIntegrante(idIntegrante);
@@ -67,7 +69,7 @@ public class ManterIntegranteController extends HttpServlet {
             int idPessoa = Integer.parseInt(request.getParameter("selectPessoa"));
             Pessoa pessoa = null;
             if (idPessoa != 0) {
-                pessoa = PessoaDAO.getInstance().getProfessor(idPessoa);
+                pessoa = PessoaDAO.getInstance().getPessoa(idPessoa);
             }
             if (operacao.equals("incluir")) {
                 Integrante integrante = new Integrante(matricula, cargaHorariaDisponivel, pessoa);
@@ -102,7 +104,13 @@ public class ManterIntegranteController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -117,7 +125,13 @@ public class ManterIntegranteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterIntegranteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

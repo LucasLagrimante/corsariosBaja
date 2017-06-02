@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.DesempenhotesteDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,33 +18,24 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import model.Desempenhoteste;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "desempenhoteste")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Desempenhoteste.findAll", query = "SELECT d FROM Desempenhoteste d")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByIdDesempenhoTeste", query = "SELECT d FROM Desempenhoteste d WHERE d.idDesempenhoTeste = :idDesempenhoTeste")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByNome", query = "SELECT d FROM Desempenhoteste d WHERE d.nome = :nome")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByData", query = "SELECT d FROM Desempenhoteste d WHERE d.data = :data")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByHora", query = "SELECT d FROM Desempenhoteste d WHERE d.hora = :hora")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByVelocidadeMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.velocidadeMedia = :velocidadeMedia")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByAceleracaoMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.aceleracaoMedia = :aceleracaoMedia")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByTempoPista", query = "SELECT d FROM Desempenhoteste d WHERE d.tempoPista = :tempoPista")
-    ,
-    @NamedQuery(name = "Desempenhoteste.findByFrenagem", query = "SELECT d FROM Desempenhoteste d WHERE d.frenagem = :frenagem")})
+    , @NamedQuery(name = "Desempenhoteste.findByIdDesempenhoTeste", query = "SELECT d FROM Desempenhoteste d WHERE d.idDesempenhoTeste = :idDesempenhoTeste")
+    , @NamedQuery(name = "Desempenhoteste.findByNome", query = "SELECT d FROM Desempenhoteste d WHERE d.nome = :nome")
+    , @NamedQuery(name = "Desempenhoteste.findByData", query = "SELECT d FROM Desempenhoteste d WHERE d.data = :data")
+    , @NamedQuery(name = "Desempenhoteste.findByHora", query = "SELECT d FROM Desempenhoteste d WHERE d.hora = :hora")
+    , @NamedQuery(name = "Desempenhoteste.findByVelocidadeMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.velocidadeMedia = :velocidadeMedia")
+    , @NamedQuery(name = "Desempenhoteste.findByAceleracaoMedia", query = "SELECT d FROM Desempenhoteste d WHERE d.aceleracaoMedia = :aceleracaoMedia")
+    , @NamedQuery(name = "Desempenhoteste.findByTempoPista", query = "SELECT d FROM Desempenhoteste d WHERE d.tempoPista = :tempoPista")
+    , @NamedQuery(name = "Desempenhoteste.findByFrenagem", query = "SELECT d FROM Desempenhoteste d WHERE d.frenagem = :frenagem")})
 public class Desempenhoteste implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -97,6 +85,20 @@ public class Desempenhoteste implements Serializable {
     @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
     @ManyToOne(optional = false)
     private Tipopista fKtipopista;
+
+    public Desempenhoteste(Integer idDesempenhoTeste, String nome, String data, String hora, float velocidadeMedia, float aceleracaoMedia, String tempoPista, float frenagem, Automovel fKautomovel, Integrante fKmotorista, Tipopista fKtipopista) {
+        this.idDesempenhoTeste = idDesempenhoTeste;
+        this.nome = nome;
+        this.data = data;
+        this.hora = hora;
+        this.velocidadeMedia = velocidadeMedia;
+        this.aceleracaoMedia = aceleracaoMedia;
+        this.tempoPista = tempoPista;
+        this.frenagem = frenagem;
+        this.fKautomovel = fKautomovel;
+        this.fKmotorista = fKmotorista;
+        this.fKtipopista = fKtipopista;
+    }
 
     public Desempenhoteste() {
     }
@@ -204,14 +206,6 @@ public class Desempenhoteste implements Serializable {
         this.fKtipopista = fKtipopista;
     }
 
-    public static List<Desempenhoteste> obterDesempenhosTeste() throws ClassNotFoundException, SQLException {
-        return DesempenhotesteDAO.obterDesempenhosteste();
-    }
-
-    public static Desempenhoteste obterDesempenhoTeste(int idDesempenhoTeste) throws ClassNotFoundException {
-        return DesempenhotesteDAO.getDesempenhoteste(idDesempenhoTeste);
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -236,5 +230,5 @@ public class Desempenhoteste implements Serializable {
     public String toString() {
         return "model.Desempenhoteste[ idDesempenhoTeste=" + idDesempenhoTeste + " ]";
     }
-
+    
 }

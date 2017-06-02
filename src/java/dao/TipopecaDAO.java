@@ -48,7 +48,7 @@ public class TipopecaDAO {
         }
     }
 
-    public static Tipopeca getTipopeca(int id) {
+    public Tipopeca getTipopeca(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Tipopeca tipopeca = null;
@@ -85,7 +85,7 @@ public class TipopecaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Tipopeca> obterTipospeca() {
+    public List<Tipopeca> obterTipospeca() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Tipopeca> tipospeca = null;

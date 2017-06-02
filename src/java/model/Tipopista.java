@@ -5,11 +5,8 @@
  */
 package model;
 
-import dao.TipopistaDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,21 +20,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import model.Tipopista;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "tipopista")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tipopista.findAll", query = "SELECT t FROM Tipopista t")
-    ,
-    @NamedQuery(name = "Tipopista.findByIdTipopista", query = "SELECT t FROM Tipopista t WHERE t.idTipopista = :idTipopista")
-    ,
-    @NamedQuery(name = "Tipopista.findByNome", query = "SELECT t FROM Tipopista t WHERE t.nome = :nome")})
+    , @NamedQuery(name = "Tipopista.findByIdTipopista", query = "SELECT t FROM Tipopista t WHERE t.idTipopista = :idTipopista")
+    , @NamedQuery(name = "Tipopista.findByNome", query = "SELECT t FROM Tipopista t WHERE t.nome = :nome")})
 public class Tipopista implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,17 +45,23 @@ public class Tipopista implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "nome")
     private String nome;
-
-    public Tipopista(Integer idTipopista, String nome) {
-        this.idTipopista = idTipopista;
-        this.nome = nome;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
+    private Collection<Desempenho> desempenhoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
+    private Collection<Desempenhoteste> desempenhotesteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopista")
+    private Collection<Competicao> competicaoCollection;
 
     public Tipopista() {
     }
 
     public Tipopista(Integer idTipopista) {
         this.idTipopista = idTipopista;
+    }
+
+    public Tipopista(Integer idTipopista, String nome) {
+        this.idTipopista = idTipopista;
+        this.nome = nome;
     }
 
     public Integer getIdTipopista() {
@@ -80,12 +80,31 @@ public class Tipopista implements Serializable {
         this.nome = nome;
     }
 
-    public static List<Tipopista> obterTiposPista() throws ClassNotFoundException, SQLException {
-        return TipopistaDAO.obterTipospista();
+    @XmlTransient
+    public Collection<Desempenho> getDesempenhoCollection() {
+        return desempenhoCollection;
     }
 
-    public static Tipopista obterTipoPista(int idTipoPista) throws ClassNotFoundException {
-        return TipopistaDAO.getTipopista(idTipoPista);
+    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
+        this.desempenhoCollection = desempenhoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
+        return desempenhotesteCollection;
+    }
+
+    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
+        this.desempenhotesteCollection = desempenhotesteCollection;
+    }
+
+    @XmlTransient
+    public Collection<Competicao> getCompeticaoCollection() {
+        return competicaoCollection;
+    }
+
+    public void setCompeticaoCollection(Collection<Competicao> competicaoCollection) {
+        this.competicaoCollection = competicaoCollection;
     }
 
     @Override
@@ -112,5 +131,5 @@ public class Tipopista implements Serializable {
     public String toString() {
         return "model.Tipopista[ idTipopista=" + idTipopista + " ]";
     }
-
+    
 }

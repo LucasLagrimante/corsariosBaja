@@ -48,7 +48,7 @@ public class DesempenhotesteDAO {
         }
     }
 
-    public static Desempenhoteste getDesempenhoteste(int id) {
+    public Desempenhoteste getDesempenhoteste(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Desempenhoteste desempenhoTeste = null;
@@ -85,7 +85,7 @@ public class DesempenhotesteDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Desempenhoteste> obterDesempenhosteste() {
+    public List<Desempenhoteste> obterDesempenhosteste() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Desempenhoteste> desempenhosTeste = null;

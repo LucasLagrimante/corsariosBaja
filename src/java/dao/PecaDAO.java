@@ -48,7 +48,7 @@ public class PecaDAO {
         }
     }
 
-    public static Peca getPeca(int id) {
+    public Peca getPeca(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Peca peca = null;
@@ -85,7 +85,7 @@ public class PecaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Peca> obterPecas() {
+    public List<Peca> obterPecas() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Peca> pecas = null;
@@ -105,7 +105,7 @@ public class PecaDAO {
         return pecas;
     }
 
-    public static List<Peca> obterPrecos() {
+    public List<Peca> obterPrecos() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Peca> pecas = null;

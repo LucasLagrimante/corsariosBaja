@@ -6,16 +6,20 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -68,6 +72,14 @@ public class Automovel implements Serializable {
     @NotNull
     @Column(name = "custoTotal")
     private float custoTotal;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
+    private Collection<Desempenho> desempenhoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
+    private Collection<Desempenhoteste> desempenhotesteCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
+    private Collection<Arquitetura> arquiteturaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKautomovel")
+    private Collection<Design> designCollection;
 
     public Automovel() {
     }
@@ -140,6 +152,42 @@ public class Automovel implements Serializable {
 
     public void setCustoTotal(float custoTotal) {
         this.custoTotal = custoTotal;
+    }
+
+    @XmlTransient
+    public Collection<Desempenho> getDesempenhoCollection() {
+        return desempenhoCollection;
+    }
+
+    public void setDesempenhoCollection(Collection<Desempenho> desempenhoCollection) {
+        this.desempenhoCollection = desempenhoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Desempenhoteste> getDesempenhotesteCollection() {
+        return desempenhotesteCollection;
+    }
+
+    public void setDesempenhotesteCollection(Collection<Desempenhoteste> desempenhotesteCollection) {
+        this.desempenhotesteCollection = desempenhotesteCollection;
+    }
+
+    @XmlTransient
+    public Collection<Arquitetura> getArquiteturaCollection() {
+        return arquiteturaCollection;
+    }
+
+    public void setArquiteturaCollection(Collection<Arquitetura> arquiteturaCollection) {
+        this.arquiteturaCollection = arquiteturaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Design> getDesignCollection() {
+        return designCollection;
+    }
+
+    public void setDesignCollection(Collection<Design> designCollection) {
+        this.designCollection = designCollection;
     }
 
     @Override

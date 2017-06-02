@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.ArquiteturaDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,15 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "arquitetura")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a"),
-    @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura"),
-    @NamedQuery(name = "Arquitetura.findByCaminhoImagem", query = "SELECT a FROM Arquitetura a WHERE a.caminhoImagem = :caminhoImagem")})
+    @NamedQuery(name = "Arquitetura.findAll", query = "SELECT a FROM Arquitetura a")
+    , @NamedQuery(name = "Arquitetura.findByIdArquitetura", query = "SELECT a FROM Arquitetura a WHERE a.idArquitetura = :idArquitetura")
+    , @NamedQuery(name = "Arquitetura.findByCaminhoImagem", query = "SELECT a FROM Arquitetura a WHERE a.caminhoImagem = :caminhoImagem")})
 public class Arquitetura implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,14 +54,19 @@ public class Arquitetura implements Serializable {
         this.idArquitetura = idArquitetura;
     }
 
-    public Arquitetura(Integer idArquitetura, String caminhoImagem, Automovel automovel) {
+    public Arquitetura(Integer idArquitetura, String caminhoImagem) {
         this.idArquitetura = idArquitetura;
         this.caminhoImagem = caminhoImagem;
-        this.fKautomovel = automovel;
     }
 
     public Integer getIdArquitetura() {
         return idArquitetura;
+    }
+
+    public Arquitetura(Integer idArquitetura, String caminhoImagem, Automovel fKautomovel) {
+        this.idArquitetura = idArquitetura;
+        this.caminhoImagem = caminhoImagem;
+        this.fKautomovel = fKautomovel;
     }
 
     public void setIdArquitetura(Integer idArquitetura) {
@@ -85,14 +87,6 @@ public class Arquitetura implements Serializable {
 
     public void setFKautomovel(Automovel fKautomovel) {
         this.fKautomovel = fKautomovel;
-    }
-
-    public static List<model.Arquitetura> obterArquiteturas() {
-        return ArquiteturaDAO.obterArquiteturas();
-    }
-
-    public static model.Arquitetura obterArquitetura(int idArquitetura) {
-        return ArquiteturaDAO.getArquitetura(idArquitetura);
     }
 
     @Override
@@ -119,5 +113,5 @@ public class Arquitetura implements Serializable {
     public String toString() {
         return "model.Arquitetura[ idArquitetura=" + idArquitetura + " ]";
     }
-
+    
 }

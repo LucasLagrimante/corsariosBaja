@@ -48,7 +48,7 @@ public class IntegranteDAO {
         }
     }
 
-    public static Integrante getIntegrante(int id) {
+    public Integrante getIntegrante(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Integrante integrante = null;
@@ -85,7 +85,7 @@ public class IntegranteDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Integrante> obterIntegrantes() {
+    public List<Integrante> obterIntegrantes() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Integrante> integrantes = null;
@@ -105,7 +105,7 @@ public class IntegranteDAO {
         return integrantes;
     }
 
-    public static List<Integrante> obterPessoas() {
+    public List<Integrante> obterPessoas() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Integrante> integrantes = null;

@@ -48,7 +48,7 @@ public class AvaliacaoDAO {
         }
     }
 
-    public static Avaliacao getAvaliacao(int id) {
+    public Avaliacao getAvaliacao(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Avaliacao avaliacao = null;
@@ -85,7 +85,7 @@ public class AvaliacaoDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Avaliacao> obterAvaliacoes() {
+    public List<Avaliacao> obterAvaliacoes() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Avaliacao> avaliacoes = null;

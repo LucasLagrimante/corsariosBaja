@@ -48,7 +48,7 @@ public class FrequenciaDAO {
         }
     }
 
-    public static Frequencia getFrequencia(int id) {
+    public Frequencia getFrequencia(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Frequencia frequencia = null;
@@ -85,7 +85,7 @@ public class FrequenciaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Frequencia> obterFrequencias() {
+    public List<Frequencia> obterFrequencias() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Frequencia> frequencias = null;
@@ -105,7 +105,7 @@ public class FrequenciaDAO {
         return frequencias;
     }
 
-    public static List<Frequencia> obterEstados() {
+    public List<Frequencia> obterEstados() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Frequencia> frequencias = null;

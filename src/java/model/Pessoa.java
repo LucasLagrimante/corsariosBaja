@@ -5,11 +5,8 @@
  */
 package model;
 
-import dao.PessoaDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,32 +24,26 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "pessoa")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p")
-    ,
-    @NamedQuery(name = "Pessoa.findByIdPessoa", query = "SELECT p FROM Pessoa p WHERE p.idPessoa = :idPessoa")
-    ,
-    @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome")
-    ,
-    @NamedQuery(name = "Pessoa.findByCpf", query = "SELECT p FROM Pessoa p WHERE p.cpf = :cpf")
-    ,
-    @NamedQuery(name = "Pessoa.findByLogradouro", query = "SELECT p FROM Pessoa p WHERE p.logradouro = :logradouro")
-    ,
-    @NamedQuery(name = "Pessoa.findByCep", query = "SELECT p FROM Pessoa p WHERE p.cep = :cep")
-    ,
-    @NamedQuery(name = "Pessoa.findByBairro", query = "SELECT p FROM Pessoa p WHERE p.bairro = :bairro")
-    ,
-    @NamedQuery(name = "Pessoa.findByUf", query = "SELECT p FROM Pessoa p WHERE p.uf = :uf")
-    ,
-    @NamedQuery(name = "Pessoa.findByNumero", query = "SELECT p FROM Pessoa p WHERE p.numero = :numero")
-    ,
-    @NamedQuery(name = "Pessoa.findByTelefone", query = "SELECT p FROM Pessoa p WHERE p.telefone = :telefone")})
+    , @NamedQuery(name = "Pessoa.findByIdPessoa", query = "SELECT p FROM Pessoa p WHERE p.idPessoa = :idPessoa")
+    , @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome")
+    , @NamedQuery(name = "Pessoa.findByCpf", query = "SELECT p FROM Pessoa p WHERE p.cpf = :cpf")
+    , @NamedQuery(name = "Pessoa.findByLogradouro", query = "SELECT p FROM Pessoa p WHERE p.logradouro = :logradouro")
+    , @NamedQuery(name = "Pessoa.findByCep", query = "SELECT p FROM Pessoa p WHERE p.cep = :cep")
+    , @NamedQuery(name = "Pessoa.findByBairro", query = "SELECT p FROM Pessoa p WHERE p.bairro = :bairro")
+    , @NamedQuery(name = "Pessoa.findByUf", query = "SELECT p FROM Pessoa p WHERE p.uf = :uf")
+    , @NamedQuery(name = "Pessoa.findByNumero", query = "SELECT p FROM Pessoa p WHERE p.numero = :numero")
+    , @NamedQuery(name = "Pessoa.findByTelefone", query = "SELECT p FROM Pessoa p WHERE p.telefone = :telefone")})
 public class Pessoa implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKpessoa")
+    private Collection<Integrante> integranteCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -75,6 +66,19 @@ public class Pessoa implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "logradouro")
     private String logradouro;
+
+    public Pessoa(Integer idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, String numero, String telefone, Integrante integrante) {
+        this.idPessoa = idPessoa;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.logradouro = logradouro;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.uf = uf;
+        this.numero = numero;
+        this.telefone = telefone;
+        this.integrante = integrante;
+    }
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
@@ -92,15 +96,25 @@ public class Pessoa implements Serializable {
     private String uf;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "numero")
-    private int numero;
+    private String numero;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "telefone")
     private String telefone;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pessoa")
+    private Integrante integrante;
 
-    public Pessoa(Integer idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, int numero, String telefone) {
+    public Pessoa() {
+    }
+
+    public Pessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    public Pessoa(Integer idPessoa, String nome, String cpf, String logradouro, String cep, String bairro, String uf, String numero, String telefone) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.cpf = cpf;
@@ -110,13 +124,6 @@ public class Pessoa implements Serializable {
         this.uf = uf;
         this.numero = numero;
         this.telefone = telefone;
-    }
-
-    public Pessoa() {
-    }
-
-    public Pessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
     }
 
     public Integer getIdPessoa() {
@@ -175,11 +182,11 @@ public class Pessoa implements Serializable {
         this.uf = uf;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -190,13 +197,15 @@ public class Pessoa implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public static List<model.Pessoa> obterPessoas() throws ClassNotFoundException, SQLException {
-        return PessoaDAO.obterPessoas();
+
+    public Integrante getIntegrante() {
+        return integrante;
     }
 
-    public static model.Pessoa obterPessoa(int idPessoa) throws ClassNotFoundException {
-        return PessoaDAO.getPessoa(idPessoa);
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -222,4 +231,13 @@ public class Pessoa implements Serializable {
         return "model.Pessoa[ idPessoa=" + idPessoa + " ]";
     }
 
+    @XmlTransient
+    public Collection<Integrante> getIntegranteCollection() {
+        return integranteCollection;
+    }
+
+    public void setIntegranteCollection(Collection<Integrante> integranteCollection) {
+        this.integranteCollection = integranteCollection;
+    }
+    
 }

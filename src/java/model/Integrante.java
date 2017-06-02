@@ -5,42 +5,31 @@
  */
 package model;
 
-import dao.IntegranteDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "integrante")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Integrante.findAll", query = "SELECT i FROM Integrante i")
-    ,
-    @NamedQuery(name = "Integrante.findByMatricula", query = "SELECT i FROM Integrante i WHERE i.matricula = :matricula")
-    ,
-    @NamedQuery(name = "Integrante.findByCargaHorariaDisponivel", query = "SELECT i FROM Integrante i WHERE i.cargaHorariaDisponivel = :cargaHorariaDisponivel")
-    ,
-    @NamedQuery(name = "Integrante.findByFKpessoa", query = "SELECT i FROM Integrante i WHERE i.fKpessoa = :fKpessoa")})
+    , @NamedQuery(name = "Integrante.findByMatricula", query = "SELECT i FROM Integrante i WHERE i.matricula = :matricula")
+    , @NamedQuery(name = "Integrante.findByCargaHorariaDisponivel", query = "SELECT i FROM Integrante i WHERE i.cargaHorariaDisponivel = :cargaHorariaDisponivel")})
 public class Integrante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,11 +43,10 @@ public class Integrante implements Serializable {
     @Size(min = 1, max = 8)
     @Column(name = "cargaHorariaDisponivel")
     private String cargaHorariaDisponivel;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "FK_pessoa")
-    private int fKpessoa;
-    
+    @JoinColumn(name = "FK_pessoa", referencedColumnName = "idPessoa")
+    @ManyToOne(optional = false)
+    private Pessoa fKpessoa;
+
     public Integrante() {
     }
 
@@ -66,7 +54,12 @@ public class Integrante implements Serializable {
         this.matricula = matricula;
     }
 
-    public Integrante(Integer matricula, String cargaHorariaDisponivel, int fKpessoa) {
+    public Integrante(Integer matricula, String cargaHorariaDisponivel) {
+        this.matricula = matricula;
+        this.cargaHorariaDisponivel = cargaHorariaDisponivel;
+    }
+
+    public Integrante(Integer matricula, String cargaHorariaDisponivel, Pessoa fKpessoa) {
         this.matricula = matricula;
         this.cargaHorariaDisponivel = cargaHorariaDisponivel;
         this.fKpessoa = fKpessoa;
@@ -88,26 +81,14 @@ public class Integrante implements Serializable {
         this.cargaHorariaDisponivel = cargaHorariaDisponivel;
     }
 
-    public int getFKpessoa() {
+    public Pessoa getFKpessoa() {
         return fKpessoa;
     }
 
-    public void setFKpessoa(int fKpessoa) {
+    public void setFKpessoa(Pessoa fKpessoa) {
         this.fKpessoa = fKpessoa;
     }
 
-    public static List<model.Integrante> obterIntegrantes() throws ClassNotFoundException, SQLException {
-        return IntegranteDAO.obterIntegrantes();
-    }
-
-    public static List<Integrante> obterPessoas() throws ClassNotFoundException, SQLException {
-        return IntegranteDAO.obterPessoas();
-    }
-
-    public static model.Integrante obterIntegrante(int matricula) throws ClassNotFoundException {
-        return IntegranteDAO.getIntegrante(matricula);
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -132,5 +113,5 @@ public class Integrante implements Serializable {
     public String toString() {
         return "model.Integrante[ matricula=" + matricula + " ]";
     }
-
+    
 }

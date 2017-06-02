@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.CompeticaoDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,23 +21,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "competicao")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Competicao.findAll", query = "SELECT c FROM Competicao c")
-    ,
-    @NamedQuery(name = "Competicao.findByIdCompeticao", query = "SELECT c FROM Competicao c WHERE c.idCompeticao = :idCompeticao")
-    ,
-    @NamedQuery(name = "Competicao.findByNome", query = "SELECT c FROM Competicao c WHERE c.nome = :nome")
-    ,
-    @NamedQuery(name = "Competicao.findByData", query = "SELECT c FROM Competicao c WHERE c.data = :data")
-    ,
-    @NamedQuery(name = "Competicao.findByHora", query = "SELECT c FROM Competicao c WHERE c.hora = :hora")
-    ,
-    @NamedQuery(name = "Competicao.findByLocal", query = "SELECT c FROM Competicao c WHERE c.local = :local")})
+    , @NamedQuery(name = "Competicao.findByIdCompeticao", query = "SELECT c FROM Competicao c WHERE c.idCompeticao = :idCompeticao")
+    , @NamedQuery(name = "Competicao.findByNome", query = "SELECT c FROM Competicao c WHERE c.nome = :nome")
+    , @NamedQuery(name = "Competicao.findByData", query = "SELECT c FROM Competicao c WHERE c.data = :data")
+    , @NamedQuery(name = "Competicao.findByHora", query = "SELECT c FROM Competicao c WHERE c.hora = :hora")
+    , @NamedQuery(name = "Competicao.findByLocal", query = "SELECT c FROM Competicao c WHERE c.local = :local")})
 public class Competicao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -69,6 +61,15 @@ public class Competicao implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "local")
     private String local;
+
+    public Competicao(Integer idCompeticao, String nome, String data, String hora, String local, Tipopista fKtipopista) {
+        this.idCompeticao = idCompeticao;
+        this.nome = nome;
+        this.data = data;
+        this.hora = hora;
+        this.local = local;
+        this.fKtipopista = fKtipopista;
+    }
     @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
     @ManyToOne(optional = false)
     private Tipopista fKtipopista;
@@ -80,13 +81,12 @@ public class Competicao implements Serializable {
         this.idCompeticao = idCompeticao;
     }
 
-    public Competicao(Integer idCompeticao, String nome, String data, String hora, String local, Tipopista tipopista) {
+    public Competicao(Integer idCompeticao, String nome, String data, String hora, String local) {
         this.idCompeticao = idCompeticao;
         this.nome = nome;
         this.data = data;
         this.hora = hora;
         this.local = local;
-        this.fKtipopista = tipopista;
     }
 
     public Integer getIdCompeticao() {
@@ -137,14 +137,6 @@ public class Competicao implements Serializable {
         this.fKtipopista = fKtipopista;
     }
 
-    public static List<model.Competicao> obterCompeticoes() throws ClassNotFoundException, SQLException {
-        return CompeticaoDAO.obterCompeticoes();
-    }
-
-    public static model.Competicao obterCompeticao(int idCompeticao) throws ClassNotFoundException {
-        return CompeticaoDAO.getCompeticao(idCompeticao);
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -169,5 +161,5 @@ public class Competicao implements Serializable {
     public String toString() {
         return "model.Competicao[ idCompeticao=" + idCompeticao + " ]";
     }
-
+    
 }

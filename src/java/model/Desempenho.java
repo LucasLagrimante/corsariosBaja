@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.DesempenhoDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,29 +21,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "desempenho")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Desempenho.findAll", query = "SELECT d FROM Desempenho d")
-    ,
-    @NamedQuery(name = "Desempenho.findByIdDesempenho", query = "SELECT d FROM Desempenho d WHERE d.idDesempenho = :idDesempenho")
-    ,
-    @NamedQuery(name = "Desempenho.findByNome", query = "SELECT d FROM Desempenho d WHERE d.nome = :nome")
-    ,
-    @NamedQuery(name = "Desempenho.findByData", query = "SELECT d FROM Desempenho d WHERE d.data = :data")
-    ,
-    @NamedQuery(name = "Desempenho.findByHora", query = "SELECT d FROM Desempenho d WHERE d.hora = :hora")
-    ,
-    @NamedQuery(name = "Desempenho.findByAceleracaoMedia", query = "SELECT d FROM Desempenho d WHERE d.aceleracaoMedia = :aceleracaoMedia")
-    ,
-    @NamedQuery(name = "Desempenho.findByVelocidadeMedia", query = "SELECT d FROM Desempenho d WHERE d.velocidadeMedia = :velocidadeMedia")
-    ,
-    @NamedQuery(name = "Desempenho.findByTempoPista", query = "SELECT d FROM Desempenho d WHERE d.tempoPista = :tempoPista")
-    ,
-    @NamedQuery(name = "Desempenho.findByFrenagem", query = "SELECT d FROM Desempenho d WHERE d.frenagem = :frenagem")})
+    , @NamedQuery(name = "Desempenho.findByIdDesempenho", query = "SELECT d FROM Desempenho d WHERE d.idDesempenho = :idDesempenho")
+    , @NamedQuery(name = "Desempenho.findByNome", query = "SELECT d FROM Desempenho d WHERE d.nome = :nome")
+    , @NamedQuery(name = "Desempenho.findByData", query = "SELECT d FROM Desempenho d WHERE d.data = :data")
+    , @NamedQuery(name = "Desempenho.findByHora", query = "SELECT d FROM Desempenho d WHERE d.hora = :hora")
+    , @NamedQuery(name = "Desempenho.findByAceleracaoMedia", query = "SELECT d FROM Desempenho d WHERE d.aceleracaoMedia = :aceleracaoMedia")
+    , @NamedQuery(name = "Desempenho.findByVelocidadeMedia", query = "SELECT d FROM Desempenho d WHERE d.velocidadeMedia = :velocidadeMedia")
+    , @NamedQuery(name = "Desempenho.findByTempoPista", query = "SELECT d FROM Desempenho d WHERE d.tempoPista = :tempoPista")
+    , @NamedQuery(name = "Desempenho.findByFrenagem", query = "SELECT d FROM Desempenho d WHERE d.frenagem = :frenagem")})
 public class Desempenho implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -96,6 +85,20 @@ public class Desempenho implements Serializable {
     @JoinColumn(name = "FK_tipopista", referencedColumnName = "idTipopista")
     @ManyToOne(optional = false)
     private Tipopista fKtipopista;
+
+    public Desempenho(Integer idDesempenho, String nome, String data, String hora, float aceleracaoMedia, float velocidadeMedia, String tempoPista, float frenagem, Automovel fKautomovel, Integrante fKmotorista, Tipopista fKtipopista) {
+        this.idDesempenho = idDesempenho;
+        this.nome = nome;
+        this.data = data;
+        this.hora = hora;
+        this.aceleracaoMedia = aceleracaoMedia;
+        this.velocidadeMedia = velocidadeMedia;
+        this.tempoPista = tempoPista;
+        this.frenagem = frenagem;
+        this.fKautomovel = fKautomovel;
+        this.fKmotorista = fKmotorista;
+        this.fKtipopista = fKtipopista;
+    }
 
     public Desempenho() {
     }
@@ -203,18 +206,6 @@ public class Desempenho implements Serializable {
         this.fKtipopista = fKtipopista;
     }
 
-    public static List<model.Desempenho> obterDesempenhos() throws ClassNotFoundException, SQLException {
-        return DesempenhoDAO.obterDesempenhos();
-    }
-
-    public static model.Desempenho obterDesempenho(int idDesempenho) throws ClassNotFoundException {
-        return DesempenhoDAO.getDesempenho(idDesempenho);
-    }
-
-    public static List<Desempenho> obterPistas() throws ClassNotFoundException, SQLException {
-        return DesempenhoDAO.obterPistas();
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -239,5 +230,5 @@ public class Desempenho implements Serializable {
     public String toString() {
         return "model.Desempenho[ idDesempenho=" + idDesempenho + " ]";
     }
-
+    
 }

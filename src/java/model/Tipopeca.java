@@ -5,11 +5,8 @@
  */
 package model;
 
-import dao.TipopecaDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,21 +20,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import model.Tipopeca;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "tipopeca")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tipopeca.findAll", query = "SELECT t FROM Tipopeca t")
-    ,
-    @NamedQuery(name = "Tipopeca.findByIdTipopeca", query = "SELECT t FROM Tipopeca t WHERE t.idTipopeca = :idTipopeca")
-    ,
-    @NamedQuery(name = "Tipopeca.findByNome", query = "SELECT t FROM Tipopeca t WHERE t.nome = :nome")})
+    , @NamedQuery(name = "Tipopeca.findByIdTipopeca", query = "SELECT t FROM Tipopeca t WHERE t.idTipopeca = :idTipopeca")
+    , @NamedQuery(name = "Tipopeca.findByNome", query = "SELECT t FROM Tipopeca t WHERE t.nome = :nome")})
 public class Tipopeca implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +45,14 @@ public class Tipopeca implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "nome")
     private String nome;
+
+    public Tipopeca(Integer idTipopeca, String nome, Collection<Peca> pecaCollection) {
+        this.idTipopeca = idTipopeca;
+        this.nome = nome;
+        this.pecaCollection = pecaCollection;
+    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fKtipopeca")
+    private Collection<Peca> pecaCollection;
 
     public Tipopeca() {
     }
@@ -80,12 +82,13 @@ public class Tipopeca implements Serializable {
         this.nome = nome;
     }
 
-    public static List<Tipopeca> obterTipospeca() throws ClassNotFoundException, SQLException {
-        return TipopecaDAO.obterTipospeca();
+    @XmlTransient
+    public Collection<Peca> getPecaCollection() {
+        return pecaCollection;
     }
 
-    public static Tipopeca obterTipopeca(int idTipoPeca) throws ClassNotFoundException {
-        return TipopecaDAO.getTipopeca(idTipoPeca);
+    public void setPecaCollection(Collection<Peca> pecaCollection) {
+        this.pecaCollection = pecaCollection;
     }
 
     @Override
@@ -112,5 +115,5 @@ public class Tipopeca implements Serializable {
     public String toString() {
         return "model.Tipopeca[ idTipopeca=" + idTipopeca + " ]";
     }
-
+    
 }

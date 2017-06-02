@@ -48,7 +48,7 @@ public class DesempenhoDAO {
         }
     }
 
-    public static Desempenho getDesempenho(int id) {
+    public Desempenho getDesempenho(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Desempenho desempenho = null;
@@ -85,7 +85,7 @@ public class DesempenhoDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Desempenho> obterDesempenhos() {
+    public List<Desempenho> obterDesempenhos() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Desempenho> desempenhos = null;
@@ -105,7 +105,7 @@ public class DesempenhoDAO {
         return desempenhos;
     }
 
-    public static List<Desempenho> obterPistas() {
+    public List<Desempenho> obterPistas() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Desempenho> desempenhos = null;

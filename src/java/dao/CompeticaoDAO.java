@@ -48,7 +48,7 @@ public class CompeticaoDAO {
         }
     }
 
-    public static Competicao getCompeticao(int id) {
+    public Competicao getCompeticao(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Competicao competicao = null;
@@ -85,7 +85,7 @@ public class CompeticaoDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Competicao> obterCompeticoes() {
+    public List<Competicao> obterCompeticoes() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Competicao> competicoes = null;

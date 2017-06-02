@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.DesignDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,17 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "design")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Design.findAll", query = "SELECT d FROM Design d")
-    ,
-    @NamedQuery(name = "Design.findByIdDesign", query = "SELECT d FROM Design d WHERE d.idDesign = :idDesign")
-    ,
-    @NamedQuery(name = "Design.findByCaminhoImagem", query = "SELECT d FROM Design d WHERE d.caminhoImagem = :caminhoImagem")})
+    , @NamedQuery(name = "Design.findByIdDesign", query = "SELECT d FROM Design d WHERE d.idDesign = :idDesign")
+    , @NamedQuery(name = "Design.findByCaminhoImagem", query = "SELECT d FROM Design d WHERE d.caminhoImagem = :caminhoImagem")})
 public class Design implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,10 +54,15 @@ public class Design implements Serializable {
         this.idDesign = idDesign;
     }
 
-    public Design(Integer idDesign, String caminhoImagem, Automovel automovel) {
+    public Design(Integer idDesign, String caminhoImagem, Automovel fKautomovel) {
         this.idDesign = idDesign;
         this.caminhoImagem = caminhoImagem;
-        this.fKautomovel = automovel;
+        this.fKautomovel = fKautomovel;
+    }
+
+    public Design(Integer idDesign, String caminhoImagem) {
+        this.idDesign = idDesign;
+        this.caminhoImagem = caminhoImagem;
     }
 
     public Integer getIdDesign() {
@@ -89,14 +89,6 @@ public class Design implements Serializable {
         this.fKautomovel = fKautomovel;
     }
 
-    public static List<model.Design> obterDesigns() throws ClassNotFoundException, SQLException {
-        return DesignDAO.obterDesigns();
-    }
-
-    public static model.Design obterDesign(int idDesign) throws ClassNotFoundException {
-        return DesignDAO.getDesign(idDesign);
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,5 +113,5 @@ public class Design implements Serializable {
     public String toString() {
         return "model.Design[ idDesign=" + idDesign + " ]";
     }
-
+    
 }

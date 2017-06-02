@@ -48,7 +48,7 @@ public class PessoaDAO {
         }
     }
 
-    public static Pessoa getPessoa(int id) {
+    public Pessoa getPessoa(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Pessoa pessoa = null;
@@ -85,7 +85,7 @@ public class PessoaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Pessoa> obterPessoas() {
+    public List<Pessoa> obterPessoas() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Pessoa> pessoas = null;

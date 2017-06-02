@@ -48,7 +48,7 @@ public class DesignDAO {
         }
     }
 
-    public static Design getDesign(int id) {
+    public Design getDesign(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Design design = null;
@@ -85,7 +85,7 @@ public class DesignDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Design> obterDesigns() {
+    public List<Design> obterDesigns() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Design> designs = null;

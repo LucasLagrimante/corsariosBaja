@@ -5,10 +5,7 @@
  */
 package model;
 
-import dao.FrequenciaDAO;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,19 +21,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Aluno
+ * @author lucas
  */
 @Entity
 @Table(name = "frequencia")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Frequencia.findAll", query = "SELECT f FROM Frequencia f")
-    ,
-    @NamedQuery(name = "Frequencia.findByIdFrequencia", query = "SELECT f FROM Frequencia f WHERE f.idFrequencia = :idFrequencia")
-    ,
-    @NamedQuery(name = "Frequencia.findByData", query = "SELECT f FROM Frequencia f WHERE f.data = :data")
-    ,
-    @NamedQuery(name = "Frequencia.findByEstado", query = "SELECT f FROM Frequencia f WHERE f.estado = :estado")})
+    , @NamedQuery(name = "Frequencia.findByIdFrequencia", query = "SELECT f FROM Frequencia f WHERE f.idFrequencia = :idFrequencia")
+    , @NamedQuery(name = "Frequencia.findByData", query = "SELECT f FROM Frequencia f WHERE f.data = :data")
+    , @NamedQuery(name = "Frequencia.findByEstado", query = "SELECT f FROM Frequencia f WHERE f.estado = :estado")})
 public class Frequencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,11 +60,17 @@ public class Frequencia implements Serializable {
         this.idFrequencia = idFrequencia;
     }
 
-    public Frequencia(Integer idFrequencia, String data, String estado, Integrante integrante) {
+    public Frequencia(Integer idFrequencia, String data, String estado, Integrante fKintegrante) {
         this.idFrequencia = idFrequencia;
         this.data = data;
         this.estado = estado;
-        this.fKintegrante = integrante;
+        this.fKintegrante = fKintegrante;
+    }
+
+    public Frequencia(Integer idFrequencia, String data, String estado) {
+        this.idFrequencia = idFrequencia;
+        this.data = data;
+        this.estado = estado;
     }
 
     public Integer getIdFrequencia() {
@@ -105,18 +105,6 @@ public class Frequencia implements Serializable {
         this.fKintegrante = fKintegrante;
     }
 
-    public static List<model.Frequencia> obterFrequencias() throws ClassNotFoundException, SQLException {
-        return FrequenciaDAO.obterFrequencias();
-    }
-
-    public static List<Frequencia> obterEstados() throws ClassNotFoundException, SQLException {
-        return FrequenciaDAO.obterEstados();
-    }
-
-    public static model.Frequencia obterFrequencia(int idFrequencia) throws ClassNotFoundException {
-        return FrequenciaDAO.getFrequencia(idFrequencia);
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -141,5 +129,5 @@ public class Frequencia implements Serializable {
     public String toString() {
         return "model.Frequencia[ idFrequencia=" + idFrequencia + " ]";
     }
-
+    
 }

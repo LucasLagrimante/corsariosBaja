@@ -43,7 +43,7 @@ public class ManterPecaController extends HttpServlet {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
-            request.setAttribute("tipospeca", Tipopeca.obterTipospeca());
+            request.setAttribute("tipospeca", TipopecaDAO.getInstance().obterTipospeca());
             if (!operacao.equals("incluir")) {
                 int idPeca = Integer.parseInt(request.getParameter("txtIdPeca"));
                 peca = PecaDAO.getInstance().getPeca(idPeca);
@@ -83,7 +83,7 @@ public class ManterPecaController extends HttpServlet {
                 peca.setModelo(modelo);
                 peca.setPrecoCompra(precoCompra);
                 peca.setFKtipopeca(tipopeca);
-                
+
                 PecaDAO.getInstance().salvar(peca);
             } else if (operacao.equals("excluir")) {
                 PecaDAO.getInstance().excluir(peca);
