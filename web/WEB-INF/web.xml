@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>PesquisaArquiteturaController</servlet-name>
-        <servlet-class>controller.PesquisaArquiteturaController</servlet-class>
+        <servlet-name>PesquisarArquiteturaController</servlet-name>
+        <servlet-class>controller.PesquisarArquiteturaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaAutomovelController</servlet-name>
-        <servlet-class>controller.PesquisaAutomovelController</servlet-class>
+        <servlet-name>PesquisarAutomovelController</servlet-name>
+        <servlet-class>controller.PesquisarAutomovelController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaBdController</servlet-name>
-        <servlet-class>controller.PesquisaBdController</servlet-class>
+        <servlet-name>PesquisarBdController</servlet-name>
+        <servlet-class>controller.PesquisarBdController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaCompeticaoController</servlet-name>
-        <servlet-class>controller.PesquisaCompeticaoController</servlet-class>
+        <servlet-name>PesquisarCompeticaoController</servlet-name>
+        <servlet-class>controller.PesquisarCompeticaoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaDesempenhoController</servlet-name>
-        <servlet-class>controller.PesquisaDesempenhoController</servlet-class>
+        <servlet-name>PesquisarDesempenhoController</servlet-name>
+        <servlet-class>controller.PesquisarDesempenhoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaDesempenhoTesteController</servlet-name>
-        <servlet-class>controller.PesquisaDesempenhoTesteController</servlet-class>
+        <servlet-name>PesquisarDesempenhotesteController</servlet-name>
+        <servlet-class>controller.PesquisarDesempenhotesteController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaDesignController</servlet-name>
-        <servlet-class>controller.PesquisaDesignController</servlet-class>
+        <servlet-name>PesquisarDesignController</servlet-name>
+        <servlet-class>controller.PesquisarDesignController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaFrequenciaController</servlet-name>
-        <servlet-class>controller.PesquisaFrequenciaController</servlet-class>
+        <servlet-name>PesquisarFrequenciaController</servlet-name>
+        <servlet-class>controller.PesquisarFrequenciaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaIntegranteController</servlet-name>
-        <servlet-class>controller.PesquisaIntegranteController</servlet-class>
+        <servlet-name>PesquisarIntegranteController</servlet-name>
+        <servlet-class>controller.PesquisarIntegranteController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaInvestidorController</servlet-name>
-        <servlet-class>controller.PesquisaInvestidorController</servlet-class>
+        <servlet-name>PesquisarInvestidorController</servlet-name>
+        <servlet-class>controller.PesquisarInvestidorController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaPecaController</servlet-name>
-        <servlet-class>controller.PesquisaPecaController</servlet-class>
+        <servlet-name>PesquisarPecaController</servlet-name>
+        <servlet-class>controller.PesquisarPecaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaPessoaController</servlet-name>
-        <servlet-class>controller.PesquisaPessoaController</servlet-class>
+        <servlet-name>PesquisarPessoaController</servlet-name>
+        <servlet-class>controller.PesquisarPessoaController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaProfessorController</servlet-name>
-        <servlet-class>controller.PesquisaProfessorController</servlet-class>
+        <servlet-name>PesquisarProfessorController</servlet-name>
+        <servlet-class>controller.PesquisarProfessorController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaQuesitoController</servlet-name>
-        <servlet-class>controller.PesquisaQuesitoController</servlet-class>
+        <servlet-name>PesquisarQuesitoController</servlet-name>
+        <servlet-class>controller.PesquisarQuesitoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaTipoPistaController</servlet-name>
-        <servlet-class>controller.PesquisaTipoPistaController</servlet-class>
+        <servlet-name>PesquisarTipopistaController</servlet-name>
+        <servlet-class>controller.PesquisarTipopistaController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManterAutomovelController</servlet-name>
@@ -113,16 +113,16 @@
         <servlet-class>controller.ManterDesempenhotesteController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <servlet-class>controller.PesquisaAvaliacaoController</servlet-class>
+        <servlet-name>PesquisarAvaliacaoController</servlet-name>
+        <servlet-class>controller.PesquisarAvaliacaoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaTipoPeca</servlet-name>
-        <servlet-class>controller.PesquisaTipoPeca</servlet-class>
+        <servlet-name>PesquisarTipopeca</servlet-name>
+        <servlet-class>controller.PesquisarTipopeca</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisaTipoPecaController</servlet-name>
-        <servlet-class>controller.PesquisaTipoPecaController</servlet-class>
+        <servlet-name>PesquisarTipopecaController</servlet-name>
+        <servlet-class>controller.PesquisarTipopecaController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManterInvestidorController</servlet-name>
@@ -137,64 +137,64 @@
         <servlet-class>relatorio.RelatorioController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PesquisaArquiteturaController</servlet-name>
-        <url-pattern>/PesquisaArquiteturaController</url-pattern>
+        <servlet-name>PesquisarArquiteturaController</servlet-name>
+        <url-pattern>/PesquisarArquiteturaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaAutomovelController</servlet-name>
-        <url-pattern>/PesquisaAutomovelController</url-pattern>
+        <servlet-name>PesquisarAutomovelController</servlet-name>
+        <url-pattern>/PesquisarAutomovelController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaBdController</servlet-name>
-        <url-pattern>/PesquisaBdController</url-pattern>
+        <servlet-name>PesquisarBdController</servlet-name>
+        <url-pattern>/PesquisarBdController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaCompeticaoController</servlet-name>
-        <url-pattern>/PesquisaCompeticaoController</url-pattern>
+        <servlet-name>PesquisarCompeticaoController</servlet-name>
+        <url-pattern>/PesquisarCompeticaoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaDesempenhoController</servlet-name>
-        <url-pattern>/PesquisaDesempenhoController</url-pattern>
+        <servlet-name>PesquisarDesempenhoController</servlet-name>
+        <url-pattern>/PesquisarDesempenhoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaDesempenhoTesteController</servlet-name>
-        <url-pattern>/PesquisaDesempenhoTesteController</url-pattern>
+        <servlet-name>PesquisarDesempenhotesteController</servlet-name>
+        <url-pattern>/PesquisarDesempenhotesteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaDesignController</servlet-name>
-        <url-pattern>/PesquisaDesignController</url-pattern>
+        <servlet-name>PesquisarDesignController</servlet-name>
+        <url-pattern>/PesquisarDesignController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaFrequenciaController</servlet-name>
-        <url-pattern>/PesquisaFrequenciaController</url-pattern>
+        <servlet-name>PesquisarFrequenciaController</servlet-name>
+        <url-pattern>/PesquisarFrequenciaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaIntegranteController</servlet-name>
-        <url-pattern>/PesquisaIntegranteController</url-pattern>
+        <servlet-name>PesquisarIntegranteController</servlet-name>
+        <url-pattern>/PesquisarIntegranteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaInvestidorController</servlet-name>
-        <url-pattern>/PesquisaInvestidorController</url-pattern>
+        <servlet-name>PesquisarInvestidorController</servlet-name>
+        <url-pattern>/PesquisarInvestidorController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaPecaController</servlet-name>
-        <url-pattern>/PesquisaPecaController</url-pattern>
+        <servlet-name>PesquisarPecaController</servlet-name>
+        <url-pattern>/PesquisarPecaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaPessoaController</servlet-name>
-        <url-pattern>/PesquisaPessoaController</url-pattern>
+        <servlet-name>PesquisarPessoaController</servlet-name>
+        <url-pattern>/PesquisarPessoaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaProfessorController</servlet-name>
-        <url-pattern>/PesquisaProfessorController</url-pattern>
+        <servlet-name>PesquisarProfessorController</servlet-name>
+        <url-pattern>/PesquisarProfessorController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaQuesitoController</servlet-name>
-        <url-pattern>/PesquisaQuesitoController</url-pattern>
+        <servlet-name>PesquisarQuesitoController</servlet-name>
+        <url-pattern>/PesquisarQuesitoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaTipoPistaController</servlet-name>
-        <url-pattern>/PesquisaTipoPistaController</url-pattern>
+        <servlet-name>PesquisarTipopistaController</servlet-name>
+        <url-pattern>/PesquisarTipopistaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManterAutomovelController</servlet-name>
@@ -249,16 +249,16 @@
         <url-pattern>/ManterDesempenhotesteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaAvaliacaoController</servlet-name>
-        <url-pattern>/PesquisaAvaliacaoController</url-pattern>
+        <servlet-name>PesquisarAvaliacaoController</servlet-name>
+        <url-pattern>/PesquisarAvaliacaoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaTipoPeca</servlet-name>
-        <url-pattern>/PesquisaTipoPeca</url-pattern>
+        <servlet-name>PesquisarTipopeca</servlet-name>
+        <url-pattern>/PesquisarTipopeca</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PesquisaTipoPecaController</servlet-name>
-        <url-pattern>/PesquisaTipoPecaController</url-pattern>
+        <servlet-name>PesquisarTipopecaController</servlet-name>
+        <url-pattern>/PesquisarTipopecaController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManterInvestidorController</servlet-name>
