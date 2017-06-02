@@ -63,7 +63,7 @@
         </nav>
         <div class="container">
             <h3 align="center">${operacao} Design </h3>
-            <form  action="ManterDesignController?acao=confirmar${operacao}" method="POST" name="frmManterDesign">
+            <form  action="ManterDesignController?acao=confirmarOperacao&operacao=${operacao}" method="POST" name="frmManterDesign">
                 <div class="row">
                     <div class="input-field col s6 offset-m3">
                         <c:if test="${operacao == 'Excluir'}"><input type="hidden" name="selectAutomovel" value="${design.automovel.idAutomovel}"></c:if>
