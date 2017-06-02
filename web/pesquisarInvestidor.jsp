@@ -45,7 +45,6 @@
             <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>

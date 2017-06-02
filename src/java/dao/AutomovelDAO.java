@@ -48,7 +48,7 @@ public class AutomovelDAO {
         }
     }
 
-    public static Automovel getAutomovel(int id) {
+    public Automovel getAutomovel(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Automovel automovel = null;
@@ -85,7 +85,7 @@ public class AutomovelDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Automovel> obterAutomoveis() {
+    public List<Automovel> obterAutomoveis() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Automovel> automoveis = null;
@@ -105,7 +105,7 @@ public class AutomovelDAO {
         return automoveis;
     }
 
-    public static List<Automovel> obterCores() {
+    public List<Automovel> obterCores() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Automovel> automoveis = null;
@@ -125,7 +125,7 @@ public class AutomovelDAO {
         return automoveis;
     }
 
-    public static List<Automovel> obterPesos() {
+    public List<Automovel> obterPesos() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Automovel> automoveis = null;

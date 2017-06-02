@@ -27,15 +27,14 @@
             <li><a class="brown-text text-darken-4" href="ManterAvaliacaoController?acao=prepararOperacao&operacao=incluir">Avaliação</a></li>
             <li><a class="brown-text text-darken-4" href="ManterCompeticaoController?acao=prepararOperacao&operacao=incluir">Competição</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesempenhoController?acao=prepararOperacao&operacao=incluir">Desempenho de Competicão</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterDesempenhoTesteController?acao=prepararOperacao&operacao=incluir">Desempenho de Teste</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterDesempenhotesteController?acao=prepararOperacao&operacao=incluir">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="ManterDesignController?acao=prepararOperacao&operacao=incluir">Design</a></li>
             <li><a class="brown-text text-darken-4" href="ManterFrequenciaController?acao=prepararOperacao&operacao=incluir">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterInvestidorController?acao=prepararOperacao&operacao=incluir">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="ManterIntegranteController?acao=prepararOperacao&operacao=incluir">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPecaController?acao=prepararOperacao&operacao=incluir">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="ManterPessoaController?acao=prepararOperacao&operacao=incluir">Pessoa</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPecaController?acao=prepararOperacao&operacao=incluir">Tipo de Peça</a></li>
-            <li><a class="brown-text text-darken-4" href="ManterTipoPistaController?acao=prepararOperacao&operacao=incluir">Tipo de Pista</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopecaController?acao=prepararOperacao&operacao=incluir">Tipo de Peça</a></li>
+            <li><a class="brown-text text-darken-4" href="ManterTipopistaController?acao=prepararOperacao&operacao=incluir">Tipo de Pista</a></li>
         </ul>
         <ul id="menuPesquisa" class="dropdown-content">
             <li><a class="brown-text text-darken-4" href="PesquisarAutomovelController">Automóvel</a></li>
@@ -46,7 +45,6 @@
             <li><a class="brown-text text-darken-4" href="PesquisarDesempenhotesteController">Desempenho de Teste</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarDesignController">Design</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarFrequenciaController">Frequência</a></li>
-            <li><a class="brown-text text-darken-4" href="PesquisarInvestidorController">Investidor</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarIntegranteController">Integrante</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarPecaController">Peça</a></li>
             <li><a class="brown-text text-darken-4" href="PesquisarPessoaController">Pessoa</a></li>

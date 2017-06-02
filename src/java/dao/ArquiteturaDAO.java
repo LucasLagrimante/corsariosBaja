@@ -48,7 +48,7 @@ public class ArquiteturaDAO {
         }
     }
 
-    public static Arquitetura getArquitetura(int id) {
+    public Arquitetura getArquitetura(int id) {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         Arquitetura arquitetura = null;
@@ -85,7 +85,7 @@ public class ArquiteturaDAO {
     }
 
     // OBTER PARA OS SELECTS
-    public static List<Arquitetura> obterArquiteturas() {
+    public List<Arquitetura> obterArquiteturas() {
         EntityManager em = PersistenceUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Arquitetura> arquiteturas = null;
