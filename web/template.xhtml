@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Corsarios Baja</title>
+    </h:head>
+    <h:body>
+        <h:form>  
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:submenu label="Cadastrar/Buscar" icon="ui-icon-pencil">
+                    <p:menuitem value="Automóvel" url="pesquisarAutomovel.xhtml" />
+                    <p:menuitem value="Arquitetura" url="pesquisarArquitetura.xhtml" />
+                    <p:menuitem value="Avaliação" url="pesquisarAvaliacao.xhtml" />
+                    <p:menuitem value="Competição" url="pesquisarCompeticao.xhtml" />
+                    <p:menuitem value="Desempenho" url="pesquisarDesempenho.xhtml" />
+                    <p:menuitem value="Desempenho Teste" url="pesquisarDesempenhoteste.xhtml" />
+                    <p:menuitem value="Design" url="pesquisarDesign.xhtml" />
+                    <p:menuitem value="Frequência" url="pesquisarFrequencia.xhtml" />
+                    <p:menuitem value="Integrante" url="pesquisarIntegrante.xhtml" />
+                    <p:menuitem value="Peça" url="pesquisarPeca.xhtml" />
+                    <p:menuitem value="Pessoa" url="pesquisarPessoa.xhtml" />
+                    <p:menuitem value="Tipo Peça" url="pesquisarTipopeca.xhtml" />
+                    <p:menuitem value="Tipo Pista" url="pesquisarTipopista.xhtml" />
+                </p:submenu>
+
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Procurar..."/>
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <hr/>
+        <ui:insert></ui:insert>
+    </h:body>
+</html>

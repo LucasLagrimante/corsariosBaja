@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportFrequenciaPorEstado" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f7efd9c5-0b64-420c-8f44-900cd62bbdb9">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="P_codigo" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[SELECT
+     frequencia.`idFrequencia` AS frequencia_idFrequencia,
+     frequencia.`data` AS frequencia_data,
+     frequencia.`estado` AS frequencia_estado,
+     frequencia.`FK_integrante` AS frequencia_FK_integrante
+FROM
+     `frequencia` frequencia
+WHERE $P{P_codigo} = estado]]>
+    </queryString>
+    <field name="frequencia_idFrequencia" class="java.lang.Integer"/>
+    <field name="frequencia_data" class="java.lang.String"/>
+    <field name="frequencia_estado" class="java.lang.String"/>
+    <field name="frequencia_FK_integrante" class="java.lang.Integer"/>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement uuid="ab95e283-632c-421f-bd44-5b1fbc0b1163" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+                <staticText>
+                    <reportElement uuid="c92da1f6-1cd6-487c-b5d7-080c0dc7cd61" x="20" y="20" width="309" height="43" forecolor="#FFFFFF"/>
+                    <textElement textAlignment="Center">
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Filtro por Estado]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="0d903147-6ac1-4876-912d-2564e9e10dd1" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+                    <textElement textAlignment="Center">
+                        <font size="14" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Corsários Baja]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="13"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement uuid="55b1eb44-ad88-48a1-bb81-5497a97f3131" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+            </line>
+            <staticText>
+                <reportElement uuid="8fa29e8d-4f92-43eb-bb58-cea1fa3a112d" mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID Frequência]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="64a71f01-e054-43fe-80c0-9467e19b801f" mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Data]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="9053e0bf-c4bc-42cf-8e09-7a571310ec8b" mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Estado]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="9ea385f1-3fa6-4aa1-9517-595f48db8b0e" mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[FK_integrante]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20">
+            <line>
+                <reportElement uuid="d559bbd5-eff0-41e2-b9e4-229c7fe761b4" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+            </line>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="f1dc855f-e500-4948-b861-cb954435fef8" x="0" y="0" width="138" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{frequencia_idFrequencia}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="846e7e90-dcdd-41e3-9de6-866276c1a4f1" x="138" y="0" width="138" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{frequencia_data}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="7dfcf94d-caa2-46f3-b6df-cd00af83b20f" x="276" y="0" width="138" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{frequencia_estado}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="3d8202a4-df9f-4a14-ae78-8e44a0597c4e" x="414" y="0" width="138" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{frequencia_FK_integrante}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band/>
+    </columnFooter>
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement uuid="b1681d9a-b83e-4f84-b5cb-51c09cf40aee" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement uuid="309e0c63-db7c-42b8-8d00-fc5ddc60c03a" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement uuid="4060ceca-1dfb-427d-8ed3-3ffd4dc8e078" x="0" y="4" width="100" height="13"/>
+                <textElement/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
+</jasperReport>
